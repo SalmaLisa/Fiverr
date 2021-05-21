@@ -2,12 +2,13 @@ import React,{ useState } from "react"
 
 import { useSelector , useDispatch } from "react-redux"
 // import { selectAcuPoint } from "../../"
-import { activeNav, selectAcuPoint } from "../../../actionCreator"
+import { activeNav, selectAcuPoint } from "../actionCreator"
 
 import Typography from "@material-ui/core/Typography"
 import { motion } from "framer-motion"
 
 const CustomNav = (props) =>{
+    const dispatch = useDispatch()
 
     const Width = props.name.length > 10 ? 
                 {width: "13em"} : 
@@ -15,7 +16,7 @@ const CustomNav = (props) =>{
     
     return(
         <motion.div 
-            onClick={()=> props.handleClick(props.name)} 
+            onClick={()=> dispatch(activeNav(props.name))} 
             className="mycustomnav"
             style={Width}>
 
@@ -43,10 +44,11 @@ const CustomNav = (props) =>{
 
 
 const Nav = (props) =>{
-    
+
     const Thisstate = useSelector(selectAcuPoint) 
-    const dispatch = useDispatch()
     const navigation = Thisstate.nav
+
+    const NavArray = props.NavData.map((item)=> <CustomNav name={item.name} activenav={navigation} />)
 
     return(
         <div style={{
@@ -63,47 +65,7 @@ const Nav = (props) =>{
                 }} 
                 className="custom-scroll">
 
-                    <CustomNav 
-                        name="Profile" 
-                        activenav={navigation} 
-                        handleClick={
-                            (event)=> dispatch(activeNav(event))
-                        } />
-
-                    <CustomNav 
-                        name="Topic and Comments" 
-                        activenav={navigation} 
-                        handleClick={
-                            (event)=> dispatch(activeNav(event))
-                        } />
-
-                    <CustomNav 
-                        name="Function" 
-                        activenav={navigation} 
-                        handleClick={ 
-                            (event)=> dispatch(activeNav(event))
-                            } />
-
-                    <CustomNav 
-                        name="Indication" 
-                        activenav={navigation} 
-                        handleClick={
-                            (event)=> dispatch(activeNav(event))
-                            } />
-
-                    <CustomNav 
-                        name="Reference" 
-                        activenav={navigation} 
-                        handleClick={
-                            (event)=> dispatch(activeNav(event))
-                            } />
-
-                    <CustomNav 
-                        name="Notes" 
-                        activenav={navigation} 
-                        handleClick={
-                            (event)=> dispatch(activeNav(event))
-                            } />
+                    {NavArray}
             </div>
         </div>
     )

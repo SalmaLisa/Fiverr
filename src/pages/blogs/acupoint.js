@@ -45,12 +45,11 @@ function BlogDetail(props) {
     return (
         <div>
             <GeneralHeader />
-        {console.log(Gstate.list)}
             <Breadcrumb 
                 CurrentPgTitle="Acupuncture Point" 
                 MenuPgTitle="Acupuncture" 
                 img={bg} 
-            /> {console.log("Gstate",Gstate, "Thisstate", "Thisstate")}
+            /> 
                 
             <div className="container">
                 <Typography variant="h6">

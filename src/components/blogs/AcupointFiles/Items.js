@@ -1,5 +1,5 @@
 import React from "react"
-import Nav from "./Nav"
+import Nav from "../../../layouts/Nav.js"
 
 import { useDispatch , useSelector } from "react-redux"
 import { activeNav, selectAcuPoint, selectData } from "../../../actionCreator"
@@ -9,6 +9,7 @@ import CheckIcon from "@material-ui/icons/Check"
 
 import QRCode from "react-qr-code"
 import { Link } from "react-router-dom"
+import { NavData } from "./NavData"
 
 const BreadCrumb =(props)=>{
     return(
@@ -120,7 +121,7 @@ const Items = (incomingData) =>{
                 
                 <br />
 
-                <Nav />
+                <Nav NavData={NavData} />
 
                 <br />
                 </ul>
