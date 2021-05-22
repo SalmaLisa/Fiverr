@@ -58,6 +58,7 @@ function BlogFullWidthItems(props){
 
                 <div className="loading"></div>
             <h1>Loading .....</h1>
+            <div className="headerborder"></div>
         </div>
         
         <div style={ Gstate.status === 'error' ? {

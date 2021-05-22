@@ -43,7 +43,6 @@ function BlogFullWidth() {
     const [ isToggle , setisToggle ] = useState(false)
 
     useEffect(()=>{  
-        dispatch(loading())
         dispatch(dataAsync())     
         dispatch(acupuntureData(AcupuntureData))
         
