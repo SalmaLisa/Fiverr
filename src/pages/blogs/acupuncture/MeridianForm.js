@@ -8,7 +8,7 @@ const MeridianForm = (props) =>{
 
     const meridian = useRef()
     const dispatch = useDispatch()
-    const Gstate = useSelector(selectData)
+    const Gstate = useSelector(s=> s.entities.acudata)
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -24,8 +24,8 @@ const MeridianForm = (props) =>{
             id={item.meridian} 
             value={item.meridian}>{item.meridian}
         </option>
-    ) : "Loading...."                  //item.meridian beacuse storing array. earlier storing object.
-
+    ) : "Loading...."                 
+    
     return(
         <form onSubmit={(e)=> handleSubmit(e)}>
             <Typography variant="h5">Meridians : </Typography><br />

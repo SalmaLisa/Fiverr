@@ -1,17 +1,13 @@
-import React,{useState, useContext} from 'react';
+import React from 'react';
 import ListingDetailsComments from "../contact/ListingDetailsComments";
 import BlogCommentFields from "./BlogCommentFields";
 import {Link} from "react-router-dom";
-import BlogTags from "./BlogTags";
-import BlogShare from "./BlogShare";
 import sectiondata from "../../store/store";
 import Typography from "@material-ui/core/Typography";
-import {motion } from "framer-motion"
 
 import NavigateNext from '@material-ui/icons/NavigateNext';
 import { useSelector } from 'react-redux';
-import { selectData, selectAcuPoint } from "../../actionCreator"
-// import { Link } from "react-router-dom"
+
 import Items from "./AcupointFiles/Items"
 
 
@@ -55,8 +51,8 @@ const Comment = (props) =>{
 }
 
 const Control = (props) =>{
-    const Gstate = useSelector(selectData)
-    const Thisstate = useSelector(selectAcuPoint)
+    const Gstate = useSelector(s=> s.entities.acudata)
+    const Thisstate = useSelector(s=> s.entities.acupoint)
     
     const Style = {display:"flex",minWidth: "4em", alignItems: "center"}
     
@@ -125,8 +121,8 @@ const Control = (props) =>{
 
 function BlogDetailContent(props) {
 
-    const Thisstate = useSelector(selectAcuPoint)
-    const Gstate = useSelector(selectData)
+    const Thisstate = useSelector(s=> s.entities.acupoint)
+    const Gstate = useSelector(s=> s.entities.acudata)
     const activeNav = Thisstate.nav
 
     const Content = Thisstate.acupointlinkload ? Gstate.list
@@ -134,7 +130,7 @@ function BlogDetailContent(props) {
             .map((items)=> <Items newItem={items} />) : "Loading...."
 
     return (
-        <>
+        <> 
         <div className="card-item blog-card border-bottom-0">
             <div className="card-content pl-0 pr-0 pb-0">
                 

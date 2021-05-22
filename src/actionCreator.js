@@ -5,8 +5,8 @@ export {
     loading,
     acupuntureData,
     error,
+    loadData,
     selectData,
-    dataAsync,
 
 } from "./redux/acuSlice"
 

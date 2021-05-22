@@ -2,11 +2,10 @@ import React from 'react';
 import BlogFullWidthArray from "./BlogFullWidthArray"
 import { Link } from "react-router-dom"
 import { useSelector , useDispatch } from "react-redux"
-import { selectData } from "../../actionCreator"
 
 function BlogFullWidthItems(props){
 
-    const Gstate = useSelector(selectData)
+    const Gstate = useSelector(s=> s.entities.acudata)
     const Filter = Gstate.filter
     const state = Gstate.list
 

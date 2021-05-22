@@ -4,7 +4,7 @@ import List from "./PaginationChild"
 
 function Pagination() {
     
-    const Gstate = useSelector(s=> s.data.filter)
+    const Gstate = useSelector(s=> s.entities.acudata.filter)
 
     return (
         <>

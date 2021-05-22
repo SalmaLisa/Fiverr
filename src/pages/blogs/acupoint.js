@@ -3,7 +3,6 @@ import Typography from "@material-ui/core/Typography"
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import BlogDetailContent from "../../components/blogs/AcuPointItems";
-import NewsLetter from "../../components/other/cta/NewsLetter";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import bg from "../../assets/images/custom/bg.jpg"
@@ -12,27 +11,24 @@ import { apiUrl } from "../../config/config"
 
 import { 
     acuPageLink, 
-    activeNav, 
-    data, 
-    error ,
     selectData,
     selectAcuPoint,
-    dataAsync,
-    loading
+    loadData
 } from "../../actionCreator"
-
-const apiEndpoint = apiUrl.url + "/acupunctures" ;
 
 function BlogDetail(props) {
     
-    const Gstate = useSelector(selectData)
-    const Thisstate = useSelector(selectAcuPoint)
+    const Gstate = useSelector(s=> s.entities.acudata)
+    const Thisstate = useSelector(s=> s.entities.acudpoint)
     const dispatch = useDispatch()
 
     
     useEffect(()=>{
+        if(Gstate.status !== 'loaded'){
+            dispatch(loadData())  
+        }
         dispatch(acuPageLink(props.name.match.params.name))
-        dispatch(dataAsync())  
+        document.title = props.name.match.params.name
     },[])
 
     const Status = Gstate.status

@@ -9,6 +9,7 @@ const AcupuntureData = {
     description4: "See what is missing and help us to make our knowledge database grow by signup for an account.",
     description5: "Browse the name of the acupuncture-point by choosing the alphabet. Or choose the Meridian by picking from the dropdown-menu.",
     image: sideImage,
-    pagination: "Select list of acu-points starting with ..."
+    pagination: "Select list of acu-points starting with ...",
+    pagetitle: 'Acupuncture zhēnjiǔ of Traditional Chinese Medicine'
 }
 export default AcupuntureData

@@ -1,4 +1,4 @@
-import React, { useState ,useContext, useRef, useEffect, useReducer } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useLocation, Switch, useParams } from 'react-router-dom';
 import AppRoute from './utils/AppRoute';
 import ScrollReveal from './utils/ScrollReveal';
@@ -50,7 +50,9 @@ import Acupoint from "./pages/blogs/Acupoint";
 // import Error from "./pages/Error";
 import "./assets/css/customcss.css"
 import { Provider } from 'react-redux';
-import { store } from "./redux/store"
+import configureStore from "./redux/configureStore"
+
+const store = configureStore();
 
 const App = () => {
 

@@ -1,6 +1,9 @@
 import axios from 'axios';
 import * as actions from '../api';
-import {apiUrl} from './../../config/config.json';
+import { apiUrl } from '../../config/config';
+
+const apiEndPoint = apiUrl.url
+
 const api = ({ dispatch }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
 
@@ -11,7 +14,7 @@ const api = ({ dispatch }) => (next) => async (action) => {
 
   try {
     const response = await axios.request({
-      baseURL: apiUrl,
+      baseURL: apiEndPoint,
       url,
       method,
       data,

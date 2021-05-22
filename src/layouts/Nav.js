@@ -45,7 +45,7 @@ const CustomNav = (props) =>{
 
 const Nav = (props) =>{
 
-    const Thisstate = useSelector(selectAcuPoint) 
+    const Thisstate = useSelector(s=> s.entities.acupoint) 
     const navigation = Thisstate.nav
 
     const NavArray = props.NavData.map((item)=> <CustomNav name={item.name} activenav={navigation} />)

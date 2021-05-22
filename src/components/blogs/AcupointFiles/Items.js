@@ -70,7 +70,7 @@ const List = (props) =>{
 const Items = (incomingData) =>{
     const props = incomingData.newItem
     
-    const Thisstate = useSelector(selectAcuPoint)
+    const Thisstate = useSelector(s=> s.entities.acupoint)
     const dispatch = useDispatch()
     // const  Gstate= useSelector(selectData)
     const page = Thisstate.acupagelink

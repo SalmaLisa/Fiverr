@@ -21,12 +21,8 @@ import AcupuntureData from "./acupuncture/data"
 
 import { useDispatch, useSelector } from "react-redux"
 import { 
-    data, 
-    loading, 
-    selectData, 
-    acupuntureData, 
-    error, 
-    dataAsync
+    acupuntureData,
+    loadData
 } from "../../actionCreator"
 
 import Typography from "@material-ui/core/Typography";
@@ -38,17 +34,22 @@ const state = {
 
 function BlogFullWidth() {
     
-    const Gstate = useSelector(selectData)
+    const Gstate = useSelector(s=> s.entities.acudata)
     const dispatch = useDispatch()
     const [ isToggle , setisToggle ] = useState(false)
 
     useEffect(()=>{  
-        dispatch(dataAsync())     
+
+        const pagetitle = Gstate.acudata.pagetitle ?
+            Gstate.acudata.pagetitle :
+            "TCMFiles"
+ 
+        document.title = pagetitle ;
+        
+        dispatch(loadData())     
         dispatch(acupuntureData(AcupuntureData))
         
     },[])
-
-
     
     const acuDatA = Gstate.acudata
 
