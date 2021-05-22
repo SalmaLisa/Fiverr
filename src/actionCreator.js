@@ -12,6 +12,7 @@ export {
 
 export {
 
+    activeId,
     activeNav,
     acuPageLink,
     selectAcuPoint,

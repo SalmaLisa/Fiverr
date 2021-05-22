@@ -6,6 +6,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   nav: 'Profile',
   acupagelink: '',
+  activeid: null,
   acupointlinkload : false
 };
 
@@ -13,12 +14,15 @@ export const acupointSlice = createSlice({
   name: 'acupoint',
   initialState,
   reducers: {
-    activeNav : ( state, action )=>{
+    activeNav : ( state, action )=>{ 
         state.nav = action.payload;
     },
     acuPageLink : ( state, action )=>{
         state.acupagelink = action.payload;
         state.acupointlinkload = true;
+    },
+    activeId: ( state, action )=>{
+      state.activeid = action.payload
     }
   },
 
@@ -27,6 +31,7 @@ export const acupointSlice = createSlice({
 export const { 
     activeNav,
     acuPageLink,
+    activeId
 } = acupointSlice.actions;
 
 

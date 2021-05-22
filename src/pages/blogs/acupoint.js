@@ -8,7 +8,6 @@ import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import bg from "../../assets/images/custom/bg.jpg"
 import { useDispatch, useSelector } from "react-redux"
-import  { getReq }  from "../../dataFetch"
 import { apiUrl } from "../../config/config"
 
 import { 

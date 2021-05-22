@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import dataReducer from './acuSlice';
 import acupointReducer from "./acupointSlice"
-import { createStore, applyMiddleware } from 'redux'
-
+import logger from "./middleware/logger"
+import func from "./middleware/func"
 
 export const store = configureStore({
   reducer: {

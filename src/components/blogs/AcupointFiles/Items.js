@@ -1,8 +1,8 @@
-import React from "react"
+import React,{ useEffect } from "react"
 import Nav from "../../../layouts/Nav.js"
 
 import { useDispatch , useSelector } from "react-redux"
-import { activeNav, selectAcuPoint, selectData } from "../../../actionCreator"
+import { activeNav, selectAcuPoint, activeId } from "../../../actionCreator"
 
 import Typography from "@material-ui/core/Typography"
 import CheckIcon from "@material-ui/icons/Check"
@@ -71,10 +71,16 @@ const Items = (incomingData) =>{
     const props = incomingData.newItem
     
     const Thisstate = useSelector(selectAcuPoint)
+    const dispatch = useDispatch()
     // const  Gstate= useSelector(selectData)
     const page = Thisstate.acupagelink
 
     const activeNav = Thisstate.nav
+
+    useEffect(()=>{
+        dispatch(activeId(props.id))
+        console.log(Thisstate.activeid)
+    },[props])
     return(
         <div>
             <ul>
@@ -146,7 +152,7 @@ const Items = (incomingData) =>{
                         listName="Meridian" 
                         value={props.meridian} />
                     <List 
-                        listName="Physical Location" 
+                        listName="Element" 
                         value={props.element} />
                     <List 
                         listName="Physical Location" 

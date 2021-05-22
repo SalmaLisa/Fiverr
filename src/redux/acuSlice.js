@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios"
-import { getReq } from "../dataFetch"
+import { getReq } from "./dataFetch"
 import { apiUrl } from "../config/config"
 // import { apiUrl } from "../config/config"
 
