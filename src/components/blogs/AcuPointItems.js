@@ -78,7 +78,7 @@ function BlogDetailContent(props) {
 
     const Content = Thisstate.acupointlinkload ? Gstate.list
             .filter((item)=> item.name.includes(Thisstate.acupagelink.slice(0,5)))
-            .map((items)=> <Items newItem={items} />) : "Loading......."
+            .map((items)=> <Items newItem={items} />) : "Loading...."
 
     return (
         <>

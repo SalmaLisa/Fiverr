@@ -61,7 +61,7 @@ const List = (props) =>{
                 {props.listName} : 
                 { props.value === "NULL" ? 
             null : 
-            props.listName 
+            props.value 
         }
         </li>
     )

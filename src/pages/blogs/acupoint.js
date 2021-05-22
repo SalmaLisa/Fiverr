@@ -17,7 +17,9 @@ import {
     data, 
     error ,
     selectData,
-    selectAcuPoint
+    selectAcuPoint,
+    dataAsync,
+    loading
 } from "../../actionCreator"
 
 const apiEndpoint = apiUrl.url + "/acupunctures" ;
@@ -28,16 +30,11 @@ function BlogDetail(props) {
     const Thisstate = useSelector(selectAcuPoint)
     const dispatch = useDispatch()
 
-    const dataload = (event) =>{
-        dispatch(data(event))
-        dispatch(acuPageLink(props.name.match.params.name))
-    }
-
+    
     useEffect(()=>{
-        getReq(apiEndpoint)
-            .then((res)=> dataload(res.data))
-            .catch(()=> dispatch(error(true)))
-
+        dispatch(loading())
+        dispatch(acuPageLink(props.name.match.params.name))
+        dispatch(dataAsync())  
     },[])
 
     const MyError = Gstate.error

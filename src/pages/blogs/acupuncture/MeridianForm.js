@@ -15,7 +15,7 @@ const MeridianForm = (props) =>{
         dispatch(activeFilter(meridian.current.value))
     }
 
-    const MeridianList = Gstate.list.filter(( elem, index )=>
+    const MeridianList = Gstate.status === "loaded" ? Gstate.list.filter(( elem, index )=>
             Gstate.list.findIndex( obj => obj.meridian === elem.meridian ) === index
         )
         .map((item)=>
@@ -24,7 +24,7 @@ const MeridianForm = (props) =>{
             id={item.meridian} 
             value={item.meridian}>{item.meridian}
         </option>
-    )                   //item.meridian beacuse storing array. earlier storing object.
+    ) : "Loading...."                  //item.meridian beacuse storing array. earlier storing object.
 
     return(
         <form onSubmit={(e)=> handleSubmit(e)}>

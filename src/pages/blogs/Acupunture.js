@@ -26,9 +26,10 @@ import {
     selectData, 
     acupuntureData, 
     error, 
+    dataAsync
 } from "../../actionCreator"
 
-import  { getReq, postReq }  from "../../dataFetch"
+// import  { getReq, postReq }  from "../../dataFetch"
 import { apiUrl } from "../../config/config"
 import Typography from "@material-ui/core/Typography";
 
@@ -45,18 +46,9 @@ function BlogFullWidth() {
     const dispatch = useDispatch()
     const [ isToggle , setisToggle ] = useState(false)
 
-    const dataload = (event) =>{
-        dispatch(data(event))
-        console.log("Data Load", event)
-    }
-
     useEffect(()=>{  
-        dispatch(loading())   
-
-        getReq(apiEndpoint)
-            .then((res)=> dataload(res.data))
-            .catch(()=> dispatch(error(true)))
-        
+        dispatch(loading())
+        dispatch(dataAsync())     
         dispatch(acupuntureData(AcupuntureData))
         
     },[])

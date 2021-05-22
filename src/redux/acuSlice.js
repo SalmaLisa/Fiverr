@@ -1,9 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
-// import { getReq } from "../dataFetch"
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from "axios"
+import { getReq } from "../dataFetch"
+import { apiUrl } from "../config/config"
 // import { apiUrl } from "../config/config"
 
-
-// const apiEndpoint = apiUrl.url + "/acupunctures";
+const apiEndpoint = apiUrl.url + "/acupunctures";
 
 const initialState = {
   list: [],
@@ -13,6 +14,15 @@ const initialState = {
   error: false,
   mList: []
 };
+
+export const dataAsync = createAsyncThunk(
+  'data',
+  async () => {
+    const response = await getReq(apiEndpoint);
+    console.log(response.data)
+    return data(response.data)
+  }
+);
 
 export const dataSlice = createSlice({
   name: 'data',
@@ -34,8 +44,18 @@ export const dataSlice = createSlice({
     error: ( state , action )=>{
       state.error = true;
       state.data = null;
-      state.loading = 'idle'
+      state.status = 'idle'
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(dataAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(dataAsync.fulfilled, (state, action) => {
+        state.list = action.payload.payload;
+        state.status = 'loaded';
+      });
   },
 
 });
@@ -51,7 +71,6 @@ export const {
 
 
 export const selectData = (state) => state.data;
-
 
 
 export default dataSlice.reducer;
