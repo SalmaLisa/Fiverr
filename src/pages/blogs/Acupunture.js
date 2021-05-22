@@ -29,12 +29,8 @@ import {
     dataAsync
 } from "../../actionCreator"
 
-// import  { getReq, postReq }  from "../../dataFetch"
-import { apiUrl } from "../../config/config"
 import Typography from "@material-ui/core/Typography";
 
-
-const apiEndpoint = apiUrl.url + "/acupunctures";
 
 const state = {
     breadcrumbimg: breadcrumbimg,
@@ -75,10 +71,13 @@ function BlogFullWidth() {
 
              <section className="blog-grid padding-top-40px padding-bottom-50px">
                  <div className="container">
-                     <div className="row">
+                     <div className="row" style={{alignItems:"center"}}>
                         
-                         <div className="col-lg-5">
-                             <img src={acuDatA.image} className="imgstyle" />
+                         <div className="col-lg-5" style={{textAlign:"center"}}>
+                             <img 
+                                src={acuDatA.image} 
+                                className="imgstyle"
+                                 />
                          </div>
                         
                          <div className="col-lg-6"  style={{marginTop:"4em", fontSize:"20px"}}>

@@ -16,11 +16,11 @@ const initialState = {
 };
 
 export const dataAsync = createAsyncThunk(
-  'data',
+  'data/dataAsync',
   async () => {
     const response = await getReq(apiEndpoint);
     console.log(response.data)
-    return data(response.data)
+    return response.data
   }
 );
 
@@ -32,19 +32,15 @@ export const dataSlice = createSlice({
       state.filter = action.payload;
     },
     data: ( state , action )=> {
-      state.list = action.payload
-      state.status = 'loaded'
+      // state.list = action.payload
+      // state.status = 'loaded'
     },
     loading: ( state , action )=>{
-      state.status = 'loading'
     },
     acupuntureData: ( state , action ) =>{
       state.acudata = action.payload
     },
     error: ( state , action )=>{
-      state.error = true;
-      state.data = null;
-      state.status = 'idle'
     },
   },
   extraReducers: (builder) => {
@@ -53,8 +49,11 @@ export const dataSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(dataAsync.fulfilled, (state, action) => {
-        state.list = action.payload.payload;
+        state.list = action.payload;
         state.status = 'loaded';
+      })
+      .addCase(dataAsync.rejected, (state, action) => {
+        state.status = 'error';
       });
   },
 

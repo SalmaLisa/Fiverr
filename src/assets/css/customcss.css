@@ -31,7 +31,15 @@
 }
 
 .imgstyle {
-  width: 100%;
+  width: 50%;
+  margin: auto auto;
+}
+
+@media screen and (min-width: 700px) {
+  .imgstyle {
+    width: 50%;
+    margin: auto auto;
+  } 
 }
 
 .custom-model {

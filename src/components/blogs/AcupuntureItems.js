@@ -49,7 +49,7 @@ function BlogFullWidthItems(props){
     return(
         <>
 
-        <div style={ Gstate.loading ? {
+        <div style={ Gstate.status === 'loading' ? {
 
                     display:"block", 
                     textAlign:"center"
@@ -60,7 +60,7 @@ function BlogFullWidthItems(props){
             <h1>Loading .....</h1>
         </div>
         
-        <div style={ Gstate.error ? {
+        <div style={ Gstate.status === 'error' ? {
                     
                     display:"block", 
                     textAlign:"center"

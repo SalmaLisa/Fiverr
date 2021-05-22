@@ -31,13 +31,11 @@ function BlogDetail(props) {
 
     
     useEffect(()=>{
-        dispatch(loading())
         dispatch(acuPageLink(props.name.match.params.name))
         dispatch(dataAsync())  
     },[])
 
-    const MyError = Gstate.error
-    const Loading = Gstate.loading
+    const Status = Gstate.status
     return (
         <div>
             <GeneralHeader />
@@ -52,7 +50,7 @@ function BlogDetail(props) {
                                     
                     <div 
                         style={
-                            Loading ? 
+                            Status === 'loading' ? 
                                 { display:"block", textAlign: "center" } : 
                                 { display:"none" }
                             }>
@@ -66,7 +64,7 @@ function BlogDetail(props) {
                     
                     <div 
                         style={ 
-                            MyError ? 
+                            Status === 'error' ? 
                                 { display: "block", textAlign: "center" } : 
                                 { display: "none" }}>
                         <Typography 
@@ -79,8 +77,8 @@ function BlogDetail(props) {
                 </Typography>
             </div>
             <section
-                style={ Loading || MyError ? 
-                    { display: "none" } : {} } 
+                style={ Status === 'loaded' ? 
+                    {  } : { display: "none" } } 
                 className="blog-single-area padding-top-40px padding-bottom-70px">
 
                 <div className="container">
