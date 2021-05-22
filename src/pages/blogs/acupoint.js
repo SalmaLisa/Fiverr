@@ -93,9 +93,9 @@ function BlogDetail(props) {
             </section>
 
 
-            <div className="container">
+            {/* <div className="container">
                 <NewsLetter />
-            </div>
+            </div> */}
  
             <Footer />
 
