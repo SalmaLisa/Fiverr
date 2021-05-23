@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { apiCallBegan } from "./api"
+import { apiCallBegan } from "../api"
 
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   filter: 'all',
   acudata: {},
   error: false,
-  mList: []
+  datalink: ''
 };
 
 
@@ -26,12 +26,15 @@ export const dataSlice = createSlice({
     loading: ( state , action )=>{
       state.status = 'loading'
     },
-    acupuntureData: ( state , action ) =>{
+    headingData: ( state , action ) =>{
       state.acudata = action.payload
     },
     error: ( state , action )=>{
       state.status = 'error'
     },
+    datalink: ( state , action )=>{
+      state.datalink = action.payload
+    }
   },
 
 });
@@ -40,17 +43,18 @@ export const {
     activeFilter,
     data,
     loading,
-    acupuntureData,
+    headingData,
     error,
+    datalink
 } = dataSlice.actions;
 
 
 export const selectData = (state) => state.data;
 
 
-const url = "/acupunctures";
-
 export const loadData = () => (dispatch, getState) => {
+  console.log(" apiRequest DataLink ",getState().entities.acudata.datalink)
+  const url = getState().entities.acudata.datalink
   return dispatch(
     apiCallBegan({
       url,

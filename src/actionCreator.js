@@ -3,12 +3,13 @@ export {
     activeFilter,
     data,
     loading,
-    acupuntureData,
+    headingData,
     error,
     loadData,
+    datalink,
     selectData,
 
-} from "./redux/acuSlice"
+} from "./redux/Acupunture/acuSlice"
 
 export {
 
@@ -17,7 +18,7 @@ export {
     acuPageLink,
     selectAcuPoint,
 
-} from "./redux/acupointSlice"
+} from "./redux/Acupunture/acupointSlice"
 
 // acupuntureData,
 // activeNav, 

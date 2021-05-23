@@ -12,6 +12,8 @@ import LayoutDefault from './layouts/LayoutDefault';
 import Forums from './pages/Forums';
 import PostCompose from './pages/PostCompose';
 import TopicDetail from './pages/TopicDetail';
+
+import AcupuntureData from "./store/AcupuntureData"
 // Pages
 import Home from "./pages/homes/Home";
 // import Home2 from './pages/homes/Home2';
@@ -102,7 +104,11 @@ const App = () => {
                 <div>
                   <Acupoint name={event}/>
                   </div>} />
-              <AppRoute path="/acupuncture" component={Acupuncture} />
+              <AppRoute path="/acupuncture" component={()=> 
+                  <Acupuncture 
+                    datalink="/acupunctures"
+                    headingdata={AcupuntureData}/>} 
+                />
 			  
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />
               <AppRoute path="/blog-left-sidebar" component={BlogLeftSidebar} />

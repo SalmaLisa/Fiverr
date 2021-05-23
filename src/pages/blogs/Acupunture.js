@@ -11,28 +11,25 @@ import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import ListingDetailsComments from "../../components/contact/ListingDetailsComments"
 import BlogCommentFields from "../../components/blogs/BlogCommentFields"
 
-import MeridianForm from "./acupuncture/MeridianForm"
+import HeaderContent from "../../layouts/HeaderContent"
 
 import breadcrumbimg from '../../assets/images/bread-bg.jpg'
 import bg from "../../assets/images/custom/bg.jpg"
 
 import sectiondata from "../../store/store";
-import AcupuntureData from "./acupuncture/data"
 
 import { useDispatch, useSelector } from "react-redux"
 import { 
-    acupuntureData,
-    loadData
+    headingData,
+    loadData,
+    datalink
 } from "../../actionCreator"
 
 import Typography from "@material-ui/core/Typography";
 
 
-const state = {
-    breadcrumbimg: breadcrumbimg,
-}
 
-function BlogFullWidth() {
+function BlogFullWidth(props) {
     
     const Gstate = useSelector(s=> s.entities.acudata)
     const dispatch = useDispatch()
@@ -45,9 +42,10 @@ function BlogFullWidth() {
             "TCMFiles"
  
         document.title = pagetitle ;
-        
+        console.log(props)
+        dispatch(datalink(props.datalink))
         dispatch(loadData())     
-        dispatch(acupuntureData(AcupuntureData))
+        dispatch(headingData(props.headingdata))
         
     },[])
     
@@ -64,45 +62,10 @@ function BlogFullWidth() {
                  img={bg} 
              />
 
-             <div style={{textAlign:"center"}}>
-                 <p style={{color:"red"}}>{acuDatA.top}</p>
-                 <h1>{acuDatA.heading}</h1>
-             </div>
-
-             <section className="blog-grid padding-top-40px padding-bottom-50px">
-                 <div className="container">
-                     <div className="row" style={{alignItems:"center"}}>
-                        
-                         <div className="col-lg-5" style={{textAlign:"center"}}>
-                             <img 
-                                src={acuDatA.image} 
-                                className="imgstyle"
-                                 />
-                         </div>
-                        
-                         <div className="col-lg-6"  style={{marginTop:"4em", fontSize:"20px"}}>
-                            
-                             <p>{acuDatA.description1}</p><br />
-                             <p>{acuDatA.description2}</p><br />
-                             <p>{acuDatA.description3}</p><br />
-                             <p>{acuDatA.description4}</p><br />
-                             <p>{acuDatA.description5}</p><br />
-                            
-                             <br />
-                             <hr />
-                             <br />
-
-                             <MeridianForm 
-                                 newList={state} 
-                             />
-
-                         </div>
-                     </div>
-                 </div>
-             </section>
+             <HeaderContent />
             
             <div className="container" style={{margin:"1em 2em", wordWrap:"wrap", width:"80vw"}}>
-                <Typography variant="h6">{acuDatA.pagination}</Typography>
+                <Typography variant="h6">{acuDatA.pagination != null ? acuDatA.pagination : ''}</Typography>
             </div>
 
              <div className="mymobile">
@@ -132,7 +95,7 @@ function BlogFullWidth() {
                                  variant="h6" 
                                  style={ isToggle ? {}:  {color: "red"}}>
 
-                                 Accu-Points
+                                 Acu-Points
                              </Typography>
 
                          </div>

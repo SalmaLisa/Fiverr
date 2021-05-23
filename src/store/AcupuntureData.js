@@ -1,4 +1,4 @@
-import sideImage from "../../../assets/images/custom/flag1.jpg"
+import sideImage from "../assets/images/custom/flag1.jpg"
 
 const AcupuntureData = {
     top:"The only database of acupuncture out there!",
@@ -10,6 +10,7 @@ const AcupuntureData = {
     description5: "Browse the name of the acupuncture-point by choosing the alphabet. Or choose the Meridian by picking from the dropdown-menu.",
     image: sideImage,
     pagination: "Select list of acu-points starting with ...",
-    pagetitle: 'Acupuncture zhēnjiǔ of Traditional Chinese Medicine'
+    pagetitle: 'Acupuncture zhēnjiǔ of Traditional Chinese Medicine',
+    filtername: "Meridian",
 }
 export default AcupuntureData
