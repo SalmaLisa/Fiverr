@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useRef , useEffect } from 'react';
 import ListingDetailsComments from "../contact/ListingDetailsComments";
 import BlogCommentFields from "./BlogCommentFields";
 import {Link} from "react-router-dom";
@@ -73,7 +73,7 @@ const Control = (props) =>{
 
                 </div>        
             </Link> )
-        : "Loading...."
+        : null
 
     const Next = Thisstate.activeid != null ? 
         Gstate.list.filter((item)=> item.id == Thisstate.activeid + 1 )
@@ -99,7 +99,7 @@ const Control = (props) =>{
 
             </Link> )
 
-        : "Loading...."
+        : null
     
     return(
         <div style={{
@@ -125,17 +125,33 @@ function BlogDetailContent(props) {
     const Gstate = useSelector(s=> s.entities.acudata)
     const activeNav = Thisstate.nav
 
-    const Content = Thisstate.acupointlinkload ? Gstate.list
-            .filter((item)=> item.name.includes(Thisstate.acupagelink.slice(0,5)))
-            .map((items)=> <Items newItem={items} />) : "Loading...."
+    const Filter = Thisstate.acupointlinkload ? Gstate.list
+                    .filter((item)=> item.name.includes(Thisstate.acupagelink.slice(0,8))) : null
 
+    const Content = Thisstate.acupointlinkload ? Filter.map((items)=> <Items newItem={items} />) : null
+
+    const ErroR = Thisstate.acupagelink.length < 8 ? <h2 style={{textAlign: "center"}}>Please Visit Correct Link</h2> : Content
+
+    const loadRef = useRef()
+    useEffect(()=>{
+        console.log(loadRef)
+    },[])
     return (
         <> 
         <div className="card-item blog-card border-bottom-0">
             <div className="card-content pl-0 pr-0 pb-0">
+                <input 
+                    type="text"
+                    style={{
+                        width:0,
+                        height: 0,
+                        opacity: 0
+                    }} 
+                    ref={loadRef} />
                 
-                <div >        
-                    { Content }
+                <div >  
+
+                    { ErroR }
                 </div>
 
                 <br /><br />
