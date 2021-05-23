@@ -169,6 +169,16 @@
 }
 
 @media screen and (max-width: 500px) {
+  .Carousel{
+    margin:3em auto;
+    width:100%;
+  }
+  .qrcodeformula{
+    float: none;
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
   .qrcode {
     float: none;
     text-align: center;

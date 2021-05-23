@@ -53,7 +53,7 @@ const FormulasItems = (incomingData) =>{
                 <br />
                 <br />
 
-                <div className=""> 
+                <div className="qrcodeformula"> 
                     <QRCode 
                         value={`/formulas/${page}`} 
                         size={110} 

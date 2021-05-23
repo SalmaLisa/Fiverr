@@ -55,8 +55,15 @@ function BlogFullWidthItems(props){
     
     return(
         <>
+        
+        <h2 style={{textAlign:"center"}}>
+            <br />
+            { FilteredArray.length == 0 ? 
+                "No data Found Select Other One" : null}
+        </h2>
+
         <LoadingErrorView />
-       
+        
         <div className="array-parent" >
             {FilterActive}
         </div>
