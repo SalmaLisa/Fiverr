@@ -10,62 +10,10 @@ import CheckIcon from "@material-ui/icons/Check"
 import QRCode from "react-qr-code"
 import { Link } from "react-router-dom"
 
-const BreadCrumb =(props)=>{
-    const Gstate = useSelector(s=> s.entities.acudata)
-    return(
-        <div 
-            className="breadcrumb" 
-            style={{ 
-                display:"flex", 
-                alignItems:"center"
-                }}>
-            <Link to="/">
-                <Typography 
-                    variant="h6" 
-                    style={{
-                        fontSize:"14px", 
-                        margin:"auto 1em"
-                    }}>
-                        Home
-                </Typography>
-            </Link>/
+import BreadCrumb from "../../../layouts/BreadCrumb"
+import ItemList from "../../../layouts/ItemList"
 
-            <Link to={`${Gstate.datalink}`}>
-                <Typography 
-                    variant="h6" 
-                    style={{
-                        fontSize:"14px", 
-                        margin:"auto 1em"
-                    }}>
-                        Acupuncture
-                </Typography>
-            </Link>/
 
-            <Typography 
-                variant="h6" 
-                style={{
-                    fontSize:"14px", 
-                    margin:"auto 1em"
-                }}>{props.name}</Typography>
-        </div>
-    )
-}
-
-const List = (props) =>{
-    return(
-        <li className="myliststyle">
-            <CheckIcon 
-                className="mycustomliststyle" 
-                />
-                
-                {props.listName} : 
-                { props.value === "NULL" ? 
-            null : 
-            props.value 
-        }
-        </li>
-    )
-}
 
 const Items = (incomingData) =>{
     const props = incomingData.newItem
@@ -109,19 +57,19 @@ const Items = (incomingData) =>{
                     />
                 </div>
                                                 
-                <List 
+                <ItemList 
                     listName="Pinyin" 
                     value={props.pinyin}/>
-                <List 
+                <ItemList 
                     listName="English" 
                     value={props.english}/>
-                <List 
+                <ItemList 
                     listName="Japanese" 
                     value={props.japanese}/>
-                <List 
+                <ItemList 
                     listName="Korean" 
                     value={props.korean}/>
-                <List 
+                <ItemList 
                     listName="Vietnamese" 
                     value={props.vietnamese}/>
                 
@@ -136,25 +84,25 @@ const Items = (incomingData) =>{
                         activeNav === 'Profile' ? 
                         {display:"block"}: {display:"none"}}>
 
-                    <List 
+                    <ItemList 
                         listName="Physical Location" 
                         value={props.physicalLocation} />
-                    <List 
+                    <ItemList 
                         listName="Five Element" 
                         value={props.fiveElement} />
-                    <List 
+                    <ItemList 
                         listName="Horary Cycle" 
                         value={props.horarycycle} />
-                    <List 
+                    <ItemList 
                         listName="Functionality" 
                         value={props.functionality} />
-                    <List 
+                    <ItemList 
                         listName="Meridian" 
                         value={props.meridian} />
-                    <List 
+                    <ItemList 
                         listName="Element" 
                         value={props.element} />
-                    <List 
+                    <ItemList 
                         listName="Physical Location" 
                         value={props.caution} />
      

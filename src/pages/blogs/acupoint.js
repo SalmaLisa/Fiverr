@@ -12,7 +12,8 @@ import { NavData } from "../../store/NavData"
 import { 
     acuPageLink, 
     loadData,
-    navdata
+    navdata,
+    datalink
 } from "../../actionCreator"
 
 function BlogDetail(props) {
@@ -23,6 +24,7 @@ function BlogDetail(props) {
 
     
     useEffect(()=>{
+        dispatch(datalink(props.datalink))
         dispatch(loadData())  
         dispatch(navdata(NavData))
         dispatch(acuPageLink(props.name.match.params.name))

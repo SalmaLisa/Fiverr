@@ -42,7 +42,6 @@ function BlogFullWidth(props) {
             "Loading...."
  
         document.title = pagetitle ;
-        console.log(props)
         dispatch(datalink(props.datalink))
         dispatch(loadData())     
         dispatch(headingData(props.headingdata))

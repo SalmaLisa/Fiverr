@@ -103,7 +103,9 @@ const App = () => {
 
               <AppRoute path="/acupunctures/:name" component={(event)=> 
                 <div>
-                  <Acupoint name={event}/>
+                  <Acupoint 
+                    datalink="/acupunctures" 
+                    name={event}/>
                   </div>} />
               <AppRoute path="/acupunctures" component={()=> 
                   <Acupuncture 
