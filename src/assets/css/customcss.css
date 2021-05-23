@@ -31,15 +31,7 @@
 }
 
 .imgstyle {
-  width: 50%;
-  margin: auto auto;
-}
-
-@media screen and (min-width: 700px) {
-  .imgstyle {
-    width: 50%;
-    margin: auto auto;
-  } 
+  width: 100%;
 }
 
 .custom-model {
@@ -170,6 +162,10 @@
 .mynavcon:hover {
   background: red;
   color: white;
+}
+.Carousel{
+  width:40%;
+ float: right; 
 }
 
 @media screen and (max-width: 500px) {

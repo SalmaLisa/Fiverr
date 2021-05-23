@@ -31,7 +31,12 @@ const BreadCrumb =(props)=>{
                         fontSize:"14px", 
                         margin:"auto 1em"
                     }}>
-                        Acupuncture
+                        
+                        { props.parentname != null ? 
+                        props.parentname.charAt(0).toUpperCase() 
+                        + props.parentname.slice(1) 
+                        :"Acupuncture"}
+
                 </Typography>
             </Link>/
 

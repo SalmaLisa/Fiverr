@@ -33,12 +33,13 @@ function BlogDetail(props) {
     },[])
 
     const Status = Gstate.status
+    const Title = Gstate.datalink != "/formulas" ? "Acupunture Point" : "Formulas"
     return (
         <div>
             <GeneralHeader />
             <Breadcrumb 
-                CurrentPgTitle="Acupuncture Point" 
-                MenuPgTitle="Acupuncture" 
+                CurrentPgTitle={Title} 
+                MenuPgTitle={Gstate.datalink.slice(1,-1)} 
                 img={bg} 
             /> 
             

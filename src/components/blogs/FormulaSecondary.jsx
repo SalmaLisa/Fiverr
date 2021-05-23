@@ -1,25 +1,40 @@
-import React,{ useEffect } from "react"
+import React from "react"
 import Nav from "../../layouts/Nav.js"
 
 import { useDispatch , useSelector } from "react-redux"
-// import { activeId } from "../../../actionCreator"
 
 import Typography from "@material-ui/core/Typography"
-// import CheckIcon from "@material-ui/icons/Check"
 
 import QRCode from "react-qr-code"
 import { Link } from "react-router-dom"
 
 import BreadCrumb from "../../layouts/BreadCrumb"
 import ItemList from "../../layouts/ItemList"
+import { UncontrolledCarousel } from "reactstrap"
+import Image1 from "../../assets/images/bg1.png"
+// import Image1 from "../../assets/images/bg1.jpg"
+import Image2 from "../../assets/images/bg1.png"
 
+const ImagesList = [
+    {
+      src: Image1,
+      key: '1'
+    },
+    {
+      src: Image2,
+      key: '2'
+    },
+    {
+      src: Image1,
+      key: '3'
+    }
+  ];
 
 
 const FormulasItems = (incomingData) =>{
     const props = incomingData.newItem
     
     const Thisstate = useSelector(s=> s.entities.acupoint)
-    const dispatch = useDispatch()
     const page = Thisstate.acupagelink
 
     const activeNav = Thisstate.nav
@@ -28,7 +43,7 @@ const FormulasItems = (incomingData) =>{
     return(
         <div>
             <ul>
-            <BreadCrumb name={page} /><br />    
+            <BreadCrumb name={page} parentname="Formulas" /><br />    
 
                 <div className="">
                     <Typography variant="h4">{props.name}</Typography>
@@ -56,6 +71,9 @@ const FormulasItems = (incomingData) =>{
                         Epithet
                 </Typography><br />
                 
+                <div className="Carousel">
+                    <UncontrolledCarousel items={ImagesList} />
+                </div>
                                                 
                 <ItemList 
                     listName="Pinyin" 
