@@ -126,7 +126,7 @@ function BlogDetailContent(props) {
     const activeNav = Thisstate.nav
 
     const Filter = Thisstate.acupointlinkload ? Gstate.list
-                    .filter((item)=> item.name.includes(Thisstate.acupagelink.slice(0,8))) : null
+                    .filter((item)=> item.name.includes(Thisstate.acupagelink)) : null
 
     const Content = Thisstate.acupointlinkload ? Filter.map((items)=> <Items newItem={items} />) : null
 

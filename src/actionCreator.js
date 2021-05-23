@@ -16,6 +16,7 @@ export {
     activeId,
     activeNav,
     acuPageLink,
+    navdata,
     selectAcuPoint,
 
 } from "./redux/Acupunture/acupointSlice"

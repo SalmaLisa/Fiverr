@@ -12,6 +12,7 @@ function Pagination() {
                 <ul className="pagination-list mycustomlist">
 
                     <List filter="all" activeFilter={Gstate} />
+                    <List filter="a" activeFilter={Gstate} />
                     <List filter="b" activeFilter={Gstate} />
                     <List filter="c" activeFilter={Gstate} />
                     <List filter="d" activeFilter={Gstate} />

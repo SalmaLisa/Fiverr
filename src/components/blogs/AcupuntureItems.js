@@ -11,7 +11,7 @@ function BlogFullWidthItems(props){
 
     const Array = state != null ?  state.map((item)=> 
 
-            <Link to={`/acupuncture/${item.name}`}>
+            <Link to={`${Gstate.datalink}/${item.name}`}>
                 <BlogFullWidthArray 
                     key={item._id}
                     name={item.name} 
@@ -23,15 +23,22 @@ function BlogFullWidthItems(props){
     const FilteredArray = state != null && Filter != 'all' ?  state.filter((it)=>{
 
         if(Filter.length > 4){
-            return it.meridian === Filter
+            if( Gstate.datalink == '/acupunctures'){
+                return it.meridian === Filter
+            }
         }
-        else{
+        else if(Gstate.datalink == '/acupunctures'){
             return it.letter_1.includes(Filter.toUpperCase()) || 
                 it.letter_2.includes(Filter.toUpperCase()) 
+        
+        }
+        else if(Gstate.datalink == '/formulas'){
+            console.log("formula active page")
+            return it.name.slice(0,2).includes(Filter.toUpperCase())
+        }
+    }).map((item)=>
 
-        }}).map((item)=>
-
-            <Link to={`/acupuncture/${item.name}`}> 
+            <Link to={`${Gstate.datalink}/${item.name}`}> 
 
                 <BlogFullWidthArray 
                     key={item._id}

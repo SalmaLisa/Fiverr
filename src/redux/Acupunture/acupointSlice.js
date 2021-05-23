@@ -7,7 +7,8 @@ const initialState = {
   nav: 'Profile',
   acupagelink: '',
   activeid: null,
-  acupointlinkload : false
+  acupointlinkload : false,
+  navdata:[]
 };
 
 export const acupointSlice = createSlice({
@@ -23,12 +24,16 @@ export const acupointSlice = createSlice({
     },
     activeId: ( state, action )=>{
       state.activeid = action.payload
+    },
+    navdata: ( state, action )=>{
+      state.navdata = action.payload
     }
   },
 
 });
 
-export const { 
+export const {
+    navdata, 
     activeNav,
     acuPageLink,
     activeId

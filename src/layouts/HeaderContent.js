@@ -35,7 +35,7 @@ const HeaderContent= (props) =>{
                              <hr />
                              <br />
 
-                             <FilterForm filtername={acuDatA.filtername}/>
+                             { Gstate.datalink == '/formulas' ? '': <FilterForm filtername={acuDatA.filtername}/>}
 
                          </div>
                      </div>

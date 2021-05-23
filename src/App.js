@@ -14,6 +14,7 @@ import PostCompose from './pages/PostCompose';
 import TopicDetail from './pages/TopicDetail';
 
 import AcupuntureData from "./store/AcupuntureData"
+import FormulaData from "./store/FormulaData"
 // Pages
 import Home from "./pages/homes/Home";
 // import Home2 from './pages/homes/Home2';
@@ -100,14 +101,20 @@ const App = () => {
               <AppRoute path="/contact" component={Contact} />
               <AppRoute path="/recover" component={RecoverPassword} /> */}
 
-              <AppRoute path="/acupuncture/:name" component={(event)=> 
+              <AppRoute path="/acupunctures/:name" component={(event)=> 
                 <div>
                   <Acupoint name={event}/>
                   </div>} />
-              <AppRoute path="/acupuncture" component={()=> 
+              <AppRoute path="/acupunctures" component={()=> 
                   <Acupuncture 
                     datalink="/acupunctures"
                     headingdata={AcupuntureData}/>} 
+                />
+
+              <AppRoute path="/formulas" component={()=> 
+                  <Acupuncture 
+                    datalink="/formulas"
+                    headingdata={FormulaData}/>} 
                 />
 			  
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />

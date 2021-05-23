@@ -46,9 +46,13 @@ const CustomNav = (props) =>{
 const Nav = (props) =>{
 
     const Thisstate = useSelector(s=> s.entities.acupoint) 
+    const Gstate = useSelector(s=> s.entities.acudata)
     const navigation = Thisstate.nav
 
-    const NavArray = props.NavData.map((item)=> <CustomNav name={item.name} activenav={navigation} />)
+    const NavArray = Gstate.status == 'loaded' ? 
+        Thisstate.navdata.map(
+            (item)=> <CustomNav name={item.name} activenav={navigation} />
+        ) : ''
 
     return(
         <div style={{

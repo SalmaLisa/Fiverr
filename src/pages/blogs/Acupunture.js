@@ -39,7 +39,7 @@ function BlogFullWidth(props) {
 
         const pagetitle = Gstate.acudata.pagetitle ?
             Gstate.acudata.pagetitle :
-            "TCMFiles"
+            "Loading...."
  
         document.title = pagetitle ;
         console.log(props)
@@ -57,7 +57,7 @@ function BlogFullWidth(props) {
              <GeneralHeader />
 
              <Breadcrumb 
-                 CurrentPgTitle="Acupuncture" 
+                 CurrentPgTitle={acuDatA.pageheaderheading} 
                  MenuPgTitle="" 
                  img={bg} 
              />

@@ -12,5 +12,6 @@ const AcupuntureData = {
     pagination: "Select list of acu-points starting with ...",
     pagetitle: 'Acupuncture zhēnjiǔ of Traditional Chinese Medicine',
     filtername: "Meridian",
+    pageheaderheading: "Acupuncture",
 }
 export default AcupuntureData

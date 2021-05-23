@@ -7,10 +7,12 @@ import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import bg from "../../assets/images/custom/bg.jpg"
 import { useDispatch, useSelector } from "react-redux"
+import { NavData } from "../../store/NavData"
 
 import { 
     acuPageLink, 
-    loadData
+    loadData,
+    navdata
 } from "../../actionCreator"
 
 function BlogDetail(props) {
@@ -22,7 +24,7 @@ function BlogDetail(props) {
     
     useEffect(()=>{
         dispatch(loadData())  
-        
+        dispatch(navdata(NavData))
         dispatch(acuPageLink(props.name.match.params.name))
         document.title = props.name.match.params.name
     },[])
@@ -61,7 +63,8 @@ function BlogDetail(props) {
                                 { display: "none" }}>
                         <Typography 
                             variant="h6">
-                                An Error Occured While Loading Data Check Your Network Connection...
+                                An Error Occured While Loading Data Check Your Network Connection...<br />
+                                Or May Be You are visiting wrong Link
                         </Typography>
                         <br />
                         <br />

@@ -9,9 +9,9 @@ import CheckIcon from "@material-ui/icons/Check"
 
 import QRCode from "react-qr-code"
 import { Link } from "react-router-dom"
-import { NavData } from "./NavData"
 
 const BreadCrumb =(props)=>{
+    const Gstate = useSelector(s=> s.entities.acudata)
     return(
         <div 
             className="breadcrumb" 
@@ -30,7 +30,7 @@ const BreadCrumb =(props)=>{
                 </Typography>
             </Link>/
 
-            <Link to="/acupuncture">
+            <Link to={`${Gstate.datalink}`}>
                 <Typography 
                     variant="h6" 
                     style={{
@@ -127,7 +127,7 @@ const Items = (incomingData) =>{
                 
                 <br />
 
-                <Nav NavData={NavData} />
+                <Nav />
 
                 <br />
                 </ul>
