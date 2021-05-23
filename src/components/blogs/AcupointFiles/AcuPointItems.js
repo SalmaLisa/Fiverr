@@ -32,7 +32,9 @@ const Items = (incomingData) =>{
     return(
         <div>
             <ul>
-            <div className="">
+                <BreadCrumb name={page} /><br />
+                
+                <div className="">
                     <Typography variant="h4">{props.name}</Typography>
                     <div className="headerborder"></div>
                 </div>
@@ -40,7 +42,6 @@ const Items = (incomingData) =>{
                 <br />
                 <br />
 
-                <BreadCrumb name={page} />
 
                 <Typography 
                     variant="h4" 

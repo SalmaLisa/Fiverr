@@ -1,0 +1,135 @@
+import React,{ useEffect } from "react"
+import Nav from "../../layouts/Nav.js"
+
+import { useDispatch , useSelector } from "react-redux"
+// import { activeId } from "../../../actionCreator"
+
+import Typography from "@material-ui/core/Typography"
+// import CheckIcon from "@material-ui/icons/Check"
+
+import QRCode from "react-qr-code"
+import { Link } from "react-router-dom"
+
+import BreadCrumb from "../../layouts/BreadCrumb"
+import ItemList from "../../layouts/ItemList"
+
+
+
+const FormulasItems = (incomingData) =>{
+    const props = incomingData.newItem
+    
+    const Thisstate = useSelector(s=> s.entities.acupoint)
+    const dispatch = useDispatch()
+    const page = Thisstate.acupagelink
+
+    const activeNav = Thisstate.nav
+
+    const Ingredients = props.ingredients.split(",")
+    return(
+        <div>
+            <ul>
+            <BreadCrumb name={page} /><br />    
+
+                <div className="">
+                    <Typography variant="h4">{props.name}</Typography>
+                    <div className="headerborder"></div>
+                </div>
+
+                <br />
+                <br />
+
+                <div className=""> 
+                    <QRCode 
+                        value={`/formulas/${page}`} 
+                        size={110} 
+                    />
+                </div>
+
+                <br />
+                <br />
+
+                <Typography 
+                    variant="h4" 
+                    style={{
+                        color:"rgb(100,100,100)"
+                    }}>
+                        Epithet
+                </Typography><br />
+                
+                                                
+                <ItemList 
+                    listName="Pinyin" 
+                    value={props.pinyin}
+                />
+                <ItemList 
+                    listName="Chinese" 
+                    value={props.chineseSPL}
+                />
+                <ItemList 
+                    listName="Japanese" 
+                    value={props.japanese}
+                />
+                <ItemList 
+                    listName="English" 
+                    value={props.english}
+                />
+                <ItemList 
+                    listName="Korean" 
+                    value={props.korean}
+                />
+                <ItemList 
+                    listName="Vietnamese" 
+                    value={props.vietnamese}
+                />
+                
+                <br />
+
+                <Nav />
+
+                <br />
+                </ul>
+                <ul 
+                    style={ 
+                        activeNav === 'Profile' ? 
+                        {display:"block"}: {display:"none"}}>
+
+                    <ItemList
+                        listName="Category"
+                        value={props.category}
+                    />
+                    <ItemList
+                        listName="Ingredients"
+                        value={"NULL"}
+                    />
+                    <ul style={{marginLeft:"10em" }}>
+                        {Ingredients.map(
+                            (items)=> <li>{items}</li>)}
+                    </ul>
+                    <ItemList
+                        listName="Tongue"
+                        value={props.tongue}
+                    />
+                    <ItemList
+                        listName="Pulse"
+                        value={props.pulse}
+                    />
+                    <ItemList
+                        listName="Contra-indications"
+                        value={props.contraIndication}
+                    />
+                    <ItemList
+                        listName="Suggestion"
+                        value={props.suggestion}
+                    />
+                    <ItemList
+                        listName="Caution"
+                        value={props.caution}
+                    />
+     
+            </ul>    
+        </div>
+    )
+}
+
+export default React.memo(FormulasItems)
+

@@ -6,6 +6,7 @@ import Control from "../../layouts/Controls"
 import Comment from "../../layouts/Comments"
 
 import AcuPointItems from "./AcupointFiles/AcuPointItems"
+import FormulaSecondary from "./FormulaSecondary"
 
 
 function BlogDetailContent(props) {
@@ -22,7 +23,7 @@ function BlogDetailContent(props) {
             return <AcuPointItems newItem={event} />
         }
         else if(Gstate.datalink === '/formulas'){
-            return <h1>Page Running Correctly</h1>
+            return <FormulaSecondary  newItem={event}/>
         }
     }
 

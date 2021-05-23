@@ -10,7 +10,8 @@ const BreadCrumb =(props)=>{
             className="breadcrumb" 
             style={{ 
                 display:"flex", 
-                alignItems:"center"
+                alignItems:"center",
+                background: "rgba(245,245,245,0.7)"
                 }}>
             <Link to="/">
                 <Typography 
