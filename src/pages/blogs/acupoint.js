@@ -8,6 +8,7 @@ import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import bg from "../../assets/images/custom/bg.jpg"
 import { useDispatch, useSelector } from "react-redux"
 import { NavData } from "../../store/NavData"
+import LoadingErrorView from "../../layouts/LoadingErrorView"
 
 import { 
     acuPageLink, 
@@ -40,40 +41,9 @@ function BlogDetail(props) {
                 MenuPgTitle="Acupuncture" 
                 img={bg} 
             /> 
-                
-            <div className="container">
-                <Typography variant="h6">
-                                    
-                    <div 
-                        style={
-                            Status === 'loading' ? 
-                                { display:"block", textAlign: "center" } : 
-                                { display:"none" }
-                            }>
+            
+            <LoadingErrorView />
 
-                        <Typography 
-                            variant="h5">
-                                Loading...
-                        </Typography>
-                        <br />
-                    </div>
-                    
-                    <div 
-                        style={ 
-                            Status === 'error' ? 
-                                { display: "block", textAlign: "center" } : 
-                                { display: "none" }}>
-                        <Typography 
-                            variant="h6">
-                                An Error Occured While Loading Data Check Your Network Connection...<br />
-                                Or May Be You are visiting wrong Link
-                        </Typography>
-                        <br />
-                        <br />
-                    </div>
-
-                </Typography>
-            </div>
             <section
                 style={ Status === 'loaded' ? 
                     {  } : { display: "none" } } 

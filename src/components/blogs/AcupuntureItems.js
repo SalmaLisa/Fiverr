@@ -2,6 +2,7 @@ import React from 'react';
 import BlogFullWidthArray from "./BlogFullWidthArray"
 import { Link } from "react-router-dom"
 import { useSelector , useDispatch } from "react-redux"
+import LoadingErrorView from "../../layouts/LoadingErrorView"
 
 function BlogFullWidthItems(props){
 
@@ -54,29 +55,8 @@ function BlogFullWidthItems(props){
     
     return(
         <>
-
-        <div style={ Gstate.status === 'loading' ? {
-
-                    display:"block", 
-                    textAlign:"center"
-
-                } : {display:"none"}}>
-
-                <div className="loading"></div>
-            <h1>Loading .....</h1>
-            <div className="headerborder"></div>
-        </div>
-        
-        <div style={ Gstate.status === 'error' ? {
-                    
-                    display:"block", 
-                    textAlign:"center"
-
-                }: {display:"none"}}>
-
-            Sorry An error Occured While Loading Data....Please Refresh
-        </div>
-        
+        <LoadingErrorView />
+       
         <div className="array-parent" >
             {FilterActive}
         </div>
