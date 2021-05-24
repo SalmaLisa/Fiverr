@@ -34,6 +34,9 @@ export const dataSlice = createSlice({
     },
     datalink: ( state , action )=>{
       state.datalink = action.payload
+    },
+    changepaginationvisiblity: ( state , action ) =>{
+      state.acudata.paginationvisible = action.payload
     }
   },
 
@@ -45,7 +48,8 @@ export const {
     loading,
     headingData,
     error,
-    datalink
+    datalink,
+    changepaginationvisiblity
 } = dataSlice.actions;
 
 

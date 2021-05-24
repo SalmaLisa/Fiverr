@@ -1,8 +1,7 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import Typography from "@material-ui/core/Typography"
-import { activeFilter } from "../actionCreator"
-import { selectData } from "../actionCreator"
+import { activeFilter, changepaginationvisiblity } from "../actionCreator"
 
 const MeridianForm = (props) =>{
 
@@ -13,7 +12,14 @@ const MeridianForm = (props) =>{
 
     const handleSubmit = (event) =>{
         event.preventDefault();
-        dispatch(activeFilter(meridian.current.value))
+
+        if( Gstate.acudata.pageheaderheading == "Clinics" ){
+            dispatch(changepaginationvisiblity(true))
+            dispatch(activeFilter(meridian.current.value))
+        }
+        else{
+            dispatch(activeFilter(meridian.current.value))
+        }
     }
 
     const MeridianList = Gstate.status === "loaded" ? Gstate.list.filter(( elem, index )=>

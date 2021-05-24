@@ -6,6 +6,7 @@ export {
     headingData,
     error,
     loadData,
+    changepaginationvisiblity,
     datalink,
     selectData,
 
