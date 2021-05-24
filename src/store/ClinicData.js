@@ -15,6 +15,14 @@ const ClinicData = {
     pageheaderheading: "Clinics",
     paginationvisible: false,
     tabsvisible: false,
-    datavisible: false
+    datavisible: false,
+    tablevisible: true,
+    tabledata: {
+        column1: "Bussiness Name",
+        column2: "Contact Name",
+        column3: "Address",
+        column4: "Phone",
+        column5: "Mobile"
+    }
 }
 export default ClinicData

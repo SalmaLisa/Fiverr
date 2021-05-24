@@ -1,10 +1,10 @@
 import React from 'react';
-import BlogFullWidthArray from "./BlogFullWidthArray"
+import CommonHomePageArray from "./HomePageItems/HomePageArrayView"
 import { Link } from "react-router-dom"
 import { useSelector , useDispatch } from "react-redux"
 import LoadingErrorView from "../../layouts/LoadingErrorView"
 
-function BlogFullWidthItems(props){
+function CommonHomePageItems(props){
 
     const Gstate = useSelector(s=> s.entities.acudata)
     const Filter = Gstate.filter
@@ -13,7 +13,7 @@ function BlogFullWidthItems(props){
     const Array = state != null ?  state.map((item)=> 
 
             <Link to={`${Gstate.datalink}/${item.name}`}>
-                <BlogFullWidthArray 
+                <CommonHomePageArray 
                     key={item._id}
                     name={item.name} 
                     english={item.english}
@@ -41,7 +41,7 @@ function BlogFullWidthItems(props){
 
             <Link to={`${Gstate.datalink}/${item.name}`}> 
 
-                <BlogFullWidthArray 
+                <CommonHomePageArray 
                     key={item._id}
                     name={item.name} 
                     english={item.english} 
@@ -71,4 +71,4 @@ function BlogFullWidthItems(props){
     )
 }
 
-export default React.memo(BlogFullWidthItems);
+export default React.memo(CommonHomePageItems);

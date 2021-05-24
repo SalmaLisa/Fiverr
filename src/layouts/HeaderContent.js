@@ -23,7 +23,7 @@ const HeaderContent= (props) =>{
                                  />
                          </div>
                         
-                         <div className="col-lg-6"  style={{marginTop:"4em", fontSize:"20px"}}>
+                         <div className="col-lg-6"  style={{marginTop:"2em", fontSize:"20px"}}>
                             
                              <p>{acuDatA.description1}</p><br />
                              <p>{acuDatA.description2}</p><br />

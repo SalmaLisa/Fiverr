@@ -1,19 +1,17 @@
 import React from "react"
-import Nav from "../../layouts/Nav.js"
+import Nav from "../../../layouts/Nav.js"
 
-import { useDispatch , useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import Typography from "@material-ui/core/Typography"
 
 import QRCode from "react-qr-code"
-import { Link } from "react-router-dom"
 
-import BreadCrumb from "../../layouts/BreadCrumb"
-import ItemList from "../../layouts/ItemList"
+import BreadCrumb from "../../../layouts/BreadCrumb"
+import ItemList from "../../../layouts/ItemList"
 import { UncontrolledCarousel } from "reactstrap"
-import Image1 from "../../assets/images/bg1.png"
-// import Image1 from "../../assets/images/bg1.jpg"
-import Image2 from "../../assets/images/bg1.png"
+import Image1 from "../../../assets/images/bg1.png"
+import Image2 from "../../../assets/images/bg1.png"
 
 const ImagesList = [
     {

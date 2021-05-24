@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Typography from "@material-ui/core/Typography"
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
-import BlogDetailContent from "../../components/blogs/AcuPointItems";
+import CommonSecondaryPageItems from "../../components/blogs/CommonSecondaryPageItems";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import bg from "../../assets/images/custom/bg.jpg"
@@ -17,7 +17,7 @@ import {
     datalink
 } from "../../actionCreator"
 
-function BlogDetail(props) {
+function CommonSecondaryPage(props) {
     
     const Gstate = useSelector(s=> s.entities.acudata)
     const Thisstate = useSelector(s=> s.entities.acudpoint)
@@ -54,7 +54,7 @@ function BlogDetail(props) {
                     <div className="row">
                         <div className="col-lg-12">
                             {Gstate.acupagelink}
-                            <BlogDetailContent />
+                            <CommonSecondaryPageItems />
                         
                         </div>
                     </div>
@@ -74,4 +74,4 @@ function BlogDetail(props) {
     );
 }
 
-export default React.memo(BlogDetail);
+export default React.memo(CommonSecondaryPage);

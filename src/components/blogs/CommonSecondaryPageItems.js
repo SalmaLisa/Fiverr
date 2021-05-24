@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import Control from "../../layouts/Controls"
 import Comment from "../../layouts/Comments"
 
-import AcuPointItems from "./AcupointFiles/AcuPointItems"
-import FormulaSecondary from "./FormulaSecondary"
+import AcuPointItems from "./SecondaryPageItems/AcuPointItems"
+import FormulaSecondary from "./SecondaryPageItems/FormulaSecondary"
 
 
-function BlogDetailContent(props) {
+function CommonSecondaryPageItems(props) {
 
     const Thisstate = useSelector(s=> s.entities.acupoint)
     const Gstate = useSelector(s=> s.entities.acudata)
@@ -99,4 +99,4 @@ function BlogDetailContent(props) {
     );
 }
 
-export default React.memo(BlogDetailContent);
+export default React.memo(CommonSecondaryPageItems);

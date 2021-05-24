@@ -1,17 +1,18 @@
 import React,{ useEffect, useState } from 'react';
 
-import BlogFullWidthItems from "../../components/blogs/AcupuntureItems";
+import CommonHomePageItems from "../../components/blogs/CommonHomePageItems";
 import Pagination from "../../components/blogs/Pagination";
 
 import GeneralHeader from "../../components/common/GeneralHeader";
 import Breadcrumb from "../../components/common/Breadcrumb";
 import Footer from "../../components/common/footer/Footer";
-// import NewsLetter from "../../components/other/cta/NewsLetter";
+
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import ListingDetailsComments from "../../components/contact/ListingDetailsComments"
 import BlogCommentFields from "../../components/blogs/BlogCommentFields"
 
 import HeaderContent from "../../layouts/HeaderContent"
+import CustomizedTables from "../../layouts/Table"
 import Tabs from "../../layouts/Tabs"
 
 import bg from "../../assets/images/custom/bg.jpg"
@@ -31,7 +32,7 @@ import Typography from "@material-ui/core/Typography";
 
 
 
-function BlogFullWidth(props) {
+function CommonHomePage(props) {
     
     const Gstate = useSelector(s=> s.entities.acudata)
     const dispatch = useDispatch()
@@ -70,22 +71,35 @@ function BlogFullWidth(props) {
             
             { acuDatA.paginationvisible === true ? 
                 <div>
-                    <div className="container" style={{margin:"1em 2em", wordWrap:"wrap", width:"80vw"}}>
-                        <Typography variant="h6">{acuDatA.pagination != null ? acuDatA.pagination : ''}</Typography>
+                    <div className="container" style={{
+                            margin:"1em 2em", 
+                            wordWrap:"wrap", 
+                            width:"80vw"
+                        }}>
+
+                        <Typography variant="h6">
+                            {acuDatA.pagination != null ? 
+                                acuDatA.pagination : ''}
+
+                        </Typography>
                     </div>
 
                     <div className="mymobile">
                         <Pagination />
                     </div>
+
                 </div>
             : null }
 
              <br />
 
-             <div style={ acuDatA.paginationvisible == true ? {textAlign:"center"}: {display: "none"}}>
+             <div style={ acuDatA.paginationvisible == true ? 
+                    { textAlign:"center" } : {display: "none"}}>
+                 
                  <p>Active Filter: {
                      Gstate.filter != null ? Gstate.filter.toUpperCase() : 'ALL'
                  }</p>
+
              </div>
              <br />
              <br />
@@ -94,20 +108,30 @@ function BlogFullWidth(props) {
                     <Tabs isToggle={isToggle} handleClick={(event)=> setisToggle(event) } />
                     : null
             }
+
+            { acuDatA.tablevisible === true ? 
+                <div className="container">
+                    <CustomizedTables />
+                </div>
+                :null
+            }
+
              <section className="blog-grid padding-top-40px padding-bottom-100px" 
-                 style={ isToggle ? {display:"none"} : {display:"block"}}>
+                 style={ isToggle ? { display:"none" } : { display:"block" }}>
                 
                  <div className="container">
                      <div className="row">
                          <div className="col-lg-12">
 
-                             {acuDatA.datavisible === true ? <BlogFullWidthItems /> : null }
+                             {acuDatA.datavisible === true ? <CommonHomePageItems /> : null }
 
                          </div>
                      </div>
                  </div>
 
              </section>
+            
+            
 
              <section style={ isToggle ? { display: "block", marginTop: "4em" } : { display: "none" }}>
                  <div className="container">
@@ -157,4 +181,4 @@ function BlogFullWidth(props) {
     );
 }
 
-export default React.memo(BlogFullWidth);
+export default React.memo(CommonHomePage);

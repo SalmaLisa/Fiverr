@@ -45,11 +45,11 @@ import Home from "./pages/homes/Home";
 // import Faq from "./pages/FAQ";
 // import Contact from "./pages/Contact";
 // import RecoverPassword from "./pages/RecoverPassword";
-import Acupuncture from "./pages/blogs/Acupunture";
+import CommonHomePage from "./pages/blogs/CommonHomePage";
 // import BlogGrid from "./pages/blogs/BlogGrid";
 // import BlogLeftSidebar from "./pages/blogs/BlogLeftSidebar";
 // import BlogRightSidebar from "./pages/blogs/BlogRightSidebar";
-import Acupoint from "./pages/blogs/Acupoint";
+import CommonSecondaryPage from "./pages/blogs/CommonSecondaryPage";
 // import Login from "./pages/Login";
 // import SignUp from "./pages/SignUp";
 // import Error from "./pages/Error";
@@ -105,56 +105,56 @@ const App = () => {
 
               <AppRoute path="/acupunctures/:name" component={(event)=> 
                 <div>
-                  <Acupoint 
+                  <CommonSecondaryPage 
                     datalink="/acupunctures" 
                     name={event}/>
                   </div>} 
                 />
 
               <AppRoute path="/acupunctures" component={()=> 
-                  <Acupuncture 
+                  <CommonHomePage 
                     datalink="/acupunctures"
                     headingdata={AcupuntureData}/>} 
                 />
 
               <AppRoute path="/formulas/:name" component={(event)=> 
                 <div>
-                  <Acupoint 
+                  <CommonSecondaryPage 
                     datalink="/formulas" 
                     name={event}/>
                   </div>} 
                 />
 
               <AppRoute path="/formulas" component={()=> 
-                  <Acupuncture 
+                  <CommonHomePage 
                     datalink="/formulas"
                     headingdata={FormulaData}/>} 
                 />
 
               <AppRoute path="/formulas/:name" component={(event)=> 
                 <div>
-                  <Acupoint 
+                  <CommonSecondaryPage 
                     datalink="/formulas" 
                     name={event}/>
                   </div>} 
                 />
 
               <AppRoute path="/materiamedica" component={()=> 
-                  <Acupuncture 
+                  <CommonHomePage 
                     datalink="/materiamedica"
                     headingdata={MateriaMedica}/>} 
                 />
 
               <AppRoute path="/clinics/:name" component={(event)=> 
                 <div>
-                  <Acupoint 
+                  <CommonSecondaryPage 
                     datalink="/clinicsolo" 
                     name={event}/>
                   </div>} 
                 />
 
               <AppRoute path="/clinics" component={()=> 
-                  <Acupuncture 
+                  <CommonHomePage 
                     datalink="/clinicsolo"
                     headingdata={ClinicsData}/>} 
                 />
