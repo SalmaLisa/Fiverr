@@ -9,6 +9,7 @@ const MeridianForm = (props) =>{
     const meridian = useRef()
     const dispatch = useDispatch()
     const Gstate = useSelector(s=> s.entities.acudata)
+    const ClinicsState = useSelector(s=> s.entities.clinics)
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -24,7 +25,17 @@ const MeridianForm = (props) =>{
             id={item.meridian} 
             value={item.meridian}>{item.meridian}
         </option>
-    ) : "Loading...."                 
+    ) : "Loading...." 
+    
+    const CountryList = Gstate.acudata.pageheaderheading === 'Clinics' ? 
+            ClinicsState.countrylist.map((item)=>         
+                <option 
+                    key={item}
+                    id={item} 
+                    value={item}>{item}
+                </option> ) : null
+
+    const View = Gstate.acudata.pageheaderheading === 'Clinics' ? CountryList : MeridianList
     
     return(
         <form onSubmit={(e)=> handleSubmit(e)}>
@@ -34,7 +45,7 @@ const MeridianForm = (props) =>{
                 
                 <option>{Gstate.acudata.filtername}</option>    
                 
-                {MeridianList}
+                {View}
             </select>
 
             <br /><br />

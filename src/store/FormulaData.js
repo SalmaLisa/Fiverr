@@ -12,7 +12,11 @@ const FormulaData = {
     pagetitle: 'Formulas(中成藥) of Traditional Chinese Medicine 针灸"',
     filtername: "Formula",
     image: formula,
-    pageheaderheading: "Formulas"
+    pageheaderheading: "Formulas",
+    paginationvisible: true,
+    tabsvisible: true,
+    tabsheading: 'Formulas',
+    datavisible: true,
 }
 export default FormulaData
 // image: sideImage,

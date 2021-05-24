@@ -21,6 +21,10 @@ export {
 
 } from "./redux/Acupunture/acupointSlice"
 
+
+export {
+    countryList
+} from "./redux/clinicsSlics"
 // acupuntureData,
 // activeNav, 
 // addPageLink

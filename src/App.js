@@ -15,6 +15,8 @@ import TopicDetail from './pages/TopicDetail';
 
 import AcupuntureData from "./store/AcupuntureData"
 import FormulaData from "./store/FormulaData"
+import MateriaMedica from "./store/MateriaMedica"
+import ClinicsData from "./store/ClinicData"
 // Pages
 import Home from "./pages/homes/Home";
 // import Home2 from './pages/homes/Home2';
@@ -127,6 +129,34 @@ const App = () => {
                   <Acupuncture 
                     datalink="/formulas"
                     headingdata={FormulaData}/>} 
+                />
+
+              <AppRoute path="/formulas/:name" component={(event)=> 
+                <div>
+                  <Acupoint 
+                    datalink="/formulas" 
+                    name={event}/>
+                  </div>} 
+                />
+
+              <AppRoute path="/materiamedica" component={()=> 
+                  <Acupuncture 
+                    datalink="/materiamedica"
+                    headingdata={MateriaMedica}/>} 
+                />
+
+              <AppRoute path="/clinics/:name" component={(event)=> 
+                <div>
+                  <Acupoint 
+                    datalink="/clinicsolo" 
+                    name={event}/>
+                  </div>} 
+                />
+
+              <AppRoute path="/clinics" component={()=> 
+                  <Acupuncture 
+                    datalink="/clinicsolo"
+                    headingdata={ClinicsData}/>} 
                 />
 			  
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />

@@ -12,8 +12,8 @@ import ListingDetailsComments from "../../components/contact/ListingDetailsComme
 import BlogCommentFields from "../../components/blogs/BlogCommentFields"
 
 import HeaderContent from "../../layouts/HeaderContent"
+import Tabs from "../../layouts/Tabs"
 
-import breadcrumbimg from '../../assets/images/bread-bg.jpg'
 import bg from "../../assets/images/custom/bg.jpg"
 
 import sectiondata from "../../store/store";
@@ -22,9 +22,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { 
     headingData,
     loadData,
-    datalink
+    datalink,
+    countryList
 } from "../../actionCreator"
 
+import { CountryListData } from "../../store/CountryListData"
 import Typography from "@material-ui/core/Typography";
 
 
@@ -34,6 +36,7 @@ function BlogFullWidth(props) {
     const Gstate = useSelector(s=> s.entities.acudata)
     const dispatch = useDispatch()
     const [ isToggle , setisToggle ] = useState(false)
+    const acuDatA = Gstate.acudata
 
     useEffect(()=>{  
 
@@ -45,10 +48,12 @@ function BlogFullWidth(props) {
         dispatch(datalink(props.datalink))
         dispatch(loadData())     
         dispatch(headingData(props.headingdata))
+        if(acuDatA.pageheaderheading == "Clinics"){
+            dispatch(countryList(CountryListData))
+        }
         
     },[])
     
-    const acuDatA = Gstate.acudata
 
     return (
          <main className="blog-fullwidth-page">
@@ -63,63 +68,32 @@ function BlogFullWidth(props) {
 
              <HeaderContent />
             
-            <div className="container" style={{margin:"1em 2em", wordWrap:"wrap", width:"80vw"}}>
-                <Typography variant="h6">{acuDatA.pagination != null ? acuDatA.pagination : ''}</Typography>
-            </div>
+            { acuDatA.paginationvisible === true ? 
+                <div>
+                    <div className="container" style={{margin:"1em 2em", wordWrap:"wrap", width:"80vw"}}>
+                        <Typography variant="h6">{acuDatA.pagination != null ? acuDatA.pagination : ''}</Typography>
+                    </div>
 
-             <div className="mymobile">
-                 <Pagination />
-             </div>
+                    <div className="mymobile">
+                        <Pagination />
+                    </div>
+                </div>
+            : null }
+
              <br />
 
-             <div style={{textAlign:"center"}}>
+             <div style={ acuDatA.paginationvisible == true ? {textAlign:"center"}: {display: "none"}}>
                  <p>Active Filter: {
                      Gstate.filter != null ? Gstate.filter.toUpperCase() : 'ALL'
                  }</p>
              </div>
              <br />
              <br />
-
-             <div className="container">
-                 <div className="row">
-                     <div className={ isToggle ? "col-lg-6 mycustomtopicinactive" :
-                              "col-lg-6 mycustomtopicactive"}>
-
-                         <div 
-                             className="mytopicmobile mytopic1"
-                             style={ isToggle ? { background: "rgba(255,255,255,0)" } : { padding: "0.5em" }} 
-                             onClick={()=> setisToggle(false)}>
-
-                             <Typography 
-                                 variant="h6" 
-                                 style={ isToggle ? {}:  {color: "red"}}>
-
-                                 Acu-Points
-                             </Typography>
-
-                         </div>
-
-                     </div>
-                    
-                     <div className={ isToggle ? "col-lg-6 mycustomtopicactive" :
-                             "col-lg-6 mycustomtopicinactive"} >
-                         <div 
-                             className="mytopicmobile mytopic1"
-                             style={ isToggle ? {padding:"0.5em"}: {background:"rgba(255,255,255,0)"}} 
-                             onClick={()=> setisToggle(true)}>
-                            
-                             <Typography 
-                                 variant="h6" 
-                                 style={ isToggle ? {color: "red"}: {}}>
-                                     Topic and Comments
-                             </Typography>
-
-                         </div>
-                     </div>
-
-                 </div>
-             </div>
-
+            
+            { acuDatA.tabsvisible === true ? 
+                    <Tabs isToggle={isToggle} handleClick={(event)=> setisToggle(event) } />
+                    : null
+            }
              <section className="blog-grid padding-top-40px padding-bottom-100px" 
                  style={ isToggle ? {display:"none"} : {display:"block"}}>
                 
@@ -127,7 +101,7 @@ function BlogFullWidth(props) {
                      <div className="row">
                          <div className="col-lg-12">
 
-                             <BlogFullWidthItems />
+                             {acuDatA.datavisible === true ? <BlogFullWidthItems /> : null }
 
                          </div>
                      </div>

@@ -13,5 +13,9 @@ const AcupuntureData = {
     pagetitle: 'Acupuncture zhēnjiǔ of Traditional Chinese Medicine',
     filtername: "Meridian",
     pageheaderheading: "Acupuncture",
+    paginationvisible: true,
+    tabsvisible: true,
+    tabsheading: 'Acu-Point',
+    datavisible: true,
 }
 export default AcupuntureData
