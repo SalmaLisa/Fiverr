@@ -51,10 +51,11 @@ const Items = (incomingData) =>{
                         Epithet
                 </Typography><br />
                 
-                <div className="qrcode"> 
+                <div 
+                    className="qrcode"> 
                     <QRCode 
                         value={`/acupunture/${page}`} 
-                        size="110" 
+                        size={110} 
                     />
                 </div>
                                                 

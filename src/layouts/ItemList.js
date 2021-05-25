@@ -1,9 +1,12 @@
 import React from "react"
 import CheckIcon from "@material-ui/icons/Check"
+import { motion } from "framer-motion"
 
 const ItemList = (props) =>{
     return(
-        <li className="myliststyle">
+        <motion.li
+            whileHover={{ color: "red"}} 
+            className="myliststyle">
             <CheckIcon 
                 className="mycustomliststyle" 
                 />
@@ -13,7 +16,7 @@ const ItemList = (props) =>{
             null : 
             props.value 
         }
-        </li>
+        </motion.li>
     )
 }
 export default ItemList

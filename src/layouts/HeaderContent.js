@@ -10,6 +10,10 @@ const HeaderContent= (props) =>{
 
     const NONE = { display: "none" }
     const MBottom = { marginBottom : "0.8em" }
+
+    const TextStyle =  acuDatA.description1 === null ? NONE : MBottom 
+
+    const Description1 = acuDatA.description1.split(" ")
     return(
         <>
             <div style={{textAlign:"center"}}>
@@ -48,17 +52,19 @@ const HeaderContent= (props) =>{
                      <div className="row" style={{paddingTop: "2em"}}>
                         
                          <div className="col-lg-6" style={{textAlign:"center", marginTop:"10px"}}>
-                             {/* <Paper elevation={3} style={{padding:" 1em", height: "100%"}}> */}
                                 <img 
                                     src={acuDatA.image} 
                                     className="imgstyle"
                                     />
-                             {/* </Paper> */}
                          </div>
 
                          <div 
                             className="col-lg-6"  
-                            style={{marginTop: "10px",fontSize:"20px"}}>
+                            style={{ 
+                                marginTop: "10px" , 
+                                fontSize: "20px",
+                                overflowWrap: "break-word"
+                            }}>
                             
                             <motion.div 
                                 initial={{ opacity: 0, scale: 0 }}
@@ -67,11 +73,18 @@ const HeaderContent= (props) =>{
                                 <Paper 
                                     elevation={3} 
                                     style={{padding: "1em"}}>
-                                    <p style={ acuDatA.description1 === null ? NONE : MBottom }>{acuDatA.description1}</p>
-                                    <p style={ acuDatA.description2 === null ? NONE : MBottom }>{acuDatA.description2}</p>
-                                    <p style={ acuDatA.description3 === null ? NONE : MBottom }>{acuDatA.description3}</p>
-                                    <p style={ acuDatA.description4 === null ? NONE : MBottom }>{acuDatA.description4}</p>
-                                    <p style={ acuDatA.description5 === null ? NONE : MBottom }>{acuDatA.description5}</p>
+                                    <p style={TextStyle}>{Description1.map((item)=>{
+                                        if(item == "Acupuncture"){
+                                            return <span style={{ marginRight: "7px", color: "red"}}>{item} </span>
+                                        }
+                                        else{
+                                            return <span style={{ marginRight: "7px"}}>{item}</span>
+                                        }
+                                    })}</p>
+                                    <p style={TextStyle}>{acuDatA.description2}</p>
+                                    <p style={TextStyle}>{acuDatA.description3}</p>
+                                    <p style={TextStyle}>{acuDatA.description4}</p>
+                                    <p style={TextStyle}>{acuDatA.description5}</p>
                                 </Paper>
                             </motion.div>
                             <hr />

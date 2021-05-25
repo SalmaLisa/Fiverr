@@ -25,7 +25,7 @@ function Home() {
             <GeneralHeader />
 
             {/* Hero Banner */}
-            <BannerOne />
+            {/* <BannerOne /> */}
 
             {/* Popular Categories */}
             <section className="cat-area padding-top-100px padding-bottom-90px">

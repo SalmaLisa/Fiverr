@@ -1,5 +1,10 @@
 import React,{ useEffect, useState } from 'react';
 
+import sectiondata from "../../store/store";
+import Button from "../../components/common/Button";
+import SectionsHeading from "../../components/common/SectionsHeading";
+
+
 import CommonHomePageItems from "../../components/blogs/CommonHomePageItems";
 import Pagination from "../../components/blogs/Pagination";
 
@@ -9,6 +14,7 @@ import Footer from "../../components/common/footer/Footer";
 
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 // import LinearProgress from '@material-ui/core/LinearProgress';
+import HeroShape from "../../assets/images/hero-shape.png"
 
 import HeaderContent from "../../layouts/HeaderContent"
 import CustomizedTables from "../../layouts/Table"
@@ -24,9 +30,8 @@ import {
     loadData,
     datalink,
     countryList,
-    Progress
 } from "../../actionCreator"
-
+import BannerTwo from '../../components/banner/BannerTwo/Banner'
 import { CountryListData } from "../../store/CountryListData"
 import Typography from "@material-ui/core/Typography";
 import { motion } from "framer-motion"
@@ -60,17 +65,10 @@ function CommonHomePage(props) {
 
     return (
          <main className="blog-fullwidth-page">
-            {/* <LinearProgress variant="determinate" value={Gstate.progress} /> */}
-             {/* { console.log(Gstate.progress)} */}
-             <GeneralHeader />
+            <GeneralHeader />
+             <BannerTwo />
 
-             <Breadcrumb 
-                 CurrentPgTitle={acuDatA.pageheaderheading} 
-                 MenuPgTitle="" 
-                 img={bg} 
-             />
-
-            { Gstate.acudataloading === "loaded" ? 
+            {/* { Gstate.acudataloading === "loaded" ? 
                     <motion.div
                         whileHover={{ 
                             color: "rgb(0,0,0)", 
@@ -79,82 +77,102 @@ function CommonHomePage(props) {
                     >
                         <HeaderContent /> 
                     </motion.div>
-                : null }
-             
-            
-            { acuDatA.paginationvisible === true ? 
-                <div>
-                    <div className="container" style={{
-                            margin:"1em 2em", 
-                            wordWrap:"wrap", 
-                            width:"80vw"
-                        }}>
+                : null } */}
 
-                        <Typography variant="h6">
-                            {acuDatA.pagination != null ? 
-                                acuDatA.pagination : ''}
+             <section className="cta-area section-bg column-sm-center padding-top-80px padding-bottom-80px">
+                {sectiondata.calltoactions.cta1.shapes.map((img, index) => {
+                    return (
+                        <img src={img.img} key={index} alt="Cta Symble" className="symble-img" />
+                    )
+                })}
+                    <div className="container">
+                            <div className="row align-items-center">
+                                <div className="col-lg-12 text-left">
+                                { acuDatA.paginationvisible === true ? 
+                                    <div>
+                                        <div className="container" style={{
+                                                margin:"1em 2em", 
+                                                wordWrap:"wrap", 
+                                                width:"80vw"
+                                            }}>
 
-                        </Typography>
-                    </div>
+                                            <Typography variant="h6">
+                                                {acuDatA.pagination != null ? 
+                                                    acuDatA.pagination : ''}
 
-                    <div className="mymobile">
-                        <Pagination />
-                    </div>
+                                            </Typography>
+                                        </div>
 
-                </div>
-            : null }
+                                        <div className="mymobile">
+                                            <Pagination />
+                                        </div>
 
-             <br />
+                                    </div>
+                                : null }
 
-             <div style={ acuDatA.paginationvisible == true ? 
-                    { textAlign:"center" } : {display: "none"}}>
-                 
-                 <p>Active Filter: {
-                     Gstate.filter != null ? Gstate.filter.toUpperCase() : 'ALL'
-                 }</p>
+                            <br />
 
-             </div>
-             <br />
-             <br />
-            
-            { acuDatA.tabsvisible === true ? 
-                    <Tabs isToggle={isToggle} handleClick={(event)=> setisToggle(event) } />
-                    : null
-            }
+                            <div style={ acuDatA.paginationvisible == true ? 
+                                    { textAlign:"center" } : {display: "none"}}>
+                                
+                                <p>Active Filter: {
+                                    Gstate.filter != null ? Gstate.filter.toUpperCase() : 'ALL'
+                                }</p>
 
-            { acuDatA.tablevisible === true ? 
-                <div className="container">
-                    <CustomizedTables />
-                </div>
-                :null
-            }
- 
-            <section 
-                className="blog-grid padding-top-40px padding-bottom-100px"
-                style={ isToggle ? { display: "none"} : {} }>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-
-                            {acuDatA.datavisible === true ?
-                                <CommonHomePageItems /> 
-                            : null }
-
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-                
-
-             { isToggle ? 
-                <motion.section
-                    initial={{ x: 1000, scale: 0}}
-                    exit={{ x: -1000, scale: 0 }}
-                    animate={{ x: 0, scale: 0.9 }}
-                    style={{ marginTop: "4em" }}>
-                    <Comments />
-                </motion.section> : null}
             
+             <br />
+             <br />
+            
+            <div className="mybgGradient">
+                { acuDatA.tabsvisible === true ? 
+                        <Tabs isToggle={isToggle} handleClick={(event)=> setisToggle(event) } />
+                        : null
+                }
+
+                { acuDatA.tablevisible === true ? 
+                    <div className="container">
+                        <CustomizedTables />
+                    </div>
+                    :null
+                }
+    
+                <section 
+                    className="blog-grid padding-top-40px padding-bottom-100px"
+                    style={ isToggle ? { display: "none"} : {} }>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+
+                                {acuDatA.datavisible === true ?
+                                    <CommonHomePageItems /> 
+                                : null }
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+                
+            <div style={{
+                width: "80vw",
+                overflow: "hidden",
+                margin: "auto auto"
+            }}>
+                { isToggle ? 
+                    <motion.section
+                        initial={{ x: 1000, scale: 0}}
+                        exit={{ x: -1000, scale: 0 }}
+                        animate={{ x: 0, scale: 0.9, transition: { duration: 0.5} }}
+                        style={{ marginTop: "4em" }}>
+                        <Comments />
+                    </motion.section> : null}
+            </div>            
              {/* <NewsLetter /> */}
 
              <Footer />

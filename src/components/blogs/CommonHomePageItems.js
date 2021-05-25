@@ -6,6 +6,7 @@ import LoadingErrorView from "../../layouts/LoadingErrorView";
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import { Progress } from "../../actionCreator"
+import Paper from "@material-ui/core/Paper"
 
 function CommonHomePageItems(props){
 
@@ -13,7 +14,7 @@ function CommonHomePageItems(props){
     const Filter = Gstate.filter
     const state = Gstate.list
     const [ Visible, setVisible ] = useState(false)
-    const dispatch = useDispatch() 
+    // const dispatch = useDispatch() 
 
     useEffect(()=>{
         setTimeout(() => {
@@ -22,7 +23,7 @@ function CommonHomePageItems(props){
         }, 2000);
     },[])
 
-    const [ seemore , setseemore ] = useState(100)
+    const [ seemore , setseemore ] = useState(80)
 
     const ArrayView = (event) =>{
         return(
@@ -74,13 +75,15 @@ function CommonHomePageItems(props){
         </h2>
 
         <LoadingErrorView />
-        <div 
-            className="array-parent" 
+        <Paper 
+            elevation={5}
+            className="array-parent"
+            style={{ background: "rgba(255,255,255,0.2)", marginTop: "-3em"}} 
             >
             { Visible ? FilterActive : null}
-        </div>
+        </Paper>
         
-        <div style={{ textAlign: "center"}}>
+        <div style={{ textAlign: "center" }}>
             <Button 
                 style={{
                     marginTop: "3em",
