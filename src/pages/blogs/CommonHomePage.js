@@ -142,7 +142,7 @@ function CommonHomePage(props) {
                 }
     
                 <section 
-                    className="blog-grid padding-top-40px padding-bottom-100px"
+                    className="blog-grid padding-top-20px padding-bottom-100px"
                     style={ isToggle ? { display: "none"} : {} }>
                     <div className="container">
                         <div className="row">
@@ -156,23 +156,24 @@ function CommonHomePage(props) {
                         </div>
                     </div>
                 </section>
-            </div>
 
                 
-            <div style={{
-                width: "80vw",
-                overflow: "hidden",
-                margin: "auto auto"
-            }}>
-                { isToggle ? 
-                    <motion.section
-                        initial={{ x: 1000, scale: 0}}
-                        exit={{ x: -1000, scale: 0 }}
-                        animate={{ x: 0, scale: 0.9, transition: { duration: 0.5} }}
-                        style={{ marginTop: "4em" }}>
-                        <Comments />
-                    </motion.section> : null}
-            </div>            
+                <div style={{
+                    background: "rgba(255,255,255,0)",
+                    width: "80vw",
+                    overflow: "hidden",
+                    margin: "auto auto"
+                }}>
+                    { isToggle ? 
+                        <motion.section
+                            initial={{ x: 1000, scale: 0}}
+                            exit={{ x: -1000, scale: 0 }}
+                            animate={{ x: 0, scale: 0.9, transition: { duration: 0.5} }}
+                            style={{ marginTop: "2em" }}>
+                            <Comments />
+                        </motion.section> : null}
+                </div>            
+            </div>
              {/* <NewsLetter /> */}
 
              <Footer />
