@@ -5,7 +5,7 @@ import sectiondata from "../store/store";
 
 const Comment = (props) =>{
     return(
-        <div style={{ marginTop: "-5em"}}>
+        <div style={{ marginTop: "-4em", color: "black"}}>
             <div className="comments-wrap">
                             
                 <h2 className="widget-title">
