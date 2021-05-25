@@ -11,7 +11,7 @@ const BreadCrumb =(props)=>{
             style={{ 
                 display:"flex", 
                 alignItems:"center",
-                background: "rgba(245,245,245,0.7)"
+                background: "rgba(245,245,245,0.8)"
                 }}>
             <Link to="/">
                 <Typography 

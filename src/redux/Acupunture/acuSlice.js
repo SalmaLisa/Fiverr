@@ -8,7 +8,8 @@ const initialState = {
   filter: 'all',
   acudata: {},
   error: false,
-  datalink: ''
+  datalink: '',
+  acudataloading: 'loading'
 };
 
 
@@ -28,6 +29,7 @@ export const dataSlice = createSlice({
     },
     headingData: ( state , action ) =>{
       state.acudata = action.payload
+      state.acudataloading = "loaded"
     },
     error: ( state , action )=>{
       state.status = 'error'

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CommonHomePageArray from "./HomePageItems/HomePageArrayView"
 import { Link } from "react-router-dom"
 import { useSelector , useDispatch } from "react-redux"
@@ -9,6 +9,14 @@ function CommonHomePageItems(props){
     const Gstate = useSelector(s=> s.entities.acudata)
     const Filter = Gstate.filter
     const state = Gstate.list
+
+    const [ Visible, setVisible ] = useState(false)
+    
+    useEffect(()=>{
+        setTimeout(() => {
+            setVisible(true)
+        }, 300);
+    },[])
 
     const Array = state != null ?  state.map((item)=> 
 
@@ -65,7 +73,7 @@ function CommonHomePageItems(props){
         <LoadingErrorView />
         
         <div className="array-parent" >
-            {FilterActive}
+            { Visible ? FilterActive : null}
         </div>
         </>
     )

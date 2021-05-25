@@ -17,7 +17,7 @@ import Tabs from "../../layouts/Tabs"
 
 import bg from "../../assets/images/custom/bg.jpg"
 
-import sectiondata from "../../store/store";
+import Comments from "../../layouts/Comments"
 
 import { useDispatch, useSelector } from "react-redux"
 import { 
@@ -29,6 +29,7 @@ import {
 
 import { CountryListData } from "../../store/CountryListData"
 import Typography from "@material-ui/core/Typography";
+import { motion } from "framer-motion"
 
 
 
@@ -67,7 +68,17 @@ function CommonHomePage(props) {
                  img={bg} 
              />
 
-             <HeaderContent />
+            { Gstate.acudataloading === "loaded" ? 
+                    <motion.div
+                        whileHover={{ 
+                            color: "rgb(0,0,0)", 
+                        }}
+                        tarnsition={{ duration: 5 }}
+                    >
+                        <HeaderContent /> 
+                    </motion.div>
+                : null }
+             
             
             { acuDatA.paginationvisible === true ? 
                 <div>
@@ -115,60 +126,32 @@ function CommonHomePage(props) {
                 </div>
                 :null
             }
+ 
+            <section 
+                className="blog-grid padding-top-40px padding-bottom-100px"
+                style={ isToggle ? { display: "none"} : {} }>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
 
-             <section className="blog-grid padding-top-40px padding-bottom-100px" 
-                 style={ isToggle ? { display:"none" } : { display:"block" }}>
+                            {acuDatA.datavisible === true ?
+                                <CommonHomePageItems /> 
+                            : null }
+
+                        </div>
+                    </div>
+                </div>
+            </section>
                 
-                 <div className="container">
-                     <div className="row">
-                         <div className="col-lg-12">
 
-                             {acuDatA.datavisible === true ? <CommonHomePageItems /> : null }
-
-                         </div>
-                     </div>
-                 </div>
-
-             </section>
-            
-            
-
-             <section style={ isToggle ? { display: "block", marginTop: "4em" } : { display: "none" }}>
-                 <div className="container">
-                    
-                     <div className="comments-wrap">
-
-                         <h2 className="widget-title">
-                             3 Comments
-                         </h2>
-
-                         <div className="title-shape"></div>
-
-                         <ListingDetailsComments 
-                             commentlists={sectiondata.listingDetails.comments} 
-                         />
-
-                     </div>
-                    
-                     <div className="add-review-listing padding-top-50px">
-                        
-                         <h2 className="widget-title">Add a Comment</h2>
-                        
-                         <div className="title-shape"></div>
-
-                         <div className="section-heading padding-top-10px">
-                             <p className="sec__desc font-size-16">
-                                 Your email address will not be published. Required fields are marked *
-                             </p>
-                         </div>
-
-                         <div className="contact-form-action mt-3">
-                             <BlogCommentFields />
-                         </div>
-                     </div>
-
-                 </div>
-             </section>
+             { isToggle ? 
+                <motion.section
+                    initial={{ x: 1000, scale: 0}}
+                    exit={{ x: -1000, scale: 0 }}
+                    animate={{ x: 0, scale: 0.9 }}
+                    style={{ marginTop: "4em" }}>
+                    <Comments />
+                </motion.section> : null}
             
              {/* <NewsLetter /> */}
 

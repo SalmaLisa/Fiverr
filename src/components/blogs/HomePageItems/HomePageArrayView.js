@@ -5,13 +5,13 @@ const CommonHomePageArray = (props) => {
     return (
         <>
         <motion.div 
-            initial={{ scale: 0 }}
-            animate={{ rotate: 360, scale: 1 }}
+            whileTap={{ rotate: 360, scale: 0.5 }}
             transition={{
               type: "spring",
               stiffness: 260,
               damping: 20
             }}
+            whileHover={{ scale: 1.1, background: "white", zIndex: 10000 }}
             keys={props.keys} 
              className="array">
 

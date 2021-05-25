@@ -10,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/css/style.css';
 import './App.css';
+import "./index.css"
 
 const history = createBrowserHistory();
 
