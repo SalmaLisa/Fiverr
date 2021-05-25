@@ -8,8 +8,7 @@ import Breadcrumb from "../../components/common/Breadcrumb";
 import Footer from "../../components/common/footer/Footer";
 
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
-import ListingDetailsComments from "../../components/contact/ListingDetailsComments"
-import BlogCommentFields from "../../components/blogs/BlogCommentFields"
+// import LinearProgress from '@material-ui/core/LinearProgress';
 
 import HeaderContent from "../../layouts/HeaderContent"
 import CustomizedTables from "../../layouts/Table"
@@ -24,7 +23,8 @@ import {
     headingData,
     loadData,
     datalink,
-    countryList
+    countryList,
+    Progress
 } from "../../actionCreator"
 
 import { CountryListData } from "../../store/CountryListData"
@@ -50,6 +50,7 @@ function CommonHomePage(props) {
         dispatch(datalink(props.datalink))
         dispatch(loadData())     
         dispatch(headingData(props.headingdata))
+        // dispatch(Progress(20))
         if(acuDatA.pageheaderheading == "Clinics"){
             dispatch(countryList(CountryListData))
         }
@@ -59,7 +60,8 @@ function CommonHomePage(props) {
 
     return (
          <main className="blog-fullwidth-page">
-            
+            {/* <LinearProgress variant="determinate" value={Gstate.progress} /> */}
+             {/* { console.log(Gstate.progress)} */}
              <GeneralHeader />
 
              <Breadcrumb 

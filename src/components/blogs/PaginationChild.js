@@ -13,15 +13,20 @@ const List = (props) =>{
     }
 
     const color = { 
-        background: "linear-gradient(to bottom right,red, pink)", 
+        background: "linear-gradient(to bottom right,red, rgb(255, 149, 149))", 
         color: "white", 
-        boxShadow: "2px 2px 4px rgb(200,200,200)" 
+        boxShadow: "7px 7px 10px rgb(150,150,150)" 
     }
 
     const Style = props.activeFilter == props.filter ? color : null ;
     return(
         <motion.li
-            whileTap={{ scale: 0.8}}
+            style={ Style } 
+            className="mycustomliststyle" 
+            initial={{ borderRadius: " 0" }}
+            whileTap={{ 
+                scale: 0.8 , 
+            }}
             drag
             dragConstraints={{
               top: 0,
@@ -30,13 +35,13 @@ const List = (props) =>{
               bottom: 0,
             }}
                
-            whileHover={{ sacle: 1.2 }}
-            className="mycustomliststyle" 
-            style={ Style } 
+            whileHover={{ sacle: 1.2, background: "rgb(255,0,0)" }}
             onClick={()=> handleClick(props.filter)}>
                 
-            <Typography>
-                {props.filter.toUpperCase()}
+            <Typography
+                style={{ color: "white"}} 
+                variant="h6">
+                    <small> {props.filter.toUpperCase()} </small>
             </Typography>
         </motion.li>
     )

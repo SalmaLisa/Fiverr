@@ -227,14 +227,22 @@
   margin-top: 10px;
 }
 
+.mycustomlist{
+  width: 90vw;
+  margin: auto auto;
+}
+
 .mycustomlist li {
-  background: -webkit-gradient(linear, left top, right bottom, from(#ebebeb), color-stop(#c8c8c8), to(white));
-  background: linear-gradient(to right bottom, #ebebeb, #c8c8c8, white);
+  /* background: -webkit-gradient(linear, left top, right bottom, from(#ebebeb), color-stop(#c8c8c8), to(white)); */
+  /* background: linear-gradient(to right bottom, #ebebeb, #c8c8c8, white); */
   padding: 8px;
+  color: white;
+  width: 3em;
   padding-right: .5em;
   padding-left: .5em;
   color: black;
-  border-radius: 50%;
+  margin: 5px;
+  /* border-radius: 40% 0 40% 0; */
   min-width: 40px;
   max-width: 50px;
   -webkit-box-shadow: 2px 2px 4px #d2d2d2;

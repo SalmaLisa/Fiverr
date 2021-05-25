@@ -9,7 +9,8 @@ const initialState = {
   acudata: {},
   error: false,
   datalink: '',
-  acudataloading: 'loading'
+  acudataloading: 'loading',
+  progress: 0
 };
 
 
@@ -39,12 +40,17 @@ export const dataSlice = createSlice({
     },
     changepaginationvisiblity: ( state , action ) =>{
       state.acudata.paginationvisible = action.payload
+    },
+    Progress: ( state, action )=>{
+      console.log(state.progress)
+      state.progress = state.progress == 100 ? 0 + action.payload : state.progress +  action.payload
     }
   },
 
 });
 
 export const { 
+  Progress,
     activeFilter,
     data,
     loading,

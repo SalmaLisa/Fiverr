@@ -9,6 +9,7 @@ export {
     changepaginationvisiblity,
     datalink,
     selectData,
+    Progress,
 
 } from "./redux/Acupunture/acuSlice"
 

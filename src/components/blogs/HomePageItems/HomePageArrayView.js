@@ -6,6 +6,8 @@ const CommonHomePageArray = (props) => {
         <>
         <motion.div 
             whileTap={{ rotate: 360, scale: 0.5 }}
+            initial={{ rotate:0 , scale: 0 }}
+            animate={{ scale: 1, rotate: 360}}
             transition={{
               type: "spring",
               stiffness: 260,
