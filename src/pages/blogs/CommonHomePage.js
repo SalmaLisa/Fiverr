@@ -9,18 +9,13 @@ import CommonHomePageItems from "../../components/blogs/CommonHomePageItems";
 import Pagination from "../../components/blogs/Pagination";
 
 import GeneralHeader from "../../components/common/GeneralHeader";
-import Breadcrumb from "../../components/common/Breadcrumb";
 import Footer from "../../components/common/footer/Footer";
 
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
-// import LinearProgress from '@material-ui/core/LinearProgress';
-import HeroShape from "../../assets/images/hero-shape.png"
 
-import HeaderContent from "../../layouts/HeaderContent"
 import CustomizedTables from "../../layouts/Table"
 import Tabs from "../../layouts/Tabs"
-
-import bg from "../../assets/images/custom/bg.jpg"
+import { PaginationBackgroundImages } from '../../store/BackgroundImages';
 
 import Comments from "../../layouts/Comments"
 
@@ -65,22 +60,18 @@ function CommonHomePage(props) {
 
     return (
          <main className="blog-fullwidth-page">
+            {/* {Nav} */}
             <GeneralHeader />
+             
+             {/* {Header Content} */}
              <BannerTwo />
 
-            {/* { Gstate.acudataloading === "loaded" ? 
-                    <motion.div
-                        whileHover={{ 
-                            color: "rgb(0,0,0)", 
-                        }}
-                        tarnsition={{ duration: 5 }}
-                    >
-                        <HeaderContent /> 
-                    </motion.div>
-                : null } */}
+            {/* {Pagination} */}
+             <section className="cta-area section-bg 
+                                column-sm-center padding-top-80px 
+                                padding-bottom-80px">
 
-             <section className="cta-area section-bg column-sm-center padding-top-80px padding-bottom-80px">
-                {sectiondata.calltoactions.cta1.shapes.map((img, index) => {
+                {PaginationBackgroundImages.map((img, index) => {
                     return (
                         <img src={img.img} key={index} alt="Cta Symble" className="symble-img" />
                     )
@@ -128,19 +119,22 @@ function CommonHomePage(props) {
              <br />
              <br />
             
+            {/* {Tabs Acupoint or FOrmula and Topics} */}
             <div className="mybgGradient">
                 { acuDatA.tabsvisible === true ? 
                         <Tabs isToggle={isToggle} handleClick={(event)=> setisToggle(event) } />
                         : null
                 }
-
+                
+                {/* { FOr Clinics Only} */}
                 { acuDatA.tablevisible === true ? 
                     <div className="container">
                         <CustomizedTables />
                     </div>
                     :null
                 }
-    
+
+                {/* {Array or table} */}
                 <section 
                     className="blog-grid padding-top-20px padding-bottom-100px"
                     style={ isToggle ? { display: "none"} : {} }>
@@ -157,7 +151,7 @@ function CommonHomePage(props) {
                     </div>
                 </section>
 
-                
+                {/* {COmment tab} */}
                 <div style={{
                     background: "rgba(255,255,255,0)",
                     width: "80vw",
@@ -174,6 +168,7 @@ function CommonHomePage(props) {
                         </motion.section> : null}
                 </div>            
             </div>
+
              {/* <NewsLetter /> */}
 
              <Footer />

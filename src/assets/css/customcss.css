@@ -17,6 +17,9 @@
   transition: 0.3s;
 }
 
+.hero-wrapper:after{
+  opacity: 0.3;
+}
 .array-parent {
   display: -webkit-box;
   display: -ms-flexbox;

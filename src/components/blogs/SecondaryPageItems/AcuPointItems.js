@@ -23,10 +23,11 @@ const Items = (incomingData) =>{
     // const  Gstate= useSelector(selectData)
     const page = Thisstate.acupagelink
 
-    const activeNav = Thisstate.nav
+    const activeNaV = Thisstate.nav
 
     useEffect(()=>{
         dispatch(activeId(props.id))
+        dispatch(activeNav('Profile'))
         console.log(Thisstate.activeid)
     },[props])
     return(
@@ -83,7 +84,7 @@ const Items = (incomingData) =>{
                 </ul>
                 <ul 
                     style={ 
-                        activeNav === 'Profile' ? 
+                        activeNaV === 'Profile' ? 
                         {display:"block"}: {display:"none"}}>
 
                     <ItemList 

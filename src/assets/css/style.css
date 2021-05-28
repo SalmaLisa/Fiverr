@@ -8247,3 +8247,8 @@ input[type=range]::-webkit-slider-thumb {
       justify-content: center;
       }
       }
+
+
+.hero-wrapper:after{
+  opacity: 0.5;
+}

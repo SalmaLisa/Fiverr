@@ -25,7 +25,7 @@ const Tabs = (props) =>{
                             <Typography 
                                 style={ props.isToggle ?  
                                     { color: "white", textShadow: "1px 1px 10px black" } 
-                                    : { color: "red" } }
+                                    : { color: "rgb(0, 174, 255)" } }
                                 variant="h6">
                             { Gstate.acudata.tabsheading }
                             </Typography>  
@@ -42,7 +42,7 @@ const Tabs = (props) =>{
                             style={props.isToggle ? LocalStyle: ActiveStyle }>
                             <Typography 
                                 style={ props.isToggle ? 
-                                        { color: "red" } : 
+                                        { color: "rgb(255, 153, 0)", textShadow: "1px 1px 4px rgb(200,200,200)" } : 
                                         { color: "white",  textShadow: "1px 1px 10px black" }}
                                 variant="h6">
                                 Topics And Comments

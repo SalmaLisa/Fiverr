@@ -7,6 +7,7 @@ import Comment from "../../layouts/Comments"
 
 import AcuPointItems from "./SecondaryPageItems/AcuPointItems"
 import FormulaSecondary from "./SecondaryPageItems/FormulaSecondary"
+import ClinicsItems from './SecondaryPageItems/ClinicsItems';
 
 
 function CommonSecondaryPageItems(props) {
@@ -15,8 +16,10 @@ function CommonSecondaryPageItems(props) {
     const Gstate = useSelector(s=> s.entities.acudata)
     const activeNav = Thisstate.nav
 
-    const Filter = Thisstate.acupointlinkload ? Gstate.list
-                    .filter((item)=> item.name.includes(Thisstate.acupagelink)) : null
+    const Filter = Thisstate.acupointlinkload && Gstate.status === 'loaded' ? Gstate.list
+                    .filter((item)=> item.name === undefined ? 
+                    null : item.name.includes(Thisstate.acupagelink))
+                    : null
 
     const Render = (event) => {
         if(Gstate.datalink === '/acupunctures' ){
@@ -25,18 +28,20 @@ function CommonSecondaryPageItems(props) {
         else if(Gstate.datalink === '/formulas'){
             return <FormulaSecondary  newItem={event}/>
         }
+        else if(Gstate.datalink === '/clinicsolo'){
+            return <h1> Page Not Added Still</h1>
+        }
     }
 
-    const Content = Thisstate.acupointlinkload ? 
+    const Content = Thisstate.acupointlinkload && Gstate.status === 'loaded' ? 
                     Filter.map(
                         (items)=>  Render(items)
                         ) : null
 
-
-
-    const ErroR = Thisstate.acupagelink.length < 8 ? 
+    const ErroR = Thisstate.acupagelink.length < 8 ?  
                   <h2 style={{textAlign: "center"}}>Please Visit Correct Link</h2> 
-                  : Content
+                  :  Content
+    const ErroR2 = Filter != null ? Filter.length === 0 ? "No Data Found":null  :null
 
     const loadRef = useRef()
     useEffect(()=>{
@@ -55,13 +60,20 @@ function CommonSecondaryPageItems(props) {
                     }} 
                     ref={loadRef} />
                 
-                <div >  
-
-                    { ErroR }
+                <div>
+                    { Gstate.datalink === '/clinicsolo' ?
+                         null : 
+                         <div>
+                            { ErroR2 }
+                            { ErroR }
+                        </div>}  
+                </div>
+                <div style={ Gstate.datalink === '/clinicsolo' ? { display: "block"}: { display: "none"} }>
+                    <ClinicsItems />
                 </div>
 
                 <br /><br />
-
+                
                 <div style={ 
                         activeNav === 'Topic and Comments' ? 
                             { display: "block" } : 

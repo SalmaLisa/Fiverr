@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 const initialState = {
-  nav: 'Profile',
+  nav: '',
   acupagelink: '',
   activeid: null,
   acupointlinkload : false,

@@ -1,7 +1,8 @@
 import React from "react"
 import ListingDetailsComments from "../components/contact/ListingDetailsComments";
 import BlogCommentFields from "../components/blogs//BlogCommentFields";
-import sectiondata from "../store/store";
+// import sectiondata from "../store/store";
+import { CommentData } from "../store/CommentData"
 
 const Comment = (props) =>{
     return(
@@ -15,7 +16,7 @@ const Comment = (props) =>{
                 <div className="title-shape"></div>
 
                 <ListingDetailsComments 
-                    commentlists={sectiondata.listingDetails.comments} />
+                    commentlists={CommentData} />
 
             </div>
 

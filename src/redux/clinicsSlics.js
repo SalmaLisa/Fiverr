@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ClinicsProfileListItems } from '../store/ClinicProfileListItems';
 
 // const apiEndpoint = apiUrl.url + "/acupunctures";
 
 
 const initialState = {
-countrylist: []
+  countrylist: [],
+  clinicprofilelist: ClinicsProfileListItems
 };
 
 export const clinicsSlice = createSlice({

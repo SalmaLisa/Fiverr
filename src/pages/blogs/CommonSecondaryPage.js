@@ -16,6 +16,7 @@ import {
     navdata,
     datalink
 } from "../../actionCreator"
+import { ClinicsNavData } from "../../store/ClinicsNavData"
 
 function CommonSecondaryPage(props) {
     
@@ -25,20 +26,23 @@ function CommonSecondaryPage(props) {
 
     
     useEffect(()=>{
-        dispatch(datalink(props.datalink))
+        dispatch(datalink(props.datalink)) 
         dispatch(loadData())  
-        dispatch(navdata(NavData))
+        props.datalink != '/clinicsolo' ? dispatch(navdata(NavData)) : dispatch(navdata(ClinicsNavData))
         dispatch(acuPageLink(props.name.match.params.name))
         document.title = props.name.match.params.name
     },[])
 
     const Status = Gstate.status
-    const Title = Gstate.datalink != "/formulas" ? "Acupunture Point" : "Formulas"
+    const DataLink = Gstate.datalink
+    const Title1 = DataLink != "/formulas" ? "" : "Formulas"
+    const Title2 = DataLink != "/acupunctures" ? "" : "Acupunture Point"
+    const Title3 = DataLink != "/clinicsolo" ? "" : "Clinics Profile"
     return (
         <div>
             <GeneralHeader />
             <Breadcrumb 
-                CurrentPgTitle={Title} 
+                CurrentPgTitle={Title1+Title2+Title3} 
                 MenuPgTitle={Gstate.datalink.slice(1,-1)} 
                 img={bg} 
             /> 

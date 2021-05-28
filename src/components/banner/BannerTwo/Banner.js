@@ -37,11 +37,13 @@ export default function BannerOne() {
                                 </p>
 
                                 <motion.h1
-                                initial={{ opacity: 0.5 }} 
-                                animate={{ opacity: 1 }} 
-                                transition={{ duration: 1, delay: 1 }}
-                                style={{ textShadow: "2px 2px 8px black"}}
-                                >{acuDatA.heading}</motion.h1>
+                                    initial={{ opacity: 0.5 }} 
+                                    animate={{ opacity: 1 }} 
+                                    transition={{ duration: 1, delay: 1 }}
+                                    style={{ textShadow: "2px 2px 8px black"}}
+                                    >
+                                        {acuDatA.heading}
+                                </motion.h1>
 
                                 <motion.div
                                 className="headerborder" 
