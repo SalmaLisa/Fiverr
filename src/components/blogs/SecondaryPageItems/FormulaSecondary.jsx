@@ -2,7 +2,6 @@ import React,{ useEffect } from "react"
 import Nav from "../../../layouts/Nav.js"
 
 import { useSelector, useDispatch } from "react-redux"
-import { activeNav } from "../../../actionCreator"
 import Typography from "@material-ui/core/Typography"
 
 import QRCode from "react-qr-code"
@@ -47,7 +46,6 @@ const FormulasItems = (incomingData) =>{
         dispatch(activeNav('Profile'))
     },[props])
 return(
->>>>>>> 06a98c52db2eda2f4e30b2713adb0cc91acbf9f3
         <div>
             <ul>
             <BreadCrumb name={page} parentname="Formulas" /><br />    
