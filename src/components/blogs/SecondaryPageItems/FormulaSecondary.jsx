@@ -1,8 +1,8 @@
-import React from "react"
+import React,{ useEffect } from "react"
 import Nav from "../../../layouts/Nav.js"
 
-import { useSelector } from "react-redux"
-
+import { useSelector, useDispatch } from "react-redux"
+import { activeNav } from "../../../actionCreator"
 import Typography from "@material-ui/core/Typography"
 
 import QRCode from "react-qr-code"
@@ -32,12 +32,17 @@ const ImagesList = [
 const FormulasItems = (incomingData) =>{
     const props = incomingData.newItem
     
+    const dispatch = useDispatch()
     const Thisstate = useSelector(s=> s.entities.acupoint)
     const page = Thisstate.acupagelink
 
-    const activeNav = Thisstate.nav
+    const activenav = Thisstate.nav
 
     const Ingredients = props.ingredients.split(",")
+
+    useEffect(()=>{
+        dispatch(activeNav('Profile'))
+    },[])
     return(
         <div>
             <ul>
@@ -106,7 +111,7 @@ const FormulasItems = (incomingData) =>{
                 </ul>
                 <ul 
                     style={ 
-                        activeNav === 'Profile' ? 
+                        activenav === 'Profile' ? 
                         {display:"block"}: {display:"none"}}>
 
                     <ItemList
