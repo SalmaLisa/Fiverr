@@ -12,6 +12,9 @@ import ItemList from "../../../layouts/ItemList"
 import { UncontrolledCarousel } from "reactstrap"
 import Image1 from "../../../assets/images/bg1.png"
 import Image2 from "../../../assets/images/bg1.png"
+import { activeNav } from "../../../actionCreator"
+
+
 
 const ImagesList = [
     {
@@ -36,14 +39,15 @@ const FormulasItems = (incomingData) =>{
     const Thisstate = useSelector(s=> s.entities.acupoint)
     const page = Thisstate.acupagelink
 
-    const activenav = Thisstate.nav
+
+    const activeNaV = Thisstate.nav
 
     const Ingredients = props.ingredients.split(",")
-
     useEffect(()=>{
         dispatch(activeNav('Profile'))
-    },[])
-    return(
+    },[props])
+return(
+>>>>>>> 06a98c52db2eda2f4e30b2713adb0cc91acbf9f3
         <div>
             <ul>
             <BreadCrumb name={page} parentname="Formulas" /><br />    
@@ -111,7 +115,7 @@ const FormulasItems = (incomingData) =>{
                 </ul>
                 <ul 
                     style={ 
-                        activenav === 'Profile' ? 
+                        activeNaV === 'Profile' ? 
                         {display:"block"}: {display:"none"}}>
 
                     <ItemList
