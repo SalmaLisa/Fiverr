@@ -8,7 +8,6 @@ import Comment from "../../layouts/Comments"
 import AcuPointItems from "./SecondaryPageItems/AcuPointItems"
 import FormulaSecondary from "./SecondaryPageItems/FormulaSecondary"
 import ClinicsItems from './SecondaryPageItems/ClinicsItems';
-import SalonItems from "./SecondaryPageItems/SalonProfilePageItems"
 
 
 function CommonSecondaryPageItems(props) {
@@ -31,9 +30,6 @@ function CommonSecondaryPageItems(props) {
         }
         else if(Gstate.datalink === '/clinicsolo'){
             return <h1> Page Not Added Still</h1>
-        }
-        else if(Gstate.datalink === '/abc'){
-            return <h1>Page Not Added still</h1>
         }
     }
 
@@ -65,7 +61,7 @@ function CommonSecondaryPageItems(props) {
                     ref={loadRef} />
                 
                 <div>
-                    { Gstate.datalink === '/clinicsolo' || Gstate.datalink === '/abc' ?
+                    { Gstate.datalink === '/clinicsolo' ?
                          null : 
                          <div>
                             { ErroR2 }
@@ -75,7 +71,6 @@ function CommonSecondaryPageItems(props) {
                 <div style={ Gstate.datalink === '/clinicsolo' ? { display: "block"}: { display: "none"} }>
                     <ClinicsItems />
                 </div>
-                { Gstate.datalink === '/abc' ? <SalonItems /> : null}
 
                 <br /><br />
                 

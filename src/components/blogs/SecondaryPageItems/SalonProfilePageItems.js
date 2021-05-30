@@ -2,7 +2,7 @@ import React,{ useEffect } from "react"
 import Nav from "../../../layouts/Nav.js"
 
 import { useDispatch , useSelector } from "react-redux"
-import { activeNav, selectAcuPoint, activeId } from "../../../actionCreator"
+import { activeNav, addDataProfileSalonAndClinics } from "../../../actionCreator"
 
 import Typography from "@material-ui/core/Typography"
 import PhoneIcon from '@material-ui/icons/Phone';
@@ -20,10 +20,13 @@ import { Link } from "react-router-dom"
 
 import BreadCrumb from "../../../layouts/BreadCrumb"
 import ItemList from "../../../layouts/ItemList"
+import  { SalonProfileListItems } from "../../../store/SalonProfileListItems"
+import GallaryCard from "../../../layouts/GallaryCard"
+import { GallaryData } from "../../../store/Gallary"
 
 
 
-const ClinicsItems = (incomingData) =>{
+const SalonItems = (incomingData) =>{
     const props = incomingData.newItem
     
     const Thisstate = useSelector(s=> s.entities.acupoint)
@@ -47,15 +50,24 @@ const ClinicsItems = (incomingData) =>{
         borderRadius: "4px"
     }
 
+    const GallaryArray = GallaryData.map((item)=> 
+        <div className="col-10 col-sm-6 col-md-4 custommargin mt-2">
+            <GallaryCard 
+                img={item.img}
+                title={item.title}
+                description={item.description} 
+                buttontext={item.buttontext}  />
+        </div>) 
+
     useEffect(()=>{
-        // dispatch(activeId(props.id))
-        dispatch(activeNav('Bussiness Information'))
+        dispatch(addDataProfileSalonAndClinics(SalonProfileListItems))
+        dispatch(activeNav('Gallary'))
         console.log(Thisstate.activeid)
     },[props])
     return(
         <div>
             <ul>
-                <BreadCrumb name={ClinicsState.name} /><br />
+                <BreadCrumb name={page} parentname="Salon" /><br />
                 
                 
 
@@ -72,7 +84,7 @@ const ClinicsItems = (incomingData) =>{
                 <div 
                     className=""> 
                     <QRCode 
-                        value={`/clinics/${page}`} 
+                        value={`/salon/${page}`} 
                         size={110} 
                     />
                 </div>
@@ -162,7 +174,7 @@ const ClinicsItems = (incomingData) =>{
                                         <Paper className="">
                                             <div style={HeaderStyle} className="p-2">
                                                 <Typography variant="h6">
-                                                    <ContactMailIcon className="mr-3"/> Send Mail To Clinic
+                                                    <ContactMailIcon className="mr-3"/> Send Mail To Salon
                                                 </Typography>
                                             </div>
                                             <div className="p-3 pl-1 mt-3">
@@ -331,8 +343,18 @@ const ClinicsItems = (incomingData) =>{
                         value={ClinicsState.testimonials} />
      
                 </ul> 
+
+                <ul
+                    style={
+                        activeNaV === 'Gallary' ?
+                        { display: "block" } : { display: "none" }
+                    }>
+                        <div className="row" style={{}}>
+                            { GallaryArray }
+                        </div>
+                </ul>
         </div>
     )
 }
 
-export default React.memo(ClinicsItems)
+export default React.memo(SalonItems)

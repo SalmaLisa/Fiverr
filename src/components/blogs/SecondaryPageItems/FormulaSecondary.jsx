@@ -11,7 +11,7 @@ import ItemList from "../../../layouts/ItemList"
 import { UncontrolledCarousel } from "reactstrap"
 
 import { activeNav } from "../../../actionCreator"
-import ImageList from "../../../store/ImageList"
+import ImagesList from "../../../store/ImageList"
 
 
 const FormulasItems = (incomingData) =>{

@@ -25,7 +25,8 @@ export {
 
 
 export {
-    countryList
+    countryList,
+    addDataProfileSalonAndClinics
 } from "./redux/clinicsSlics"
 // acupuntureData,
 // activeNav, 

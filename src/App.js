@@ -26,6 +26,7 @@ import Error from "./pages/Error";
 import "./assets/css/customcss.css"
 import { Provider } from 'react-redux';
 import configureStore from "./redux/configureStore"
+// import SalonProfilePage from './pages/blogs/SalonProfilePage';
 
 const store = configureStore();
 
@@ -46,6 +47,14 @@ const App = () => {
         children={() => (
           <Switch>
             <AppRoute exact path="/" component={Home} layout={LayoutDefault} />
+
+            <AppRoute path="/salon-profile/:name" component={(event)=> 
+                <div>
+                  <CommonSecondaryPage 
+                    datalink="/abc" 
+                    name={event}/>
+                  </div>} 
+                />
 
               <AppRoute path="/acupunctures/:name" component={(event)=> 
                 <div>
@@ -102,10 +111,10 @@ const App = () => {
                     datalink="/clinicsolo"
                     headingdata={ClinicsData}/>} 
                 />
-              <AppRoute path="/salon-profile" component={()=> 
+              <AppRoute path="/salon-profile/:name" component={(event)=> 
                   <CommonSecondaryPage 
-                    datalink="/clinicsolo"
-                    headingdata={ClinicsData}/>} 
+                    datalink="/salon"
+                    name={event}/>} 
                 />
                 
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />

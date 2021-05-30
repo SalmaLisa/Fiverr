@@ -49,7 +49,8 @@ const Nav = (props) =>{
     const Gstate = useSelector(s=> s.entities.acudata)
     const navigation = Thisstate.nav
 
-    const NavArray = Gstate.status == 'loaded' ? 
+    // Gstate.datalink please remove after adding real link
+    const NavArray = Gstate.status == 'loaded' || Gstate.datalink === '/abc' ? 
         Thisstate.navdata.map(
             (item)=> <CustomNav name={item.name} activenav={navigation} />
         ) : ''

@@ -48,14 +48,13 @@ const ClinicsItems = (incomingData) =>{
     }
 
     useEffect(()=>{
-        // dispatch(activeId(props.id))
         dispatch(activeNav('About Us'))
         console.log(Thisstate.activeid)
     },[props])
     return(
         <div>
             <ul>
-                <BreadCrumb name={ClinicsState.name} /><br />
+                <BreadCrumb name={page} parentname="Clinics" /><br />
                 
                 
 

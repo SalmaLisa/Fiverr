@@ -15,13 +15,17 @@ export const clinicsSlice = createSlice({
   reducers: {
     countryList : ( state, action )=>{ 
         state.countrylist = action.payload;
+    },
+    addDataProfileSalonAndClinics: ( state , action )=>{
+      state.clinicprofilelist = action.payload
     }
   },
 
 });
 
 export const {
-    countryList
+    countryList,
+    addDataProfileSalonAndClinics
 } = clinicsSlice.actions;
 
 

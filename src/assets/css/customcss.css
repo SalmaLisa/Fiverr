@@ -85,7 +85,7 @@
 }
 
 .mycustomnavactive:hover {
-  background: #f7004a;
+  background: #ff6b6b;
   -webkit-transition: 1s;
   transition: 1s;
   color: white;
@@ -170,8 +170,14 @@
   width:40%;
  float: right; 
 }
+.custommargin{
+  margin:0;
+}
 
 @media screen and (max-width: 500px) {
+  .custommargin{
+    margin:auto;
+  }
   .Carousel{
     margin:3em auto;
     width:100%;

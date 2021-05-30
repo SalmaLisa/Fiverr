@@ -1,4 +1,4 @@
-export const ClinicsNavData = [
+export const SalonNavData = [
     {
         name: "About Us",
     },
