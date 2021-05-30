@@ -37,6 +37,7 @@ function CommonSecondaryPage(props) {
         // beelow one need to change when datalink will be correct /abc
         datalinK != '/abc' ? console.log('') : dispatch(navdata(SalonNavData))
         datalinK != '/formulas' ? console.log('') : dispatch(navdata(NavData))
+        datalinK != '/acupunctures' ? console.log('') : dispatch(navdata(NavData))
 
         dispatch(acuPageLink(props.name.match.params.name))
         document.title = props.name.match.params.name

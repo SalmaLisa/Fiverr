@@ -17,9 +17,8 @@ export default function BannerOne() {
     return (
         <>
             <section className="hero-wrapper" 
-                style={{backgroundImage: 'url('+bg3+')',paddingBottom: "1em"}}>
-                <div className="hero-overlay"></div>
-                <div className="container">
+                style={{backgroundImage: 'url('+bg3+')',paddingBottom: "1em",}}>
+                <div className="container-fluid" style={{ marginTop: "-4em"}}>
                     <div className="row">
                         <div className="col-lg-12">
 
@@ -79,8 +78,8 @@ export default function BannerOne() {
                                         }}>
                                         
                                         <motion.div 
-                                            initial={{ opacity: 0, scale: 0 }}
-                                            animate={{ opacity: 1, scale: 1, transition:{ duration: 1, delay: 0.4} }}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1, transition:{ duration: 1, delay: 0 } }}
                                             whileTap={{ scale: 0.98}}>
                                             <Paper 
                                                 elevation={3} 
