@@ -67,7 +67,7 @@ function CommonHomePage(props) {
              <BannerTwo />
 
             {/* {Pagination} */}
-             <section className="cta-area section-bg 
+             { acuDatA.paginationvisible === true ? <section className="cta-area section-bg 
                                 column-sm-center padding-top-80px 
                                 padding-bottom-80px">
 
@@ -114,7 +114,7 @@ function CommonHomePage(props) {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> : null }
             
              <br />
              <br />
@@ -128,7 +128,7 @@ function CommonHomePage(props) {
                 
                 {/* { FOr Clinics Only} */}
                 { acuDatA.tablevisible === true ? 
-                    <div className="container">
+                    <div className="container" style={{marginTop: "-3em"}}>
                         <CustomizedTables />
                     </div>
                     :null

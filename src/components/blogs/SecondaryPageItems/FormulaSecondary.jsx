@@ -9,26 +9,9 @@ import QRCode from "react-qr-code"
 import BreadCrumb from "../../../layouts/BreadCrumb"
 import ItemList from "../../../layouts/ItemList"
 import { UncontrolledCarousel } from "reactstrap"
-import Image1 from "../../../assets/images/bg1.png"
-import Image2 from "../../../assets/images/bg1.png"
+
 import { activeNav } from "../../../actionCreator"
-
-
-
-const ImagesList = [
-    {
-      src: Image1,
-      key: '1'
-    },
-    {
-      src: Image2,
-      key: '2'
-    },
-    {
-      src: Image1,
-      key: '3'
-    }
-  ];
+import ImageList from "../../../store/ImageList"
 
 
 const FormulasItems = (incomingData) =>{

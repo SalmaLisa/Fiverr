@@ -102,7 +102,12 @@ const App = () => {
                     datalink="/clinicsolo"
                     headingdata={ClinicsData}/>} 
                 />
-			  
+              <AppRoute path="/salon-profile" component={()=> 
+                  <CommonSecondaryPage 
+                    datalink="/clinicsolo"
+                    headingdata={ClinicsData}/>} 
+                />
+                
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />
               <AppRoute path="/blog-left-sidebar" component={BlogLeftSidebar} />
               <AppRoute path="/blog-right-sidebar" component={BlogRightSidebar} />

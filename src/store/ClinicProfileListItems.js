@@ -1,6 +1,6 @@
 export const ClinicsProfileListItems = {
     name: "Dr Tran Acupunctuur Sittard",
-    aboutme:"About Me",
+    aboutme:"About Me ab abc abc abc abc abc bac bc abc aba cba cb cba cba bc bc",
     address:{
         address:"Address",
         city:"City",

@@ -58,12 +58,12 @@ const Nav = (props) =>{
         <div style={{
                 display:"flex", 
                 alignItems:"center", 
-                justifyContent:"space-between"
+                justifyContent:"center",
+                width: "90vw"
             }}>
             <div 
                 style={{
                     display:"inline-flex",
-                    width:"90vw",
                     flexFlow:"row wrap",
                     textAlign:"center"
                 }} 

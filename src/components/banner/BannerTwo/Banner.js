@@ -1,5 +1,4 @@
 import React from 'react'
-import sectiondata from "../../../store/store";
 import { useSelector } from "react-redux"
 import FilterForm from "../../../layouts/FilterForm"
 import { motion } from "framer-motion"

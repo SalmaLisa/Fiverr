@@ -49,7 +49,7 @@ const ClinicsItems = (incomingData) =>{
 
     useEffect(()=>{
         // dispatch(activeId(props.id))
-        dispatch(activeNav('Profile'))
+        dispatch(activeNav('Bussiness Information'))
         console.log(Thisstate.activeid)
     },[props])
     return(

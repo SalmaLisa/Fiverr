@@ -18,7 +18,7 @@ const CommonHomePageArray = (props) => {
              className="array">
 
             {props.name}<br/><br />
-            {props.english}
+            {props.english.slice(0,20)}
             
         </motion.div>
         </>
