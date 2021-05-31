@@ -29,8 +29,8 @@ import { Provider } from 'react-redux';
 import configureStore from "./redux/configureStore"
 // import SalonProfilePage from './pages/blogs/SalonProfilePage';
 import Contact from "./pages/Contact"
-import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
+import TermOfUse from "./pages/TermOfUse"
 
 
 const store = configureStore();
@@ -125,11 +125,8 @@ const App = () => {
                     datalink="/salon"
                     name={event}/>} 
                 />
-                
-              {/* <AppRoute path="/blog-grid" component={BlogGrid} />
-              <AppRoute path="/blog-left-sidebar" component={BlogLeftSidebar} />
-              <AppRoute path="/blog-right-sidebar" component={BlogRightSidebar} /> */}
-              {/* <AppRoute path="/login" component={Login} /> */}
+              
+              <AppRoute path="/termofuse" component={TermOfUse} />
               <AppRoute path="/loginregister" component={SignUp} />
               <AppRoute path="/forums" component={Forums} /> 
               <AppRoute path="/post-compose" component={PostCompose} />
