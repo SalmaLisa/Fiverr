@@ -23,7 +23,7 @@ function Login() {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-6 mx-auto">
-                            <LoginBox title="Login to your account" subtitle="with your social network" />
+                        <LoginBox title="Login to your account" subtitle="with your social network" />
                         </div>
                     </div>
                 </div>

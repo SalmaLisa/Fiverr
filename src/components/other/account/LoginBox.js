@@ -4,16 +4,16 @@ import {AiOutlineUser} from 'react-icons/ai'
 import {FiLock} from 'react-icons/fi'
 import {Link} from "react-router-dom";
 
-function LoginBox({title, subtitle}) {
+function LoginBox(props) {
     return (
         <>
             <div className="billing-form-item mb-0">
                 <div className="billing-title-wrap border-bottom-0 pr-0 pl-0 pb-0 text-center">
                     <h3 className="widget-title font-size-28 pb-0">
-                        {title}
+                        {props.title}
                     </h3>
                     <p className="font-size-16 font-weight-medium">
-                        {subtitle}
+                        {props.subtitle}
                     </p>
                 </div>
                 <div className="billing-content">
@@ -21,13 +21,15 @@ function LoginBox({title, subtitle}) {
                         <form method="post">
                             <div className="row">
 
-                                <SignInOptions />
+                                {/* <SignInOptions /> */}
 
-                                <div className="col-lg-12">
+                                {/* <div className="col-lg-12">
                                     <div className="account-assist mt-4 mb-4 text-center">
                                         <p className="account__desc">or</p>
                                     </div>
-                                </div>
+                                </div> */}
+{/* Above code is for social network enable it is requried */}
+
                                 <div className="col-lg-12">
                                     <div className="input-box">
                                         <label className="label-text">Username, or email</label>
@@ -58,9 +60,9 @@ function LoginBox({title, subtitle}) {
                                                 <label htmlFor="chb1">Remember Me</label>
                                             </div>
                                             <div>
-                                                <Link to="/recover" className="color-text font-weight-medium">
+                                                <div onClick={()=> props.handlePassword()} className="color-text font-weight-medium">
                                                     Forgot password?
-                                                </Link>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -73,7 +75,13 @@ function LoginBox({title, subtitle}) {
                                     </div>
                                 </div>
                                 <div className="col-lg-12">
-                                    <p className="font-weight-medium">Not a member? <Link to="/sign-up" className="color-text"> Register</Link></p>
+                                    <p className="font-weight-medium">Not a member? 
+                                        <div 
+                                            onClick={()=> props.handleRegister()} 
+                                            className="color-text"> 
+                                            Register
+                                        </div>
+                                    </p>
                                 </div>
                             </div>
                         </form>

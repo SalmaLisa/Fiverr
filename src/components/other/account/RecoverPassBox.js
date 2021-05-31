@@ -8,14 +8,14 @@ function RecoverPassBox() {
             <section className="form-shared padding-top-40px padding-bottom-100px">
                 <div className="container">
                     <div className="row">
-                        <div className="col-lg-6 mx-auto">
-                            <div className="billing-form-item mb-0">
+                        <div className="col-lg-8 mx-auto">
+                            <div className="billing-form-item mb-0  shadow-sm">
                                 <div className="billing-title-wrap">
                                     <h3 className="widget-title font-size-28">Recover Password!</h3>
                                     <p className="font-size-16 font-weight-medium">Enter the email of your account
                                         to reset password.
                                         Then you will receive a link to email to reset the password.If you have any
-                                        issue about reset password <Link to="/contact" className="color-text">contact us</Link>
+                                        issue about reset password <Link to="/contact-us" className="color-text">contact us</Link>
                                     </p>
                                 </div>
                                 <div className="billing-content">

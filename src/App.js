@@ -29,6 +29,9 @@ import { Provider } from 'react-redux';
 import configureStore from "./redux/configureStore"
 // import SalonProfilePage from './pages/blogs/SalonProfilePage';
 import Contact from "./pages/Contact"
+import Login from "./pages/Login"
+import SignUp from "./pages/SignUp"
+
 
 const store = configureStore();
 
@@ -52,6 +55,7 @@ const App = () => {
 
             <AppRoute path="/about-us" component={AboutUs} />
             <AppRoute path="/contact-us" component={Contact} />
+            {/* <AppRoute path="" */}
 
             <AppRoute path="/salon-profile/:name" component={(event)=> 
                 <div>
@@ -124,9 +128,9 @@ const App = () => {
                 
               {/* <AppRoute path="/blog-grid" component={BlogGrid} />
               <AppRoute path="/blog-left-sidebar" component={BlogLeftSidebar} />
-              <AppRoute path="/blog-right-sidebar" component={BlogRightSidebar} />
-              <AppRoute path="/login" component={Login} />
-              <AppRoute path="/sign-up" component={SignUp} /> */}
+              <AppRoute path="/blog-right-sidebar" component={BlogRightSidebar} /> */}
+              {/* <AppRoute path="/login" component={Login} /> */}
+              <AppRoute path="/loginregister" component={SignUp} />
               <AppRoute path="/forums" component={Forums} /> 
               <AppRoute path="/post-compose" component={PostCompose} />
               <AppRoute path="/post-detail" component={TopicDetail} />
