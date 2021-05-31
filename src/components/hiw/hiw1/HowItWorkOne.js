@@ -1,6 +1,6 @@
 import React from 'react';
 import InfoBoxOne from "../../other/infoboxes/infobox1/InfoBoxOne";
-import HowItWorkOneVideo from "./HowItWorkOneVideo";
+// import HowItWorkOneVideo from "./HowItWorkOneVideo";
 
 function HowItWorkOne({hiw1content}) {
     return (
@@ -10,11 +10,11 @@ function HowItWorkOne({hiw1content}) {
             </div>
 
             {/* Video */}
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-lg-8 mx-auto padding-top-30px">
-                    <HowItWorkOneVideo />
-                </div>
-            </div>
+                    {/* <HowItWorkOneVideo /> */}
+                {/* </div> */}
+            {/* </div> */} 
         </>
     );
 }

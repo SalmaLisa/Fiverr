@@ -15,6 +15,16 @@ import sectiondata from "../store/store";
 const state = {
     breadcrumbimg: breadcrumbimg,
 }
+
+const contactinfo = {
+    address:"TCMFiles ,, Staringstraat 124,,5343 GK,,Oss ,,The Netherlands",
+    phoneNum:"+91 6767***",
+    email: "+91 77***",
+    opendays: "Monday-Friday",
+    opendaytime:"09:00-17:00",
+    closeday: "Sunday"
+}
+
 function Contact() {
     return (
         <main className="contact-page">
@@ -22,25 +32,28 @@ function Contact() {
             <GeneralHeader />
 
             {/* Breadcrumb */}
-            <Breadcrumb CurrentPgTitle="Contact Us" MenuPgTitle="pages" img={state.breadcrumbimg} />
+            <Breadcrumb CurrentPgTitle="Contact Us" MenuPgTitle="" img={state.breadcrumbimg} />
 
             <section className="contact-area padding-top-40px padding-bottom-80px">
                 <div className="container">
                     <div className="row">
+                        
+                        <div className="col-lg-5">
+                            <ContactSidebar contactinfo={contactinfo} />
+                        </div>
+
                         <div className="col-lg-7">
                             <AskQuestionField title="Get in touch" />
                         </div>
 
-                        <div className="col-lg-5">
-                            <ContactSidebar contactinfo={sectiondata.contactdata} />
-                        </div>
+
                     </div>
                 </div>
             </section>
 
-            <div className="gmaps">
-                <GeneralMap />
-                <div className="map-address-box">
+            {/* <div className="gmaps"> */}
+                {/* <GeneralMap /> */}
+                {/* <div className="map-address-box" style={{ position: "static"}}>
                     <ul className="map-address">
                         <li>
                             <span className="la"><GoLocation /></span>
@@ -63,7 +76,7 @@ function Contact() {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> */}
 
             {/* Footer */}
             <Footer />

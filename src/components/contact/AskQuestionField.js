@@ -33,6 +33,27 @@ function AskQuestionField({title}) {
                                     </div>
                                 </div>
                                 <div className="input-box">
+                                    <label className="label-text">Select Category</label>
+                                    <div className="form-group">
+                                        <span className="form-icon"><FaRegEnvelope /></span>
+                                        <select className="form-control" type="text" name="name" placeholder="Category">
+                                            <option value="None">Select Category</option>
+                                            <option value="General Info">General Info</option>
+                                            <option value="Bug Error Reporting">Bug / Error Reporting</option>
+                                            <option value="Complaint">Complaint</option>
+                                            <option value="Privacy Policy and Terms of Use">Privacy Policy and Terms of Use</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="input-box">
+                                    <label className="label-text">Subject</label>
+                                    <div className="form-group">
+                                        <span className="form-icon"><BsPencil /></span>
+                                        <input className="form-control" type="text" name="name" placeholder="Subject" />
+                                    </div>
+                                </div>
+                                <div className="input-box">
                                     <label className="label-text">message</label>
                                     <div className="form-group">
                                         <span className="form-icon"><BsPencil /></span>

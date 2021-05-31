@@ -44,19 +44,17 @@ export default function BannerOne() {
                                 </motion.h1>
 
                                 <motion.div
-                                className="headerborder" 
-                                initial={{ backgroundColor: "rgb(0,0,0)"}}
-                                animate={{ backgroundColor: "rgb(255,255,255)", 
-                                    transition:{ duration: 3} }}
+                                    className="headerborder" 
+                                    initial={{ backgroundColor: "rgb(0,0,0)"}}
+                                    animate={{ backgroundColor: "rgb(255,255,255)", 
+                                        transition:{ duration: 3} }}
 
-                                style={{
-                                    margin: "auto auto", 
-                                    marginTop: "1em"
-                                    }}>            
+                                    style={{
+                                        margin: "auto auto", 
+                                        marginTop: "1em"
+                                        }}>            
                                 </motion.div>
-                                </div>
-
-
+                            </div>
 
                                 <section className="blog-grid padding-top-40px padding-bottom-50px">
                                 <div className="container">
@@ -108,16 +106,3 @@ export default function BannerOne() {
         </>
     )
 }
-
-
-// import React from "react"
-
-// const HeaderContent= (props) =>{ 
-
-//     return(
-//         <>
-//         </>
-//     )
-// }
-
-// export default HeaderContent;

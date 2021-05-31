@@ -9,21 +9,26 @@ function ContactSidebar({contactinfo}) {
             <div className="billing-form-item">
                 <div className="billing-title-wrap">
                     <h3 className="widget-title pb-0">
-                        {contactinfo.title}
+                        Contact Us
                     </h3>
                     <div className="title-shape margin-top-10px"></div>
                 </div>
                 <div className="billing-content">
                     <div className="our-office-content">
-                        <img src={contactinfo.img} alt="office image" className="w-100 radius-round" />
-                        <div className="section-heading mt-4 mb-4">
+                        {/* <img src={contactinfo.img} alt="office image" className="w-100 radius-round" /> */}
+                        {/* <div className="section-heading mt-4 mb-4">
                             <p className="sec__desc font-size-15 line-height-24">
                                 {contactinfo.desc}
                             </p>
-                        </div>
+                        </div> */}
                         <ul className="info-list">
-                            <li className="d-inline-block mb-2 mr-2">
-                                <span className="la"><GoLocation /></span> {contactinfo.address}
+                            <li className="row mb-2 mr-2">
+                                 
+                                <span className="col-3"><span className="la"><GoLocation /></span></span> 
+                                <span className="row float-right col-6"  style={{ flexDirection: "column" }}>
+                                {contactinfo.address.split(",,").map((item)=> <span class="col-12">{item}<br /></span>)}
+                                </span>
+                            
                             </li>
                             <li className="d-inline-block mb-2 mr-2">
                                 <span className="la"><FiPhone /></span> {contactinfo.phoneNum}
@@ -41,7 +46,8 @@ function ContactSidebar({contactinfo}) {
                 <div className="billing-content">
                     <ul className="list-items">
                         <li className="d-flex align-items-center justify-content-between color-text-2">
-                            <strong className="font-weight-medium">{contactinfo.opendays}</strong><strong className="font-weight-medium color-text-3">{contactinfo.opendaytime}</strong>
+                            <strong className="font-weight-medium">{contactinfo.opendays}</strong>
+                            <strong className="font-weight-medium color-text-3">{contactinfo.opendaytime}</strong>
                         </li>
                         <li className="d-flex align-items-center justify-content-between color-text-2">
                             <strong className="font-weight-medium">{contactinfo.closeday}</strong><strong className="color-text">Closed</strong>

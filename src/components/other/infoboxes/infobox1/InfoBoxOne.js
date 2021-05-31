@@ -1,15 +1,14 @@
 import React from 'react';
 
-function InfoBoxOne({infoitems, cardcol}) {
+function InfoBoxOne(props) {
     return (
-        <>
-            {infoitems.map(item => {
+        <div className="row" style={{ justifyContent: "space-evenly"}}>
+            {props.data.map(item => {
                 return (
-                    <div className={'column-td-6 col-lg-'+cardcol} key={item.id}>
-                        <div className="icon-box">
+                    <div className={'column-td-6 col-lg-4'} key={item.id}>
+                        <div className="icon-box" style={{ minHeight: "300px", height: "15em", maxHeight: "400px" }}>
                             <div className="info-icon">
                                 {item.icon}
-                                <span className="info-number">{item.id}</span>
                             </div>
                             <div className="info-content">
                                 <h4 className="info__title">
@@ -23,7 +22,7 @@ function InfoBoxOne({infoitems, cardcol}) {
                     </div>
                 )
             })}
-        </>
+        </div>
     );
 }
 
