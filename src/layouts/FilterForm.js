@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Typography from "@material-ui/core/Typography";
 import { activeFilter, changepaginationvisiblity } from "../actionCreator";
 import { motion } from "framer-motion";
-import Paper from "@material-ui/core/Paper"
+import Paper from "@material-ui/core/Paper";
+// import ReactCountryFlag from ""
+import ReactCountryFlag from "react-country-flag"
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -65,8 +67,14 @@ export default function SimpleSelect() {
     const CountryList = Gstate.acudata.pageheaderheading === 'Clinics' ? 
             ClinicsState.countrylist.map((item)=>         
                 <MenuItem 
-                    key={item}
-                    id={item} >{item}
+                    key={item.code}
+                    id={item.code} 
+                    value={item.name}>
+                      <ReactCountryFlag countryCode={item.code} svg style={{ marginRight: "1em"}} />
+                      {item.name} {item.dial_code}
+                      {/* <Typography variant="body1" style={{ marginLeft: "em"}}> */}
+                        {/* {item.dial_code} */}
+                      {/* </Typography> */}
                 </MenuItem> ) : null ;
 
     const View = Gstate.acudata.pageheaderheading === 'Clinics' ? CountryList : MeridianList  ;

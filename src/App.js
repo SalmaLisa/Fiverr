@@ -31,6 +31,7 @@ import configureStore from "./redux/configureStore"
 import Contact from "./pages/Contact"
 import SignUp from "./pages/SignUp"
 import TermOfUse from "./pages/TermOfUse"
+import Form2 from "./pages/Form2"
 
 
 const store = configureStore();
@@ -55,7 +56,7 @@ const App = () => {
 
             <AppRoute path="/about-us" component={AboutUs} />
             <AppRoute path="/contact-us" component={Contact} />
-            {/* <AppRoute path="" */}
+            <AppRoute path="/form2" component={Form2} />
 
             <AppRoute path="/salon-profile/:name" component={(event)=> 
                 <div>

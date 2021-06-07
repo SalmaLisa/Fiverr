@@ -20,7 +20,7 @@ function CommonHomePageItems(props){
         setTimeout(() => {
             setVisible(true)
             // dispatch(Progress(30))
-        }, 2000);
+        }, 100);
     },[])
 
     const [ seemore , setseemore ] = useState(80)

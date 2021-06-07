@@ -16,7 +16,9 @@
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-
+.whilehover:hover{
+  border:1px solid black;
+}
 .hero-wrapper:after{
   opacity: 0.3;
 }
