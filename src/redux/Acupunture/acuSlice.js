@@ -10,7 +10,8 @@ const initialState = {
   error: false,
   datalink: '',
   acudataloading: 'loading',
-  progress: 0
+  progress: 0,
+  cookieaccept: false,
 };
 
 
@@ -44,6 +45,9 @@ export const dataSlice = createSlice({
     Progress: ( state, action )=>{
       console.log(state.progress)
       state.progress = state.progress == 100 ? 0 + action.payload : state.progress +  action.payload
+    },
+    setCookieAccept: (state, action)=>{
+      state.cookieaccept = action.payload
     }
   },
 
@@ -57,7 +61,8 @@ export const {
     headingData,
     error,
     datalink,
-    changepaginationvisiblity
+    changepaginationvisiblity,
+    setCookieAccept
 } = dataSlice.actions;
 
 

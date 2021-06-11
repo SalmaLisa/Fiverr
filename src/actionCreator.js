@@ -10,6 +10,7 @@ export {
     datalink,
     selectData,
     Progress,
+    setCookieAccept
 
 } from "./redux/Acupunture/acuSlice"
 
