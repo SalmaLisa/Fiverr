@@ -6,9 +6,15 @@ import ScrollReveal from "./utils/ScrollReveal";
 // Layouts
 import LayoutDefault from "./layouts/LayoutDefault";
 
-import Forums from "./pages/Forums";
-import PostCompose from "./pages/PostCompose";
-import TopicDetail from "./pages/TopicDetail";
+//import Forums from "./pages/Forums";
+//import PostCompose from "./pages/PostCompose";
+//import TopicDetail from "./pages/TopicDetail";
+
+import PostDetail from "./pages/forum/PostDetail";
+import Forum from "./pages/forum/Forums";
+import ForumHome from "./pages/forum/ForumHome";
+
+
 
 import AcupuntureData from "./store/AcupuntureData";
 import FormulaData from "./store/FormulaData";
@@ -158,9 +164,18 @@ const App = () => {
 
               <AppRoute path="/termofuse" component={TermOfUse} />
               <AppRoute path="/loginregister" component={SignUp} />
-              <AppRoute path="/forums" component={Forums} />
+              {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />
-              <AppRoute path="/post-detail" component={TopicDetail} />
+              <AppRoute path="/post-detail" component={TopicDetail} /> */}
+              <AppRoute path="/forum/:name/:postId" component={PostDetail} />
+              <AppRoute path="/forum" component={ForumHome} exact />
+              <AppRoute path="/forum/:forum_id" component={Forum} exact />
+              <AppRoute
+                path="/categories/:forum_cat_id"
+                component={ForumHome}
+              />
+
+
               <AppRoute component={Error} />
             </Switch>
           )}
