@@ -46,7 +46,7 @@ function Home4() {
                     </div>
 
                     <div className="row padding-top-100px">
-                        <InfoBoxOne infoitems={sectiondata.howitworks.hiw6.items} cardcol={3} />
+                        {/* <InfoBoxOne infoitems={sectiondata.howitworks.hiw6.items} cardcol={3} /> */}
                     </div>
 
                 </div>
