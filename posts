@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "60d77b87d88793535212b64b"
+  },
+  "userId": "60b3d007c8f6351860a43bc8",
+  "name": "Steve Walker",
+  "forum_id": "10eba340-d01c-11eb-b8bc-0242ac130003",
+  "slug": "test1",
+  "title": "test1",
+  "message": "<p>This is the initial content of the editor.</p>",
+  "threadStatus": "open",
+  "createdAt": {
+    "$date": "2021-06-26T19:09:59.167Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-26T19:09:59.703Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d77b9fd88793535212b64d"
+  },
+  "userId": "60b3d007c8f6351860a43bc8",
+  "name": "Steve Walker",
+  "forum_id": "10eba340-d01c-11eb-b8bc-0242ac130003",
+  "slug": "test3",
+  "title": "test3",
+  "message": "<p>This is the initial content of the editor.</p>",
+  "threadStatus": "open",
+  "createdAt": {
+    "$date": "2021-06-26T19:10:23.415Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-26T19:10:24.002Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60d78a2d9d52176597180ac7"
+  },
+  "userId": "60b3d007c8f6351860a43bc8",
+  "name": "Steve Walker",
+  "forum_id": "3f9e633a-d01c-11eb-b8bc-0242ac130003",
+  "slug": "dsdsd",
+  "title": "dsdsd",
+  "message": "<p>This is the initial content of the editor.</p>",
+  "threadStatus": "open",
+  "createdAt": {
+    "$date": "2021-06-26T20:12:29.232Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-27T15:36:38.759Z"
+  },
+  "__v": 0
+}]

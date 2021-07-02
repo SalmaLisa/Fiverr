@@ -23,7 +23,12 @@ import ClinicsData from "./store/ClinicData";
 // Pages
 import Home from "./pages/homes/Home";
 import CommonHomePage from "./pages/blogs/CommonHomePage";
-import AboutUs from "./pages/homes/AboutUs";
+//import AboutUs from "./pages/homes/AboutUs";
+
+
+
+
+
 // import BlogGrid from "./pages/blogs/BlogGrid";
 // import BlogLeftSidebar from "./pages/blogs/BlogLeftSidebar";
 // import BlogRightSidebar from "./pages/blogs/BlogRightSidebar";
@@ -63,7 +68,7 @@ const App = () => {
                 layout={LayoutDefault}
               />
 
-              <AppRoute path="/about-us" component={AboutUs} />
+              {/* <AppRoute path="/about-us" component={AboutUs} /> */}
               <AppRoute path="/contact-us" component={Contact} />
               <AppRoute path="/form2" component={Form2} />
               <AppRoute path="/cookie-acceptance-banner" component={CookieBanner} />

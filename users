@@ -1,0 +1,154 @@
+[{
+  "_id": {
+    "$oid": "60b3d007c8f6351860a43bc7"
+  },
+  "userReply": [],
+  "userPost": [
+    {
+      "$oid": "60cc615ec002842d509a274b"
+    },
+    {
+      "$oid": "60cc6324e58c600470fedc1e"
+    },
+    {
+      "$oid": "60cc6505264a6118042c8495"
+    },
+    {
+      "$oid": "60cc65ebfa657011bc1fe9fe"
+    },
+    {
+      "$oid": "60cc669dfa657011bc1fe9ff"
+    },
+    {
+      "$oid": "60cc66c1fa657011bc1fea00"
+    },
+    {
+      "$oid": "60cc77927c65d011f499d0a9"
+    },
+    {
+      "$oid": "60cc77f67c65d011f499d0aa"
+    },
+    {
+      "$oid": "60cc789ee33ac63bacd08596"
+    },
+    {
+      "$oid": "60cc78cec6810b2dec8ceacf"
+    },
+    {
+      "$oid": "60cc7bb207aefc2514e9c049"
+    }
+  ],
+  "img": "https://i.pravatar.cc/300?img=68",
+  "userType": "user",
+  "points": 1384,
+  "name": "Zafar Imam",
+  "email": "zafar@example.com",
+  "password": "$2b$10$Efl11mGKasBOXtoBE5tlN.WOTS9EYQsE3BrFvU0CqM0LG12D4QVOK",
+  "createdAt": {
+    "$date": "2021-05-30T17:48:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-18T10:55:47.751Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60b3d007c8f6351860a43bc8"
+  },
+  "userReply": [],
+  "img": "https://i.pravatar.cc/300?img=63",
+  "userType": "user",
+  "points": 1082,
+  "name": "Steve Walker",
+  "email": "zafar@example.com",
+  "password": "$2b$10$Efl11mGKasBOXtoBE5tlN.WOTS9EYQsE3BrFvU0CqM0LG12D4QVOK",
+  "createdAt": {
+    "$date": "2021-05-30T17:48:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-26T20:12:30.129Z"
+  },
+  "__v": 0,
+  "userPost": [
+    {
+      "$oid": "60cb907d28ae8d3e3c506a5a"
+    },
+    {
+      "$oid": "60cc571cedf7b82e28f2a14d"
+    }
+  ]
+},{
+  "_id": {
+    "$oid": "60b7bb62a3be455ce211868e"
+  },
+  "userReply": [],
+  "img": "https://i.pravatar.cc/300?img=49",
+  "userType": "user",
+  "points": 1375,
+  "name": "Pallavi Jha",
+  "email": "pallavi@example.com",
+  "password": "$2b$10$Efl11mGKasBOXtoBE5tlN.WOTS9EYQsE3BrFvU0CqM0LG12D4QVOK",
+  "createdAt": {
+    "$date": "2021-05-30T17:48:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-17T17:34:10.034Z"
+  },
+  "__v": 0,
+  "userPost": [
+    ""
+  ]
+},{
+  "_id": {
+    "$oid": "60aa7a7336fd720004b51735"
+  },
+  "userReply": [],
+  "userPost": [
+    {
+      "$oid": "60cc615ec002842d509a274b"
+    },
+    {
+      "$oid": "60cc6324e58c600470fedc1e"
+    },
+    {
+      "$oid": "60cc6505264a6118042c8495"
+    },
+    {
+      "$oid": "60cc65ebfa657011bc1fe9fe"
+    },
+    {
+      "$oid": "60cc669dfa657011bc1fe9ff"
+    },
+    {
+      "$oid": "60cc66c1fa657011bc1fea00"
+    },
+    {
+      "$oid": "60cc77927c65d011f499d0a9"
+    },
+    {
+      "$oid": "60cc77f67c65d011f499d0aa"
+    },
+    {
+      "$oid": "60cc789ee33ac63bacd08596"
+    },
+    {
+      "$oid": "60cc78cec6810b2dec8ceacf"
+    },
+    {
+      "$oid": "60cc7bb207aefc2514e9c049"
+    }
+  ],
+  "img": "https://i.pravatar.cc/300?img=62",
+  "userType": "user",
+  "points": 1414,
+  "name": "Michael Jordan",
+  "email": "jordan@example.com",
+  "password": "$2b$10$Efl11mGKasBOXtoBE5tlN.WOTS9EYQsE3BrFvU0CqM0LG12D4QVOK",
+  "createdAt": {
+    "$date": "2021-05-30T17:48:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2021-06-26T18:40:21.648Z"
+  },
+  "__v": 0
+}]
