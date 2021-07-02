@@ -46,7 +46,7 @@ function Home() {
                         <SectionsHeading title={sectiondata.howitworks.hiw1.sectitle} desc={sectiondata.howitworks.hiw1.seccontent} />
                     </div>
 
-                    <HowItWorkOne hiw1content={sectiondata.howitworks.hiw1} />
+                    <HowItWorkOne hiw1content={sectiondata.howitworks.hiw1.items} />
                 </div>
             </section>
 
