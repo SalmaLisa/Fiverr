@@ -25,10 +25,6 @@ import Home from "./pages/homes/Home";
 import CommonHomePage from "./pages/blogs/CommonHomePage";
 import AboutUs from "./pages/homes/AboutUs";
 
-
-
-
-
 // import BlogGrid from "./pages/blogs/BlogGrid";
 // import BlogLeftSidebar from "./pages/blogs/BlogLeftSidebar";
 // import BlogRightSidebar from "./pages/blogs/BlogRightSidebar";
