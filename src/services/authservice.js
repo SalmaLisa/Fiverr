@@ -1,7 +1,7 @@
 import http from './httpService'; 
 import {apiUrl} from './../config/config';
 import jwtDecode from 'jwt-decode';
-const apiEndpoint = apiUrl+'/auth';
+const apiEndpoint = apiUrl.url+'/auth';
 http.setJwt(getJwt());
 //axios.defaults.headers.common['x-auth-token'] = localStorage.getItem('token');
 
