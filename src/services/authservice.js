@@ -1,5 +1,5 @@
 import http from './httpService'; 
-import {apiUrl} from './../config/config.json';
+import {apiUrl} from './../config/config';
 import jwtDecode from 'jwt-decode';
 const apiEndpoint = apiUrl+'/auth';
 http.setJwt(getJwt());
