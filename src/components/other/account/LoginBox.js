@@ -1,10 +1,37 @@
-import React from 'react';
+import React,{useState} from 'react';
 import SignInOptions from "./SignInOptions";
 import {AiOutlineUser} from 'react-icons/ai'
 import {FiLock} from 'react-icons/fi'
 import {Link} from "react-router-dom";
+import auth from "./../../../services/authservice";
+
+
+
 
 function LoginBox(props) {
+    const [ username, setUsername ] = useState()
+    const [ password, setPassword ] = useState()
+
+   const handleSubmit = async(e)=>{
+    e.preventDefault();
+    try{
+    await auth.login(username,password);
+    window.location = '/';
+    
+	 }catch(ex){
+		if(ex.response && ex.response.status === 400){
+		
+			console.log(ex.response.data);
+		}
+		  
+	 }
+   }
+    
+
+
+    useEffect(()=>{
+       
+    },[])
     return (
         <>
             <div className="billing-form-item mb-0">
@@ -18,7 +45,7 @@ function LoginBox(props) {
                 </div>
                 <div className="billing-content">
                     <div className="contact-form-action">
-                        <form method="post">
+                        <form method="post" onSubmit={handleSubmit}>
                             <div className="row">
 
                                 {/* <SignInOptions /> */}
@@ -37,7 +64,11 @@ function LoginBox(props) {
                                                 <span className="form-icon">
                                                     <AiOutlineUser />
                                                 </span>
-                                            <input className="form-control" type="email" name="text" placeholder="Username, or email" />
+                                            <input className="form-control"
+                                             type="text" 
+                                             name="username" 
+                                             onChange={e => setUsername(e.target.value)}
+                                             placeholder="Username, or email" />
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +79,11 @@ function LoginBox(props) {
                                                 <span className="form-icon">
                                                     <FiLock />
                                                 </span>
-                                            <input className="form-control" type="text" name="text" placeholder="Password" />
+                                            <input className="form-control"
+                                             type="text" 
+                                             name="password" 
+                                             onChange={e => setPassword(e.target.value)}
+                                             placeholder="Password" />
                                         </div>
                                     </div>
                                 </div>
