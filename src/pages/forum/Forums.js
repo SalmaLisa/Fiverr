@@ -14,11 +14,16 @@ import Pagination from "./forum_components/Pagination";
 // QuillEditor is in this component
 import MainPostForm from "./forum_components/MainPostForm";
 
+import auth from "./../../services/authservice";
+import { getUser } from './../../services/users';
+import {getPostsData} from './../../services/posts';
+
 const Forums = () => {
   const [postsResult, setpostsResult] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
+  const [currentUser, setCurrentUser] = useState([]);
   // new post
   const [showForm, setShowForm] = useState(false);
   const [alertMessage, setAlertMessage] = useState({ type: "", message: "" });
@@ -46,40 +51,60 @@ const Forums = () => {
     }, 2000);
   };
 
+
+  const getCurrentUser = ()=>{
+    const user = auth.getProfile();	
+    if(user){
+    const {data:currentUser} = await getUser(user._id);
+    setCurrentUser(currentUser);
+  }
+  }
+ 
+
+
   //   this gets envoked on clicking the new post button
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   let id = localStorage.id;
+
+  //   if (localStorage.type == "admin") {
+  //     setShowForm(true);
+  //   } else if (!localStorage.id) {
+  //     alertFailure(
+  //       "Dear guest, feel free to visit, to participate please register"
+  //     );
+  //   } else if (localStorage.id) {
+  //     setShowForm(true);
+  //   } else {
+  //     const apiPoints = await fetch(`/api/points/${id}`).then((result) =>
+  //       result.json()
+  //     );
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let id = localStorage.id;
-
-    if (localStorage.type == "admin") {
+    if (currentUser) {
       setShowForm(true);
-    } else if (!localStorage.id) {
+    } else{
       alertFailure(
         "Dear guest, feel free to visit, to participate please register"
       );
-    } else if (localStorage.id) {
-      setShowForm(true);
-    } else {
-      const apiPoints = await fetch(`/api/points/${id}`).then((result) =>
-        result.json()
-      );
-    }
+    } 
   };
+
+
 
   // called inside UseEffect to get all the posts
   const fetchPosts = async () => {
     setLoading(true);
-    const res = await axios.get("http://localhost:8080/api/postsdata");
-    var apiGetPosts = res.data.reverse();
+    const res = await getPostsData();
+    let apiGetPosts = res.data.reverse();
     console.log(apiGetPosts, "before filter");
-
+    //
     apiGetPosts = apiGetPosts.filter((el) => el.forum_id == forum_id);
     console.log(apiGetPosts, "after filter");
-
-    console.log(apiGetPosts, "after filter");
-
-    console.log(apiGetPosts, "before foreach");
-
+   
     apiGetPosts.forEach((element) => {
       element.createdAt = new Date(element.createdAt)
         .toString()
@@ -99,6 +124,7 @@ const Forums = () => {
 
   useEffect(() => {
     fetchPosts();
+    getCurrentUser();
   }, []);
 
   // Get current posts

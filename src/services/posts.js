@@ -11,6 +11,11 @@ const postsEndpoint = apiUrl.url+'/posts';
     return http.get(postsEndpoint);
   }
   
+  export function getPostsData() {
+    return http.get(postsEndpoint+'/data');
+  }
+  
+
   export function getPost(Id) {
     return http.get(postUrl(Id));
   }
