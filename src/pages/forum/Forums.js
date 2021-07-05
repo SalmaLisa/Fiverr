@@ -52,7 +52,7 @@ const Forums = () => {
   };
 
 
-  const getCurrentUser = ()=>{
+  const getCurrentUser = async ()=>{
     const user = auth.getProfile();	
     if(user){
     const {data:currentUser} = await getUser(user._id);
