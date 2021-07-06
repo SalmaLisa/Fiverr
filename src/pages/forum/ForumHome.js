@@ -12,7 +12,7 @@ const ForumHome = () => {
   const [lastName, setLastName] = useState("");
   const [lastUpdated, setLastUpdated] = useState("hi");
   const [forumsubcats, setForumsubcats] = useState([]);
-
+  const [forumcats, setForumcats] = useState([]);
  
 
 
@@ -125,7 +125,16 @@ const ForumHome = () => {
   // };
 
 
+  
+
+  const getforumCats = async()=>{
+    const {data:forumCats} = await getForumCats();
+    setForumcats(forumCats);
+  }
+
+
   useEffect(function () {
+    getforumCats();
     getforumSubCats();
     loadPage();
   }, []);
@@ -208,6 +217,7 @@ const ForumHome = () => {
               </div>
               <div className="mt-5">
                 <ForumCategories
+                  forumcats={forumcats}
                   updateForumCatName={(ele) => setLastName(ele)}
                 />
               </div>

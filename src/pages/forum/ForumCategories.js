@@ -89,18 +89,7 @@ import { getForumCats } from './../../services/forumcategories';
   },
 ]; */
 
-const ForumCategories = (props) => {
-
-  const [forumcats, setForumcats] = useState([]);
-
-  const getforumCats = async()=>{
-    const {data:forumCats} = await getForumCats();
-    setForumcats(forumCats);
-  }
-
-  useEffect(function () {
-    getforumCats();
-  }, []);
+const ForumCategories = ({forumcats}) => {
 
 
   return (
