@@ -6,6 +6,7 @@ import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
 import {getPostsData} from './../../services/posts';
 import { getForumSubCats } from './../../services/forumsubcategories';
+import { getForumCats } from './../../services/forumcategories';
 const ForumHome = () => {
   let location = useLocation();
   const [postsResult, setPostsResult] = useState([]);
