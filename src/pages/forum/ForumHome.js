@@ -154,10 +154,10 @@ const ForumHome = () => {
               <h2 className="mb-3">{forumCatName}</h2>
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
-                  {forums
+                  {forumsubcats
                     .filter(
                       (el) =>
-                        el.forum_categories_id.includes(forum_cat_id) === true
+                        el.cat_id.includes(forum_cat_id) === true
                     )
                     .map((el) => (
                       <li>
