@@ -5,12 +5,16 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
 import {getPostsData} from './../../services/posts';
-
+import { getForumSubCats } from './../../services/forumsubcategories';
 const ForumHome = () => {
   let location = useLocation();
   const [postsResult, setPostsResult] = useState([]);
   const [lastName, setLastName] = useState("");
   const [lastUpdated, setLastUpdated] = useState("hi");
+  const [forumsubcats, setForumsubcats] = useState([]);
+
+ 
+
 
   var { forum_cat_id } = useParams();
   const { pathname, state } = useLocation();
@@ -22,7 +26,7 @@ const ForumHome = () => {
   } else {
   }
 
-  const forums = [
+  /* const forums = [
     {
       _id: "10eba340-d01c-11eb-b8bc-0242ac130003",
       title: "Hip Replacement",
@@ -56,7 +60,13 @@ const ForumHome = () => {
         "3f9e633a-d01c-11eb-b8bc-0242anh3v003",
       ],
     },
-  ];
+  ]; */
+
+
+  const getforumSubCats = async()=>{
+    const {data:forumSubCats} = await getForumSubCats();
+    setForumsubcats(forumSubCats);
+  }
 
   const loadPage = async () => {
     const {data:apiGetPosts} = await getPostsData();
@@ -116,6 +126,7 @@ const ForumHome = () => {
 
 
   useEffect(function () {
+    getforumSubCats();
     loadPage();
   }, []);
 
