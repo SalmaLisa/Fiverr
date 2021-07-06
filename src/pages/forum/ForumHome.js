@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
+import {getPostsData} from './../../services/posts';
 
 const ForumHome = () => {
   let location = useLocation();
@@ -58,9 +59,7 @@ const ForumHome = () => {
   ];
 
   const loadPage = async () => {
-    const apiGetPosts = await fetch("http://localhost:8080/api/postsdata").then(
-      (result) => result.json()
-    );
+    const {data:apiGetPosts} = await getPostsData();
 
     if (apiGetPosts.length == 0) {
       setLastName("");
@@ -85,6 +84,36 @@ const ForumHome = () => {
       setLastUpdated(apiGetPosts[0].updatedAt);
     }
   };
+
+  // const loadPage = async () => {
+  //   const apiGetPosts = await fetch("http://localhost:8080/api/postsdata").then(
+  //     (result) => result.json()
+  //   );
+
+  //   if (apiGetPosts.length == 0) {
+  //     setLastName("");
+  //     setLastUpdated("");
+  //   } else {
+  //     apiGetPosts.forEach((element) => {
+  //       element.createdAt = new Date(element.createdAt)
+  //         .toString()
+  //         .substring(4, 15);
+
+  //       element.updatedAt = new Date(element.updatedAt)
+  //         .toString()
+  //         .substring(4, 15);
+  //     });
+
+  //     let total = 0;
+  //     apiGetPosts.forEach((element) => {
+  //       total = total + element.userReply.length;
+  //     });
+  //     setPostsResult(apiGetPosts);
+  //     setLastName(apiGetPosts[0].user.name);
+  //     setLastUpdated(apiGetPosts[0].updatedAt);
+  //   }
+  // };
+
 
   useEffect(function () {
     loadPage();
