@@ -1,6 +1,6 @@
 import http from './httpService'; 
 import {apiUrl} from './../config/config';
-const forumcategoriesEndpoint = apiUrl.url+'/actions';
+const forumcategoriesEndpoint = apiUrl.url+'/forumcategories';
 
 
 function forumCatUrl(id) {
