@@ -1,36 +1,36 @@
 import http from './httpService'; 
-import {forumcategoriesUrl} from './../config/config.json';
-const forumcategoriesEndpoint = forumcategoriesUrl+'/actions';
+import {apiUrl} from './../config/config';
+const forumcategoriesEndpoint = apiUrl.url+'/actions';
 
 
-  function actionUrl(id) {
+function forumCatUrl(id) {
     return `${forumcategoriesEndpoint}/${id}`;
   }
   
-  export function getActions() {
+  export function getForumCats() {
     return http.get(forumcategoriesEndpoint);
   }
   
-  export function getAction(Id) {
-    return http.get(actionUrl(Id));
+  export function getForumCat(Id) {
+  return http.get(forumCatUrl(Id));
   }
   
-  export function saveAction(action) {
+  export function saveForumCat(forumCat) {
     //clone
-    const body = { ...action };
+    const body = { ...forumCat };
     console.log(body);
    //update
-   if (action.id) {
+   if (forumCat._id) {
      //delete _id
-     delete body.id;
-     return http.put(actionUrl(action.id),body);
+     delete body._id;
+    return http.put(forumCatUrl(forumCat._id),body);
    }
  
-   //add a new action
-   return http.post(forumcategoriesEndpoint, action);
+   //add a new forumCat
+   return http.post(forumcategoriesEndpoint, forumCat);
  }
   
-  //delete actions
-  export function deleteAction(Id) {
-    return http.delete(actionUrl(Id));
+  //delete forumCats
+  export function deleteForumCat(Id) {
+  return http.delete(forumCatUrl(Id));
   }  
