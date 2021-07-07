@@ -196,10 +196,10 @@ const ForumHome = () => {
                         <div className="info-container">
                           <div className="info">
                             <h3 className="title">
-                              <Link to={`/forum/${el._id}`}>{el.title}</Link>
+                              <Link to={`/forum/${el._id}`}>{el.name}</Link>
                             </h3>
                             <ul className="info-start-end">
-                              <li>{el.details}</li>
+                              <li>{el.description}</li>
                               <li>
                                 latest post by{" "}
                                 <Link to="/el-detail">
