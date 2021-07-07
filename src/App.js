@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useLocation, Switch, useParams } from "react-router-dom";
 import AppRoute from "./utils/AppRoute";
+import ProtectedRoute from "./utils/ProtectedRoute";
 import ScrollReveal from "./utils/ScrollReveal";
 
 // Layouts
@@ -168,10 +169,10 @@ const App = () => {
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />
               <AppRoute path="/post-detail" component={TopicDetail} /> */}
-              <AppRoute path="/forum/:name/:postId" component={PostDetail} />
-              <AppRoute path="/forum" component={ForumHome} exact />
+              <ProtectedRoute path="/forum/:name/:postId" component={PostDetail} />
+              <ProtectedRoute path="/forum" component={ForumHome} exact />
               <AppRoute path="/forum/:forum_id" component={Forum} exact />
-              <AppRoute
+              <ProtectedRoute
                 path="/categories/:forum_cat_id"
                 component={ForumHome}
               />
