@@ -21,16 +21,20 @@ const ForumHome = () => {
   const { pathname, state } = useLocation();
   var forumCatName = state;
 
-  if (pathname === "/forum") {
-    var forum_cat_id = "36eb5176-d01c-11eb-b8bc-0242ac130024";
-    var forumCatName = "Featured Forum";
-  } else {
-  }
+  // if (pathname === "/forum") {
+  //   var forum_cat_id = "36eb5176-d01c-11eb-b8bc-0242ac130024";
+  //   var forumCatName = "Featured Forum";
+  // } else {
+  // }
 
 
   useEffect(function () {
     getforumCats();
     getforumSubCats();
+    if (pathname === "/forum") {
+      var forum_cat_id = forumcats[0]._id;
+      var forumCatName = forumcats[0].name;
+    } 
     loadPage();
   }, []);
 
@@ -178,7 +182,8 @@ const ForumHome = () => {
                   {forumsubcats
                     .filter(
                       (el) =>
-                        el.cat_id.includes(forum_cat_id) === true
+                        //el.cat_id.includes(forum_cat_id) === true
+                        el.cat_id === forum_cat_id
                     )
                     .map((el) => (
                       <li>
