@@ -14,7 +14,7 @@ const ForumHome = () => {
   const [lastUpdated, setLastUpdated] = useState("hi");
   const [forumsubcats, setForumsubcats] = useState([]);
   const [forumcats, setForumcats] = useState([]);
- 
+  const [loading, setLoading] = useState(false);
 
 
   var { forum_cat_id } = useParams();
@@ -65,8 +65,10 @@ const ForumHome = () => {
 
 
   const getforumSubCats = async()=>{
+    setLoading(true);
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
+    setLoading(false);
   }
 
   const loadPage = async () => {
