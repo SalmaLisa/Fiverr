@@ -145,10 +145,10 @@ const ForumHome = () => {
     const {data:forumCats} = await getForumCats();
     setForumcats(forumCats);
     console.log(forumCats);
-    if (pathname === "/forum") {
+  /*   if (pathname === "/forum") {
       let forum_cat_id = forumCats[0]._id;
       let forumCatName = forumCats[0].name;
-    }
+    } */
  
   }
 
