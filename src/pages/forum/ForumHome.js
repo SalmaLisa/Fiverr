@@ -19,7 +19,7 @@ const ForumHome = () => {
 
   var { forum_cat_id } = useParams();
   const { pathname, state } = useLocation();
-  var forumCatName = state;
+ let forumCatName = state;
 
   // if (pathname === "/forum") {
   //   var forum_cat_id = "36eb5176-d01c-11eb-b8bc-0242ac130024";
@@ -78,6 +78,10 @@ const ForumHome = () => {
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
     console.log(forumSubCats);
+    if (pathname === "/forum") {
+         let forum_cat_id = forumcats[0]._id;
+         let forumCatName = forumcats[0].name;
+       }
   }
 
   const loadPage = async () => {
