@@ -31,10 +31,6 @@ const ForumHome = () => {
   useEffect(function () {
     getforumCats();
     getforumSubCats();
-    if (pathname === "/forum") {
-      var forum_cat_id = forumsubcats[0]._id;
-      var forumCatName = forumsubcats[0].name;
-    } 
     loadPage();
   }, []);
 
