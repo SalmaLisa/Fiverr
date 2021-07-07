@@ -27,6 +27,15 @@ const ForumHome = () => {
   } else {
   }
 
+
+  useEffect(function () {
+    getforumCats();
+    getforumSubCats();
+    loadPage();
+  }, []);
+
+
+
   /* const forums = [
     {
       _id: "10eba340-d01c-11eb-b8bc-0242ac130003",
@@ -137,13 +146,9 @@ const ForumHome = () => {
   }
 
 
-  useEffect(function () {
-    setLoading(true);
-    getforumCats();
-    getforumSubCats();
-    loadPage();
-    setLoading(false);
-  }, []);
+
+
+
 
   return (
 
