@@ -94,8 +94,8 @@ const ForumCategories = ({forumcats}) => {
   return (
     <>
       <h3 className="mb-2">Forum Categories</h3>
-      <ul class="list-group">
-        <div class="row for-cat-row">
+      <ul className="list-group">
+        <div className="row for-cat-row">
           {forumcats.map((el) => (
             <li className="list-group-item col-12 col-md-5 mr-2 for-cat-list">
               <i className={`${el.icon} mr-2`}></i>{" "}
