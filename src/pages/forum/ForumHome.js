@@ -78,10 +78,7 @@ const ForumHome = () => {
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
     console.log(forumSubCats);
-    if (pathname === "/forum" && loading === false) {
-         let forum_cat_id = forumcats[0]._id;
-         let forumCatName = forumcats[0].name;
-       }
+   
   }
 
   const loadPage = async () => {
@@ -144,11 +141,15 @@ const ForumHome = () => {
   
 
   const getforumCats = async()=>{
-    setLoading(true);
+  
     const {data:forumCats} = await getForumCats();
     setForumcats(forumCats);
     console.log(forumCats);
-    setLoading(false);
+    if (pathname === "/forum" && loading === false) {
+      let forum_cat_id = forumCats[0]._id;
+      let forumCatName = forumCats[0].name;
+    }
+ 
   }
 
 
