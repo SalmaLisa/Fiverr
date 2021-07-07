@@ -65,10 +65,10 @@ const ForumHome = () => {
 
 
   const getforumSubCats = async()=>{
-    setLoading(true);
+  
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
-    setLoading(false);
+  
   }
 
   const loadPage = async () => {
@@ -138,15 +138,17 @@ const ForumHome = () => {
 
 
   useEffect(function () {
+    setLoading(true);
     getforumCats();
     getforumSubCats();
     loadPage();
+    setLoading(false);
   }, []);
 
   return (
+
     <>
       {/* hearder */}
-
       <div
         style={{
           backgroundColor: "#333F57",
@@ -167,6 +169,7 @@ const ForumHome = () => {
               <h2 className="mb-3">{forumCatName}</h2>
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
+           
                   {forumsubcats
                     .filter(
                       (el) =>
