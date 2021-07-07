@@ -29,7 +29,7 @@ const ForumHome = () => {
 
 
   useEffect(function () {
-    //getforumCats();
+    getforumCats();
     //getforumSubCats();
     //loadPage();
   }, []);
