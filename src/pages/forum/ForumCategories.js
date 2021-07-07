@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./ForumCatogories.css";
-import { getForumCats } from './../../services/forumcategories';
 /* const forums_categories = [
   {
     _id: "10eba340-nfjc-11eb-b8bc-0242ac130003",
@@ -98,13 +97,13 @@ const ForumCategories = ({forumcats}) => {
       <ul class="list-group">
         <div class="row for-cat-row">
           {forumcats.map((el) => (
-            <li class="list-group-item col-12 col-md-5 mr-2 for-cat-list">
-              <i class={`${el.icon} mr-2`}></i>{" "}
+            <li className="list-group-item col-12 col-md-5 mr-2 for-cat-list">
+              <i className={`${el.icon} mr-2`}></i>{" "}
               <Link
                 // onClick={() => props.updateForumCatName(el.title)}
                 to={{ pathname: `/categories/${el._id}`, state: `${el.name}` }}
               >
-                {el.title}
+                {el.name}
               </Link>
             </li>
           ))}
