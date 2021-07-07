@@ -14,13 +14,8 @@ const ProtectedRoute = ({
     <Route
       {...rest}
       render={props => {
-       
         if(!auth.getProfile()) return <Redirect to="/loginregister" />;
-        <>
-          <Layout>
-            <Component {...props} />
-          </Layout>
-        </>
+        return Component ?  <><Layout><Component {...props} /></Layout></> : render(props);
       }}
     />
   );
