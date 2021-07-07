@@ -171,7 +171,7 @@ const App = () => {
               <AppRoute path="/post-detail" component={TopicDetail} /> */}
               <ProtectedRoute path="/forum/:name/:postId" component={PostDetail} />
               <ProtectedRoute path="/forum" component={ForumHome} exact />
-              <AppRoute path="/forum/:forum_id" component={Forum} exact />
+              <ProtectedRoute path="/forum/:forum_id" component={Forum} exact />
               <ProtectedRoute
                 path="/categories/:forum_cat_id"
                 component={ForumHome}
