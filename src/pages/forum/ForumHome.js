@@ -131,6 +131,7 @@ const ForumHome = () => {
   const getforumCats = async()=>{
     const {data:forumCats} = await getForumCats();
     setForumcats(forumCats);
+    console.log(forumCats);
   }
 
 
@@ -154,11 +155,11 @@ const ForumHome = () => {
         <GeneralHeader />
       </div>
       {/* hearder */}
-      <div class="container mt-5">
-        <div class="row">
-          <div class=""></div>
+      <div className="container mt-5">
+        <div className="row">
+          <div className=""></div>
           {/*  topic starts */}
-          <div class="col-lg-10 mt-4">
+          <div className="col-lg-10 mt-4">
             {/* 1nd group starts */}
             <div className="col-lg-10">
               <h2 className="mb-3">{forumCatName}</h2>
