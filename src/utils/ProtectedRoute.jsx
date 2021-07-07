@@ -9,14 +9,14 @@ const ProtectedRoute = ({
   ...rest
 }) => {
 
-  Layout = (Layout === undefined) ? props => (<>{props.children}</>) : Layout;
+ // Layout = (Layout === undefined) ? props => (<>{props.children}</>) : Layout;
 
   return (
     <Route
       {...rest}
       render={props => {
         if(!auth.getProfile()) return <Redirect to="/loginregister" />;
-        return Component ?  <><Layout><Component {...props} /></Layout></> : render(props);
+        return Component ?  <Component {...props} /> : render(props);
       }}
     />
   );
