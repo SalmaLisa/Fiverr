@@ -30,8 +30,8 @@ const ForumHome = () => {
 
   useEffect(function () {
     getforumCats();
-    //getforumSubCats();
-    //loadPage();
+    getforumSubCats();
+    loadPage();
   }, []);
 
 
