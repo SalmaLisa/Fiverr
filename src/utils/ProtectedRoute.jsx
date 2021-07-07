@@ -5,6 +5,7 @@ import auth from './../services/authservice';
 const ProtectedRoute = ({
   component: Component,
   layout: Layout,
+  render,
   ...rest
 }) => {
 
