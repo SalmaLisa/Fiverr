@@ -32,8 +32,8 @@ const ForumHome = () => {
     getforumCats();
     getforumSubCats();
     if (pathname === "/forum") {
-      var forum_cat_id = forumcats[0]._id;
-      var forumCatName = forumcats[0].name;
+      var forum_cat_id = forumsubcats[0]._id;
+      var forumCatName = forumcsubats[0].name;
     } 
     loadPage();
   }, []);
