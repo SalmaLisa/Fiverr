@@ -48,7 +48,8 @@ const MainPostForm = (props) => {
         user: user._id,
         forum_id: props.forum_id,
         // since data value is myThread , it will give you only title and message not img
-        data: myThread,
+        title: myThread.title,
+        message: myThread.message,
         slug: newURL,
       };
       try {
