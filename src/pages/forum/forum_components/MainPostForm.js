@@ -54,7 +54,7 @@ const MainPostForm = (props) => {
       try {
       await savePost(postData);
     } catch (ex) {
-
+      if (ex.response.status === 400) alert(ex.response.data);
     }
       props.loadPage();
     } else if (myThread.title != "" && myThread.message == "") {
