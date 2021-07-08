@@ -46,7 +46,7 @@ const MainPostForm = (props) => {
       props.submitThread(e);
       const postData = {
         user: user._id,
-        forum_id: props.forum_id,
+        forumId: props.forum_id,
         // since data value is myThread , it will give you only title and message not img
         title: myThread.title,
         message: myThread.message,
