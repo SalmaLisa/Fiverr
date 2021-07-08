@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import QuillEditor from "../postEditor/quillEditor";
 import { savePost } from "../../../services/posts";
-
+import {auth} from "./../../../services/authservice";
 
 const MainPostForm = (props) => {
   const [myThread, setMyThread] = useState({
@@ -52,7 +52,7 @@ const MainPostForm = (props) => {
         slug: newURL,
       };
       try {
-      await saveUser(postData);
+      await savePost(postData);
     } catch (ex) {
 
     }
