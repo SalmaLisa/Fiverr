@@ -1,7 +1,8 @@
 // For creating new Post
-
 import React, { useState } from "react";
 import QuillEditor from "../postEditor/quillEditor";
+import { savePost } from "../../../services/posts";
+
 
 const MainPostForm = (props) => {
   const [myThread, setMyThread] = useState({
@@ -20,20 +21,50 @@ const MainPostForm = (props) => {
 
     let value = e.target.value;
     //spread the operator and insert the values
-    let newThread = { ...myThread, [id]: value };
-
+    //let newThread = { ...myThread, [id]: value };
+    const newThread = {...myThread};
+    newThread[id] = value;
     setMyThread(newThread);
   };
 
   // it will be set by post editor
   const updateMessage = (value) => {
-    let newThread = { ...myThread, message: value };
-
+    //let newThread = { ...myThread, message: value };
+    const newThread = {...myThread};
+    newThread.message= value;
     setMyThread(newThread);
     console.log(myThread, "myThread");
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = auth.getProfile();	
+    let url = myThread.title;
+    let newURL = url.trim().replace(/\s/g, "-").replace(/\'/g, "");
+
+    if (myThread.message != "" && myThread.title != "") {
+      props.submitThread(e);
+      const postData = {
+        user: user._id,
+        forum_id: props.forum_id,
+        // since data value is myThread , it will give you only title and message not img
+        data: myThread,
+        slug: newURL,
+      };
+      try {
+      await saveUser(postData);
+    } catch (ex) {
+
+    }
+      props.loadPage();
+    } else if (myThread.title != "" && myThread.message == "") {
+      alert("message is empty ");
+    } else {
+      alert("title is empty ");
+    }
+  };
+
+  const handleSubmit_old = async (e) => {
     e.preventDefault();
 
     let url = myThread.title;
@@ -79,6 +110,9 @@ const MainPostForm = (props) => {
       alert("title is empty ");
     }
   };
+
+
+
 
   const handleCancel = (e) => {
     props.submitThread(e);
