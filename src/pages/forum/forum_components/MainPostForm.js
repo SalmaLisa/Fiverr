@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import QuillEditor from "../postEditor/quillEditor";
 import { savePost } from "../../../services/posts";
-import {auth} from "./../../../services/authservice";
+import auth from "./../../../services/authservice";
 
 const MainPostForm = (props) => {
   const [myThread, setMyThread] = useState({
