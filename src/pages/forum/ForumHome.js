@@ -207,11 +207,11 @@ const ForumHome = () => {
                                     ? postsResult.filter(
                                         // e is element of Posts
                                         // el is element of forums
-                                        (e) => e.forum_id == el._id
+                                        (e) => e.forumId == el._id
                                       ).length == 0
                                       ? ""
                                       : postsResult.filter(
-                                          (e) => e.forum_id == el._id
+                                          (e) => e.forumId == el._id
                                         )[0].name
                                     : ""}
                                 </Link>
