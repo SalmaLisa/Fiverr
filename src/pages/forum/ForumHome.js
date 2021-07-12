@@ -186,7 +186,7 @@ const ForumHome = () => {
                     .filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
-                        el.cat_id === forum_cat_id
+                        el.forum.cat_id === forum_cat_id
                     )
                     .map((el) => (
                       <li>
