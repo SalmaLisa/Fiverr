@@ -102,7 +102,7 @@ const Forums = () => {
     let apiGetPosts = res.data.reverse();
     console.log(apiGetPosts, "before filter");
     //
-    apiGetPosts = apiGetPosts.filter((el) => el.forum_id == forum_id);
+    apiGetPosts = apiGetPosts.filter((el) => el.forumId == forum_id);
     console.log(apiGetPosts, "after filter");
    
     apiGetPosts.forEach((element) => {
