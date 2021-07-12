@@ -223,7 +223,7 @@ const ForumHome = () => {
                               <div className="total">
                                 {postsResult.length != 0
                                   ? postsResult.filter(
-                                      (e) => e.forum_id == el._id
+                                      (e) => e.forumId == el._id
                                     ).length
                                   : ""}
                               </div>
