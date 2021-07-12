@@ -31,7 +31,7 @@ function Posts({ postsResult, loading }) {
               </h4>
               <ul className="info-start-end">
                 <li>
-                  post by <Link to="/post-detail">{post.name}</Link>
+                  post by <Link to="/post-detail">{post.user.username}</Link>
                 </li>
                 <li>
                   {post.userReply.length > 0 ? (
