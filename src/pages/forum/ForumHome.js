@@ -8,7 +8,7 @@ import {getPostsData} from './../../services/posts';
 import { getForumSubCats } from './../../services/forumsubcategories';
 import { getForumCats } from './../../services/forumcategories';
 
-import Forumsa from '../Forumsa';
+
 
 
 const ForumHome = () => {
@@ -175,7 +175,80 @@ const ForumHome = () => {
         <GeneralHeader />
       </div>
       {/* hearder */}
-      <Forumsa />
+      <div className="container mt-5">
+        <div className="row">
+          <div className=""></div>
+          {/*  topic starts */}
+          <div className="col-lg-10 mt-4">
+            {/* 1nd group starts */}
+            <div className="col-lg-10">
+              <h2 className="mb-3">{forumCatName}</h2>
+              <div className="card card-forum">
+                <ul className="forum-list forum-topic-list">
+           
+                  {forumsubcats
+                    .filter(
+                      (el) =>
+                        //el.cat_id.includes(forum_cat_id) === true
+                        el.forum.cat_id === forum_cat_id
+                    )
+                    .map((el) => (
+                      <li>
+                        <div className="media">
+                          <i class={`${el.icon}`}></i>{" "}
+                        </div>
+                        <div className="info-container">
+                          <div className="info">
+                            <h3 className="title">
+                              <Link to={`/forum/${el._id}`}>{el.name}</Link>
+                            </h3>
+                            <ul className="info-start-end">
+                              <li>{el.description}</li>
+                              <li>
+                                latest post by{" "}
+                                <Link to="/el-detail">
+                                  {postsResult.length != 0
+                                    ? postsResult.filter(
+                                        // e is element of Posts
+                                        // el is element of forums
+                                        (e) => e.forumId == el._id
+                                      ).length == 0
+                                      ? ""
+                                      : postsResult.filter(
+                                          (e) => e.forumId == el._id
+                                        )[0].name
+                                    : ""}
+                                </Link>
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="date-replies">
+                            <div className="replies">
+                              <div className="total">
+                                {postsResult.length != 0
+                                  ? postsResult.filter(
+                                      (e) => e.forumId == el._id
+                                    ).length
+                                  : ""}
+                              </div>
+                              <div className="text"> POSTS</div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="mt-5">
+                <ForumCategories
+                  forumcats={forumcats}
+                  updateForumCatName={(ele) => setLastName(ele)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
     </>
   );
 };
