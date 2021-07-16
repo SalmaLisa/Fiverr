@@ -180,7 +180,7 @@ const ForumHome = () => {
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
                
-                  {forumsubcats.length === 0 ? <div>Loading.......</div>:
+                  {loading ? <div>Loading.......</div>:
                   
                    forumsubcats.filter(
                       (el) =>
