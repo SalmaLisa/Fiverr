@@ -30,7 +30,7 @@ const ForumHome = () => {
 
    
     getforumCats();
-    //getforumSubCats();
+    getforumSubCats();
     loadPage();
     setLoading(false);
     console.log(subcats);
@@ -40,19 +40,23 @@ const ForumHome = () => {
 
 
   const getforumCats = async()=>{
-  
     const {data:forumCats} = await getForumCats();
-    const {data:forumSubCats} = await getForumSubCats();
-    setSubcats(forumSubCats);
-    console.log("forumSubCats",forumSubCats);
-    console.log("forumsubcats",subcats);
     setForumcats(forumCats);
     console.log(forumCats);
     setForumId(forumCats[0]._id);
     setForumCatName(forumCats[0].name);
-  }
+  };
 
  
+
+  const getforumSubCats = async()=>{
+
+  const {data:forumSubCats} = await getForumSubCats();
+  setSubcats(forumSubCats);
+  console.log("forumSubCats",forumSubCats);
+  console.log("forumsubcats",subcats);
+  };
+
 
   const loadPage = async () => {
     const {data:apiGetPosts} = await getPostsData();
