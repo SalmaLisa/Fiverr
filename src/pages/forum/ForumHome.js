@@ -156,7 +156,7 @@ const ForumHome = () => {
 
 
   return (
-    
+   
     <>
       {/* hearder */}
       <div
@@ -180,7 +180,7 @@ const ForumHome = () => {
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
                
-                  {loading&& (forumsubcats.length === 0) ? <div>Loading.......</div>:
+                  {forumsubcats.length === 0 ? <div>Loading.......</div>:
                    
                    forumsubcats.filter(
                       (el) =>
