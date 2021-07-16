@@ -181,11 +181,12 @@ const ForumHome = () => {
                 <ul className="forum-list forum-topic-list">
                
                   {forumsubcats.length === 0 ? <div>Loading.......</div>:
-                   
+                  
                    forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
-                        el?.forum.cat_id === forumId
+                      
+                        el.forum.cat_id && el.forum.cat_id === forumId
                     )
                     .map((el) => (
                       <li>
