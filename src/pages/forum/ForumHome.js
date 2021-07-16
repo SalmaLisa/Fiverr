@@ -78,7 +78,7 @@ const ForumHome = () => {
     getforumSubCats();
     loadPage();
     setLoading(false);
-    console.log(forumsubcats);
+    console.log(subcats);
    
     
   }, [subcats]);
