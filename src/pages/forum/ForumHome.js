@@ -18,6 +18,8 @@ const ForumHome = () => {
   const [lastUpdated, setLastUpdated] = useState("hi");
   const [forumsubcats, setForumsubcats] = useState([]);
   const [forumcats, setForumcats] = useState([]);
+  const [forumId,setForumId] = useState("");
+  const [forumCatName,setForumCatName] = useState("");
   const [loading, setLoading] = useState(false);
 
 
@@ -31,14 +33,7 @@ const ForumHome = () => {
   // } else {
   // }
 
-  const getforumSubCats = async()=>{
-  
-    const {data:forumSubCats} = await getForumSubCats();
-    setForumsubcats(forumSubCats);
-   
-    console.log(forumSubCats);
-   
-  }
+
 
 
   useEffect(function () {
@@ -86,19 +81,24 @@ const ForumHome = () => {
     },
   ]; */
 
+
   const getforumCats = async()=>{
   
     const {data:forumCats} = await getForumCats();
     setForumcats(forumCats);
     console.log(forumCats);
-  /*   if (pathname === "/forum") {
-      let forum_cat_id = forumCats[0]._id;
-      let forumCatName = forumCats[0].name;
-    } */
- 
+    setForumId(forumCats[0]._id);
+    setForumCatName(forumCats[0].name);
   }
 
-
+  const getforumSubCats = async()=>{
+  
+    const {data:forumSubCats} = await getForumSubCats();
+    setForumsubcats(forumSubCats);
+   
+    console.log(forumSubCats);
+   
+  }
 
  
 
@@ -192,8 +192,8 @@ const ForumHome = () => {
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
                
-                  {loading ?  <p>Loading</p> :
-              forumsubcats?.filter(
+                  {loading? <div>Loading.......</div>:
+              forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
                         el.forum.cat_id === forum_cat_id
