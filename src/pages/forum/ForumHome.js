@@ -23,19 +23,6 @@ const ForumHome = () => {
   const [loading, setLoading] = useState(false);
 
 
-  var { forum_cat_id } = useParams();
-  const { pathname, state } = useLocation();
- let forumCatName = state;
-
-  // if (pathname === "/forum") {
-  //   var forum_cat_id = "36eb5176-d01c-11eb-b8bc-0242ac130024";
-  //   var forumCatName = "Featured Forum";
-  // } else {
-  // }
-
-
-
-
   useEffect(function () {
     getforumSubCats();
     getforumCats();
