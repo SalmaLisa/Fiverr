@@ -28,6 +28,7 @@ const ForumHome = () => {
     getforumCats();
     loadPage();
     setLoading(false);
+    console.log(forumsubcats);
   }, []);
 
 
@@ -155,7 +156,7 @@ const ForumHome = () => {
 
 
   return (
-
+    
     <>
       {/* hearder */}
       <div
@@ -180,7 +181,8 @@ const ForumHome = () => {
                 <ul className="forum-list forum-topic-list">
                
                   {loading? <div>Loading.......</div>:
-              forumsubcats.filter(
+                   
+                   forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
                         el.forum.cat_id === forumId
