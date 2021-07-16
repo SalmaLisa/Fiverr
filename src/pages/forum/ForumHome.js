@@ -81,7 +81,7 @@ const ForumHome = () => {
     console.log(forumsubcats);
    
     
-  }, []);
+  }, [subcats]);
 
 
 
