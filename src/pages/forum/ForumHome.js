@@ -17,7 +17,7 @@ const ForumHome = () => {
   const [lastName, setLastName] = useState("");
   const [lastUpdated, setLastUpdated] = useState("hi");
   const [forumcats, setForumcats] = useState([]);
-  const [forumsubcats, setForumSubcats] = useState([]);
+  const [subcats, setSubcats] = useState([]);
   const [forumId,setForumId] = useState("");
   const [forumCatName,setForumCatName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -36,9 +36,9 @@ const ForumHome = () => {
   const getforumSubCats = async()=>{
   
     const {data:forumSubCats} = await getForumSubCats();
-    setForumSubcats(forumSubCats);
+    setSubcats(forumSubCats);
     console.log("forumSubCats",forumSubCats);
-    console.log("forumsubcats",forumsubcats);
+    console.log("forumsubcats",subcats);
    
   }
 
@@ -115,7 +115,7 @@ const ForumHome = () => {
                
                   {!forumId ? <div>Loading.......</div>:
                   
-              /*      forumsubcats.filter(
+              /*      subcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
                       
