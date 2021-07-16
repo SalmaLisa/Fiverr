@@ -33,7 +33,7 @@ const ForumHome = () => {
     getforumSubCats();
     loadPage();
     setLoading(false);
-    console.log(subcats);
+
    
     
   }, []);
