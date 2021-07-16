@@ -24,10 +24,14 @@ const ForumHome = () => {
 
 
   useEffect(function () {
+    const mounted = { current: true };
+    if (mounted.current) {
     getforumCats();
     getforumSubCats();
     loadPage();
     console.log(forumsubcats);
+    }
+    return () => { mounted.current = false; };
   }, []);
 
 
