@@ -24,14 +24,15 @@ const ForumHome = () => {
 
 
   useEffect(function () {
-    const mounted = { current: true };
-    if (mounted.current) {
+
+   
     getforumCats();
     getforumSubCats();
     loadPage();
+    setLoading(false);
     console.log(forumsubcats);
-    }
-    return () => { mounted.current = false; };
+   
+    
   }, []);
 
 
@@ -86,7 +87,6 @@ const ForumHome = () => {
   
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
-    setLoading(false);
     console.log(forumSubCats);
    
   }
