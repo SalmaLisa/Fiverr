@@ -94,6 +94,7 @@ const ForumHome = () => {
   
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
+    setLoading(false);
     console.log(forumSubCats);
    
   }
@@ -187,9 +188,9 @@ const ForumHome = () => {
               <h2 className="mb-3">{forumCatName}</h2>
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
-           
-                  {forumsubcats
-                    .filter(
+               
+                  {loading ?  <p>Loading</p> :
+                  forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
                         el.forum.cat_id === forum_cat_id
@@ -238,7 +239,13 @@ const ForumHome = () => {
                           </div>
                         </div>
                       </li>
-                    ))}
+                    ))
+                   
+                
+                  
+                  
+                  }
+            
                 </ul>
               </div>
               <div className="mt-5">
