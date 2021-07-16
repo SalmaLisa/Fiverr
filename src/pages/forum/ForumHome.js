@@ -35,7 +35,7 @@ const ForumHome = () => {
   
     const {data:forumSubCats} = await getForumSubCats();
     setForumsubcats(forumSubCats);
-    setLoading(false);
+   
     console.log(forumSubCats);
    
   }
@@ -45,6 +45,7 @@ const ForumHome = () => {
     getforumSubCats();
     getforumCats();
     loadPage();
+    setLoading(false);
   }, []);
 
 
