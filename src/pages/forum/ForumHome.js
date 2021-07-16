@@ -24,8 +24,8 @@ const ForumHome = () => {
 
 
   useEffect(function () {
-    getforumSubCats();
     getforumCats();
+    getforumSubCats();
     loadPage();
     console.log(forumsubcats);
   }, []);
