@@ -16,8 +16,8 @@ const ForumHome = () => {
   const [postsResult, setPostsResult] = useState([]);
   const [lastName, setLastName] = useState("");
   const [lastUpdated, setLastUpdated] = useState("hi");
-  const [forumsubcats, setForumsubcats] = useState([]);
   const [forumcats, setForumcats] = useState([]);
+  const [forumsubcats, setForumsubcats] = useState([]);
   const [forumId,setForumId] = useState("");
   const [forumCatName,setForumCatName] = useState("");
   const [loading, setLoading] = useState(true);
@@ -73,8 +73,9 @@ const ForumHome = () => {
 
   useEffect(function () {
 
-    getforumSubCats();
+   
     getforumCats();
+    getforumSubCats();
     loadPage();
     setLoading(false);
     console.log(forumsubcats);
