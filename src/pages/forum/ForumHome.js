@@ -185,7 +185,7 @@ const ForumHome = () => {
                
                   {!forumId ? <div>Loading.......</div>:
                   
-                   forumsubcats.filter(
+              /*      forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
                       
@@ -235,8 +235,8 @@ const ForumHome = () => {
                           </div>
                         </div>
                       </li>
-                    )) 
-                   
+                    ))  */
+                 <div></div>  
                   
                   }
             
