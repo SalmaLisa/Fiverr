@@ -185,7 +185,7 @@ const ForumHome = () => {
                    forumsubcats.filter(
                       (el) =>
                         //el.cat_id.includes(forum_cat_id) === true
-                        el.forum.cat_id === forumId
+                        el?.forum.cat_id === forumId
                     )
                     .map((el) => (
                       <li>
