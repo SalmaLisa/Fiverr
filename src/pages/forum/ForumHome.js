@@ -183,7 +183,7 @@ const ForumHome = () => {
               <div className="card card-forum">
                 <ul className="forum-list forum-topic-list">
                
-                  {(forumsubcats.length ===0) && loading ? <div>Loading.......</div>:
+                  {!forumId ? <div>Loading.......</div>:
                   
                    forumsubcats.filter(
                       (el) =>
