@@ -20,7 +20,7 @@ const ForumHome = () => {
   const [forumcats, setForumcats] = useState([]);
   const [forumId,setForumId] = useState("");
   const [forumCatName,setForumCatName] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(function () {
