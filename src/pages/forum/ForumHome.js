@@ -24,6 +24,21 @@ const ForumHome = () => {
 
 
 
+
+
+  useEffect(function () {
+
+   
+    getforumCats();
+    //getforumSubCats();
+    loadPage();
+    setLoading(false);
+    console.log(subcats);
+   
+    
+  }, []);
+
+
   const getforumCats = async()=>{
   
     const {data:forumCats} = await getForumCats();
@@ -65,21 +80,6 @@ const ForumHome = () => {
       setLastUpdated(apiGetPosts[0].updatedAt);
     }
   };
-
-  useEffect(function () {
-
-   
-    getforumCats();
-    //getforumSubCats();
-    loadPage();
-    setLoading(false);
-    console.log(subcats);
-   
-    
-  }, []);
-
-
-
 
 
 
