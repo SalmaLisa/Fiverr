@@ -31,10 +31,19 @@ const ForumHome = () => {
   // } else {
   // }
 
+  const getforumSubCats = async()=>{
+  
+    const {data:forumSubCats} = await getForumSubCats();
+    setForumsubcats(forumSubCats);
+    setLoading(false);
+    console.log(forumSubCats);
+   
+  }
+
 
   useEffect(function () {
-    getforumCats();
     getforumSubCats();
+    getforumCats();
     loadPage();
   }, []);
 
@@ -90,14 +99,7 @@ const ForumHome = () => {
 
 
 
-  const getforumSubCats = async()=>{
-  
-    const {data:forumSubCats} = await getForumSubCats();
-    setForumsubcats(forumSubCats);
-    setLoading(false);
-    console.log(forumSubCats);
-   
-  }
+ 
 
   const loadPage = async () => {
     const {data:apiGetPosts} = await getPostsData();
