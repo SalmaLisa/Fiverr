@@ -28,7 +28,7 @@ const ForumHome = () => {
   
     const {data:forumCats} = await getForumCats();
     const {data:forumSubCats} = await getForumSubCats();
-    setSubcats({id:1});
+    setSubcats(forumSubCats);
     console.log("forumSubCats",forumSubCats);
     console.log("forumsubcats",subcats);
     setForumcats(forumCats);
