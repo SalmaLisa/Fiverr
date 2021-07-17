@@ -76,10 +76,11 @@ class ForumHome extends Component {
 
 
 	async componentDidMount() {
-       await this.getforumCats();
        await this.getforumSubCats();
+       await this.getforumCats();
+       
        await this.loadPage();
-	  	 this.setState({ loading: false });
+	  	 //this.setState({ loading: false });
 	}
 
 
