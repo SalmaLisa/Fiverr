@@ -71,10 +71,10 @@ class ForumHome extends Component {
 
 
 	async componentDidMount() {
-       await getforumCats();
-       await getforumSubCats();
-       await loadPage();
-		this.setState({ loading: false });
+       await this.getforumCats();
+       await this.getforumSubCats();
+       await this.loadPage();
+	  	 this.setState({ loading: false });
 	}
 
 
@@ -178,7 +178,7 @@ class ForumHome extends Component {
                     <div className="mt-5">
                       <ForumCategories
                         forumcats={forumcats}
-                        updateForumCatName={(ele) => setLastName(ele)}
+                        updateForumCatName={(ele) => this.setState({lastName:ele})}
                       />
                     </div>
                   </div>
