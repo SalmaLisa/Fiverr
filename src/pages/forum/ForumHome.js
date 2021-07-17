@@ -20,7 +20,7 @@ class ForumHome extends Component {
             forumCatName: "",
             loading: true,
 		};
-
+    this.getforumSubCats = this.getforumSubCats.bind(this);
 
 	
 	}
