@@ -86,6 +86,7 @@ class ForumHome extends Component {
           this.setState({postsResult:apiGetPosts});
           this.setState({lastName:apiGetPosts[0].user.username});
           this.setState({lastUpdated:apiGetPosts[0].updatedAt});
+          console.log("postsResult",this.state.postsResult);
         }
       };
     
