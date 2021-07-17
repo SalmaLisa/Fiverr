@@ -21,9 +21,7 @@ class ForumHome extends Component {
             forumCatName: "",
             loading: true,
 		};
-    this.getforumSubCats = this.getforumSubCats.bind(this);
-
-	
+ 
 	}
 
 
@@ -79,12 +77,11 @@ class ForumHome extends Component {
 
 	async componentDidMount() {
        await this.getforumCats();
+       await this.getforumSubCats();
        await this.loadPage();
   }
 
-	async componentDidUpdate() {
-    await this.getforumSubCats();
-  }
+
 
 	render() {
 		const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
@@ -120,11 +117,11 @@ class ForumHome extends Component {
                      
                         {
                         
-                /*    forumsubcats.filter(
+                  forumsubcats.filter(
                             (el) =>
                               //el.cat_id.includes(forum_cat_id) === true
                             
-                              el.forum.cat_id && el.forum.cat_id === forumId
+                              el.cat_id === forumId
                           )
                           .map((el) => (
                             <li>
@@ -170,9 +167,9 @@ class ForumHome extends Component {
                                 </div>
                               </div>
                             </li>
-                          ))   */
+                          ))   
                    
-                      <div></div>
+               
                         }
                   
                       </ul>
