@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link} from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
 import {getPostsData} from './../../services/posts';
@@ -30,7 +31,7 @@ class ForumHome extends Component {
         const {data:forumcats} = await getForumCats();
         this.setState({forumcats});
         this.setState({forumId:forumcats[0]._id});
-        setForumCatName({forumCatName:forumCats[0].name});
+        this.setState({forumCatName:forumCats[0].name});
       };
     
      
@@ -70,9 +71,9 @@ class ForumHome extends Component {
 
 
 	async componentDidMount() {
-        getforumCats();
-        getforumSubCats();
-        loadPage();
+       await getforumCats();
+       await getforumSubCats();
+       await loadPage();
 		this.setState({ loading: false });
 	}
 
