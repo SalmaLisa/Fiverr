@@ -36,7 +36,7 @@ class ForumHome extends Component {
     
      
     
-      async getforumSubCat(){
+      async getforumSubCats(){
       const {data:forumsubcats} = await getForumSubCats();
       this.setState({forumsubcats});
       };
