@@ -95,9 +95,10 @@ class ForumHome extends Component {
 	render() {
 		const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
 
-
-
+ const { length: count } = this.state.forumsubcats;
+ if (count === 0) return;
 		return (
+     
             <>
             {/* hearder */}
             <div
@@ -121,9 +122,9 @@ class ForumHome extends Component {
                     <div className="card card-forum">
                       <ul className="forum-list forum-topic-list">
                      
-                        {!forumId ? <div>Loading.......</div>:
+                        {
                         
-                 /*       forumsubcats.filter(
+                   forumsubcats.filter(
                             (el) =>
                               //el.cat_id.includes(forum_cat_id) === true
                             
@@ -173,9 +174,9 @@ class ForumHome extends Component {
                                 </div>
                               </div>
                             </li>
-                          ))  */
+                          ))  
                    
-                       <div></div> 
+                      
                         }
                   
                       </ul>
