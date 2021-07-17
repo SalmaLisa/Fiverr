@@ -78,12 +78,13 @@ class ForumHome extends Component {
 
 
 	async componentDidMount() {
-       await this.getforumSubCats();
        await this.getforumCats();
        await this.loadPage();
   }
 
-
+	async componentDidUpdate() {
+    await this.getforumSubCats();
+  }
 
 	render() {
 		const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
