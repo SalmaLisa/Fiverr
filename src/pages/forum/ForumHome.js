@@ -31,6 +31,7 @@ class ForumHome extends Component {
       const { pathname, state } = this.props.location;
       console.log("props",this.props);
       const forumCatName = state;
+      const {data:forumcats} = await getForumCats();
       if (pathname === "/forum") {
         
       this.setState({
@@ -42,7 +43,7 @@ class ForumHome extends Component {
         forumCatName:forumCatName});
       }
      
-        const {data:forumcats} = await getForumCats();
+       
         this.setState({
           forumcats
         });
