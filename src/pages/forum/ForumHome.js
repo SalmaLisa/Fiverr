@@ -123,7 +123,7 @@ class ForumHome extends Component {
                      
                         {!forumId ? <div>Loading.......</div>:
                         
-                       forumsubcats.filter(
+                 /*       forumsubcats.filter(
                             (el) =>
                               //el.cat_id.includes(forum_cat_id) === true
                             
@@ -173,9 +173,9 @@ class ForumHome extends Component {
                                 </div>
                               </div>
                             </li>
-                          )) 
+                          ))  */
                    
-                        
+                       <div></div> 
                         }
                   
                       </ul>
