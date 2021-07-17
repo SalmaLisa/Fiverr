@@ -29,9 +29,12 @@ class ForumHome extends Component {
 
     async getforumCats(){
         const {data:forumcats} = await getForumCats();
-        this.setState({forumcats});
-        this.setState({forumId:forumcats[0]._id});
-        this.setState({forumCatName:forumcats[0].name});
+        this.setState({
+          forumcats,
+          forumId:forumcats[0]._id,
+          forumCatName:forumcats[0].name
+        });
+        
       };
     
      
