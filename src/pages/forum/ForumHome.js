@@ -91,6 +91,8 @@ class ForumHome extends Component {
 
     if (this.state.loading === true)  return   <Spinner animation="border" style={{
       width: "6rem", height: "6rem",border: "1px solid",position:"fixed",top:"50%",left:"50%"  }} />
+
+      console.log(this.state.forumsubcats);
 		return (
      
             <>
@@ -118,7 +120,7 @@ class ForumHome extends Component {
                      
                         {
                         
-                   forumsubcats.filter(
+                /*    forumsubcats.filter(
                             (el) =>
                               //el.cat_id.includes(forum_cat_id) === true
                             
@@ -168,9 +170,9 @@ class ForumHome extends Component {
                                 </div>
                               </div>
                             </li>
-                          ))  
+                          ))   */
                    
-                      
+                      <div></div>
                         }
                   
                       </ul>
