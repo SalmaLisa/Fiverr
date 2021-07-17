@@ -82,7 +82,7 @@ class ForumHome extends Component {
             total = total + element.userReply.length;
           });
           this.setState({postsResult:apiGetPosts});
-          this.setState({lastName:apiGetPosts[0].user.name});
+          this.setState({lastName:apiGetPosts[0].user.username});
           this.setState({lastUpdated:apiGetPosts[0].updatedAt});
         }
       };
