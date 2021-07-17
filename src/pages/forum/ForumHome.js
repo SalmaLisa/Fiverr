@@ -27,22 +27,22 @@ class ForumHome extends Component {
 
 
 
-    getforumCats = async()=>{
+    async getforumCats(){
         const {data:forumcats} = await getForumCats();
         this.setState({forumcats});
         this.setState({forumId:forumcats[0]._id});
-        this.setState({forumCatName:forumCats[0].name});
+        this.setState({forumCatName:forumcats[0].name});
       };
     
      
     
-      getforumSubCats = async()=>{
+      async getforumSubCat(){
       const {data:forumsubcats} = await getForumSubCats();
       this.setState({forumsubcats});
       };
     
     
-      loadPage = async () => {
+      async loadPage(){
         const {data:apiGetPosts} = await getPostsData();
     
         if (apiGetPosts.length == 0) {
