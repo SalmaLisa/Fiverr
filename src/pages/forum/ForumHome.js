@@ -28,7 +28,7 @@ class ForumHome extends Component {
 
     async getforumCats(){
       const {forum_cat_id}= this.props.match.params;
-      const { pathname, state } = this.props;
+      const { pathname, state } = this.props.location;
       console.log("props",this.props);
       const forumCatName = state;
       if (pathname === "/forum") {
