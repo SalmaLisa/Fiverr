@@ -2,7 +2,7 @@ import React from 'react'
 import BannerOneHeroHeading from './BannerOneHeroHeading'
 import BannerOneSearchInput from './BannerOneSearchInput'
 import BannerOneCategories from './BannerOneCategories'
-import sectiondata from "../../../store/store";
+import sectiondata from "../../../store/menu";
 
 export default function BannerOne() {
     return (

@@ -4,7 +4,7 @@ import FooterLeftWidget from "./FooterLeftWidget";
 import FooterQuickLinkWidget from "./FooterQuickLinkWidget";
 import FooterCategoryWidget from "./FooterCategoryWidget";
 import FooterContactWidget from "./FooterContactWidget";
-import sectiondata from "../../../store/store";
+import sectiondata from "../../../store/menu";
 
 function Footer() {
     return (
