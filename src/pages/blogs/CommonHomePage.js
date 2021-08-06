@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import sectiondata from "../../store/store";
+import sectiondata from "../../store/menu";
 import Button from "../../components/common/Button";
 import SectionsHeading from "../../components/common/SectionsHeading";
 

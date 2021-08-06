@@ -1,7 +1,7 @@
 import React from 'react';
 import CopyrightMenu from "./CopyrightMenu";
 import { FiHeart } from 'react-icons/fi'
-import sectiondata from "../../../store/store";
+import sectiondata from "../../../store/menu";
 
 function Copyright() {
     return (
