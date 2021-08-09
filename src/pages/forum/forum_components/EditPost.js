@@ -22,7 +22,7 @@ const EditPost = (props) => {
       _id: props.Post._id,
       user: props.Post.userId,
       message: editPost.message,
-      forumId: editPost.forum_id,
+      forumId: editPost.forumId,
       threadStatus: editPost.threadStatus,
       slug: editPost.slug,
       title: editPost.title,
