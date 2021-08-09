@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react"
-import QuillEditor from "../postEditor/quillEditor"
-
+import React, { useState, useRef } from "react";
+import QuillEditor from "../postEditor/quillEditor";
+import {savePost} from "./../../../services/posts";
 const EditPost = (props) => {
   // console.log(props.Post)
   const [editPost, setEditPost] = useState({ message: props.Post.message })
@@ -12,20 +12,31 @@ const EditPost = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    // let editPostData = {
+    //   postId: props.Post._id,
+    //   userId: props.Post.userId,
+    //   edited: editPost.message,
+    // }
+
     let editPostData = {
-      postId: props.Post._id,
-      userId: props.Post.userId,
-      edited: editPost.message,
+      _id: props.Post._id,
+      user: props.Post.userId,
+      message: editPost.message,
+      forumId: editPost.forum_id,
+      threadStatus: editPost.threadStatus,
+      slug: editPost.slug,
+      title: editPost.title,
     }
 
-    const apiReply = await fetch("http://localhost:8080/api/editPost", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editPostData),
-    }).then((result) => result.json())
+    await savePost(editPostData);
+    // const apiReply = await fetch("http://localhost:8080/api/editPost", {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json, text/plain, */*",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(editPostData),
+    // }).then((result) => result.json())
 
     props.submitForm(e)
     props.loadPage()
