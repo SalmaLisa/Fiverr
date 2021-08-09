@@ -25,10 +25,10 @@ const postsEndpoint = apiUrl.url+'/posts';
     const body = { ...post };
     console.log(body);
    //update
-   if (post._id) {
+   if (body._id) {
      //delete _id
      delete body._id;
-     return http.put(postUrl(post.id),body);
+     return http.put(postUrl(post._id),body);
    }
  
    //add a new post
