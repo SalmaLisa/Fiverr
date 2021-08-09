@@ -196,7 +196,7 @@ function NoteDetail() {
     let editThreadStatus = {
       _id: Post._id,
       user: Post.user,
-      forumId: forum_id,
+      forumId: Post.forum_id,
       threadStatus: Post.threadStatus,
       slug: Post.slug,
       title: Post.title,
@@ -230,7 +230,7 @@ function NoteDetail() {
     //   },
     //   body: JSON.stringify(editThreadStatus),
     // }).then((result) => result.json());
-    await savePost(editForumId);
+    await savePost(editThreadStatus);
     window.location.reload();
   };
 
