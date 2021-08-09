@@ -27,7 +27,7 @@ const EditPost = (props) => {
       slug: editPost.slug,
       title: editPost.title,
     }
-
+    console.log(editPostData);
     await savePost(editPostData);
     // const apiReply = await fetch("http://localhost:8080/api/editPost", {
     //   method: "post",
