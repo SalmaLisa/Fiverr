@@ -1,5 +1,5 @@
 import http from './httpService'; 
-import {apiUrl} from './../config/config.json';
+import {apiUrl} from './../config/config';
 const repliesEndpoint = apiUrl.url+'/replies';
 
 
