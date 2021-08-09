@@ -7,8 +7,8 @@ const repliesEndpoint = apiUrl.url+'/replies';
     return `${repliesEndpoint}/${id}`;
   }
   
-  export function getReplies() {
-    return http.get(repliesEndpoint);
+  export function getReplies(postId) {
+    return http.get(`${repliesEndpoint}/post/${postId}`);
   }
   
   export function getReply(Id) {
