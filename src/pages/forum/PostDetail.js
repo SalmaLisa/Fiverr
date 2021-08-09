@@ -117,6 +117,13 @@ function NoteDetail() {
   }; */
 
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    setShowForm(false);
+    setEditPost(false);
+  };
+
+
    const getforumSubCats = async ()=>{
     const {data:forumSubcats} = await getForumSubCats();
     setForumsubcats(forumSubcats);
