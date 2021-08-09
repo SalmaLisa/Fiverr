@@ -186,33 +186,44 @@ function NoteDetail() {
 
   //handle threadStatus
   const handleThreadStatus = async (e) => {
-    let editThreadStatus = {};
+    let editThreadStatus = {
+      _id: Post._id,
+      user: Post.user,
+      forumId: forum_id,
+      threadStatus: Post.threadStatus,
+      slug: Post.slug,
+      title: Post.title,
+      message: Post.message,
+    };
 
     if (Post.threadStatus == "open") {
       // confusion var or let
-      editThreadStatus = {
-        postId: Post._id,
-        userId: Post.userId,
-        threadstatus: "closed",
-      };
+      // editThreadStatus = {
+      //   postId: Post._id,
+      //   userId: Post.userId,
+      //   threadstatus: "closed",
+      // };
+      editThreadStatus.threadStatus = "closed";
     } else {
-      editThreadStatus = {
-        postId: Post._id,
-        userId: Post.userId,
-        threadstatus: "open",
-      };
+      // editThreadStatus = {
+      //   postId: Post._id,
+      //   userId: Post.userId,
+      //   threadstatus: "open",
+      // };
+      editThreadStatus.threadStatus = "open";
     }
 
     console.log(editThreadStatus);
 
-    const apiReply = await fetch("http://localhost:8080/api/editThreadStatus", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editThreadStatus),
-    }).then((result) => result.json());
+    // const apiReply = await fetch("http://localhost:8080/api/editThreadStatus", {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json, text/plain, */*",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(editThreadStatus),
+    // }).then((result) => result.json());
+    await savePost(editForumId);
     window.location.reload();
   };
 
