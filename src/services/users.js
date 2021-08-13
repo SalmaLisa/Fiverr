@@ -13,10 +13,8 @@ const apiEndpoint = apiUrl.url+'/users';
   }
 
   export function recoverUser(email){
-    return http.get(`${apiEndpoint}/recover`, {
-      headers:{
-        email: email
-      }
+    return http.post(`${apiEndpoint}/recover`, {
+      email: email
     });
   }
   
