@@ -1,146 +1,175 @@
 import React, { Component } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Spinner } from 'react-bootstrap';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
-import {getPostsData} from './../../services/posts';
+import { getPostsData } from './../../services/posts';
 import { getForumSubCats } from './../../services/forumsubcategories';
 import { getForumCats } from './../../services/forumcategories';
+import { Box } from '@material-ui/core';
+import ForumSubCategories from './ForumSubCategories';
+import CategoryTable from './CategoryTable';
 
 
+// Latest Data..
+const latestData = [
+  {
+    id: 1,
+    replies: 15,
+    title: "Our default branch is main now",
+    tags: [
+      {
+        title: "dev",
+        color: "black",
+      },
+    ],
+  },
+];
+
+
+// Component of ForumHome..
 class ForumHome extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-            forumsubcats: [],
-            postsResult: [],
-            lastName :"",
-            lastUpdated :"hi",
-            forumcats:[],
-            forumId: "",
-            forumCatName: "",
-            loading: true,
-		};
- 
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      forumsubcats: [],
+      postsResult: [],
+      lastName: "",
+      lastUpdated: "hi",
+      forumcats: [],
+      forumId: "",
+      forumCatName: "",
+      loading: true,
+    };
+
+  }
 
 
+  async getforumCats() {
+    const { forum_cat_id } = this.props.match.params;
+    const { pathname, state } = this.props.location;
+    console.log("props", this.props);
+    const forumCatName = state;
 
-    async getforumCats(){
-      const {forum_cat_id}= this.props.match.params;
-      const { pathname, state } = this.props.location;
-      console.log("props",this.props);
-      const forumCatName = state;
-      const {data:forumcats} = await getForumCats();
-      if (pathname === "/forum") {
-        
+    const { data: forumcats } = await getForumCats();
+
+    if (pathname === "/forum") {
       this.setState({
-        forumId:forumcats[0]._id,
-        forumCatName:forumcats[0].name
+        forumId: forumcats[0]._id,
+        forumCatName: forumcats[0].name
       });
-      }else{
-        this.setState({forumId:forum_cat_id,
-        forumCatName:forumCatName});
-      }
-     
-       
-        this.setState({
-          forumcats
-        });
-        
+
+    } else {
+      this.setState({
+        forumId: forum_cat_id,
+        forumCatName: forumCatName
+      });
+    }
 
 
-      };
-    
-     
-    
-      async getforumSubCats(){
-      const {data:forumsubcats} = await getForumSubCats();
-      this.setState({forumsubcats:forumsubcats});
-      console.log("state subcats",this.state.forumsubcats);
-      console.log("subcats",forumsubcats);
-      this.setState({ loading: false });
-      };
-    
-    
-      async loadPage(){
-        const {data:apiGetPosts} = await getPostsData();
-    
-        if (apiGetPosts.length == 0) {
-          this.setState({lastUpdated:""});
-        } else {
-          apiGetPosts.forEach((element) => {
-            element.createdAt = new Date(element.createdAt)
-              .toString()
-              .substring(4, 15);
-    
-            element.updatedAt = new Date(element.updatedAt)
-              .toString()
-              .substring(4, 15);
-          });
-    
-          let total = 0;
-          apiGetPosts.forEach((element) => {
-            total = total + element.userReply.length;
-          });
-          this.setState({postsResult:apiGetPosts});
-          this.setState({lastName:apiGetPosts[0].user.username});
-          this.setState({lastUpdated:apiGetPosts[0].updatedAt});
-          console.log("postsResult",this.state.postsResult);
-          console.log("state",this.state);
-        }
-      };
-    
+    this.setState({
+      forumcats
+    });
 
 
-	async componentDidMount() {
-       await this.getforumCats();
-       await this.getforumSubCats();
-       await this.loadPage();
+
+  };
+
+
+
+  async getforumSubCats() {
+    const { data: forumsubcats } = await getForumSubCats();
+    this.setState({ forumsubcats: forumsubcats });
+    console.log("state subcats", this.state.forumsubcats);
+    console.log("subcats", forumsubcats);
+    this.setState({ loading: false });
+  };
+
+
+  async loadPage() {
+    const { data: apiGetPosts } = await getPostsData();
+
+    if (apiGetPosts.length == 0) {
+      this.setState({ lastUpdated: "" });
+    } else {
+      apiGetPosts.forEach((element) => {
+        element.createdAt = new Date(element.createdAt)
+          .toString()
+          .substring(4, 15);
+
+        element.updatedAt = new Date(element.updatedAt)
+          .toString()
+          .substring(4, 15);
+      });
+
+      let total = 0;
+      apiGetPosts.forEach((element) => {
+        total = total + element.userReply.length;
+      });
+      this.setState({ postsResult: apiGetPosts });
+      this.setState({ lastName: apiGetPosts[0].user.username });
+      this.setState({ lastUpdated: apiGetPosts[0].updatedAt });
+      console.log("postsResult", this.state.postsResult);
+      console.log("state", this.state);
+    }
+  };
+
+
+
+  async componentDidMount() {
+    await this.getforumCats();
+    await this.getforumSubCats();
+    await this.loadPage();
   }
 
 
 
-	render() {
-		const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
+  render() {
+    const dirtoReal = false;
 
-    if (this.state.loading === true)  return   <Spinner animation="border" style={{
-      width: "6rem", height: "6rem",border: "1px solid",position:"fixed",top:"50%",left:"50%"  }} />
+    console.log('ForumCats -- ', this.state.forumcats);
 
-      console.log(this.state.forumsubcats);
-		return (
-     
-            <>
-            {/* hearder */}
-            <div
-              style={{
-                backgroundColor: "#333F57",
-                width: "100%",
-                height: "80px",
-              }}
-            >
-              <GeneralHeader />
-            </div>
-            {/* hearder */}
-            <div className="container mt-5">
-              <div className="row">
-                <div className=""></div>
-                {/*  topic starts */}
-                <div className="col-lg-10 mt-4">
-                  {/* 1nd group starts */}
-                  <div className="col-lg-10">
-                    <h2 className="mb-3">{forumCatName}</h2>
-                    <div className="card card-forum">
-                      <ul className="forum-list forum-topic-list">
-                     
-                        {
-                        
-                  forumsubcats.filter(
-                            (el) =>
-                              //el.cat_id.includes(forum_cat_id) === true
-                            
-                              el.cat_id === forumId
-                          )
+    const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
+
+    if (this.state.loading === false) return <Spinner animation="border" style={{
+      width: "6rem", height: "6rem", border: "1px solid", position: "fixed", top: "50%", left: "50%"
+    }} />
+
+    console.log(this.state.forumsubcats);
+
+    if (dirtoReal) {
+      return (
+        <>
+          {/* hearder */}
+          <div
+            style={{
+              backgroundColor: "#333F57",
+              width: "100%",
+              height: "80px",
+            }}
+          >
+            <GeneralHeader />
+          </div>
+          {/* hearder */}
+          <div className="container mt-5">
+            <div className="row">
+              <div className=""></div>
+              {/*  topic starts */}
+              <div className="col-lg-10 mt-4">
+                {/* 1nd group starts */}
+                <div className="col-lg-10">
+                  <h2 className="mb-3">{forumCatName}</h2>
+                  <div className="card card-forum">
+                    <ul className="forum-list forum-topic-list">
+
+                      {
+
+                        forumsubcats.filter(
+                          (el) =>
+                            //el.cat_id.includes(forum_cat_id) === true
+
+                            el.cat_id === forumId
+                        )
                           .map((el) => (
                             <li>
                               <div className="media">
@@ -158,14 +187,14 @@ class ForumHome extends Component {
                                       <Link to="/el-detail">
                                         {postsResult.length != 0
                                           ? postsResult.filter(
-                                              // e is element of Posts
-                                              // el is element of forums
-                                              (e) => e.forumId == el._id
-                                            ).length == 0
+                                            // e is element of Posts
+                                            // el is element of forums
+                                            (e) => e.forumId == el._id
+                                          ).length == 0
                                             ? ""
                                             : postsResult.filter(
-                                                (e) => e.forumId == el._id
-                                              )[0].name
+                                              (e) => e.forumId == el._id
+                                            )[0].name
                                           : ""}
                                       </Link>
                                     </li>
@@ -176,8 +205,8 @@ class ForumHome extends Component {
                                     <div className="total">
                                       {postsResult.length != 0
                                         ? postsResult.filter(
-                                            (e) => e.forumId == el._id
-                                          ).length
+                                          (e) => e.forumId == el._id
+                                        ).length
                                         : ""}
                                     </div>
                                     <div className="text"> POSTS</div>
@@ -185,26 +214,76 @@ class ForumHome extends Component {
                                 </div>
                               </div>
                             </li>
-                          ))   
-                   
-               
-                        }
-                  
-                      </ul>
-                    </div>
-                    <div className="mt-5">
-                      <ForumCategories
-                        forumcats={forumcats}
-                        updateForumCatName={(ele) => this.setState({lastName:ele})}
-                      />
-                    </div>
+                          ))
+
+
+                      }
+
+                    </ul>
+                  </div>
+                  <div className="mt-5">
+                    <ForumCategories
+                      forumcats={forumcats}
+                      updateForumCatName={(ele) => this.setState({ lastName: ele })}
+                    />
                   </div>
                 </div>
               </div>
-            </div> 
-          </>
-		);
-	}
+            </div>
+          </div>
+        </>
+      );
+    } else {
+      // Write your code here..
+      return (
+        <React.Fragment>
+          {/* ----- Header ------ */}
+          <div
+            style={{
+              backgroundColor: "#333F57",
+              width: "100%",
+              height: "80px",
+            }}
+          >
+            <GeneralHeader />
+          </div>
+
+          {/* ------- Content -------- */}
+          <Box>
+            <CategoryTable 
+              latestData={latestData}
+            />
+          </Box>
+
+          {/* Old Design */}
+          {/* <div className="container mt-5">
+            <div className="row">
+              <div className=""></div>
+              
+              <div className="col-lg-10 mt-4">
+                
+                <div className="col-lg-10">
+                  <ForumSubCategories />
+
+                  <div className="mt-5">
+                    <ForumCategories
+                      forumcats={forumcats}
+                    // updateForumCatName={(ele) => this.setState({ lastName: ele })}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> */}
+
+
+        </React.Fragment>
+      );
+
+
+    }
+
+  }
 }
 
 export default ForumHome;

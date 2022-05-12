@@ -76,7 +76,7 @@ import hiw3videoimg from "../assets/images/video-img2.jpg";
 import {FcLineChart} from "react-icons/fc";
 import dreamimg from "../assets/images/img6.jpg"; // 263*165
 import hiw5videoimg from "../assets/images/video-img3.jpg";
-import slicevideo from "../assets/video/slice-video.m4v";
+// import slicevideo from "../assets/video/slice-video.m4v";
 import flag10 from "../assets/images/flag10.png";
 import flag11 from "../assets/images/flag11.png";
 import flag12 from "../assets/images/flag12.jpg";
@@ -345,11 +345,11 @@ const sectiondata = {
             content: 'All the top locations – from restaurants and clubs, to galleries, famous places and more...',
             bgimage: bannerbg1
         },
-        banner4: {
-            sectitle: 'Find The Best Places To Be',
-            seccontent: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
-            videobgsrc: slicevideo,
-        },
+        // banner4: {
+        //     sectitle: 'Find The Best Places To Be',
+        //     seccontent: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
+        //     videobgsrc: slicevideo,
+        // },
     },
     categories: {
         featuredcategories: {
