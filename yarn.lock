@@ -1237,7 +1237,7 @@
   "resolved" "https://registry.npmjs.org/@emotion/memoize/-/memoize-0.7.5.tgz"
   "version" "0.7.5"
 
-"@emotion/react@^11.9.0":
+"@emotion/react@^11.1.4", "@emotion/react@^11.9.0":
   "integrity" "sha512-lBVSF5d0ceKtfKCDQJveNAtkC7ayxpVlgOohLgXqRwqWr9bOf4TZAFFyIcNngnV6xK6X4x2ZeXq7vliHkoVkxQ=="
   "resolved" "https://registry.npmjs.org/@emotion/react/-/react-11.9.0.tgz"
   "version" "11.9.0"
@@ -10817,6 +10817,13 @@
     "json2mq" "^0.2.0"
     "lodash.debounce" "^4.0.8"
     "resize-observer-polyfill" "^1.5.0"
+
+"react-spinners@^0.11.0":
+  "integrity" "sha512-rDZc0ABWn/M1OryboGsWVmIPg8uYWl0L35jPUhr40+Yg+syVPjeHwvnB7XWaRpaKus3M0cG9BiJA+ZB0dAwWyw=="
+  "resolved" "https://registry.npmjs.org/react-spinners/-/react-spinners-0.11.0.tgz"
+  "version" "0.11.0"
+  dependencies:
+    "@emotion/react" "^11.1.4"
 
 "react-spring@^8.0.27":
   "integrity" "sha512-nDpWBe3ZVezukNRandTeLSPcwwTMjNVu1IDq9qA/AMiUqHuRN4BeSWvKr3eIxxg1vtiYiOLy4FqdfCP5IoP77g=="

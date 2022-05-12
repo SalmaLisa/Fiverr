@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Spinner } from 'react-bootstrap';
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
 import { getPostsData } from './../../services/posts';
@@ -9,6 +8,7 @@ import { getForumCats } from './../../services/forumcategories';
 import { Box } from '@material-ui/core';
 import ForumSubCategories from './ForumSubCategories';
 import CategoryTable from './CategoryTable';
+import Spinner from '../../components/spinner';
 
 
 //  --------======== DEMO DATA ========------
@@ -213,6 +213,11 @@ class ForumHome extends Component {
       loading: true,
     };
 
+    // For Demo Loading.. page.
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 1000);
+
   }
 
 
@@ -306,9 +311,14 @@ class ForumHome extends Component {
 
     const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
 
-    if (this.state.loading === false) return <Spinner animation="border" style={{
-      width: "6rem", height: "6rem", border: "1px solid", position: "fixed", top: "50%", left: "50%"
-    }} />
+    if (this.state.loading === true) {
+      return (
+        <Spinner 
+          color="black"
+          size={80}
+        />
+      );
+    }
 
     console.log(this.state.forumsubcats);
 
