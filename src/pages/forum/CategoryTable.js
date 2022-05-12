@@ -17,7 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { Link, useHistory } from "react-router-dom";
 //import HeaderTables1 from "./HeaderTables1";
-import "./categoryTable.css";
+import "./CategoryTable.css";
 import { Pagination } from "@mui/material";
 
 // Styles..
@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 const CommentsTable = ({ commentLists, latestData }) => {
   const history = useHistory();
   const classes = useStyles();
-  const opencomment = (id) => { 
+  const opencomment = (id) => {
     history.push(`/forum/${id}`);
     console.log(id);
 
@@ -57,9 +57,9 @@ const CommentsTable = ({ commentLists, latestData }) => {
   }, [])
 
 
-// Returning statement..
+  // Returning statement..
   return (
-    <Box backgroundColor="red" >
+    <Box backgroundColor="red" className="container mt-5">
       <div className="breadcrumbContainer">
         <Breadcrumbs aria-label="breadcrumb">
           <Link underline="hover" className="linkStyle" onClick={() => history.push("/forum-front1/forums")} >
@@ -166,7 +166,8 @@ const CommentsTable = ({ commentLists, latestData }) => {
                   <TableCell  >
 
                     <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content' >
-                      <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' />
+                      {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
+                      <img src={"/assets/img/user/user-3.jpg"} className='avatar1' />
 
                       <Box width="90%" >
                         <div className='titre1'>{comment.title}</div>
@@ -204,23 +205,6 @@ const CommentsTable = ({ commentLists, latestData }) => {
 
               ))
               }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </TableBody>
           </Table>
 
@@ -228,10 +212,6 @@ const CommentsTable = ({ commentLists, latestData }) => {
         <div className="paginationContainer" >
           <Pagination count={4} color="primary" />
         </div>
-
-
-
-
 
       </Box>
     </Box>

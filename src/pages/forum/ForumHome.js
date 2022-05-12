@@ -11,10 +11,181 @@ import ForumSubCategories from './ForumSubCategories';
 import CategoryTable from './CategoryTable';
 
 
+//  --------======== DEMO DATA ========------
+// commentLists..
+const commentLists = [
+  {
+    _id: "623224e2e95cd6bca0a1ea4f",
+    description: "Herbal Fromulas of TCM Files will be listed in alphabetical order",
+    forumSubcategories: [
+      {
+        _id: "62322511e95cd6bca0a1ea5e",
+        catId: "623224e2e95cd6bca0a1ea4f",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      },
+      {
+        _id: "62322511e95cd6bca0a1ea5a",
+        catId: "623224e2e95cd6bca0a1ea4x",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      },
+      {
+        _id: "62322511e95cd6bca0a1ea5b",
+        catId: "623224e2e95cd6bca0a1ea4y",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      }
+    ],
+  
+    name: "Accuptions",
+    status: "active",
+    user: {
+      Address: {
+        address1: "sterrebos 12",
+        address2: "undefined",
+        address3: "undefined",
+        city: "oss",
+        country: "Netherlands",
+        state: "undefined",
+        zip: "5344AM"
+      },
+      _id: "602a51c8e01db5f4db409279",
+      
+    }
+  }, 
+  {
+    _id: "623224e2e95cd6bca0a1ea4f",
+    description: "Herbal Fromulas of TCM Files will be listed in alphabetical order",
+    forumSubcategories: [
+      {
+        _id: "62322511e95cd6bca0a1ea5e",
+        catId: "623224e2e95cd6bca0a1ea4f",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      },
+      {
+        _id: "62322511e95cd6bca0a1ea5a",
+        catId: "623224e2e95cd6bca0a1ea4x",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      },
+      {
+        _id: "62322511e95cd6bca0a1ea5b",
+        catId: "623224e2e95cd6bca0a1ea4y",
+        name: "sub cat",
+        status: "active",
+        user: "602a51c8e01db5f4db409279"
+      }
+    ],
+    icon: "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoG…",
+    name: "Formulas",
+    status: "active",
+    user: {
+      Address: {
+        address1: "sterrebos 12",
+        address2: "undefined",
+        address3: "undefined",
+        city: "oss",
+        country: "Netherlands",
+        state: "undefined",
+        zip: "5344AM"
+      },
+      _id: "602a51c8e01db5f4db409279",
+      
+    }
+  }
+];
+
+// Data..
+const data = [
+  {
+    id: 1,
+    content:
+      "This is category 1. Clicking on here will called CategoryTopics",
+    replyComments: [{ data: "first" }, { data: "second comment" }],
+    stars: [{ data: "first star" }, { data: "second Star" }],
+  },
+  {
+    id: 2,
+    content:
+      "This is category 2. Clicking on here will called CategoryTopics",
+    replyComments: [{ data: "first" }, { data: "second comment" }],
+    stars: [{ data: "first star" }, { data: "second Star" }],
+  },
+  {
+    id: 3,
+    content:
+      "This is category 3. Clicking on here will called CategoryTopics",
+    replyComments: [{ data: "first" }, { data: "second comment" }],
+    stars: [{ data: "first star" }, { data: "second Star" }],
+  },
+];
+
+// Category Data..
+const categoryData = [
+  {
+    id: 1,
+    conent:
+      "Tutorial topics that describe how to set up, configure, or install Discourse using a specific platform or environment. Topics in this category may only be created by trust level 2 and up.",
+    title: "howto",
+    color: "green",
+    topics: 4,
+    tags: [
+      {
+        title: "faq",
+        color: "#D0232B",
+      },
+      {
+        color: "#F15D22",
+        title: "admins",
+      },
+    ],
+  },
+];
+
 // Latest Data..
 const latestData = [
   {
     id: 1,
+    replies: 15,
+    title: "Our default branch is main now",
+    tags: [
+      {
+        title: "dev",
+        color: "black",
+      },
+    ],
+  },
+  {
+    id: 2,
+    replies: 15,
+    title: "Our default branch is main now",
+    tags: [
+      {
+        title: "dev",
+        color: "black",
+      },
+    ],
+  },
+  {
+    id: 3,
+    replies: 15,
+    title: "Our default branch is main now",
+    tags: [
+      {
+        title: "dev",
+        color: "black",
+      },
+    ],
+  },
+  {
+    id: 4,
     replies: 15,
     title: "Our default branch is main now",
     tags: [
@@ -79,10 +250,14 @@ class ForumHome extends Component {
 
   async getforumSubCats() {
     const { data: forumsubcats } = await getForumSubCats();
-    this.setState({ forumsubcats: forumsubcats });
-    console.log("state subcats", this.state.forumsubcats);
-    console.log("subcats", forumsubcats);
-    this.setState({ loading: false });
+
+    console.log('Fetching Data forums subcates');
+
+
+    // this.setState({ forumsubcats: forumsubcats });
+    // console.log("state subcats", this.state.forumsubcats);
+    // console.log("subcats", forumsubcats);
+    // this.setState({ loading: false });
   };
 
 
@@ -123,7 +298,7 @@ class ForumHome extends Component {
   }
 
 
-
+  // The Render Method..
   render() {
     const dirtoReal = false;
 
@@ -250,7 +425,8 @@ class ForumHome extends Component {
 
           {/* ------- Content -------- */}
           <Box>
-            <CategoryTable 
+            <CategoryTable
+              commentLists={commentLists}
               latestData={latestData}
             />
           </Box>
