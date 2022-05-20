@@ -1,36 +1,36 @@
 import http from './httpService'; 
-import {repliesUrl} from './../config/config.json';
-const repliesEndpoint = repliesUrl+'/actions';
+import {apiUrl} from './../config/config';
+const repliesEndpoint = apiUrl.url+'/replies';
 
 
-  function actionUrl(id) {
+  function replyUrl(id) {
     return `${repliesEndpoint}/${id}`;
   }
   
-  export function getActions() {
-    return http.get(repliesEndpoint);
+  export function getReplies(postId) {
+    return http.get(`${repliesEndpoint}/post/${postId}`);
   }
   
-  export function getAction(Id) {
-    return http.get(actionUrl(Id));
+  export function getReply(Id) {
+    return http.get(replyUrl(Id));
   }
   
-  export function saveAction(action) {
+  export function saveReply(reply) {
     //clone
-    const body = { ...action };
+    const body = { ...reply };
     console.log(body);
    //update
-   if (action.id) {
+   if (reply._id) {
      //delete _id
-     delete body.id;
-     return http.put(actionUrl(action.id),body);
+     delete body._id;
+     return http.put(replyUrl(reply._id),body);
    }
  
    //add a new action
-   return http.post(repliesEndpoint, action);
+   return http.post(repliesEndpoint, reply);
  }
   
   //delete actions
-  export function deleteAction(Id) {
-    return http.delete(actionUrl(Id));
+  export function deleteReply(Id) {
+    return http.delete(replyUrl(Id));
   }  

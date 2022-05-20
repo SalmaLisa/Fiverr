@@ -12,6 +12,10 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
+import {getPost,savePost} from './../../services/posts';
+import {getReplies} from './../../services/replies';
+import { getForumSubCats } from './../../services/forumsubcategories';
+
 function NoteDetail() {
   const [Post, setPost] = useState({
     user: {},
@@ -26,8 +30,8 @@ function NoteDetail() {
   const [myName, setMyName] = useState("");
   const [alertMessage, setAlertMessage] = useState({ type: "", message: "" });
   const [replyName, setReplyName] = useState("");
-
-  const forums = [
+  const [forumsubcats, setForumsubcats] = useState([]);
+/*   const forums = [
     {
       _id: "10eba340-d01c-11eb-b8bc-0242ac130003",
       title: "Hip Replacement",
@@ -46,7 +50,7 @@ function NoteDetail() {
       details: "Brain and nerves",
       icon: "fas fa-brain fa-1x",
     },
-  ];
+  ]; */
 
   let params = useParams();
   let { name } = useParams();
@@ -55,6 +59,29 @@ function NoteDetail() {
   let location = useLocation();
 
   const loadPage = async () => {
+    //get the main post of the page
+
+    const { data: post } = await getPost(postId);
+    setPost(post);
+    setMyName(post.user.username);
+    //Get replies for the post
+    const { data: replies } = await getReplies(postId);
+
+    replies.forEach((element) => {
+      element.createdAt = new Date(element.createdAt)
+        .toString()
+        .substring(4, 15);
+      element.updatedAt = new Date(element.updatedAt)
+        .toString()
+        .substring(4, 15);
+    });
+    setReplyResult(replies);
+    let replyArray = replies.length;
+    setNumberReply(replyArray);
+  };
+
+
+  /* const loadPage = async () => {
     //get the main post of the page
     var apiGetPost = await fetch(
       `http://localhost:8080/api/post/${postId}`
@@ -87,7 +114,25 @@ function NoteDetail() {
     e.preventDefault();
     setShowForm(false);
     setEditPost(false);
+  }; */
+
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    setShowForm(false);
+    setEditPost(false);
   };
+
+
+   const getforumSubCats = async ()=>{
+    const {data:forumSubcats} = await getForumSubCats();
+    setForumsubcats(forumSubcats);
+   
+    };
+
+
+
+
 
   //SubmitForm for the Post reply
   const submitReplyForm = (e) => {
@@ -130,53 +175,62 @@ function NoteDetail() {
   const handleForumIDEdit = async (forum_id) => {
     // e.preventDefault()
     let editForumId = {
-      postId: Post._id,
-      userId: Post.userId,
-      forum_id: forum_id,
+      _id: Post._id,
+      user: Post.user,
+      forumId: forum_id,
+      threadStatus: Post.threadStatus,
+      slug: Post.slug,
+      title: Post.title,
+      message: Post.message,
     };
+    await savePost(editForumId);
 
     console.log(editForumId);
 
-    const apiReply = await fetch("http://localhost:8080/api/editPostForumId", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editForumId),
-    }).then((result) => result.json());
+  
     window.location.href = "/forum";
   };
 
   //handle threadStatus
   const handleThreadStatus = async (e) => {
-    let editThreadStatus = {};
+    let editThreadStatus = {
+      _id: Post._id,
+      user: Post.user,
+      forumId: Post.forum_id,
+      threadStatus: Post.threadStatus,
+      slug: Post.slug,
+      title: Post.title,
+      message: Post.message,
+    };
 
     if (Post.threadStatus == "open") {
       // confusion var or let
-      editThreadStatus = {
-        postId: Post._id,
-        userId: Post.userId,
-        threadstatus: "closed",
-      };
+      // editThreadStatus = {
+      //   postId: Post._id,
+      //   userId: Post.userId,
+      //   threadstatus: "closed",
+      // };
+      editThreadStatus.threadStatus = "closed";
     } else {
-      editThreadStatus = {
-        postId: Post._id,
-        userId: Post.userId,
-        threadstatus: "open",
-      };
+      // editThreadStatus = {
+      //   postId: Post._id,
+      //   userId: Post.userId,
+      //   threadstatus: "open",
+      // };
+      editThreadStatus.threadStatus = "open";
     }
 
     console.log(editThreadStatus);
 
-    const apiReply = await fetch("http://localhost:8080/api/editThreadStatus", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editThreadStatus),
-    }).then((result) => result.json());
+    // const apiReply = await fetch("http://localhost:8080/api/editThreadStatus", {
+    //   method: "post",
+    //   headers: {
+    //     Accept: "application/json, text/plain, */*",
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(editThreadStatus),
+    // }).then((result) => result.json());
+    await savePost(editThreadStatus);
     window.location.reload();
   };
 
@@ -424,7 +478,7 @@ function NoteDetail() {
                               class="dropdown-menu"
                               aria-labelledby="dropdownMenuButton"
                             >
-                              {forums
+                              {forumsubcats
                                 .filter((x) => x._id != Post.forum_id)
                                 .map((y) => (
                                   <button

@@ -1,14 +1,62 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import { FaRegEnvelope } from 'react-icons/fa'
+import { FaRegEnvelope } from 'react-icons/fa';
+import {recoverUser} from '../../../services/users';
 
 function RecoverPassBox() {
+
+    const [email, setEmail] = useState('');
+    const [dialogue, setDialogue] = useState(null);
+    const [success, setSuccess] = useState(true);
+
+    const clearInput = () => {
+        setEmail('');
+    }
+
+    const showDialogue = (_dialogue, success) => {
+        setDialogue(_dialogue);
+        if(success !== null)
+        {
+            setSuccess(success);
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await recoverUser(email);
+            console.log(res);
+            showDialogue(`Email sent to ${email}`, true);
+            clearInput();
+        } catch (error) {
+            // console.log(error.response.data);
+            showDialogue(error.response.data, false);
+        }
+    }
+
+    const handleChange = (e) => {
+        setEmail(e.target.value);
+        setDialogue(null);
+    }
+
     return (
         <>
             <section className="form-shared padding-top-40px padding-bottom-100px">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8 mx-auto">
+                    <>
+                    {(dialogue !== null)? success?
+                        <div class="alert alert-success" role="alert">
+                            {dialogue}
+                        </div>
+                        :
+                        <div class="alert alert-danger" role="alert">
+                            {dialogue}
+                        </div>
+                        :null
+                    }
+                    </>
+                    <div>
+                        <div>
                             <div className="billing-form-item mb-0  shadow-sm">
                                 <div className="billing-title-wrap">
                                     <h3 className="widget-title font-size-28">Recover Password!</h3>
@@ -20,12 +68,12 @@ function RecoverPassBox() {
                                 </div>
                                 <div className="billing-content">
                                     <div className="contact-form-action">
-                                        <form method="post">
+                                        <form onSubmit = {handleSubmit}>
                                             <div className="input-box">
                                                 <label className="label-text">Your Email</label>
                                                 <div className="form-group">
                                                     <span className="la form-icon"><FaRegEnvelope /></span>
-                                                    <input className="form-control" type="email" name="text" placeholder="Enter email address" />
+                                                    <input className="form-control" required type="email" name="text" value = {email} onChange = {handleChange} placeholder="Enter email address" />
                                                 </div>
                                             </div>
                                             <div className="btn-box margin-top-20px margin-bottom-20px">

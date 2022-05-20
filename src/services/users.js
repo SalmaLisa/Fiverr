@@ -11,6 +11,12 @@ const apiEndpoint = apiUrl.url+'/users';
   function userUrl(id) {
     return `${apiEndpoint}/${id}`;
   }
+
+  export function recoverUser(email){
+    return http.post(`${apiEndpoint}/recover`, {
+      email: email
+    });
+  }
   
   export function getUsers() {
     return http.get(apiEndpoint);

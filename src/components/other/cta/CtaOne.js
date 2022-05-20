@@ -2,7 +2,7 @@ import React from 'react';
 import SectionsHeading from "../../common/SectionsHeading";
 import { AiOutlineApple, AiFillAndroid } from 'react-icons/ai'
 import Button from "../../common/Button";
-import sectiondata from "../../../store/store";
+import sectiondata from "../../../store/menu";
 
 export default function CtaOne() {
     return (
