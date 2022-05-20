@@ -1,46 +1,40 @@
-import React from "react"
+import React from "react";
 import ListingDetailsComments from "../components/contact/ListingDetailsComments";
 import BlogCommentFields from "../components/blogs//BlogCommentFields";
 // import sectiondata from "../store/store";
-import { CommentData } from "../store/CommentData"
+import { CommentData } from "../store/CommentData";
+import CommentsTable from "../components/contact/CommentsTable";
 
-const Comment = (props) =>{
-    return(
-        <div style={{ marginTop: "-4em", color: "black"}}>
-            <div className="comments-wrap">
-                            
-                <h2 className="widget-title">
-                    3 Comments
-                </h2>
-                
-                <div className="title-shape"></div>
+const Comment = (props) => {
+  return (
+    <div style={{ marginTop: "-4em", color: "black" }}>
+      <div className="comments-wrap">
+        <h2 className="widget-title">3 Comments</h2>
 
-                <ListingDetailsComments 
-                    commentlists={CommentData} />
+        <div className="title-shape"></div>
 
-            </div>
+        {/* <ListingDetailsComments commentlists={CommentData} /> */}
+        <CommentsTable commentLists={CommentData} />
+      </div>
 
-            <div className="add-review-listing padding-top-50px">
+      <div className="add-review-listing padding-top-50px">
+        <h2 className="widget-title">Add a Comment</h2>
 
-                <h2 className="widget-title">
-                    Add a Comment
-                </h2>
-                
-                <div className="title-shape"></div>
-                
-                <div className="section-heading padding-top-10px">
-                    <p className="sec__desc font-size-16">
-                        Your email address will not be published. 
-                        Required fields are marked *
-                    </p>
-                </div>
+        <div className="title-shape"></div>
 
-                <div className="contact-form-action mt-3">
-                    <BlogCommentFields />
-                </div>
-            </div>
+        <div className="section-heading padding-top-10px">
+          <p className="sec__desc font-size-16">
+            Your email address will not be published. Required fields are marked
+            *
+          </p>
         </div>
-    )
-}
 
-export default Comment
+        <div className="contact-form-action mt-3">
+          <BlogCommentFields />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Comment;
