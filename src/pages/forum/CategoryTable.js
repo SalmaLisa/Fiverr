@@ -40,6 +40,7 @@ const useStyles = makeStyles({
   },
 });
 
+// Comments of table..
 const CommentsTable = ({ commentLists, latestData }) => {
   const history = useHistory();
   const classes = useStyles();
@@ -60,11 +61,17 @@ const CommentsTable = ({ commentLists, latestData }) => {
   // Returning statement..
   return (
     <Box backgroundColor="red" className="container mt-5">
+
+      {/* ---- Beadcrumb Container ---- */}
       <div className="breadcrumbContainer">
         <Breadcrumbs aria-label="breadcrumb">
+
+          {/* ---- Forum ---- */}
           <Link underline="hover" className="linkStyle" onClick={() => history.push("/forum-front1/forums")} >
             <Typography color="text.primary" und >Forum</Typography>
           </Link>
+
+          {/* ---- Category ---- */}
           <Link
             underline="hover"
             className="linkStyle"
@@ -72,6 +79,8 @@ const CommentsTable = ({ commentLists, latestData }) => {
           >
             <Typography color="text.primary" und >Category</Typography>
           </Link>
+
+          {/* ---- Topic ---- */}
           <Link
             underline="hover"
             className="linkStyle"
@@ -83,7 +92,6 @@ const CommentsTable = ({ commentLists, latestData }) => {
       </div>
       { /*  <HeaderTables1 />*/}
       <Box marginLeft='1%'>
-
         <TableContainer className={classes.container} component={Paper}  >
           <Table className={classes.table}>
             <TableHead >
@@ -166,8 +174,18 @@ const CommentsTable = ({ commentLists, latestData }) => {
                   <TableCell  >
 
                     <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content' >
-                      {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
-                      <img src={"/assets/img/user/user-3.jpg"} className='avatar1' />
+                      {/* ---- Content of user and avatar ---- */}
+                      <div className="d-block">
+                        {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
+                        <img src={'./images/user/user-1.jpg'} className='avatar1' />
+
+                        {/* ---- Put the user First and Last name ---- */}
+                        <p className='text-muted text-capitalize '>
+                          <span>asad</span>
+                          <span> </span>
+                          <span>anik</span>
+                        </p>
+                      </div>
 
                       <Box width="90%" >
                         <div className='titre1'>{comment.title}</div>
@@ -209,6 +227,8 @@ const CommentsTable = ({ commentLists, latestData }) => {
           </Table>
 
         </TableContainer>
+
+        {/*--------- Pagination here --------*/}
         <div className="paginationContainer" >
           <Pagination count={4} color="primary" />
         </div>
