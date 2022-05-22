@@ -345,11 +345,11 @@ const sectiondata = {
             content: 'All the top locations – from restaurants and clubs, to galleries, famous places and more...',
             bgimage: bannerbg1
         },
-        banner4: {
-            sectitle: 'Find The Best Places To Be',
-            seccontent: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
-            //videobgsrc: slicevideo,
-        },
+        // banner4: {
+        //     sectitle: 'Find The Best Places To Be',
+        //     seccontent: 'Discover the best places to stay, eat, shop & visit the city nearest to you.',
+        //     videobgsrc: slicevideo,
+        // },
     },
     categories: {
         featuredcategories: {
