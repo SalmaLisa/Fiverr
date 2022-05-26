@@ -19,6 +19,8 @@ import { Link, useHistory } from "react-router-dom";
 //import HeaderTables1 from "./HeaderTables1";
 import "./CategoryTable.css";
 import { Pagination } from "@mui/material";
+import HeaderTable from './HeaderTable';
+import HeaderTable2 from './HeaderTable2';
 
 // Styles..
 const useStyles = makeStyles({
@@ -91,6 +93,11 @@ const CommentsTable = ({ commentLists, latestData }) => {
         </Breadcrumbs>
       </div>
       { /*  <HeaderTables1 />*/}
+
+      {/* ----- The Header Table there ----- */}
+      {/* <HeaderTable /> */}
+      <HeaderTable2 />
+
       <Box marginLeft='1%'>
         <TableContainer className={classes.container} component={Paper}  >
           <Table className={classes.table}>
@@ -181,9 +188,9 @@ const CommentsTable = ({ commentLists, latestData }) => {
 
                         {/* ---- Put the user First and Last name ---- */}
                         <p className='text-muted text-capitalize '>
-                          <span>asad</span>
+                          <span>tcm</span>
                           <span> </span>
-                          <span>anik</span>
+                          <span>tcm</span>
                         </p>
                       </div>
 
