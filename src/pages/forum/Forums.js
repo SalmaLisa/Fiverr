@@ -5,6 +5,8 @@ import Posts from "./forum_components/Posts";
 import axios from "axios";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import { useParams, Link } from "react-router-dom";
+// import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import AddIcon from '@material-ui/icons/Add';
 
 import "../assets/css/forum/forums.css";
 
@@ -16,7 +18,7 @@ import MainPostForm from "./forum_components/MainPostForm";
 
 import auth from "./../../services/authservice";
 import { getUser } from './../../services/users';
-import {getPostsData} from './../../services/posts';
+import { getPostsData } from './../../services/posts';
 
 const Forums = () => {
   const [postsResult, setpostsResult] = useState([]);
@@ -52,14 +54,14 @@ const Forums = () => {
   };
 
 
-  const getCurrentUser = async ()=>{
-    const user = auth.getProfile();	
-    if(user){
-    const {data:currentUser} = await getUser(user._id);
-    setCurrentUser(currentUser);
+  const getCurrentUser = async () => {
+    const user = auth.getProfile();
+    if (user) {
+      const { data: currentUser } = await getUser(user._id);
+      setCurrentUser(currentUser);
+    }
   }
-  }
- 
+
 
 
   //   this gets envoked on clicking the new post button
@@ -86,11 +88,11 @@ const Forums = () => {
     e.preventDefault();
     if (currentUser) {
       setShowForm(true);
-    } else{
+    } else {
       alertFailure(
         "Dear guest, feel free to visit, to participate please register"
       );
-    } 
+    }
   };
 
 
@@ -104,7 +106,7 @@ const Forums = () => {
     //
     apiGetPosts = apiGetPosts.filter((el) => el.forumId == forum_id);
     console.log(apiGetPosts, "after filter");
-   
+
     apiGetPosts.forEach((element) => {
       element.createdAt = new Date(element.createdAt)
         .toString()
@@ -153,18 +155,29 @@ const Forums = () => {
       <div className="content pt-0">
         <div className="container">
           <div className="row">
-            <div className="col-lg-10">
+            <div className="col-lg-12">
               {/* go back button */}
 
               <div className="row mt-2"></div>
               {/* go back button */}
               {/* new post button */}
+
+              {/* ---- Create Topic ---- */}
               <div class="">
                 {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
                 <div className="row  mx-auto justify-content-between mb-1 mt-5">
                   <Link className="btn btn-secondary" to="/forum">
                     Go Back
                   </Link>
+
+                  {/* ---- Create Topic Button ---- */}
+                  <div className="HeaderTablesDiv1">
+                    <button className="HeaderTablesDiv1Btn1">
+                      <div className="textStyle">Create Topic</div>
+                      <AddIcon />
+                    </button>
+                  </div>
+                  
                   <button
                     class="btn btn-primary "
                     style={{}}

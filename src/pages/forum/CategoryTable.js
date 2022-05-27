@@ -19,7 +19,7 @@ import { Link, useHistory } from "react-router-dom";
 //import HeaderTables1 from "./HeaderTables1";
 import "./CategoryTable.css";
 import { Pagination } from "@mui/material";
-import HeaderTable from './HeaderTable';
+// import HeaderTable from './HeaderTable';
 import HeaderTable2 from './HeaderTable2';
 
 // Styles..
