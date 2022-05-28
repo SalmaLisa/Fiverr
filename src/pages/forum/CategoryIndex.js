@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 });
 
 // Comments of table..
-const CommentsTable = ({ commentLists, latestData }) => {
+const CommentsTable = ({ categoriesData, latestData }) => {
   const history = useHistory();
   const classes = useStyles();
   const opencomment = (id) => {
@@ -89,28 +89,26 @@ const CommentsTable = ({ commentLists, latestData }) => {
 
       <Box marginLeft='1%'>
         <TableContainer className={classes.container} component={Paper}  >
+
+          {/* ---- 1st part of table ---- */}
           <Table className={classes.table}>
             <TableHead >
               <TableRow style={{ borderBottom: '3px solid lightgray', borderLeft: "none" }} >
                 <TableCell width="75%" style={{ color: "#a9a9a9", fontWeight: '600', fontSize: '0.7rem' }}>Topics</TableCell>
                 <TableCell align="center" style={{ color: "#a9a9a9", fontWeight: '600', fontSize: '0.7rem' }}>Latest</TableCell>
-
-
               </TableRow>
             </TableHead>
+
             <TableBody>
-              {commentLists.length > 0 && commentLists.map((comment, index) => (
+              {categoriesData.length > 0 && categoriesData.map((comment, index) => (
                 <TableRow key={comment._id}>
                   <TableCell style={{ borderLeft: `solid 7px ${comment.color}` }}>
                     <Box onClick={() => opencomment(comment._id)} >
-
                       <Box
                         display="flex"
                         flexDirection="column"
                         justifyContent="space-between"
                         style={{ cursor: "pointer" }}
-
-
                       >
                         <Typography variant="h4">{comment.name}</Typography>
                         <Typography variant="body1">{comment.description}</Typography>
@@ -148,22 +146,20 @@ const CommentsTable = ({ commentLists, latestData }) => {
 
             </TableBody>
           </Table>
-
+          
+          {/* ----- 2nd Part of table ----- */}
           <Table className={classes.table}>
             <TableHead >
               <TableRow style={{ borderBottom: '3px solid lightgray', borderLeft: "none" }} >
                 <TableCell width="80%" style={{ color: "#a9a9a9", fontWeight: '600', fontSize: '0.7rem' }}>Topics</TableCell>
                 <TableCell width="5%" style={{ color: "#a9a9a9", fontWeight: '600', fontSize: '0.7rem' }}>Views</TableCell>
                 <TableCell width="15%" style={{ color: "#a9a9a9", fontWeight: '600', fontSize: '0.7rem' }}>Replies</TableCell>
-
-
               </TableRow>
             </TableHead>
+
+            {/* ---- Latest Data ---- */}
             <TableBody>
               {latestData.length > 0 && latestData.map((comment, key) => (
-
-
-
                 <TableRow>
                   <TableCell  >
 

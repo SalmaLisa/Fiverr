@@ -12,96 +12,6 @@ import Spinner from '../../components/spinner';
 
 
 //  --------======== DEMO DATA ========------
-// commentLists..
-const commentLists = [
-  {
-    _id: "623224e2e95cd6bca0a1ea4f",
-    description: "Herbal Fromulas of TCM Files will be listed in alphabetical order",
-    forumSubcategories: [
-      {
-        _id: "62322511e95cd6bca0a1ea5e",
-        catId: "623224e2e95cd6bca0a1ea4f",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      },
-      {
-        _id: "62322511e95cd6bca0a1ea5a",
-        catId: "623224e2e95cd6bca0a1ea4x",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      },
-      {
-        _id: "62322511e95cd6bca0a1ea5b",
-        catId: "623224e2e95cd6bca0a1ea4y",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      }
-    ],
-  
-    name: "Accuptions",
-    status: "active",
-    user: {
-      Address: {
-        address1: "sterrebos 12",
-        address2: "undefined",
-        address3: "undefined",
-        city: "oss",
-        country: "Netherlands",
-        state: "undefined",
-        zip: "5344AM"
-      },
-      _id: "602a51c8e01db5f4db409279",
-      
-    }
-  }, 
-  {
-    _id: "623224e2e95cd6bca0a1ea4f",
-    description: "Herbal Fromulas of TCM Files will be listed in alphabetical order",
-    forumSubcategories: [
-      {
-        _id: "62322511e95cd6bca0a1ea5e",
-        catId: "623224e2e95cd6bca0a1ea4f",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      },
-      {
-        _id: "62322511e95cd6bca0a1ea5a",
-        catId: "623224e2e95cd6bca0a1ea4x",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      },
-      {
-        _id: "62322511e95cd6bca0a1ea5b",
-        catId: "623224e2e95cd6bca0a1ea4y",
-        name: "sub cat",
-        status: "active",
-        user: "602a51c8e01db5f4db409279"
-      }
-    ],
-    icon: "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoG…",
-    name: "Formulas",
-    status: "active",
-    user: {
-      Address: {
-        address1: "sterrebos 12",
-        address2: "undefined",
-        address3: "undefined",
-        city: "oss",
-        country: "Netherlands",
-        state: "undefined",
-        zip: "5344AM"
-      },
-      _id: "602a51c8e01db5f4db409279",
-      
-    }
-  }
-];
-
 // Data..
 const data = [
   {
@@ -200,8 +110,11 @@ const latestData = [
 
 // Component of ForumHome..
 class ForumHome extends Component {
+  // Constructor method..
   constructor(props) {
     super(props);
+
+    // State..
     this.state = {
       forumsubcats: [],
       postsResult: [],
@@ -220,7 +133,7 @@ class ForumHome extends Component {
 
   }
 
-
+  // Get forum categories..
   async getforumCats() {
     const { forum_cat_id } = this.props.match.params;
     const { pathname, state } = this.props.location;
@@ -242,17 +155,13 @@ class ForumHome extends Component {
       });
     }
 
-
     this.setState({
       forumcats
     });
-
-
-
   };
 
 
-
+  // Get forum sub-categories..
   async getforumSubCats() {
     const { data: forumsubcats } = await getForumSubCats();
 
@@ -295,7 +204,7 @@ class ForumHome extends Component {
   };
 
 
-
+  // Calling all async functions..
   async componentDidMount() {
     await this.getforumCats();
     await this.getforumSubCats();
@@ -305,144 +214,45 @@ class ForumHome extends Component {
 
   // The Render Method..
   render() {
-    const dirtoReal = false;
+    // Necessary States..
+    const { forumsubcats, forumcats, forumId, loading } = this.state;
 
-    console.log('ForumCats -- ', this.state.forumcats);
+    console.log('Testing with ForumCats', forumcats);
+    console.log('TEST - forumsubcats -> ', forumsubcats);
 
-    const { forumsubcats, forumcats, postsResult, lastName, lastUpdated, forumId, forumCatName, loading } = this.state;
-
-    if (this.state.loading === true) {
+    if (loading) {
       return (
-        <Spinner 
+        <Spinner
           color="black"
           size={80}
         />
       );
     }
 
-    console.log(this.state.forumsubcats);
+    // Write your code here..
+    return (
+      <React.Fragment>
+        {/* ----- Header ------ */}
+        <div
+          style={{
+            backgroundColor: "#333F57",
+            width: "100%",
+            height: "80px",
+          }}
+        >
+          <GeneralHeader />
+        </div>
 
-    if (dirtoReal) {
-      return (
-        <>
-          {/* hearder */}
-          <div
-            style={{
-              backgroundColor: "#333F57",
-              width: "100%",
-              height: "80px",
-            }}
-          >
-            <GeneralHeader />
-          </div>
-          {/* hearder */}
-          <div className="container mt-5">
-            <div className="row">
-              <div className=""></div>
-              {/*  topic starts */}
-              <div className="col-lg-10 mt-4">
-                {/* 1nd group starts */}
-                <div className="col-lg-10">
-                  <h2 className="mb-3">{forumCatName}</h2>
-                  <div className="card card-forum">
-                    <ul className="forum-list forum-topic-list">
+        {/* ------- Content -------- */}
+        <Box>
+          <CategoryTable
+            categoriesData={forumcats}
+            latestData={latestData}
+          />
+        </Box>
 
-                      {
-
-                        forumsubcats.filter(
-                          (el) =>
-                            //el.cat_id.includes(forum_cat_id) === true
-
-                            el.cat_id === forumId
-                        )
-                          .map((el) => (
-                            <li>
-                              <div className="media">
-                                <i class={`${el.icon}`}></i>{" "}
-                              </div>
-                              <div className="info-container">
-                                <div className="info">
-                                  <h3 className="title">
-                                    <Link to={`/forum/${el._id}`}>{el.name}</Link>
-                                  </h3>
-                                  <ul className="info-start-end">
-                                    <li>{el.description}</li>
-                                    <li>
-                                      latest post by{" "}
-                                      <Link to="/el-detail">
-                                        {postsResult.length != 0
-                                          ? postsResult.filter(
-                                            // e is element of Posts
-                                            // el is element of forums
-                                            (e) => e.forumId == el._id
-                                          ).length == 0
-                                            ? ""
-                                            : postsResult.filter(
-                                              (e) => e.forumId == el._id
-                                            )[0].name
-                                          : ""}
-                                      </Link>
-                                    </li>
-                                  </ul>
-                                </div>
-                                <div className="date-replies">
-                                  <div className="replies">
-                                    <div className="total">
-                                      {postsResult.length != 0
-                                        ? postsResult.filter(
-                                          (e) => e.forumId == el._id
-                                        ).length
-                                        : ""}
-                                    </div>
-                                    <div className="text"> POSTS</div>
-                                  </div>
-                                </div>
-                              </div>
-                            </li>
-                          ))
-
-
-                      }
-
-                    </ul>
-                  </div>
-                  <div className="mt-5">
-                    <ForumCategories
-                      forumcats={forumcats}
-                      updateForumCatName={(ele) => this.setState({ lastName: ele })}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </>
-      );
-    } else {
-      // Write your code here..
-      return (
-        <React.Fragment>
-          {/* ----- Header ------ */}
-          <div
-            style={{
-              backgroundColor: "#333F57",
-              width: "100%",
-              height: "80px",
-            }}
-          >
-            <GeneralHeader />
-          </div>
-
-          {/* ------- Content -------- */}
-          <Box>
-            <CategoryTable
-              commentLists={commentLists}
-              latestData={latestData}
-            />
-          </Box>
-
-          {/* Old Design */}
-          {/* <div className="container mt-5">
+        {/* Old Design */}
+        {/* <div className="container mt-5">
             <div className="row">
               <div className=""></div>
               
@@ -463,11 +273,8 @@ class ForumHome extends Component {
           </div> */}
 
 
-        </React.Fragment>
-      );
-
-
-    }
+      </React.Fragment>
+    );
 
   }
 }
