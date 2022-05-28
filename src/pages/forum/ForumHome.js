@@ -7,7 +7,7 @@ import { getForumSubCats } from './../../services/forumsubcategories';
 import { getForumCats } from './../../services/forumcategories';
 import { Box } from '@material-ui/core';
 import ForumSubCategories from './ForumSubCategories';
-import CategoryTable from './CategoryTable';
+import CategoryTable from './CategoryIndex';
 import Spinner from '../../components/spinner';
 
 
