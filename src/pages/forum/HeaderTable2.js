@@ -2,7 +2,7 @@ import React from "react";
 import './HeaderTable2.css'
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import SearchForum from "./SearchForum";
-// import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@material-ui/icons/Add';
 
 
 const HeaderTable = () => {
@@ -10,10 +10,10 @@ const HeaderTable = () => {
     <div className="HeaderTables">
 
       <div className="HeaderTablesDiv1">
-        {/* <button className="HeaderTablesDiv1Btn1">
+        <button className="HeaderTablesDiv1Btn1">
           <div className="textStyle">Create Topic</div>
           <AddIcon />
-        </button> */}
+        </button>
 
         <button className="HeaderTablesDiv1Btn">
           <div className="textStyle">All Categories</div>
