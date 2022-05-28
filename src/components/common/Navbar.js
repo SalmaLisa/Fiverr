@@ -64,7 +64,7 @@ const headermenu = [
     },
     {
         path:'/forum',
-        title:'Forms',
+        title:'Forum',
         dropdown:[
             {
                 path: '/',
