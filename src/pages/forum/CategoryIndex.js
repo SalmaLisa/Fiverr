@@ -1,23 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  Box,
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Typography,
-  Breadcrumbs,
-} from "@material-ui/core";
+import {Box,TableContainer,Paper,Table,TableHead,TableRow,TableCell,TableBody,Typography,Breadcrumbs,} from "@material-ui/core";
 //import Image from 'mui-image' module not found ( it is not even being used )
 //import avatar from '../../assets/Icons/avatar.png'
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { Link, useHistory } from "react-router-dom";
 //import HeaderTables1 from "./HeaderTables1";
-import "./CategoryTable.css";
+import "./CategoryIndex.css";
 import { Pagination } from "@mui/material";
 // import HeaderTable from './HeaderTable';
 import HeaderTable2 from './HeaderTable2';
@@ -155,8 +144,6 @@ const CommentsTable = ({ commentLists, latestData }) => {
 
 
               ))}
-
-
 
 
             </TableBody>
