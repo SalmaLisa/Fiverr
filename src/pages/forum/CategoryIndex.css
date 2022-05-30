@@ -43,13 +43,12 @@
     
     }
     .avatar1{
-    width: 60px;
-    height: 50px;
+    width: 65px;
+    height: 60px;
     object-fit: contain;
-    border: 1px solid black;
-    border-radius: 50%;
-    margin-right: 10px;
-    
+    border: 1px solid rgb(240, 238, 238);
+    border-radius: 100%;
+    margin-right: 2rem;
     }
     .right1{
         width: 80%;
