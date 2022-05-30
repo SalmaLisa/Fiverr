@@ -167,13 +167,13 @@ const CommentsTable = ({ categoriesData, latestData }) => {
                       {/* ---- Content of user and avatar ---- */}
                       <div className="d-block">
                         {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
-                        <img src={'./images/user/user-1.jpg'} className='avatar1' />
-
+                        <img src={`${comment.user.imageSrc}`} className='avatar1' />
+      
                         {/* ---- Put the user First and Last name ---- */}
                         <p className='text-muted text-capitalize '>
-                          <span>tcm</span>
+                          <span>{comment.user.contactName.first}</span>
                           <span> </span>
-                          <span>tcm</span>
+                          <span>{comment.user.contactName.last}</span>
                         </p>
                       </div>
 

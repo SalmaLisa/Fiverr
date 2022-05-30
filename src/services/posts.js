@@ -1,10 +1,17 @@
 import http from './httpService'; 
 import {apiUrl} from './../config/config';
+
+// EndPoints..
 const postsEndpoint = apiUrl.url+'/posts';
+const topicsEndpoint = apiUrl.url+'/topics';
 
 
   function postUrl(id) {
     return `${postsEndpoint}/${id}`;
+  }
+
+  export function getTopics(){
+    return http.get(topicsEndpoint+'/data');
   }
   
   export function getPosts() {

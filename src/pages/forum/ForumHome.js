@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
 import ForumCategories from "./ForumCategories";
-import { getPostsData } from './../../services/posts';
+import { getPostsData, getTopics } from './../../services/posts';
 import { getForumSubCats } from './../../services/forumsubcategories';
 import { getForumCats } from './../../services/forumcategories';
 import { Box } from '@material-ui/core';
@@ -12,53 +12,6 @@ import Spinner from '../../components/spinner';
 
 
 //  --------======== DEMO DATA ========------
-// Data..
-const data = [
-  {
-    id: 1,
-    content:
-      "This is category 1. Clicking on here will called CategoryTopics",
-    replyComments: [{ data: "first" }, { data: "second comment" }],
-    stars: [{ data: "first star" }, { data: "second Star" }],
-  },
-  {
-    id: 2,
-    content:
-      "This is category 2. Clicking on here will called CategoryTopics",
-    replyComments: [{ data: "first" }, { data: "second comment" }],
-    stars: [{ data: "first star" }, { data: "second Star" }],
-  },
-  {
-    id: 3,
-    content:
-      "This is category 3. Clicking on here will called CategoryTopics",
-    replyComments: [{ data: "first" }, { data: "second comment" }],
-    stars: [{ data: "first star" }, { data: "second Star" }],
-  },
-];
-
-// Category Data..
-const categoryData = [
-  {
-    id: 1,
-    conent:
-      "Tutorial topics that describe how to set up, configure, or install Discourse using a specific platform or environment. Topics in this category may only be created by trust level 2 and up.",
-    title: "howto",
-    color: "green",
-    topics: 4,
-    tags: [
-      {
-        title: "faq",
-        color: "#D0232B",
-      },
-      {
-        color: "#F15D22",
-        title: "admins",
-      },
-    ],
-  },
-];
-
 // Latest Data..
 const latestData = [
   {
@@ -117,7 +70,7 @@ class ForumHome extends Component {
     // State..
     this.state = {
       forumsubcats: [],
-      postsResult: [],
+      topicsResult: [],
       lastName: "",
       lastUpdated: "hi",
       forumcats: [],
@@ -175,13 +128,15 @@ class ForumHome extends Component {
   };
 
 
+  // After loadPage we will get Posts data also..
   async loadPage() {
-    const { data: apiGetPosts } = await getPostsData();
+    const { data: apiGetTopics } = await getTopics();
+    // const { data: apiGetPosts } = await getPosts();
 
-    if (apiGetPosts.length == 0) {
+    if (apiGetTopics.length == 0) {
       this.setState({ lastUpdated: "" });
     } else {
-      apiGetPosts.forEach((element) => {
+      apiGetTopics.forEach((element) => {
         element.createdAt = new Date(element.createdAt)
           .toString()
           .substring(4, 15);
@@ -192,14 +147,12 @@ class ForumHome extends Component {
       });
 
       let total = 0;
-      apiGetPosts.forEach((element) => {
+      apiGetTopics.forEach((element) => {
         total = total + element.userReply.length;
       });
-      this.setState({ postsResult: apiGetPosts });
-      this.setState({ lastName: apiGetPosts[0].user.username });
-      this.setState({ lastUpdated: apiGetPosts[0].updatedAt });
-      console.log("postsResult", this.state.postsResult);
-      console.log("state", this.state);
+      this.setState({ topicsResult: apiGetTopics });
+      this.setState({ lastName: apiGetTopics[0].user.username });
+      this.setState({ lastUpdated: apiGetTopics[0].updatedAt });
     }
   };
 
@@ -215,10 +168,9 @@ class ForumHome extends Component {
   // The Render Method..
   render() {
     // Necessary States..
-    const { forumsubcats, forumcats, forumId, loading } = this.state;
+    const {forumcats, forumId, loading, topicsResult } = this.state;
 
-    console.log('Testing with ForumCats', forumcats);
-    console.log('TEST - forumsubcats -> ', forumsubcats);
+    console.log('TEST WITH POSTS -->> ', topicsResult);
 
     if (loading) {
       return (
@@ -247,7 +199,7 @@ class ForumHome extends Component {
         <Box>
           <CategoryTable
             categoriesData={forumcats}
-            latestData={latestData}
+            latestData={topicsResult}
           />
         </Box>
 
