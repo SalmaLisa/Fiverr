@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {Box,TableContainer,Paper,Table,TableHead,TableRow,TableCell,TableBody,Typography,Breadcrumbs,} from "@material-ui/core";
+import { Box, TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Typography, Breadcrumbs, } from "@material-ui/core";
 //import Image from 'mui-image' module not found ( it is not even being used )
 //import avatar from '../../assets/Icons/avatar.png'
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,15 +24,13 @@ const useStyles = makeStyles({
   container: {
     marginTop: "2rem",
     border: "none",
-    display: 'flex'
-  },
-  container2: {
-    border: "none",
-  },
+    display: 'flex',
+  }
 });
 
 // Comments of table..
 const CommentsTable = ({ categoriesData, latestData }) => {
+  const [topicsData, setTopicsData] = React.useState([]);
   const history = useHistory();
   const classes = useStyles();
   const opencomment = (id) => {
@@ -42,12 +40,80 @@ const CommentsTable = ({ categoriesData, latestData }) => {
   };
   const [i, setI] = useState(0)
   const tags = ["red", "pink", "yellow", "lightblue", "grey", "orange", "#6C3483", "#76D7C4", "#196F3D"]
+
+  // Load Signaficent Amount of data..
+  const loadData = (amount) => {
+    if (latestData.length) {
+      let newData = [];
+      for (let i = 0; i < amount; i++) {
+        newData.push(latestData[i]);
+      }
+
+      // Returning the UI with Data..
+      return (
+        <>
+          { newData.length > 0 && newData.map((comment, key) => (
+            <TableRow>
+              <TableCell  >
+
+                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content' >
+                  {/* ---- Content of user and avatar ---- */}
+                  <div className="d-block">
+                    {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
+                    <img src={`${comment.user.imageSrc}`} className='avatar1' />
+
+                    {/* ---- Put the user First and Last name ---- */}
+                    <p className='text-muted text-capitalize '>
+                      <span>{comment.user.contactName.first}</span>
+                      <span> </span>
+                      <span>{comment.user.contactName.last}</span>
+                    </p>
+                  </div>
+
+                  <Box width="90%" >
+                    <div className='titre1'>{comment.title}</div>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        style={{
+                          width: "9px",
+                          height: "9px",
+                          backgroundColor: tags[key % 9],
+                        }}
+                      ></div>
+                      <span
+                        style={{
+                          marginLeft: ".25rem",
+                          marginRight: ".5rem",
+                        }}
+                      >
+                        {comment.narrative}
+                      </span>
+                    </div>
+                  </Box>
+
+
+                </Box>
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell>
+                <div  >
+                  <div className='week1'>0</div>
+                  <span className='week1'>Jun 17</span>
+                </div>
+              </TableCell>
+            </TableRow>
+          ))
+          }
+        </>
+      );
+    }
+  }
+
+  // console.log('New Topic Data -- ', topicsData);
+
   useEffect(() => {
-
     console.log("m")
-
-  }, [])
-
+  }, []);
 
   // Returning statement..
   return (
@@ -146,7 +212,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
 
             </TableBody>
           </Table>
-          
+
           {/* ----- 2nd Part of table ----- */}
           <Table className={classes.table}>
             <TableHead >
@@ -159,60 +225,8 @@ const CommentsTable = ({ categoriesData, latestData }) => {
 
             {/* ---- Latest Data ---- */}
             <TableBody>
-              {latestData.length > 0 && latestData.map((comment, key) => (
-                <TableRow>
-                  <TableCell  >
-
-                    <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content' >
-                      {/* ---- Content of user and avatar ---- */}
-                      <div className="d-block">
-                        {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
-                        <img src={`${comment.user.imageSrc}`} className='avatar1' />
-      
-                        {/* ---- Put the user First and Last name ---- */}
-                        <p className='text-muted text-capitalize '>
-                          <span>{comment.user.contactName.first}</span>
-                          <span> </span>
-                          <span>{comment.user.contactName.last}</span>
-                        </p>
-                      </div>
-
-                      <Box width="90%" >
-                        <div className='titre1'>{comment.title}</div>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <div
-                            style={{
-                              width: "9px",
-                              height: "9px",
-                              backgroundColor: tags[key % 9],
-                            }}
-                          ></div>
-                          <span
-                            style={{
-                              marginLeft: ".25rem",
-                              marginRight: ".5rem",
-                            }}
-                          >
-                            {comment.narrative}
-                          </span>
-                        </div>
-                      </Box>
-
-
-                    </Box>
-                  </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>
-                    <div  >
-                      <div className='week1'>0</div>
-                      <span className='week1'>Jun 17</span>
-                    </div>
-                  </TableCell>
-                </TableRow>
-
-
-              ))
-              }
+              {/* ---- Load fff */}
+              {loadData(8)}
             </TableBody>
           </Table>
 

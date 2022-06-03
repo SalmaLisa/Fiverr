@@ -164,13 +164,12 @@ class ForumHome extends Component {
     await this.loadPage();
   }
 
-
   // The Render Method..
   render() {
     // Necessary States..
     const {forumcats, forumId, loading, topicsResult } = this.state;
 
-    console.log('TEST WITH POSTS -->> ', topicsResult);
+    console.log('TEST WITH POSTS -->> ', topicsResult.length);
 
     if (loading) {
       return (
