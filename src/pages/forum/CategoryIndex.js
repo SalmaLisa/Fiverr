@@ -53,10 +53,10 @@ const CommentsTable = ({ categoriesData, latestData }) => {
       return (
         <>
           { newData.length > 0 && newData.map((comment, key) => (
-            <TableRow>
-              <TableCell  >
+            <TableRow >
+              <TableCell>
 
-                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content' >
+                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content'>
                   {/* ---- Content of user and avatar ---- */}
                   <div className="d-block">
                     {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
@@ -167,7 +167,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
 
             <TableBody>
               {categoriesData.length > 0 && categoriesData.map((comment, index) => (
-                <TableRow key={comment._id}>
+                <TableRow key={comment._id} style={{height: '452px'}}>
                   <TableCell style={{ borderLeft: `solid 7px ${comment.color}` }}>
                     <Box onClick={() => opencomment(comment._id)} >
                       <Box
