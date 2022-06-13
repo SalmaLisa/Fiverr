@@ -18,8 +18,9 @@ import MainPostForm from "./forum_components/MainPostForm";
 
 import auth from "./../../services/authservice";
 import { getUser } from './../../services/users';
-import { getPostsData } from './../../services/posts';
+import { getPostsData, getPosts, getTopics } from './../../services/posts';
 
+// Forum for component..
 const Forums = () => {
   const [postsResult, setpostsResult] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -100,23 +101,25 @@ const Forums = () => {
   // called inside UseEffect to get all the posts
   const fetchPosts = async () => {
     setLoading(true);
-    const res = await getPostsData();
+    const res = await getTopics();
     let apiGetPosts = res.data.reverse();
     console.log(apiGetPosts, "before filter");
+    setpostsResult(apiGetPosts);
+
     //
-    apiGetPosts = apiGetPosts.filter((el) => el.forumId == forum_id);
-    console.log(apiGetPosts, "after filter");
+    // apiGetPosts = apiGetPosts.filter((el) => el.forumId == forum_id);
+    // console.log(apiGetPosts, "after filter");
 
-    apiGetPosts.forEach((element) => {
-      element.createdAt = new Date(element.createdAt)
-        .toString()
-        .substring(4, 15);
-      element.updatedAt = new Date(element.updatedAt)
-        .toString()
-        .substring(4, 15);
-    });
+    // apiGetPosts.forEach((element) => {
+    //   element.createdAt = new Date(element.createdAt)
+    //     .toString()
+    //     .substring(4, 15);
+    //   element.updatedAt = new Date(element.updatedAt)
+    //     .toString()
+    //     .substring(4, 15);
+    // });
 
-    console.log(apiGetPosts, "after foreach");
+    // console.log(apiGetPosts, "after foreach");
 
     setpostsResult(apiGetPosts);
     console.log(postsResult, "i am postsResult");
@@ -140,6 +143,7 @@ const Forums = () => {
     setCurrentPage(pageNumber);
   };
 
+  // Returning statement..
   return (
     <>
       <div
