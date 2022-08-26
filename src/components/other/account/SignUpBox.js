@@ -29,8 +29,9 @@ function SignUpBox(props) {
                       <input
                         className="form-control"
                         type="text"
-                        name="text"
+                        name="firstname"
                         placeholder="First name"
+                        required
                       />
                     </div>
                   </div>
@@ -45,8 +46,9 @@ function SignUpBox(props) {
                       <input
                         className="form-control"
                         type="text"
-                        name="text"
+                        name="lastname"
                         placeholder="Last name"
+                        required
                       />
                     </div>
                   </div>
@@ -61,8 +63,9 @@ function SignUpBox(props) {
                       <input
                         className="form-control"
                         type="text"
-                        name="text"
+                        name="username"
                         placeholder="Username"
+                        required
                       />
                     </div>
                   </div>
@@ -77,8 +80,9 @@ function SignUpBox(props) {
                       <input
                         className="form-control"
                         type="email"
-                        name="text"
+                        name="email"
                         placeholder="Enter email"
+                        required
                       />
                     </div>
                   </div>
@@ -92,9 +96,10 @@ function SignUpBox(props) {
                       </span>
                       <input
                         className="form-control"
-                        type="text"
-                        name="text"
+                        type="password"
+                        name="password"
                         placeholder="Password"
+                        required
                       />
                     </div>
                   </div>
@@ -108,9 +113,10 @@ function SignUpBox(props) {
                       </span>
                       <input
                         className="form-control"
-                        type="text"
-                        name="text"
+                        type="password"
+                        name="confirmpassword"
                         placeholder="Confirm password"
+                        required
                       />
                     </div>
                   </div>
@@ -125,8 +131,9 @@ function SignUpBox(props) {
                       <select
                         className="form-control"
                         type="text"
-                        name="text"
+                        name="accounttype"
                         placeholder="Confirm password"
+                        required
                       >
                         <option value="">Select Account Type</option>
                         <option value="Solo - Practice">
@@ -152,14 +159,14 @@ function SignUpBox(props) {
                       <select
                         className="form-control"
                         type="text"
-                        name="text"
+                        name="country"
                         placeholder="Confirm password"
+                        required
                       >
                         <option value="None">Select Country</option>
-                        {
-                                                    CountryListData.map(
-                                                        (item)=> <option value={item.name}>{item.name}</option>)
-                                                }
+                        {CountryListData.map((item) => (
+                          <option value={item.name}>{item.name}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -167,7 +174,7 @@ function SignUpBox(props) {
                 <div className="col-lg-12">
                   <div className="form-group">
                     <div className="custom-checkbox d-block mr-0">
-                      <input type="checkbox" id="chb13" />
+                      <input type="checkbox" id="chb13" required />
                       <label htmlFor="chb13">
                         I declare that I have read the
                         <Link to="#" className="color-text">

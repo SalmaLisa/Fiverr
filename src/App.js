@@ -15,8 +15,6 @@ import PostDetail from "./pages/forum/PostDetail";
 import Forum from "./pages/forum/Forums";
 import ForumHome from "./pages/forum/ForumHome";
 
-
-
 import AcupuntureData from "./store/AcupuntureData";
 import FormulaData from "./store/FormulaData";
 import MateriaMedica from "./store/MateriaMedica";
@@ -36,10 +34,11 @@ import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 // import SalonProfilePage from './pages/blogs/SalonProfilePage';
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
 import Form2 from "./pages/Form2";
-import CookieBanner from "./pages/CookieBanner"
+import CookieBanner from "./pages/CookieBanner";
 
 const store = configureStore();
 
@@ -68,7 +67,10 @@ const App = () => {
               <AppRoute path="/about-us" component={AboutUs} />
               <AppRoute path="/contact-us" component={Contact} />
               <AppRoute path="/form2" component={Form2} />
-              <AppRoute path="/cookie-acceptance-banner" component={CookieBanner} />
+              <AppRoute
+                path="/cookie-acceptance-banner"
+                component={CookieBanner}
+              />
 
               <AppRoute
                 path="/salon-profile/:name"
@@ -166,18 +168,22 @@ const App = () => {
 
               <AppRoute path="/termofuse" component={TermOfUse} />
               <AppRoute path="/loginregister" component={SignUp} />
+              <AppRoute path="/signup" component={SignUp} />
+
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />
               <AppRoute path="/post-detail" component={TopicDetail} /> */}
-              <ProtectedRoute path="/forum/:name/:postId" component={PostDetail} />
+              <ProtectedRoute
+                path="/forum/:name/:postId"
+                component={PostDetail}
+              />
               <ProtectedRoute path="/forum/:forum_id" component={Forum} exact />
               <AppRoute path="/forum" component={ForumHome} exact />
-           
+
               <AppRoute
                 path="/categories/:forum_cat_id"
                 component={ForumHome}
               />
-
 
               <AppRoute component={Error} />
             </Switch>

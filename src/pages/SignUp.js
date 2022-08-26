@@ -15,7 +15,7 @@ const state = {
     breadcrumbimg: breadcrumbimg,
 }
 function SignUp() {
-    const [ active, setactive ] = useState('SignUp')
+    const [ active, setactive ] = useState('Login')
 
     useEffect(()=>{
         document.title = active
