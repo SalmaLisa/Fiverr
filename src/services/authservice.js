@@ -10,17 +10,6 @@ export async function login(username, password) {
   const { data: jwt } = await http.post(apiEndpoint, { username, password });
   localStorage.setItem("token", jwt);
 }
-// register a user
-export async function register(username, password) {
-  const { data: jwt } = await http.post(apiEndpoint, { username, password });
-  localStorage.setItem("token", jwt);
-}
-
-// recover password
-export async function recover(username, password) {
-  const { data: jwt } = await http.post(apiEndpoint, { username, password });
-  localStorage.setItem("token", jwt);
-}
 
 //after registration
 export function loginWithJwt(jwt) {
@@ -49,8 +38,6 @@ export function getJwt() {
 
 export default {
   login,
-  register,
-  recover,
   logout,
   getProfile,
   loginWithJwt,

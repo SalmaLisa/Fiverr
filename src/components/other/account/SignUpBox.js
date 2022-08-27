@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SignInOptions from "./SignInOptions";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
@@ -6,18 +6,59 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import Button from "@material-ui/core/Button";
 import { CountryListData } from "../../../store/CountryListData";
+import users from "./../../../services/users";
+import auth from "./../../../services/authservice";
 
 function SignUpBox(props) {
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [username, setUsername] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [role, setRole] = useState();
+  const [country, setCountry] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = {
+        firstName,
+        lastName,
+        username,
+        email,
+        password,
+        role,
+        country,
+      };
+      
+      await users.saveUser(user);
+      //await auth.login(user.username, user.password);
+      window.location = "/";
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        //console.log(ex.response.data);
+        setErrorMessage(ex.response.data);
+      }
+    }
+  };
+
+  useEffect(() => {}, []);
   return (
     <>
       <div className="billing-form-item mb-0 shadow-sm">
         <div className="billing-title-wrap border-bottom-0 pr-0 pl-0 pb-0 text-center">
           <h3 className="widget-title font-size-28 pb-0">{props.title}</h3>
           <p className="font-size-16 font-weight-medium">{props.subtitle}</p>
+          {errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {errorMessage}
+            </div>
+          )}
         </div>
         <div className="billing-content">
           <div className="contact-form-action">
-            <form method="post">
+            <form method="post" onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-lg-12">
                   <div className="input-box">
@@ -31,6 +72,7 @@ function SignUpBox(props) {
                         type="text"
                         name="firstname"
                         placeholder="First name"
+                        onChange={(e) => setFirstName(e.target.value)}
                         required
                       />
                     </div>
@@ -47,6 +89,7 @@ function SignUpBox(props) {
                         className="form-control"
                         type="text"
                         name="lastname"
+                        onChange={(e) => setLastName(e.target.value)}
                         placeholder="Last name"
                         required
                       />
@@ -64,6 +107,7 @@ function SignUpBox(props) {
                         className="form-control"
                         type="text"
                         name="username"
+                        onChange={(e) => setUsername(e.target.value)}
                         placeholder="Username"
                         required
                       />
@@ -81,6 +125,7 @@ function SignUpBox(props) {
                         className="form-control"
                         type="email"
                         name="email"
+                        onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter email"
                         required
                       />
@@ -98,24 +143,8 @@ function SignUpBox(props) {
                         className="form-control"
                         type="password"
                         name="password"
+                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
-                        required
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-12">
-                  <div className="input-box">
-                    <label className="label-text">Confirm Password</label>
-                    <div className="form-group">
-                      <span className="form-icon">
-                        <FiLock />
-                      </span>
-                      <input
-                        className="form-control"
-                        type="password"
-                        name="confirmpassword"
-                        placeholder="Confirm password"
                         required
                       />
                     </div>
@@ -132,6 +161,7 @@ function SignUpBox(props) {
                         className="form-control"
                         type="text"
                         name="accounttype"
+                        onChange={(e) => setRole(e.target.value)}
                         placeholder="Confirm password"
                         required
                       >
@@ -160,6 +190,7 @@ function SignUpBox(props) {
                         className="form-control"
                         type="text"
                         name="country"
+                        onChange={(e) => setCountry(e.target.value)}
                         placeholder="Confirm password"
                         required
                       >
