@@ -12,8 +12,8 @@ function userUrl(id) {
   return `${apiEndpoint}/${id}`;
 }
 
-export function recoverUser(email) {
-  return http.post(`${apiEndpoint}/recover`, {
+export async function recoverUser(email) {
+  return await http.post(`${apiEndpoint}/recover`, {
     email: email,
   });
 }

@@ -112,10 +112,14 @@ function LoginBox(props) {
                 </div>
                 <div className="col-lg-12">
                   <p className="font-weight-medium">
-                    Not a member?{" "}
-                    <Button onClick={() => props.handleRegister()}>
+                    Not a member?
+                    <div
+                      onClick={() => props.handleRegister()}
+                      className="color-text font-weight-medium"
+                      role="button"
+                    >
                       Register
-                    </Button>
+                    </div>
                   </p>
                 </div>
               </div>

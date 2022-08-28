@@ -225,8 +225,14 @@ function SignUpBox(props) {
                 </div>
                 <div className="col-lg-12">
                   <p className="font-weight-medium">
-                    Already have an account?{" "}
-                    <Button onClick={() => props.handleLogin()}>LogIn</Button>
+                    Already have an account?
+                    <div
+                      onClick={() => props.handleLogin()}
+                      className="color-text font-weight-medium"
+                      role="button"
+                    >
+                      Login
+                    </div>
                   </p>
                 </div>
               </div>

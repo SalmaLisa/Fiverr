@@ -21,68 +21,79 @@ function SignUp() {
         document.title = active
     },[])
     return (
-        <main className="signup-page">
-            {/* Header */}
-            <GeneralHeader />
+      <main className="signup-page">
+        {/* Header */}
+        <GeneralHeader />
 
-            {/* Breadcrumb */}
-            <Breadcrumb CurrentPgTitle={active} img={state.breadcrumbimg} />
+        {/* Breadcrumb */}
+        <Breadcrumb CurrentPgTitle={active} img={state.breadcrumbimg} />
 
-            <section className="form-shared padding-top-40px padding-bottom-100px">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-6 mx-auto">
-                            <div className="row mx-4" style={{ justifyContent: "center" }}>
-                                <Button 
-                                    style={active === "Login" ? { color: "#ff6b6b", border:"1px solid #ff6b6b"}: null}
-                                    onClick={()=> setactive('Login')} 
-                                    className="p-2 shadow-sm px-4 border mt-2 mx-2">
-                                        LogIn
-                                </Button>
-                                <Button 
-                                    style={active === "SignUp" ? { color: "#ff6b6b", border:"1px solid #ff6b6b"}: null}
-                                    onClick={()=> setactive('SignUp')} 
-                                    className="p-2 shadow-sm px-4 border mt-2 mx-2">
-                                        SignUp
-                                </Button>
-                                <Button 
-                                    style={active === "Recover Password" ? { color: "#ff6b6b", border:"1px solid #ff6b6b"}: null}
-                                    onClick={()=> setactive("Recover Password")} 
-                                    className="p-2 shadow-sm border mt-2 mx-2">
-                                        Recover Password
-                                </Button>
-                            </div>
-                            <br />
-                            {
-                                active === 'Login' ? 
-                                    <LoginBox 
-                                        title="Login to your account" 
-                                        subtitle=""
-                                        handlePassword={()=> setactive('Recover Password')}
-                                        handleRegister={()=> setactive('SignUp')} 
-                                    />
-                                : null
-                            }
-                            {
-                                active === 'SignUp' ? 
-                                    <SignUpBox 
-                                        title="Create an account!" 
-                                        subtitle="" 
-                                        handlePassword={()=> setactive('Recover Password')}
-                                        handleLogin={()=> setactive('Login')} 
-                                    />
-                                :null
-                            }
-                            {
-                                active === "Recover Password" ?
-                                    <RecoverPassBox />
-                                : null
-                            }
-                        </div>
-                    </div>
+        <section className="form-shared padding-top-40px padding-bottom-100px">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 mx-auto">
+                <div className="row mx-4" style={{ justifyContent: "center" }}>
+                  <Button
+                    style={
+                      active === "Login"
+                        ? { color: "#ff6b6b", border: "1px solid #ff6b6b" }
+                        : null
+                    }
+                    onClick={() => setactive("Login")}
+                    className="p-2 shadow-sm px-4 border mt-2 mx-2"
+                  >
+                    LogIn
+                  </Button>
+                  <Button
+                    style={
+                      active === "SignUp"
+                        ? { color: "#ff6b6b", border: "1px solid #ff6b6b" }
+                        : null
+                    }
+                    onClick={() => setactive("SignUp")}
+                    className="p-2 shadow-sm px-4 border mt-2 mx-2"
+                  >
+                    SignUp
+                  </Button>
+                  <Button
+                    style={
+                      active === "Recover Password"
+                        ? { color: "#ff6b6b", border: "1px solid #ff6b6b" }
+                        : null
+                    }
+                    onClick={() => setactive("Recover Password")}
+                    className="p-2 shadow-sm border mt-2 mx-2"
+                  >
+                    Recover Password
+                  </Button>
                 </div>
-            </section>
-
+                <br />
+                {active === "Login" ? (
+                  <LoginBox
+                    title="Login to your account"
+                    subtitle=""
+                    handlePassword={() => setactive("Recover Password")}
+                    handleRegister={() => setactive("SignUp")}
+                  />
+                ) : null}
+                {active === "SignUp" ? (
+                  <SignUpBox
+                    title="Create an account!"
+                    subtitle=""
+                    handlePassword={() => setactive("Recover Password")}
+                    handleLogin={() => setactive("Login")}
+                  />
+                ) : null}
+                {active === "Recover Password" ? (
+                  <RecoverPassBox
+                    handleLogin={() => setactive("Login")}
+                    handleRegister={() => setactive("SignUp")}
+                  />
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Newsletter */}
         {/* <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} /> */}
@@ -91,8 +102,7 @@ function SignUp() {
         <Footer />
 
         <ScrollTopBtn />
-
-        </main>
+      </main>
     );
 }
 

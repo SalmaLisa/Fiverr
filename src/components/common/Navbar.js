@@ -179,10 +179,10 @@ export default function Navbar() {
             })}
           </ul>
           <div className="side-nav-button">
-            <Link to="/login" className="theme-btn">
+            <Link to="/loginregister" className="theme-btn">
               login
             </Link>
-            <Link to="/sign-up" className="theme-btn">
+            <Link to="/loginregister" className="theme-btn">
               Sign up
             </Link>
           </div>

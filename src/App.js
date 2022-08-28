@@ -34,7 +34,6 @@ import { Provider } from "react-redux";
 import configureStore from "./redux/configureStore";
 // import SalonProfilePage from './pages/blogs/SalonProfilePage';
 import Contact from "./pages/Contact";
-import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
 import Form2 from "./pages/Form2";
@@ -168,7 +167,7 @@ const App = () => {
 
               <AppRoute path="/termofuse" component={TermOfUse} />
               <AppRoute path="/loginregister" component={SignUp} />
-              <AppRoute path="/signup" component={SignUp} />
+              {/* <AppRoute path="/signup" component={SignUp} /> */}
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />
