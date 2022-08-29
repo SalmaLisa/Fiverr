@@ -21,7 +21,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",
     "momment": "^0.0.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.1",
     "quill-image-compress": "^1.2.15",
     "quill-image-drop-module": "^1.0.3",
     "react": "^17.0.1",
@@ -62,6 +62,7 @@
   },
   "scripts": {
     "start": "PORT=3500 react-scripts start",
+    "dev": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
