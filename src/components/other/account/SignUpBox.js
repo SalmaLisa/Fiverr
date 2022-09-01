@@ -166,13 +166,13 @@ function SignUpBox(props) {
                         required
                       >
                         <option value="">Select Account Type</option>
-                        <option value="Solo - Practice">
+                        <option value="622a75a8773388bb0b220190">
                           Solo - Practice{" "}
                         </option>
-                        <option value="Clinic with Staff">
+                        <option value="622a7596773388bb0b220189">
                           Clinic with Staff
                         </option>
-                        <option value="Common User">
+                        <option value="622930056405e723619e88d8">
                           Patient / Common User
                         </option>
                       </select>

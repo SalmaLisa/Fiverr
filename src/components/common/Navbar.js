@@ -2,87 +2,104 @@ import React, { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import sectiondata from "../../store/menu";
+import authservice from "../../services/authservice";
 
 const headermenu = [
-    {
-        path:'/',
-        title:'Home',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/about-us',
-        title:'About Us',
-    },
-    {
-        path:'/contact-us',
-        title:'Contact Us',
-    },
-    {
-        path:'/',
-        title:'Subscription',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/acupunctures',
-        title:'Acupuncture ',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/formulas',
-        title:'Formulas',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/materiamedica',
-        title:'Materia Medica',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/forum',
-        title:'Forum',
-        dropdown:[
-            {
-                path: '/',
-                title: 'Home'
-            }
-        ],
-    },
-    {
-        path:'/loginregister',
-        title:'Login',
-        dropdown: false
-    },
-]
+  {
+    path: "/",
+    title: "Home",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+    path: "/about-us",
+    title: "About Us",
+  },
+  {
+    path: "/contact-us",
+    title: "Contact Us",
+  },
+  {
+    path: "/",
+    title: "Subscription",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+    path: "/acupunctures",
+    title: "Acupuncture ",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+    path: "/formulas",
+    title: "Formulas",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+    path: "/materiamedica",
+    title: "Materia Medica",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+    path: "/forum",
+    title: "Forum",
+    dropdown: [
+      {
+        path: "/",
+        title: "Home",
+      },
+    ],
+  },
+  {
+      path:'/loginregister',
+      title:'Login',
+      dropdown: false
+  },
+];
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
-
+  const [loggedId, setLoggedIn] = useState(false);
   useEffect(() => {
+    // if (
+    //   !headermenu.filter((e) => e.title === "Login").length > 0 &&
+    //   !loggedId
+    // ) {
+    //   headermenu.push({
+    //     path: "/loginregister",
+    //     title: "Login",
+    //     dropdown: false,
+    //   });
+    // }
+    // if (authservice.getJwt()) {
+    //   setLoggedIn(true);
+    //   console.log('====================================');
+    //   console.log(authservice.getProfile());
+    //   console.log('====================================');
+    // }
     function showResNavMenu() {
       this.classList.toggle("active");
     }
