@@ -22,7 +22,7 @@ function RecoverPassBox(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await recoverUser(email);
+      const res = await recoverUser(email,"testusername");
       showDialogue(`Email sent to ${email}`, true);
       clearInput();
     } catch (error) {

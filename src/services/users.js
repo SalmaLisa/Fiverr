@@ -12,9 +12,10 @@ function userUrl(id) {
   return `${apiEndpoint}/${id}`;
 }
 
-export async function recoverUser(email) {
+export async function recoverUser(email, username) {
   return await http.post(`${apiEndpoint}/recover`, {
     email: email,
+    username: username
   });
 }
 
