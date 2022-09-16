@@ -179,7 +179,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
                         <Typography variant="h4">{comment.name}</Typography>
                         <Typography variant="body1">{comment.description}</Typography>
                         <Box display="flex" flexDirection="row" alignItems="center">
-                          {comment.forumSubcategories.map((tag, key) => (
+                          {/* {comment.forumSubcategories.map((tag, key) => (
                             <>
                               <span
                                 style={{
@@ -197,7 +197,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
                                 {tag.name}
                               </span>
                             </>
-                          ))}
+                          ))} */}
                         </Box>
                       </Box>
                     </Box>
