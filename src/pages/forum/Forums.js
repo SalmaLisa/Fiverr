@@ -36,10 +36,24 @@ const Forums = () => {
 
   const getTopicsOfCategory = async()=>{
    const topics = await getTopics()
+   const comments = await getPosts()
    console.log(topics.data.length)
    const filteredTopics = topics.data.filter( e=> e.catId._id===forum_id)
-   setTopics(filteredTopics)
-   console.log(filteredTopics)
+   let count
+   let topicsWithReplies =[]
+   filteredTopics.forEach(element => {
+    count=0
+        
+                comments.data.forEach(element1 => {
+                  
+                    if(element1.topicId._id===element._id) count++
+                  });
+              const objet = {element,count}  
+              topicsWithReplies.push(objet)
+              
+            });
+            setTopics(topicsWithReplies)
+
    const category = await getForumCat(forum_id)
    setCategory(category.data)
    }

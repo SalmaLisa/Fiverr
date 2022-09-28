@@ -183,14 +183,14 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
 
                 <TableRow>
                   <TableCell  >
-                    <Box onClick={() => opencomment1(comment._id)} >
+                    <Box onClick={() => opencomment1(comment.element._id)} >
                       <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='100px' height='fit-content' >
                         <div className="boxOfImage">
-                          <img src={comment.user.imageSrc || "/assets/img/user/user-12.jpg"} className='avatar1' />
-                          <div className="username1">{comment.user.contactName.first + " " + comment.user.contactName.last}</div>
+                          <img src={comment.element.user.imageSrc || "/assets/img/user/user-12.jpg"} className='avatar1' />
+                          <div className="username1">{comment.element.user.contactName.first + " " + comment.element.user.contactName.last}</div>
                         </div>
                         <Box width="90%" >
-                          <div className='titre1'>{comment.title}</div>
+                          <div className='titre1'>{comment.element.title}</div>
                           <div style={{ display: "flex", alignItems: "center" }}>
                             <div
                               style={{
@@ -206,7 +206,7 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
                                 marginRight: ".5rem",
                               }}
                             >
-                              {comment.narrative}
+                              {comment.element.narrative}
                             </span>
                           </div>
                         </Box>
@@ -218,17 +218,17 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
                   <TableCell>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }} >
                       <div className='week1'>0</div>
-                      <span className='week1'>{moment(comment.createdAn).format("ll").split(',')[0]}</span>
+                      <span className='week1'>{moment(comment.element.createdAn).format("ll").split(',')[0]}</span>
                     </div>
                   </TableCell>
                   <TableCell></TableCell>
                   <TableCell>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }} >
                       <div className='week1'>
-                        {comment.views}
+                        {comment.element.views}
                       </div>
                       <div className='week1' >
-                      {comment.views!=1? "views" : "view"}  
+                      {comment.element.views!=1? "views" : "view"}  
                       </div>
                     </div>
                   </TableCell>
