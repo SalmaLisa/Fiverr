@@ -19,7 +19,7 @@ import MainPostForm from "./forum_components/MainPostForm";
 import auth from "./../../services/authservice";
 import { getUser } from './../../services/users';
 import { getPostsData, getPosts, getTopics } from './../../services/posts';
-import TopicsOfCatTable from "./CategoryIndex1";
+import TopicsOfCatTable from "./CategoryIndexTopics";
 import { Box } from "@material-ui/core";
 import { getForumCat } from "../../services/forumcategories";
 

@@ -16,7 +16,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { Link, useHistory } from "react-router-dom";
-import "./categoryTable1.css";
+import "./categoryTable.css";
 import moment from "moment";
 import HeaderTable2 from './HeaderTable2';
 import { getTopic, saveTopic } from "../../services/posts";
