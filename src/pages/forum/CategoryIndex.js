@@ -10,6 +10,7 @@ import "./CategoryIndex.css";
 import { Pagination } from "@mui/material";
 // import HeaderTable from './HeaderTable';
 import HeaderTable2 from './HeaderTable2';
+import moment from "moment"
 
 // Styles..
 const useStyles = makeStyles({
@@ -52,11 +53,11 @@ const CommentsTable = ({ categoriesData, latestData }) => {
       // Returning the UI with Data..
       return (
         <>
-          { newData.length > 0 && newData.map((comment, key) => (
-            <TableRow >
+          { latestData.length > 0 && latestData.map((comment, key) => (
+            <TableRow key={comment._id} style={{height: '140px'   }}>
               <TableCell>
 
-                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content'>
+                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" height='140px' boxSizing={"border-box"} >
                   {/* ---- Content of user and avatar ---- */}
                   <div className="d-block">
                     {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
@@ -98,7 +99,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
               <TableCell>
                 <div  >
                   <div className='week1'>0</div>
-                  <span className='week1'>Jun 17</span>
+                  <span className='week1'>{moment(comment.createdAt).format("ll").split(',')[0]}</span>
                 </div>
               </TableCell>
             </TableRow>
@@ -167,7 +168,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
 
             <TableBody>
               {categoriesData.length > 0 && categoriesData.map((comment, index) => (
-                <TableRow key={comment._id} style={{height: '452px'}}>
+                <TableRow key={comment._id} style={{height: '140px'   }}>
                   <TableCell style={{ borderLeft: `solid 7px ${comment.color}` }}>
                     <Box onClick={() => opencomment(comment._id)} >
                       <Box

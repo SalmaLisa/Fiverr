@@ -9,9 +9,11 @@ const topicsEndpoint = apiUrl.url+'/topics';
   function postUrl(id) {
     return `${postsEndpoint}/${id}`;
   }
-
+  function topicUrl(id) {
+    return `${topicsEndpoint}/${id}`;
+  }
   export function getTopics(){
-    return http.get(topicsEndpoint+'/data');
+    return http.get(topicsEndpoint);
   }
   
   export function getPosts() {
@@ -26,6 +28,12 @@ const topicsEndpoint = apiUrl.url+'/topics';
   export function getPost(Id) {
     return http.get(postUrl(Id));
   }
+
+
+  export function getTopic(Id) {
+    return http.get(topicUrl(Id));
+  }
+  
   
   export function savePost(post) {
     //clone
@@ -46,3 +54,18 @@ const topicsEndpoint = apiUrl.url+'/topics';
   export function deletePost(Id) {
     return http.delete(postUrl(Id));
   }  
+
+  export function saveTopic(topic) {
+    //clone
+    const body = { ...topic };
+    console.log(body);
+   //update
+   if (body._id) {
+     //delete _id
+     delete body._id;
+     return http.put(topicUrl(topic._id),body);
+   }
+ 
+   //add a new post
+   return http.post(topicsEndpoint, topic);
+ }

@@ -12,7 +12,7 @@ import LayoutDefault from "./layouts/LayoutDefault";
 //import TopicDetail from "./pages/TopicDetail";
 
 import PostDetail from "./pages/forum/PostDetail";
-import Forum from "./pages/forum/Forums";
+import Forums from "./pages/forum/Forums";
 import ForumHome from "./pages/forum/ForumHome";
 
 import AcupuntureData from "./store/AcupuntureData";
@@ -38,6 +38,7 @@ import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
 import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
+import NoteDetail from "./pages/forum/PostDetail";
 
 const store = configureStore();
 
@@ -170,13 +171,13 @@ const App = () => {
               {/* <AppRoute path="/signup" component={SignUp} /> */}
 
               {/* <AppRoute path="/forums" component={Forums} />
-              <AppRoute path="/post-compose" component={PostCompose} />
-              <AppRoute path="/post-detail" component={TopicDetail} /> */}
+              <AppRoute path="/post-compose" component={PostCompose} />*/}
+              <AppRoute path="/forum/topic/:topicId" component={NoteDetail} /> 
               <ProtectedRoute
                 path="/forum/:name/:postId"
                 component={PostDetail}
               />
-              <ProtectedRoute path="/forum/:forum_id" component={Forum} exact />
+              <ProtectedRoute path="/forum/:forum_id" component={Forums} exact />
               <AppRoute path="/forum" component={ForumHome} exact />
 
               <AppRoute
