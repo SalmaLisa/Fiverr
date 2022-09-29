@@ -12,7 +12,7 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
-import {getPost,savePost} from './../../services/posts';
+import {deletePost, getPost,getPosts,getTopic,savePost} from './../../services/posts';
 import {getReplies} from './../../services/replies';
 import { getForumSubCats } from './../../services/forumsubcategories';
 
@@ -55,6 +55,7 @@ function NoteDetail() {
   let params = useParams();
   let { name } = useParams();
   let { postId } = useParams();
+  let {topicId} = useParams()
 
   let location = useLocation();
 
@@ -190,20 +191,36 @@ function NoteDetail() {
   
     window.location.href = "/forum";
   };
+  const [topic,setTopic] = useState({})
+  const [replies , setReplies] = useState([])
+  useEffect(()=>{
+
+const getCurrentTopic=async()=>{
+  console.log(localStorage)
+  const p = await getPosts()
+  console.log(p.data)
+  let filteredPosts = p.data.filter(e=> e.topicId._id===topicId)
+  console.log(filteredPosts)
+  setReplies(filteredPosts)
+  console.log(topicId)
+const data = await getTopic(topicId)
+console.log(data)
+setTopic(data.data)
+}
+ getCurrentTopic()
+  },[])
 
   //handle threadStatus
   const handleThreadStatus = async (e) => {
+    console.log("here")
     let editThreadStatus = {
-      _id: Post._id,
-      user: Post.user,
-      forumId: Post.forum_id,
-      threadStatus: Post.threadStatus,
-      slug: Post.slug,
-      title: Post.title,
-      message: Post.message,
+      _id: topic._id,
+      user: topic.user,
+      threadStatus: topic.threadStatus,
+    
     };
 
-    if (Post.threadStatus == "open") {
+    if (topic.threadStatus == "open") {
       // confusion var or let
       // editThreadStatus = {
       //   postId: Post._id,
@@ -230,8 +247,10 @@ function NoteDetail() {
     //   },
     //   body: JSON.stringify(editThreadStatus),
     // }).then((result) => result.json());
-    await savePost(editThreadStatus);
-    window.location.reload();
+
+
+   // await savePost(editThreadStatus);
+   // window.location.reload();
   };
 
   const submitReply = (e, idx) => {
@@ -333,12 +352,18 @@ function NoteDetail() {
 
           <div className="col-lg-10 col-sm-12 col-12">
             {/* go back button */}
-            <div className="row mt-2">
+            <div style={{justifyContent:"space-between" }} className="row mt-2">
               <button
                 onClick={goBackHandler}
                 className="btn btn-secondary mt-3 ml-3"
               >
                 Go Back
+              </button>
+              <button
+                onClick={goBackHandler}
+                className="btn btn-secondary mt-3 ml-3"
+              >
+                Reply
               </button>
             </div>
             {/* go back button */}
@@ -355,20 +380,21 @@ function NoteDetail() {
                     {/* Avatar and email */}
                     <div className="media mb-4">
                       <img
-                        src={`${Post.user.img}`}
+                        src={`${topic?.user?.imageSrc}`}
                         className="rounded-circle mr-3 mail-img "
                         alt="media image"
                         width="70"
                         height="70"
                       />
                       <div className="media-body">
-                        <h8 className="">Question by {Post.name}</h8> <br />
+                        <h8 className="">Question by {topic?.user?.contactName.first+" "+topic?.user?.contactName.last}</h8> <br />
                         <div className="">
                           <i className="mdi mdi-clock mr-1 align-center"></i>
                           <small className="">
-                            {Date(Post.createdAt).slice(0, 16)}
+                            {Date(topic.createdOn).slice(0, 16)}
                           </small>
                         </div>
+                        <p>{topic.narrative} </p>
                       </div>
                     </div>
                     {/* <!-- media --> */}
@@ -401,6 +427,7 @@ function NoteDetail() {
                         className="btn btn-sm btn-outline-secondary mr-1"
                         onClick={handleReply}
                       >
+                       
                         <i className="mdi mdi-reply mr-1"></i>
                         Reply
                       </button>
@@ -464,6 +491,7 @@ function NoteDetail() {
                                 <i class="fas fa-lock"></i>
                               </button>
                             )}
+                            <h1>milo</h1>
 
                             {/* move button */}
                             <button
@@ -529,25 +557,26 @@ function NoteDetail() {
                 className="card shadow-none bg-white "
                 style={{ border: "none" }}
               >
-                {replyResult.length !== 0
-                  ? replyResult.map((reply, idx) => (
+                {replies.length !== 0
+                  ? replies.map((reply, idx) => (
                       // better ui
                       <div className="card-body text-dark">
                         {/* Avatar and email */}
                         <div className="media mb-4">
                           <img
-                            src={`${reply.img}`}
+                            src={`${reply.user.imageSrc}`}
                             className="rounded-circle mr-3 mail-img "
                             alt="media image"
                             width="70"
                             height="70"
                           />
                           <div className="media-body">
-                            <h8 className="">Reply By {reply.name}</h8> <br />
+                            <h8 className="">Reply By {reply?.user?.contactName.first+" "+reply?.user?.contactName.last}</h8> <br />
                             <div className="">
                               <i className="mdi mdi-clock mr-1 align-center"></i>
-                              <small className="">{reply.createdAt}</small>
+                              <small className=""> {Date(reply.createdOn).slice(0, 16)}</small>
                             </div>
+                            <p>{reply.narrative} </p>
                           </div>
                         </div>
                         {/* <!-- media --> */}
@@ -568,7 +597,7 @@ function NoteDetail() {
                             {" "}
                             {localStorage.id ? (
                               <>
-                                {Post.threadStatus == "open" ? (
+                             
                                   <div>
                                     {/* reply button for replies */}
                                     <button
@@ -582,9 +611,7 @@ function NoteDetail() {
                                       Quote
                                     </button>
                                   </div>
-                                ) : (
-                                  ""
-                                )}
+                                
                                 <div>
                                   <div class="btn-group mr-1">
                                     <button
