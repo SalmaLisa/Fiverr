@@ -2,18 +2,11 @@ import React, { useEffect, useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import sectiondata from "../../store/menu";
-import authservice from "../../services/authservice";
 
 const headermenu = [
   {
     path: "/",
     title: "Home",
-    dropdown: [
-      {
-        path: "/",
-        title: "Home",
-      },
-    ],
   },
   {
     path: "/about-us",
@@ -35,7 +28,7 @@ const headermenu = [
   },
   {
     path: "/acupunctures",
-    title: "Acupuncture ",
+    title: "Acupuncture",
     dropdown: [
       {
         path: "/",
@@ -73,33 +66,12 @@ const headermenu = [
       },
     ],
   },
-  {
-      path:'/loginregister',
-      title:'Login',
-      dropdown: false
-  },
 ];
 
 export default function Navbar() {
   const [navOpen, setNavOpen] = useState(false);
-  const [loggedId, setLoggedIn] = useState(false);
   useEffect(() => {
-    // if (
-    //   !headermenu.filter((e) => e.title === "Login").length > 0 &&
-    //   !loggedId
-    // ) {
-    //   headermenu.push({
-    //     path: "/loginregister",
-    //     title: "Login",
-    //     dropdown: false,
-    //   });
-    // }
-    // if (authservice.getJwt()) {
-    //   setLoggedIn(true);
-    //   console.log('====================================');
-    //   console.log(authservice.getProfile());
-    //   console.log('====================================');
-    // }
+
     function showResNavMenu() {
       this.classList.toggle("active");
     }
@@ -196,10 +168,10 @@ export default function Navbar() {
             })}
           </ul>
           <div className="side-nav-button">
-            <Link to="/loginregister" className="theme-btn">
+            <Link to="/login" className="theme-btn">
               login
             </Link>
-            <Link to="/loginregister" className="theme-btn">
+            <Link to="/signup" className="theme-btn">
               Sign up
             </Link>
           </div>

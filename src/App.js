@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { useLocation, Switch, Route } from "react-router-dom";
+import React, { useRef, useEffect, useState} from "react";
+import { useLocation, Switch } from "react-router-dom";
 import AppRoute from "./utils/AppRoute";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import ScrollReveal from "./utils/ScrollReveal";
@@ -38,15 +38,21 @@ import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
 import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
+import Dashboard from "./pages/dashboard/Dashboard";
+import authservice from "./services/authservice";
 import NoteDetail from "./pages/forum/PostDetail";
+
 
 const store = configureStore();
 
 const App = () => {
   const childRef = useRef();
   let location = useLocation();
-
+  const [loggedId, setLoggedIn] = useState(false);
   useEffect(() => {
+    if (authservice.getJwt()) {
+      setLoggedIn(true);
+    }
     document.body.classList.add("is-loaded");
     childRef.current.init();
   }, [location]);
@@ -167,8 +173,16 @@ const App = () => {
               />
 
               <AppRoute path="/termofuse" component={TermOfUse} />
-              <AppRoute path="/loginregister" component={SignUp} />
-              {/* <AppRoute path="/signup" component={SignUp} /> */}
+              <AppRoute
+                path="/signup"
+                component={() => <SignUp authMethod="SignUp" />}
+              />
+              <AppRoute
+                path="/login"
+                component={() => <SignUp authMethod="Login" />}
+              />
+
+              {loggedId && <AppRoute path="/dashboard" component={Dashboard} />}
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}

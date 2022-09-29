@@ -14,8 +14,11 @@ import RecoverPassBox from '../components/other/account/RecoverPassBox';
 const state = {
     breadcrumbimg: breadcrumbimg,
 }
-function SignUp() {
-    const [ active, setactive ] = useState('Login')
+function SignUp(props) {
+  if (!props.authMethod) {
+      props.authMethod = "Login"
+  }
+    const [ active, setactive ] = useState(props.authMethod)
 
     useEffect(()=>{
         document.title = active
