@@ -19,6 +19,9 @@ import MainPostForm from "./forum_components/MainPostForm";
 import auth from "./../../services/authservice";
 import { getUser } from './../../services/users';
 import { getPostsData, getPosts, getTopics } from './../../services/posts';
+import TopicsOfCatTable from "./CategoryIndexTopics";
+import { Box } from "@material-ui/core";
+import { getForumCat } from "../../services/forumcategories";
 
 // Forum for component..
 const Forums = () => {
@@ -27,32 +30,43 @@ const Forums = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(3);
   const [currentUser, setCurrentUser] = useState([]);
-  // new post
-  const [showForm, setShowForm] = useState(false);
-  const [alertMessage, setAlertMessage] = useState({ type: "", message: "" });
-
+  const [topics,setTopics] = useState([])
+  const [category,setCategory] = useState({})
   const { forum_id } = useParams();
 
-  // hide form after submit
-  const submitThread = (e) => {
-    e.preventDefault();
-    setShowForm(false);
-  };
+  const getTopicsOfCategory = async()=>{
+   const topics = await getTopics()
+   const comments = await getPosts()
+   console.log(topics.data.length)
+   const filteredTopics = topics.data.filter( e=> e.catId._id===forum_id)
+   let count
+   let topicsWithReplies =[]
+   filteredTopics.forEach(element => {
+    count=0
+        
+                comments.data.forEach(element1 => {
+                  
+                    if(element1.topicId._id===element._id) count++
+                  });
+              const objet = {element,count}  
+              topicsWithReplies.push(objet)
+              
+            });
+            setTopics(topicsWithReplies)
 
-  const alertSuccess = (msg) => {
-    setAlertMessage({ type: "success", message: msg });
-    setTimeout(function () {
-      setAlertMessage({});
-    }, 2000);
-  };
+   const category = await getForumCat(forum_id)
+   setCategory(category.data)
+   }
+  useEffect(()=>{
+return getTopicsOfCategory()
+  },[forum_id])
 
-  //passing data from child to parent
-  const alertFailure = (msg) => {
-    setAlertMessage({ type: "danger", message: msg });
-    setTimeout(function () {
-      setAlertMessage({});
-    }, 2000);
-  };
+
+ 
+
+
+
+
 
 
   const getCurrentUser = async () => {
@@ -64,37 +78,7 @@ const Forums = () => {
   }
 
 
-
-  //   this gets envoked on clicking the new post button
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   let id = localStorage.id;
-
-  //   if (localStorage.type == "admin") {
-  //     setShowForm(true);
-  //   } else if (!localStorage.id) {
-  //     alertFailure(
-  //       "Dear guest, feel free to visit, to participate please register"
-  //     );
-  //   } else if (localStorage.id) {
-  //     setShowForm(true);
-  //   } else {
-  //     const apiPoints = await fetch(`/api/points/${id}`).then((result) =>
-  //       result.json()
-  //     );
-  //   }
-  // };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (currentUser) {
-      setShowForm(true);
-    } else {
-      alertFailure(
-        "Dear guest, feel free to visit, to participate please register"
-      );
-    }
-  };
+ 
 
 
 
@@ -106,20 +90,7 @@ const Forums = () => {
     console.log(apiGetPosts, "before filter");
     setpostsResult(apiGetPosts);
 
-    //
-    // apiGetPosts = apiGetPosts.filter((el) => el.forumId == forum_id);
-    // console.log(apiGetPosts, "after filter");
-
-    // apiGetPosts.forEach((element) => {
-    //   element.createdAt = new Date(element.createdAt)
-    //     .toString()
-    //     .substring(4, 15);
-    //   element.updatedAt = new Date(element.updatedAt)
-    //     .toString()
-    //     .substring(4, 15);
-    // });
-
-    // console.log(apiGetPosts, "after foreach");
+ 
 
     setpostsResult(apiGetPosts);
     console.log(postsResult, "i am postsResult");
@@ -155,78 +126,17 @@ const Forums = () => {
       >
         <GeneralHeader />
       </div>
+      <Box>
+          <TopicsOfCatTable
+            category={category}
+            latestData={topics}
+            countTopics={topics.length}
+          />
+        </Box>
+     
 
-      <div className="content pt-0">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              {/* go back button */}
-
-              <div className="row mt-2"></div>
-              {/* go back button */}
-              {/* new post button */}
-
-              {/* ---- Create Topic ---- */}
-              <div class="">
-                {/* <button onClick={function(){localStorage.points > 5 ? setShowForm(true) : setShowForm(false); alert('Not enough points to start a new thread')}}>New Thread</button> */}
-                <div className="row  mx-auto justify-content-between mb-1 mt-5">
-                  <Link className="btn btn-secondary" to="/forum">
-                    Go Back
-                  </Link>
-
-                  {/* ---- Create Topic Button ---- */}
-                  <div className="HeaderTablesDiv1">
-                    <button className="HeaderTablesDiv1Btn1">
-                      <div className="textStyle">Create Topic</div>
-                      <AddIcon />
-                    </button>
-                  </div>
-                  
-                  <button
-                    class="btn btn-primary "
-                    style={{}}
-                    onClick={handleSubmit}
-                  >
-                    {" "}
-                    <i class="fas fa-plus"></i> New Post
-                  </button>
-                </div>
-                <br />
-                {alertMessage.message !== "" ? (
-                  <div className="col-10 mb-3">{alertMessage.message}</div>
-                ) : (
-                  ""
-                )}
-                {showForm ? (
-                  <div>
-                    <MainPostForm
-                      forum_id={forum_id}
-                      submitThread={submitThread}
-                      loadPage={fetchPosts}
-                    />
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
-              {/* new post button end */}
-
-              {/* Posts */}
-              <div className="card mb-3">
-                <Posts postsResult={currentPosts} loading={loading} />
-              </div>
-
-              {/* Pages */}
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={postsResult.length}
-                paginate={paginate}
-              />
-            </div>
-            <div className="col-lg-3"></div>
-          </div>
-        </div>
-      </div>
+        
+      
     </>
   );
 };
