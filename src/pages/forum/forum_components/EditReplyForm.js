@@ -1,8 +1,9 @@
 import React, { useState } from "react"
+import { savePost } from "../../../services/posts"
 import QuillEditor from "../postEditor/quillEditor"
 
 const EditReplyForm = (props) => {
-  const [editReply, setEditReply] = useState({ message: props.reply.message })
+  const [editReply, setEditReply] = useState({ message: props.reply.narrative })
 
   const handleEdit = (content) => {
     let userEdit = content
@@ -11,22 +12,12 @@ const EditReplyForm = (props) => {
 
   const handleEditSubmit = async (e) => {
     e.preventDefault()
-
-    let editReplyData = {
-      postId: props.reply.postId,
-      userId: props.reply.postId,
-      replyId: props.reply._id,
-      edited: editReply.message,
+    let editReplyData = { ...props.reply,
+     // _id: props.reply._id,
+      narrative: editReply.message.split('>')[1].split('<')[0],
     }
-
-    const apiReply = await fetch("/api/editReply", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(editReplyData),
-    }).then((result) => result.json())
+  
+    await savePost(editReplyData);
 
     props.submitReply(e)
     props.loadPage()

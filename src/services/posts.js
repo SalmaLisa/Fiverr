@@ -55,6 +55,11 @@ const topicsEndpoint = apiUrl.url+'/topics';
     return http.delete(postUrl(Id));
   }  
 
+   //delete topic
+   export function deleteTopic(Id) {
+    return http.delete(topicUrl(Id));
+  } 
+
   export function saveTopic(topic) {
     //clone
     const body = { ...topic };
