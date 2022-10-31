@@ -2,6 +2,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
+import { Box } from '@material-ui/core';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import AttachmentIcon from "@material-ui/icons/Attachment";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import PanToolIcon from "@material-ui/icons/PanTool";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import LockIcon from "@material-ui/icons/Lock";
+import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
+import ReplyIcon from '@material-ui/icons/Reply';
+
 import "./PostDetail.css";
 // for replying to main post
 import MainReplyForm from "./forum_components/MainReplyForm";
@@ -23,7 +34,10 @@ function NoteDetail() {
   });
   const [showForm, setShowForm] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
+
   const [replyForm, setReplyForm] = useState(false);
+
+  const [quoteForm, setQuoteForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [editPost, setEditPost] = useState(false);
   const [replyResult, setReplyResult] = useState([]);
@@ -120,6 +134,12 @@ function NoteDetail() {
     e.preventDefault();
     setShowReplyForm(false);
     setTopicReply(false);
+  };
+
+  const submitQuoteForm = (e) => {
+    e.preventDefault();
+    setShowForm(false);
+    setQuoteForm(false);
   };
 
   const history = useHistory();
@@ -239,13 +259,11 @@ function NoteDetail() {
   const handleReply = (e) => {
     e.preventDefault();
     setTopicReply(true)
+  };
 
-
- { /*  if (localStorage.id) {
-      setShowForm(true);
-    } else {
-      alert("Please login first");
-    }*/}
+  const handleQuote = (e) => {
+    e.preventDefault();
+    setQuoteForm(true)
   };
 
   // make reply to reply
@@ -395,92 +413,76 @@ function NoteDetail() {
                       ) : (
                         <div>{ReactHtmlParser(Post.message)}</div>
                       )}
+                          {quoteForm ? (
+                              // for quoting 
+                              <div>
+                                <QuoteForm
+                                  message={topic.narrative}
+                                  name={topic.title}
+                                  submitForm={submitQuoteForm}
+                                  Post={topic}
+                                  loadPage={loadPage}
+                                  alertSuccess={alertSuccess}
+                                  alertFailure={alertFailure}
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )
+                        }
                     </div>
                   </div>
 
                   {/* buttons */}
-                  <div className="row bg-light px-3 py-3 border-bottom justify-content-between">
+                  <div className="row bg-light px-3 py-3 border-bottom justify-content-end">
                     {/* left part */}
                     {/* // reply to main post */}
 
-                   
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-secondary mr-1"
-                        onClick={handleReply}
-                      >
-                       
-                        <i className="mdi mdi-reply mr-1"></i>
-                        Reply
-                      </button>
+                
                     
                     <div>
-                      <div class="btn-group mr-1">
-                        {localStorage.id === Post.userId ||
-                         localStorage.type === "moderator" ||
-                        localStorage.type === "admin" ? (
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-secondary"
-                            onClick={(e) =>
-                              handleDelete(e, topic._id)
-                            }
-                          >
-                            <i className="mdi mdi-delete  mr-1"></i>
-                            Delete
-                          </button>
-                        ) : (
-                          ""
-                        )}
-
-                        {localStorage.id === Post.userId ||
-                        localStorage.type === "moderator" ||
-                        localStorage.type === "admin" ? (
-                          <>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-secondary"
-                              onClick={handleEditPost}
-                            >
-                              <i className="mdi mdi-archive"></i>
-                              Edit
-                            </button>
-                          </>
-                        ) : (
-                          ""
-                        )}
-                      </div>
+                     
                       <div class="btn-group">
                         {" "}
                        
                           <>
-                            {/* lock button */}
-                            {Post.threadStatus == "open" ? (
-                              <button
-                                onClick={handleThreadStatus}
-                                class="btn btn-sm btn-outline-secondary"
-                              >
-                                <i class="fas fa-lock-open"></i>
-                                
-                              </button>
-                            ) : (
-                              <button
-                                onClick={handleThreadStatus}
-                                class="btn btn-sm btn-outline-secondary"
-                              >
-                                <i class="fas fa-lock"></i>
-                              </button>
-                            )}
-{/*<h1>milo</h1>*/}
-                            {/* move button */}
-                            <button
-                              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            ></button>
+<div className="comment-reply d-flex justify-content-end align-items-center">
+ <Box>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FormatQuoteIcon  onClick={handleQuote} />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FavoriteBorderIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <AttachmentIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <BookmarkBorderIcon />
+                </span>
+                <span  style={{ marginRight: ".5rem" }}>
+                  <ReplyIcon 
+                  onClick={handleReply}
+                   />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <EditIcon onClick={handleEditPost} />
+                </span>
+
+                <span style={{ marginRight: ".5rem" }}>
+                  <PanToolIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                <DeleteIcon onClick={(e) => handleDelete(e, topic._id)}  />
+
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <LockIcon />
+                </span>
+              </Box>
+</div>
+
+                          
                             <div
                               class="dropdown-menu"
                               aria-labelledby="dropdownMenuButton"
@@ -521,6 +523,8 @@ function NoteDetail() {
                     )}
                   </div>
                 </div>
+            
+
               </div>
               {/* <!-- card --> */}
             </div>
@@ -573,78 +577,54 @@ function NoteDetail() {
                         )}
 
                         <div class="col-lg-12">
-                          <div class="row justify-content-between mt-3 mb-3">
+                          <div class="row bg-light px-3 py-3  justify-content-end mt-3 mb-3">
                             {" "}
-                           
-                              <>
-                             
-                                  <div>
-                                    {/* reply button for replies */}
-                                    <button
-                                      type="button"
-                                      className="btn btn-sm btn-outline-secondary mr-1"
-                                      onClick={() =>
-                                        handleRepliesReply(reply._id)
-                                      }
-                                      disabled
-                                    >
-                                      <i class="fas fa-quote-right mr-1"></i>
-                                      Quote
-                                    </button>
-                                  </div>
-                                
-                                <div>
-                                  <div class="btn-group mr-1">
-                                    <button
-                                      class="btn btn-sm btn-outline-secondary"
-                                      type="submit"
-                                      id={reply.userId}
-                                      onClick={(e) => editReply(e, idx)}
-                                    >
-                                      <i className="mdi mdi-archive  mr-1"></i>
-                                      Edit
-                                    </button>
-                                    <br />
-                                    <button
-                                      class="btn btn-sm btn-outline-secondary"
-                                      type="submit"
-                                      id={reply.userId}
-                                      onClick={(e) =>
-                                        deleteBtnPost(e, reply._id)
-                                      }
-                                    >
-                                      <i className="mdi mdi-delete  mr-1"></i>
-                                      Delete
-                                    </button>
-                                  </div>
-                                </div>
-                              </>
+                              <div className="comment-reply d-flex justify-content-end align-items-center">
+       <Box>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FormatQuoteIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FavoriteBorderIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <AttachmentIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <BookmarkBorderIcon />
+                </span>
+                <span  style={{ marginRight: ".5rem" }}>
+                  <ReplyIcon 
+                  onClick={handleReply}
+                   />
+                  Reply
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <EditIcon   id={reply.userId} onClick={(e) => editReply(e, idx)} />
+                </span>
+
+                <span style={{ marginRight: ".5rem" }}>
+                  <PanToolIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                <DeleteIcon   id={reply.userId}  onClick={(e) => deleteBtnPost(e, reply._id) } />
+
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <LockIcon />
+                </span>
+              </Box>
+</div>
                             {" "}
                           </div>
-                          {showReplyForm ? (
-                            reply._id == replyName ? (
-                              // for replying to a reply
-                              <div>
-                                <QuoteForm
-                                  message={reply.message}
-                                  name={reply.name}
-                                  submitForm={submitReplyForm}
-                                  Post={Post}
-                                  loadPage={loadPage}
-                                  alertSuccess={alertSuccess}
-                                  alertFailure={alertFailure}
-                                />
-                              </div>
-                            ) : (
-                              ""
-                            )
-                          ) : (
-                            ""
-                          )}
+                    
+                          
                         </div>
+                     
                         <hr />
 
                         {/* better ui  end*/}
+                        
                       </div>
                     ))
                   : ""}
