@@ -61,8 +61,7 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
     console.log(id);
 
   };
-  const opencomment1 = async (topicId) => {
-
+  const opencomment1 =  async(topicId) => {
     const myTopics = await getTopic(topicId)
     const myTopic = myTopics.data
     let views = myTopic.views
@@ -154,7 +153,7 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
                     display="flex"
                     flexDirection="row"
                     justifyContent="space-between"
-                    onClick={() => opencomment(category.id)}
+                    onClick={() => opencomment(category._id)}
                     style={{ cursor: "pointer" }}
                   >
                     <Avatar>A</Avatar>
@@ -183,7 +182,7 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
 
                 <TableRow>
                   <TableCell  >
-                    <Box onClick={() => opencomment1(comment.element._id)} >
+                    <Box onClick={() =>opencomment1(comment?.element?._id)} >
                       <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='100px' height='fit-content' >
                         <div className="boxOfImage">
                           <img src={comment.element.user.imageSrc || "/assets/img/user/user-12.jpg"} className='avatar1' />

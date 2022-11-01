@@ -40,7 +40,7 @@ import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
 import authservice from "./services/authservice";
-import NoteDetail from "./pages/forum/PostDetail";
+
 
 
 const store = configureStore();
@@ -186,7 +186,7 @@ const App = () => {
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
-              <AppRoute path="/forum/topic/:topicId" component={NoteDetail} /> 
+              <AppRoute path="/forum/topic/:topicId" component={PostDetail} /> 
               <ProtectedRoute
                 path="/forum/:name/:postId"
                 component={PostDetail}

@@ -2,6 +2,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
+import { Box } from '@material-ui/core';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import AttachmentIcon from "@material-ui/icons/Attachment";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import PanToolIcon from "@material-ui/icons/PanTool";
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import LockIcon from "@material-ui/icons/Lock";
+import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
+import ReplyIcon from '@material-ui/icons/Reply';
+
 import "./PostDetail.css";
 // for replying to main post
 import MainReplyForm from "./forum_components/MainReplyForm";
@@ -12,9 +23,10 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
-import {deletePost, getPost,getPosts,getTopic,savePost} from './../../services/posts';
+import {deletePost, deleteTopic, getPost,getPosts,getTopic,savePost} from './../../services/posts';
 import {getReplies} from './../../services/replies';
 import { getForumSubCats } from './../../services/forumsubcategories';
+import ReplyTopic from "./forum_components/replyTopic";
 
 function NoteDetail() {
   const [Post, setPost] = useState({
@@ -22,7 +34,10 @@ function NoteDetail() {
   });
   const [showForm, setShowForm] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
+
   const [replyForm, setReplyForm] = useState(false);
+
+  const [quoteForm, setQuoteForm] = useState(false);
   const [editForm, setEditForm] = useState(false);
   const [editPost, setEditPost] = useState(false);
   const [replyResult, setReplyResult] = useState([]);
@@ -58,28 +73,7 @@ function NoteDetail() {
   let {topicId} = useParams()
 
   let location = useLocation();
-
-  const loadPage = async () => {
-    //get the main post of the page
-
-    const { data: post } = await getPost(postId);
-    setPost(post);
-    setMyName(post.user.username);
-    //Get replies for the post
-    const { data: replies } = await getReplies(postId);
-
-    replies.forEach((element) => {
-      element.createdAt = new Date(element.createdAt)
-        .toString()
-        .substring(4, 15);
-      element.updatedAt = new Date(element.updatedAt)
-        .toString()
-        .substring(4, 15);
-    });
-    setReplyResult(replies);
-    let replyArray = replies.length;
-    setNumberReply(replyArray);
-  };
+  const [topicReply , setTopicReply] = useState(false)
 
 
   /* const loadPage = async () => {
@@ -139,7 +133,13 @@ function NoteDetail() {
   const submitReplyForm = (e) => {
     e.preventDefault();
     setShowReplyForm(false);
-    setEditPost(false);
+    setTopicReply(false);
+  };
+
+  const submitQuoteForm = (e) => {
+    e.preventDefault();
+    setShowForm(false);
+    setQuoteForm(false);
   };
 
   const history = useHistory();
@@ -193,22 +193,14 @@ function NoteDetail() {
   };
   const [topic,setTopic] = useState({})
   const [replies , setReplies] = useState([])
-  useEffect(()=>{
-
-const getCurrentTopic=async()=>{
-  console.log(localStorage)
-  const p = await getPosts()
-  console.log(p.data)
-  let filteredPosts = p.data.filter(e=> e.topicId._id===topicId)
-  console.log(filteredPosts)
-  setReplies(filteredPosts)
-  console.log(topicId)
-const data = await getTopic(topicId)
-console.log(data)
-setTopic(data.data)
-}
- getCurrentTopic()
-  },[])
+  const loadPage=async()=>{
+    const p = await getPosts()
+    let filteredPosts = p.data.filter(e=> e.topicId._id===topicId)
+    setReplies(filteredPosts)
+  const data = await getTopic(topicId)
+  setTopic(data.data)
+  }
+ 
 
   //handle threadStatus
   const handleThreadStatus = async (e) => {
@@ -259,19 +251,19 @@ setTopic(data.data)
     e.preventDefault();
   };
 
-  useEffect(function () {
-    loadPage();
+  useEffect(()=>{
+  loadPage()
   }, []);
 
   // main post reply
   const handleReply = (e) => {
     e.preventDefault();
+    setTopicReply(true)
+  };
 
-    if (localStorage.id) {
-      setShowForm(true);
-    } else {
-      alert("Please login first");
-    }
+  const handleQuote = (e) => {
+    e.preventDefault();
+    setQuoteForm(true)
   };
 
   // make reply to reply
@@ -289,43 +281,40 @@ setTopic(data.data)
   };
 
   // delete button
-  const deleteBtnPost = async (e, idx, replyId) => {
+  const deleteBtnPost = async (e, replyId) => {
     e.preventDefault();
-    let id = e.target.id;
-    // console.log(id)
-    if (localStorage.id == id || localStorage.type === "admin") {
-      const apiDeleteReply = await fetch(`/api/deletereply/${replyId}`, {
-        method: "delete",
-      }).then((result) => result.json());
-      console.log(apiDeleteReply);
-    }
+    await deletePost(replyId)
     loadPage();
   };
 
   const editReply = (e, idx) => {
-    let id = e.target.id;
-    if (
-      localStorage.id == id ||
-      localStorage.type === "moderator" ||
-      localStorage.type === "admin"
-    ) {
+
       setEditForm({ id: idx, state: true });
-    } else {
-      setEditForm({ id: "", state: false });
-    }
+ 
   };
 
-  const handleDelete = async (e, id, userId) => {
-    e.preventDefault();
-    const apiDeletePost = await fetch(`/api/deletepost/${id}/${userId}`, {
-      method: "delete",
-    }).then((result) => result.json());
-    console.log(apiDeletePost);
+  const handleDelete = async (event, id) => {
+    event.preventDefault();
+    const myPosts = await getPosts()
+    let filteredPosts = myPosts.data.filter(e=> e.topicId._id===id)
+    console.log(filteredPosts)
+    filteredPosts.map(async(e)=>{
+      await deletePost(e._id)
+      console.log("over here")
+
+    })
+    await deleteTopic(id)
+
     window.location.href = "/forum";
+
+    history.push("/forum")
+
   };
+
 
   const handleEditPost = (e) => {
     e.preventDefault();
+    console.log(Post)
     setEditPost(true);
     setEditForm(false);
     setShowForm(false);
@@ -359,16 +348,16 @@ setTopic(data.data)
               >
                 Go Back
               </button>
-              <button
-                onClick={goBackHandler}
+          {/*    <button
+                onClick={handleReply}
                 className="btn btn-secondary mt-3 ml-3"
               >
-                Reply
-              </button>
+                Reply 
+      </button>*/}
             </div>
             {/* go back button */}
 
-            <div className="">
+        {topic._id &&    <div className="">
               <div
                 className="card shadow-none bg-white  p-0 "
                 style={{ border: "none" }}
@@ -387,7 +376,7 @@ setTopic(data.data)
                         height="70"
                       />
                       <div className="media-body">
-                        <h8 className="">Question by {topic?.user?.contactName.first+" "+topic?.user?.contactName.last}</h8> <br />
+                        <h8 className="">{topic?.user?.contactName.first+" "+topic?.user?.contactName.last}</h8> <br />
                         <div className="">
                           <i className="mdi mdi-clock mr-1 align-center"></i>
                           <small className="">
@@ -406,102 +395,94 @@ setTopic(data.data)
                         <div className="mb-3">
                           <EditPost
                             submitForm={submitForm}
-                            Post={Post}
+                            Post={topic}
                             loadPage={loadPage}
                           />
                         </div>
                       ) : (
                         <div>{ReactHtmlParser(Post.message)}</div>
                       )}
+                          {topicReply ? (
+                        <div className="mb-3">
+                          <ReplyTopic
+                          submitReplyForm={submitReplyForm}
+                            Post={topic}
+                            loadPage={loadPage}
+                          />
+                        </div>
+                      ) : (
+                        <div>{ReactHtmlParser(Post.message)}</div>
+                      )}
+                          {quoteForm ? (
+                              // for quoting 
+                              <div>
+                                <QuoteForm
+                                  message={topic.narrative}
+                                  name={topic.title}
+                                  submitForm={submitQuoteForm}
+                                  Post={topic}
+                                  loadPage={loadPage}
+                                  alertSuccess={alertSuccess}
+                                  alertFailure={alertFailure}
+                                />
+                              </div>
+                            ) : (
+                              ""
+                            )
+                        }
                     </div>
                   </div>
 
                   {/* buttons */}
-                  <div className="row bg-light px-3 py-3 border-bottom justify-content-between">
+                  <div className="row bg-light px-3 py-3 border-bottom justify-content-end">
                     {/* left part */}
                     {/* // reply to main post */}
 
-                    {Post.threadStatus == "open" ? (
-                      <button
-                        type="button"
-                        className="btn btn-sm btn-outline-secondary mr-1"
-                        onClick={handleReply}
-                      >
-                       
-                        <i className="mdi mdi-reply mr-1"></i>
-                        Reply
-                      </button>
-                    ) : (
-                      ""
-                    )}
+                
+                    
                     <div>
-                      <div class="btn-group mr-1">
-                        {localStorage.id === Post.userId ||
-                        localStorage.type === "admin" ? (
-                          <button
-                            type="button"
-                            className="btn btn-sm btn-outline-secondary"
-                            onClick={(e) =>
-                              handleDelete(e, Post._id, Post.userId)
-                            }
-                          >
-                            <i className="mdi mdi-delete  mr-1"></i>
-                            Delete
-                          </button>
-                        ) : (
-                          ""
-                        )}
-
-                        {localStorage.id === Post.userId ||
-                        localStorage.type === "moderator" ||
-                        localStorage.type === "admin" ? (
-                          <>
-                            <button
-                              type="button"
-                              className="btn btn-sm btn-outline-secondary"
-                              onClick={handleEditPost}
-                            >
-                              <i className="mdi mdi-archive"></i>
-                              Edit
-                            </button>
-                          </>
-                        ) : (
-                          ""
-                        )}
-                      </div>
+                     
                       <div class="btn-group">
                         {" "}
-                        {localStorage.id === Post.userId ||
-                        localStorage.type === "moderator" ||
-                        localStorage.type === "admin" ? (
+                       
                           <>
-                            {/* lock button */}
-                            {Post.threadStatus == "open" ? (
-                              <button
-                                onClick={handleThreadStatus}
-                                class="btn btn-sm btn-outline-secondary"
-                              >
-                                <i class="fas fa-lock-open"></i>
-                              </button>
-                            ) : (
-                              <button
-                                onClick={handleThreadStatus}
-                                class="btn btn-sm btn-outline-secondary"
-                              >
-                                <i class="fas fa-lock"></i>
-                              </button>
-                            )}
-                            <h1>milo</h1>
+<div className="comment-reply d-flex justify-content-end align-items-center">
+ <Box>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FormatQuoteIcon  onClick={handleQuote} />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FavoriteBorderIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <AttachmentIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <BookmarkBorderIcon />
+                </span>
+                <span  style={{ marginRight: ".5rem" }}>
+                  <ReplyIcon 
+                  onClick={handleReply}
+                   />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <EditIcon onClick={handleEditPost} />
+                </span>
 
-                            {/* move button */}
-                            <button
-                              class="btn btn-outline-secondary btn-sm dropdown-toggle"
-                              type="button"
-                              id="dropdownMenuButton"
-                              data-toggle="dropdown"
-                              aria-haspopup="true"
-                              aria-expanded="false"
-                            ></button>
+                <span style={{ marginRight: ".5rem" }}>
+                  <PanToolIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                <DeleteIcon onClick={(e) => handleDelete(e, topic._id)}  />
+
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <LockIcon />
+                </span>
+              </Box>
+</div>
+
+                          
                             <div
                               class="dropdown-menu"
                               aria-labelledby="dropdownMenuButton"
@@ -518,9 +499,7 @@ setTopic(data.data)
                                 ))}
                             </div>
                           </>
-                        ) : (
-                          ""
-                        )}
+                     
                       </div>
                     </div>
                   </div>
@@ -544,9 +523,12 @@ setTopic(data.data)
                     )}
                   </div>
                 </div>
+            
+
               </div>
               {/* <!-- card --> */}
             </div>
+}
           </div>
           {/* End Body */}
 
@@ -571,7 +553,7 @@ setTopic(data.data)
                             height="70"
                           />
                           <div className="media-body">
-                            <h8 className="">Reply By {reply?.user?.contactName.first+" "+reply?.user?.contactName.last}</h8> <br />
+                            <h8 className="">{reply?.user?.contactName.first+" "+reply?.user?.contactName.last}</h8> <br />
                             <div className="">
                               <i className="mdi mdi-clock mr-1 align-center"></i>
                               <small className=""> {Date(reply.createdOn).slice(0, 16)}</small>
@@ -582,90 +564,67 @@ setTopic(data.data)
                         {/* <!-- media --> */}
                         {/* body */}
                         {editForm.id == idx && editForm.state ? (
+                          <>
                           <EditReplyForm
                             submitReply={submitReply}
                             idx={idx}
                             reply={reply}
                             loadPage={loadPage}
                           />
+                          </>
                         ) : (
                           <div>{ReactHtmlParser(reply.message)}</div>
                         )}
 
                         <div class="col-lg-12">
-                          <div class="row justify-content-between mt-3 mb-3">
+                          <div class="row bg-light px-3 py-3  justify-content-end mt-3 mb-3">
                             {" "}
-                            {localStorage.id ? (
-                              <>
-                             
-                                  <div>
-                                    {/* reply button for replies */}
-                                    <button
-                                      type="button"
-                                      className="btn btn-sm btn-outline-secondary mr-1"
-                                      onClick={() =>
-                                        handleRepliesReply(reply._id)
-                                      }
-                                    >
-                                      <i class="fas fa-quote-right mr-1"></i>
-                                      Quote
-                                    </button>
-                                  </div>
-                                
-                                <div>
-                                  <div class="btn-group mr-1">
-                                    <button
-                                      class="btn btn-sm btn-outline-secondary"
-                                      type="submit"
-                                      id={reply.userId}
-                                      onClick={(e) => editReply(e, idx)}
-                                    >
-                                      <i className="mdi mdi-archive  mr-1"></i>
-                                      Edit
-                                    </button>
-                                    <br />
-                                    <button
-                                      class="btn btn-sm btn-outline-secondary"
-                                      type="submit"
-                                      id={reply.userId}
-                                      onClick={(e) =>
-                                        deleteBtnPost(e, idx, reply._id)
-                                      }
-                                    >
-                                      <i className="mdi mdi-delete  mr-1"></i>
-                                      Delete
-                                    </button>
-                                  </div>
-                                </div>
-                              </>
-                            ) : (
-                              ""
-                            )}{" "}
+                              <div className="comment-reply d-flex justify-content-end align-items-center">
+       <Box>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FormatQuoteIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <FavoriteBorderIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <AttachmentIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <BookmarkBorderIcon />
+                </span>
+                <span  style={{ marginRight: ".5rem" }}>
+                  <ReplyIcon 
+                  onClick={handleReply}
+                   />
+                  Reply
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <EditIcon   id={reply.userId} onClick={(e) => editReply(e, idx)} />
+                </span>
+
+                <span style={{ marginRight: ".5rem" }}>
+                  <PanToolIcon />
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                <DeleteIcon   id={reply.userId}  onClick={(e) => deleteBtnPost(e, reply._id) } />
+
+                </span>
+                <span style={{ marginRight: ".5rem" }}>
+                  <LockIcon />
+                </span>
+              </Box>
+</div>
+                            {" "}
                           </div>
-                          {showReplyForm ? (
-                            reply._id == replyName ? (
-                              // for replying to a reply
-                              <div>
-                                <QuoteForm
-                                  message={reply.message}
-                                  name={reply.name}
-                                  submitForm={submitReplyForm}
-                                  Post={Post}
-                                  loadPage={loadPage}
-                                  alertSuccess={alertSuccess}
-                                  alertFailure={alertFailure}
-                                />
-                              </div>
-                            ) : (
-                              ""
-                            )
-                          ) : (
-                            ""
-                          )}
+                    
+                          
                         </div>
+                     
                         <hr />
 
                         {/* better ui  end*/}
+                        
                       </div>
                     ))
                   : ""}

@@ -4,16 +4,17 @@
 import React, { useState, useEffect, useRef } from "react"
 import QuillEditor from "../postEditor/quillEditor"
 import ReactHtmlParser from "react-html-parser"
+import { getProfile } from "../../../services/authservice"
+import { savePost } from "../../../services/posts"
 
 const PostReplyForm = (props) => {
-  // console.log(props)
   const convertedMessage = ReactHtmlParser(props.message)
   console.log(convertedMessage, "hello")
   const trimedMessage = props.message.trim()
   var enter = "	&nbsp<p></p>"
 
   const [myPost, setMyPost] = useState({
-    reply: `<p><i>${props.name} wrote:</i></p> "<i>${trimedMessage}</i>"<p><br>${enter}</p>`,
+    reply: `${props.name} wrote: "${trimedMessage}"<p><br>${enter}</p>`,
   })
 
   console.log(myPost, "mypost")
@@ -27,28 +28,21 @@ const PostReplyForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     props.submitForm(e)
-    let userId = localStorage.id
+    const currentUser = await getProfile()
 
     if (myPost.reply != "") {
       let postData = {
-        name: localStorage.name,
-        img: localStorage.img,
-        postId: props.Post._id,
-        userId: localStorage.id,
-        post: myPost,
+        topicId: props.Post._id,
+        narrative: myPost.reply.split("<p>")[2].split('<')[0],
+        user: currentUser._id,
+        status:"active"
       }
+      console.log(postData)
+      const {ok} = await savePost(postData)
 
-      const apiReply = await fetch("/api/reply", {
-        method: "post",
-        headers: {
-          Accept: "application/json, text/plain, */*",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      }).then((result) => result.json())
-      //   console.log(apiReply.message);
 
-      if (apiReply.message) {
+
+      if (ok) {
         props.alertSuccess("Thank You! Your reply posted sucessfully.")
       } else {
         props.alertFailure("Try again! Failed to post the message")

@@ -1,30 +1,37 @@
 import React, { useState, useRef } from "react";
+import { getProfile } from "../../../services/authservice";
 import QuillEditor from "../postEditor/quillEditor";
 import {savePost, saveTopic} from "./../../../services/posts";
-const EditPost = (props) => {
+const ReplyTopic = (props) => {
   // console.log(props.Post)
-  const [editPost, setEditPost] = useState({narrative: props.Post.narrative})
+  const [editPost, setEditPost] = useState({narrative: ""})
 
   const editThread = (content) => {
     let postEdit = content
+    console.log(content)
     setEditPost({ narrative: postEdit })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-  console.log(props)
-    let editPostData = { ...props.Post,
-      _id: props.Post._id,
+
+
+    const currentUser = await getProfile()
+    let editPostData = { 
+      topicId: props.Post._id,
       narrative: editPost.narrative.split('>')[1].split('<')[0],
+      user: currentUser._id,
+      status:"active"
+
     }
-    console.log(editPostData);
-    await saveTopic(editPostData);
-    props.submitForm(e)
+    await savePost(editPostData);
+
+    props.submitReplyForm(e)
     props.loadPage()
   }
 
   const handleCancel = (e) => {
-    props.submitForm(e)
+    props.submitReplyForm(e)
     e.preventDefault()
   }
 
@@ -61,4 +68,4 @@ const EditPost = (props) => {
   )
 }
 
-export default EditPost
+export default ReplyTopic

@@ -33,7 +33,8 @@ class MyComponent extends React.Component {
   // }
 
   handleChange(html) {
-    this.setState({ editorHtml: html })
+    console.log(html)
+    this.setState({ editorHtml: html})
     if (this.state.editorHtml == this.props.value) {
       return console.log(html)
     }
@@ -56,6 +57,7 @@ class MyComponent extends React.Component {
         ref={(el) => {
           this.reactQuillRef = el
         }}
+
         value={this.state.editorHtml}
         modules={{
           imageCompress: {
