@@ -20,6 +20,7 @@
     "highlight.js": "^11.0.1",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.20",
+    "moment": "^2.29.4",
     "momment": "^0.0.1",
     "node-sass": "^6.0.1",
     "quill-image-compress": "^1.2.15",
@@ -61,7 +62,7 @@
     "use-supercluster": "^0.2.9"
   },
   "scripts": {
-    "start": "PORT=3500 react-scripts start",
+    "start": "react-scripts start",
     "dev": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

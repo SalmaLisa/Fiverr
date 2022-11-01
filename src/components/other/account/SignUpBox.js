@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import SignInOptions from "./SignInOptions";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
-import Button from "@material-ui/core/Button";
 import { CountryListData } from "../../../store/CountryListData";
 import users from "./../../../services/users";
-import auth from "./../../../services/authservice";
 
 function SignUpBox(props) {
   const [firstName, setFirstName] = useState();
@@ -34,7 +31,7 @@ function SignUpBox(props) {
       
       await users.saveUser(user);
       //await auth.login(user.username, user.password);
-      window.location = "/";
+      window.location = "/dashboard";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         //console.log(ex.response.data);

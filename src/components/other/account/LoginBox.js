@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Button from "@material-ui/core/Button";
 import { AiOutlineUser } from "react-icons/ai";
 import { FiLock } from "react-icons/fi";
 import auth from "./../../../services/authservice";
@@ -13,7 +12,7 @@ function LoginBox(props) {
     e.preventDefault();
     try {
       await auth.login(username, password);
-      window.location = "/";
+      window.location = "/dashboard";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         //console.log(ex.response.data);

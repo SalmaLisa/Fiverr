@@ -94,6 +94,7 @@ class ForumHome extends Component {
     const forumCatName = state;
 
     const { data: forumcats } = await getForumCats();
+    forumcats.map(e=>console.log(e._id) )    
 
     if (pathname === "/forum") {
       this.setState({
@@ -107,9 +108,12 @@ class ForumHome extends Component {
         forumCatName: forumCatName
       });
     }
-
+const topics = forumcats.map(e=>{return e.lastTopic} )
+console.log(topics)
     this.setState({
-      forumcats
+      forumcats,
+      topicsResult:topics
+      
     });
   };
 

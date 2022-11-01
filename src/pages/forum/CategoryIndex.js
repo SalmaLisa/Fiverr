@@ -10,6 +10,7 @@ import "./CategoryIndex.css";
 import { Pagination } from "@mui/material";
 // import HeaderTable from './HeaderTable';
 import HeaderTable2 from './HeaderTable2';
+import moment from "moment"
 
 // Styles..
 const useStyles = makeStyles({
@@ -34,6 +35,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
   const history = useHistory();
   const classes = useStyles();
   const opencomment = (id) => {
+    console.log("chourouk setila")
     history.push(`/forum/${id}`);
     console.log(id);
 
@@ -52,26 +54,26 @@ const CommentsTable = ({ categoriesData, latestData }) => {
       // Returning the UI with Data..
       return (
         <>
-          { newData.length > 0 && newData.map((comment, key) => (
-            <TableRow >
+          { latestData.length > 0 && latestData.map((comment, key) => (
+            <TableRow key={comment?._id} style={{height: '140px'   }}>
               <TableCell>
 
-                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" minHeight='40px' height='fit-content'>
+                <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" height='140px' boxSizing={"border-box"} >
                   {/* ---- Content of user and avatar ---- */}
                   <div className="d-block">
                     {/* <img src={comment.attachments[0] || "/assets/img/user/user-12.jpg"} className='avatar1' /> */}
-                    <img src={`${comment.user.imageSrc}`} className='avatar1' />
+                    <img src={`${comment?.user?.imageSrc}`} className='avatar1' />
 
                     {/* ---- Put the user First and Last name ---- */}
                     <p className='text-muted text-capitalize '>
-                      <span>{comment.user.contactName.first}</span>
+                      <span>{comment?.user.contactName.first}</span>
                       <span> </span>
-                      <span>{comment.user.contactName.last}</span>
+                      <span>{comment?.user.contactName.last}</span>
                     </p>
                   </div>
 
                   <Box width="90%" >
-                    <div className='titre1'>{comment.title}</div>
+                    <div className='titre1'>{comment?.title}</div>
                     <div style={{ display: "flex", alignItems: "center" }}>
                       <div
                         style={{
@@ -86,7 +88,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
                           marginRight: ".5rem",
                         }}
                       >
-                        {comment.narrative}
+                        {comment?.narrative}
                       </span>
                     </div>
                   </Box>
@@ -98,7 +100,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
               <TableCell>
                 <div  >
                   <div className='week1'>0</div>
-                  <span className='week1'>Jun 17</span>
+                  <span className='week1'>{moment(comment?.createdAt).format("ll").split(',')[0]}</span>
                 </div>
               </TableCell>
             </TableRow>
@@ -167,7 +169,7 @@ const CommentsTable = ({ categoriesData, latestData }) => {
 
             <TableBody>
               {categoriesData.length > 0 && categoriesData.map((comment, index) => (
-                <TableRow key={comment._id} style={{height: '452px'}}>
+                <TableRow key={comment._id} style={{height: '140px'   }}>
                   <TableCell style={{ borderLeft: `solid 7px ${comment.color}` }}>
                     <Box onClick={() => opencomment(comment._id)} >
                       <Box
