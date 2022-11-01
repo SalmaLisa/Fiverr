@@ -3,7 +3,6 @@ import GeneralHeader from '../../components/common/GeneralHeader'
 import BannerOne from '../../components/banner/banner1/BannerOne'
 import Testimonial from "../../components/sliders/Testimonial";
 import ClientLogo from "../../components/sliders/ClientLogo";
-import NewsLetter from "../../components/other/cta/NewsLetter";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import SectionsHeading from "../../components/common/SectionsHeading";
@@ -16,7 +15,7 @@ import Button from "../../components/common/Button";
 import SectionDivider from "../../components/common/SectionDivider";
 import InfoBox3 from "../../components/other/infoboxes/InfoBox3";
 import PlaceOne from "../../components/places/PlaceOne";
-import sectiondata from "../../store/menu";
+import sectiondata from "../store/store";
 
 function Home() {
     return (
@@ -152,9 +151,9 @@ function Home() {
             {/* Client Logo */}
             <ClientLogo logos={sectiondata.clientlogos} />
 
-            {/* NewsLetter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
-
+            {/* NewsLetter  
+            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />   					*/}
+			
             {/* Footer */}
             <Footer />
 
