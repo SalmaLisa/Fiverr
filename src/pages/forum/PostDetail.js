@@ -2,8 +2,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
-import { Box } from '@material-ui/core';
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import {
+  Box,
+  TableContainer,
+  Paper,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Typography,
+  Breadcrumbs,
+} from "@material-ui/core";import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -144,7 +154,7 @@ function NoteDetail() {
 
   const history = useHistory();
   function goBackHandler() {
-    history.goBack();
+    history.push(`/forum/${topic.catId._id}`);
   }
 
   //passing data from child to parent
@@ -341,19 +351,31 @@ function NoteDetail() {
 
           <div className="col-lg-10 col-sm-12 col-12">
             {/* go back button */}
-            <div style={{justifyContent:"space-between" }} className="row mt-2">
+            <div style={{justifyContent:"space-between" , alignItems:"center" }} className="row mt-2">
               <button
                 onClick={goBackHandler}
                 className="btn btn-secondary mt-3 ml-3"
               >
                 Go Back
               </button>
-          {/*    <button
-                onClick={handleReply}
-                className="btn btn-secondary mt-3 ml-3"
-              >
-                Reply 
-      </button>*/}
+              <Breadcrumbs aria-label="breadcrumb">
+
+{/* ---- Forum ---- */}
+<Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum/${topic.catId._id}`)} >
+  <Typography color="text.primary" und >{topic?.catId?.name}</Typography>
+</Link>
+
+{/* ---- Category ---- */}
+<Link
+  underline="hover"
+  className="linkStyle"
+  onClick={() => history.push(`/forum/topic/${topic._id}`)}
+>
+  <Typography color="text.primary" und >{topic?.title}</Typography>
+</Link>
+
+
+</Breadcrumbs>
             </div>
             {/* go back button */}
 
@@ -594,9 +616,7 @@ function NoteDetail() {
                   <BookmarkBorderIcon />
                 </span>
                 <span  style={{ marginRight: ".5rem" }}>
-                  <ReplyIcon 
-                  onClick={handleReply}
-                   />
+                  <ReplyIcon  />
                   Reply
                 </span>
                 <span style={{ marginRight: ".5rem" }}>
