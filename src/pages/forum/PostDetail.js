@@ -2,18 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams, useLocation, useHistory } from "react-router-dom";
 import GeneralHeader from "../../components/common/GeneralHeader";
-import {
-  Box,
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Typography,
-  Breadcrumbs,
-} from "@material-ui/core"; import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import { Box, Typography, Breadcrumbs, } from "@material-ui/core"; import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AttachmentIcon from "@material-ui/icons/Attachment";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -33,13 +22,12 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
-import { deletePost, deleteTopic, getPost, getPosts, getTopic, savePost } from './../../services/posts';
-import { getReplies } from './../../services/replies';
-import { getForumSubCats } from './../../services/forumsubcategories';
+import { deletePost, deleteTopic, getPosts, getTopic } from './../../services/posts';
+
 import ReplyTopic from "./forum_components/replyTopic";
 
 function NoteDetail() {
-
+  const history = useHistory();
   const [showForm, setShowForm] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
 
@@ -53,22 +41,14 @@ function NoteDetail() {
   let { topicId } = useParams()
 
   const [topicReply, setTopicReply] = useState(false)
-
-
-
-
-
+  const [topic, setTopic] = useState({})
+  const [replies, setReplies] = useState([])
+  //submit edit form
   const submitForm = (e) => {
     e.preventDefault();
     setShowForm(false);
     setEditPost(false);
   };
-
-
-
-
-
-
 
   //SubmitForm for the Post reply
   const submitReplyForm = (e) => {
@@ -83,7 +63,6 @@ function NoteDetail() {
     setQuoteForm(false);
   };
 
-  const history = useHistory();
   function goBackHandler() {
     history.push(`/forum/${topic.catId._id}`);
   }
@@ -105,8 +84,7 @@ function NoteDetail() {
   };
 
 
-  const [topic, setTopic] = useState({})
-  const [replies, setReplies] = useState([])
+
   const loadPage = async () => {
     const p = await getPosts()
     let filteredPosts = p.data.filter(e => e.topicId._id === topicId)
@@ -114,11 +92,7 @@ function NoteDetail() {
     const data = await getTopic(topicId)
     setTopic(data.data)
   }
-
-
-
-
-
+  //post a reply
   const submitReply = (e, idx) => {
     setReplyForm({ id: idx, state: false });
     setEditForm({ id: idx, state: false });
@@ -158,16 +132,11 @@ function NoteDetail() {
     event.preventDefault();
     const myPosts = await getPosts()
     let filteredPosts = myPosts.data.filter(e => e.topicId._id === id)
-    console.log(filteredPosts)
     filteredPosts.map(async (e) => {
       await deletePost(e._id)
-      console.log("over here")
 
     })
     await deleteTopic(id)
-
-    window.location.href = "/forum";
-
     history.push("/forum")
 
   };
@@ -209,13 +178,9 @@ function NoteDetail() {
                 Go Back
               </button>
               <Breadcrumbs aria-label="breadcrumb">
-
-                {/* ---- Forum ---- */}
                 <Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum/${topic.catId._id}`)} >
                   <Typography color="text.primary" und >{topic?.catId?.name}</Typography>
                 </Link>
-
-                {/* ---- Category ---- */}
                 <Link
                   underline="hover"
                   className="linkStyle"
@@ -223,11 +188,9 @@ function NoteDetail() {
                 >
                   <Typography color="text.primary" und >{topic?.title}</Typography>
                 </Link>
-
-
               </Breadcrumbs>
             </div>
-            {/* go back button */}
+
 
             {topic._id && <div className="">
               <div
@@ -304,19 +267,10 @@ function NoteDetail() {
                       }
                     </div>
                   </div>
-
-                  {/* buttons */}
                   <div className="row bg-light px-3 py-3 border-bottom justify-content-end">
-                    {/* left part */}
-                    {/* // reply to main post */}
-
-
-
                     <div>
-
                       <div class="btn-group">
                         {" "}
-
                         <>
                           <div className="comment-reply d-flex justify-content-end align-items-center">
                             <Box>
@@ -353,38 +307,12 @@ function NoteDetail() {
                               </span>
                             </Box>
                           </div>
-
-
-
                         </>
-
                       </div>
                     </div>
                   </div>
-                  {/* <!-- End button --> */}
-
-                  <div className="col-lg-10 mt-4 col-12 col-sm-12 p-sm-0">
-                    {showForm ? (
-                      // main post reply
-                      <div>
-                        <MainReplyForm
-                          submitForm={submitForm}
-                          Post={topic}
-                          loadPage={loadPage}
-                          alertSuccess={alertSuccess}
-                          alertFailure={alertFailure}
-                        />
-                        <hr />
-                      </div>
-                    ) : (
-                      ""
-                    )}
-                  </div>
                 </div>
-
-
               </div>
-              {/* <!-- card --> */}
             </div>
             }
           </div>
@@ -473,20 +401,13 @@ function NoteDetail() {
                           </div>
                           {" "}
                         </div>
-
-
                       </div>
-
                       <hr />
-
                       {/* better ui  end*/}
-
                     </div>
                   ))
                   : ""}
               </div>
-
-              {/* <!-- card --> */}
             </div>
           </div>
           {/* End Body for replies*/}
@@ -495,5 +416,4 @@ function NoteDetail() {
     </>
   );
 }
-
 export default NoteDetail;
