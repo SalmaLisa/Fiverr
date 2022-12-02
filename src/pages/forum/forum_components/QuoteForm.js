@@ -15,6 +15,7 @@ const PostReplyForm = (props) => {
 
   const [myPost, setMyPost] = useState({
     reply: `${props.name} wrote: "${trimedMessage}"<p><br>${enter}</p>`,
+    quote:props.quote
   })
 
   console.log(myPost, "mypost")
@@ -30,26 +31,43 @@ const PostReplyForm = (props) => {
     props.submitForm(e)
     const currentUser = await getProfile()
 
-    if (myPost.reply != "") {
+    if (myPost.reply != "" && props.quote==="topic" ) {
       let postData = {
         topicId: props.Post._id,
         narrative: myPost.reply.split("<p>")[2].split('<')[0],
         user: currentUser._id,
         status:"active"
       }
-      console.log(postData)
+
       const {ok} = await savePost(postData)
-
-
-
       if (ok) {
         props.alertSuccess("Thank You! Your reply posted sucessfully.")
       } else {
         props.alertFailure("Try again! Failed to post the message")
       }
       props.loadPage()
+
     } else {
+      if(myPost.reply != "" ){
+        let postData = {
+          topicId: props.Post.topicId._id,
+          parentId:props.Post._id ,
+          narrative: myPost.reply.split("<p>")[2].split('<')[0],
+          user: currentUser._id,
+          status:"active"
+        }
+  
+        const {ok} = await savePost(postData)
+        if (ok) {
+          props.alertSuccess("Thank You! Your reply posted sucessfully.")
+        } else {
+          props.alertFailure("Try again! Failed to post the message")
+        }
+        props.loadPage()
+      }
+      else{
       props.alertFailure("Reply is empty")
+      }
     }
   }
 

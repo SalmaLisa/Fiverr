@@ -4,7 +4,7 @@ import QuillEditor from "../postEditor/quillEditor";
 import {savePost, saveTopic} from "./../../../services/posts";
 const ReplyTopic = (props) => {
   // console.log(props.Post)
-  const [editPost, setEditPost] = useState({narrative: ""})
+  const [editPost, setEditPost] = useState({narrative: "",reply:""})
 
   const editThread = (content) => {
     let postEdit = content
@@ -17,14 +17,28 @@ const ReplyTopic = (props) => {
 
 
     const currentUser = await getProfile()
-    let editPostData = { 
+    
+    let editPostData ={}
+    if(editPost.reply==="topic")
+   {
+    editPostData = { 
       topicId: props.Post._id,
       narrative: editPost.narrative.split('>')[1].split('<')[0],
       user: currentUser._id,
       status:"active"
-
     }
+    await savePost(editPostData);}
+   else{
+    editPostData = { 
+      topicId: props.Post.topicId._id,
+      parentId: props.Post._id,
+      narrative: editPost.narrative.split('>')[1].split('<')[0],
+      user: currentUser._id,
+      status:"active"
+    }
+    
     await savePost(editPostData);
+   }
 
     props.submitReplyForm(e)
     props.loadPage()

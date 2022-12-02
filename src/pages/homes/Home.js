@@ -15,7 +15,7 @@ import Button from "../../components/common/Button";
 import SectionDivider from "../../components/common/SectionDivider";
 import InfoBox3 from "../../components/other/infoboxes/InfoBox3";
 import PlaceOne from "../../components/places/PlaceOne";
-import sectiondata from "../store/store";
+import sectiondata from "../../store/menu";
 
 function Home() {
     return (
