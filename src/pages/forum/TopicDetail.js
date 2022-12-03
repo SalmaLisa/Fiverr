@@ -132,6 +132,7 @@ function TopicDetail() {
 
   const handleQuote = (e) => {
     e.preventDefault();
+
     setQuoteForm(true)
   };
   const handleQuotePost = (e, idx) => {
@@ -142,9 +143,21 @@ function TopicDetail() {
 
   // delete button
   const deleteBtnPost = async (e, replyId) => {
+
+ 
+
+
     e.preventDefault();
+    const myPosts = await getPosts()
+    let filteredPosts = myPosts.data.filter(e => e.parentId === replyId)
+    filteredPosts.map(async (e) => {
+      await deletePost(e._id)
+
+    })
     await deletePost(replyId)
     loadPage();
+
+
   };
 
   const editReply = (e, idx) => {
