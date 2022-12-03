@@ -22,7 +22,7 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
-import { deletePost, deleteTopic, getPosts, getTopic } from '../../services/posts';
+import { deletePost, deleteTopic, getPost, getPosts, getTopic } from '../../services/posts';
 
 import ReplyTopic from "./forum_components/replyTopic";
 import { getProfile } from "../../services/authservice";
@@ -147,12 +147,8 @@ console.log("here meryem")
 
 
     e.preventDefault();
-    const myPosts = await getPosts()
-    let filteredPosts = myPosts.data.filter(e => e.parentId === replyId)
-    filteredPosts.map(async (e) => {
-      await deletePost(e._id)
-
-    })
+    await getNestedComments(replyId)
+    stateRef.current.map(async(e)=>await deletePost(e._id))
     await deletePost(replyId)
     loadPage();
 
@@ -169,6 +165,16 @@ console.log("here meryem")
     setPostReply({ id: idx, state: true });
 
   };
+
+
+
+  const handleEditPost = (e) => {
+    e.preventDefault();
+    setEditPost(true);
+    setEditForm(false);
+    setShowForm(false);
+  };
+
   const handleDelete = async (event, id) => {
     event.preventDefault();
     const myPosts = await getPosts()
@@ -180,16 +186,41 @@ console.log("here meryem")
     await deleteTopic(id)
     history.push("/forum")
 
+   
+
   };
+  const [nestedComments , setNestedComments] = useState([])
 
+  const stateRef = useRef();
+  stateRef.current = nestedComments;
+ 
 
-  const handleEditPost = (e) => {
-    e.preventDefault();
-    setEditPost(true);
-    setEditForm(false);
-    setShowForm(false);
-  };
+  const getNestedComments = async (id) => {
 
+    try {
+      const comments = await getPosts(id)
+      for (let j = 0; j <comments.data.length ; j++) {
+        await getAllReplies(comments.data[j],id)
+      }
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
+  const getAllReplies = async (comment,id)=>{
+    let reply = {}
+    if (comment.parentId) {
+      reply = comment
+      while (reply.parentId) {
+        reply = await getPost(reply.parentId)
+        reply = reply.data
+        if (reply._id === id) {
+         setNestedComments(prev=>[...prev,comment]);
+        }
+      }
+    }
+  }
   return (
     <>
       {/* hearder */}
