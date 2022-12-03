@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from "react"
 import QuillEditor from "../postEditor/quillEditor"
 import ReactHtmlParser from "react-html-parser"
 import { getProfile } from "../../../services/authservice"
-import { savePost } from "../../../services/posts"
+import { deletePost, getPosts, savePost } from "../../../services/posts"
 
 const PostReplyForm = (props) => {
   const convertedMessage = ReactHtmlParser(props.message)
@@ -30,6 +30,7 @@ const PostReplyForm = (props) => {
     e.preventDefault()
     props.submitForm(e)
     const currentUser = await getProfile()
+
 
     if (myPost.reply != "" && props.quote==="topic" ) {
       let postData = {

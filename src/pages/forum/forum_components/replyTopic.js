@@ -19,7 +19,7 @@ const ReplyTopic = (props) => {
     const currentUser = await getProfile()
     
     let editPostData ={}
-    if(editPost.reply==="topic")
+    if(props.reply==="topic")
    {
     editPostData = { 
       topicId: props.Post._id,

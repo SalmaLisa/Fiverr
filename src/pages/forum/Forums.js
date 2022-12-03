@@ -38,14 +38,13 @@ const Forums = () => {
    const topics = await getTopics()
    const comments = await getPosts()
    console.log(topics.data.length)
-   const filteredTopics = topics.data.filter( e=> e.catId._id===forum_id)
+   const filteredTopics = topics.data.filter( e=> e?.catId?._id===forum_id)
    let count
    let topicsWithReplies =[]
    filteredTopics.forEach(element => {
+   
     count=0
-        
-                comments.data.forEach(element1 => {
-                  
+                comments.data.forEach(element1 => {       
                     if(element1.topicId._id===element._id) count++
                   });
               const objet = {element,count}  
@@ -58,15 +57,8 @@ const Forums = () => {
    setCategory(category.data)
    }
   useEffect(()=>{
-return getTopicsOfCategory()
+ getTopicsOfCategory()
   },[forum_id])
-
-
- 
-
-
-
-
 
 
   const getCurrentUser = async () => {
@@ -89,9 +81,6 @@ return getTopicsOfCategory()
     let apiGetPosts = res.data.reverse();
     console.log(apiGetPosts, "before filter");
     setpostsResult(apiGetPosts);
-
- 
-
     setpostsResult(apiGetPosts);
     console.log(postsResult, "i am postsResult");
     console.log(apiGetPosts);

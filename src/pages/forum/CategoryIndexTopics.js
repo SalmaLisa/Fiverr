@@ -76,11 +76,7 @@ const TopicsOfCatTable = ({ category, latestData,countTopics}) => {
 
   const [i, setI] = useState(0)
   const tags = ["red", "pink", "yellow", "lightblue", "grey", "orange", "#6C3483", "#76D7C4", "#196F3D"]
-  useEffect(() => {
 
-    console.log("m")
-
-  }, [])
 
 
   return (

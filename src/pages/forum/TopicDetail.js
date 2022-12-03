@@ -22,7 +22,7 @@ import EditPost from "./forum_components/EditPost";
 // for editing replies
 import EditReplyForm from "./forum_components/EditReplyForm";
 
-import { deletePost, deleteTopic, getPosts, getTopic } from '../../services/posts';
+import { deletePost, deleteTopic, getPost, getPosts, getTopic } from '../../services/posts';
 
 import ReplyTopic from "./forum_components/replyTopic";
 import { getProfile } from "../../services/authservice";
@@ -132,19 +132,26 @@ function TopicDetail() {
 
   const handleQuote = (e) => {
     e.preventDefault();
+    console.log("quote")
     setQuoteForm(true)
   };
   const handleQuotePost = (e, idx) => {
     e.preventDefault();
-
+console.log("here meryem")
     setQuotePostForm({ id: idx, state: true });
   };
 
   // delete button
   const deleteBtnPost = async (e, replyId) => {
+ 
+
+
     e.preventDefault();
+    await getNestedComments(replyId)
+    stateRef.current.map(async(e)=>await deletePost(e._id))
     await deletePost(replyId)
     loadPage();
+
   };
 
   const editReply = (e, idx) => {
@@ -158,6 +165,16 @@ function TopicDetail() {
     setPostReply({ id: idx, state: true });
 
   };
+
+
+
+  const handleEditPost = (e) => {
+    e.preventDefault();
+    setEditPost(true);
+    setEditForm(false);
+    setShowForm(false);
+  };
+
   const handleDelete = async (event, id) => {
     event.preventDefault();
     const myPosts = await getPosts()
@@ -169,16 +186,41 @@ function TopicDetail() {
     await deleteTopic(id)
     history.push("/forum")
 
+   
+
   };
+  const [nestedComments , setNestedComments] = useState([])
 
+  const stateRef = useRef();
+  stateRef.current = nestedComments;
+ 
 
-  const handleEditPost = (e) => {
-    e.preventDefault();
-    setEditPost(true);
-    setEditForm(false);
-    setShowForm(false);
-  };
+  const getNestedComments = async (id) => {
 
+    try {
+      const comments = await getPosts(id)
+      for (let j = 0; j <comments.data.length ; j++) {
+        await getAllReplies(comments.data[j],id)
+      }
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
+  const getAllReplies = async (comment,id)=>{
+    let reply = {}
+    if (comment.parentId) {
+      reply = comment
+      while (reply.parentId) {
+        reply = await getPost(reply.parentId)
+        reply = reply.data
+        if (reply._id === id) {
+         setNestedComments(prev=>[...prev,comment]);
+        }
+      }
+    }
+  }
   return (
     <>
       {/* hearder */}
@@ -208,6 +250,9 @@ function TopicDetail() {
                 Go Back
               </button>
               <Breadcrumbs aria-label="breadcrumb">
+              <Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum`)} >
+                  <Typography color="text.primary" und >Forum</Typography>
+                </Link>
                 <Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum/${topic.catId._id}`)} >
                   <Typography color="text.primary" und >{topic?.catId?.name}</Typography>
                 </Link>
