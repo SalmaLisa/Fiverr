@@ -27,9 +27,6 @@ function PricingPlan() {
                 </div>
             </section>
 
-            {/* Newsletter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
-
             {/* Footer */}
             <Footer />
 

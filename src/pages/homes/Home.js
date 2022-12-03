@@ -3,7 +3,6 @@ import GeneralHeader from '../../components/common/GeneralHeader'
 import BannerOne from '../../components/banner/banner1/BannerOne'
 import Testimonial from "../../components/sliders/Testimonial";
 import ClientLogo from "../../components/sliders/ClientLogo";
-import NewsLetter from "../../components/other/cta/NewsLetter";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";
 import SectionsHeading from "../../components/common/SectionsHeading";
@@ -152,9 +151,9 @@ function Home() {
             {/* Client Logo */}
             <ClientLogo logos={sectiondata.clientlogos} />
 
-            {/* NewsLetter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
-
+            {/* NewsLetter  
+            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />   					*/}
+			
             {/* Footer */}
             <Footer />
 

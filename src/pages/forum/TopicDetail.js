@@ -132,17 +132,18 @@ function TopicDetail() {
 
   const handleQuote = (e) => {
     e.preventDefault();
-    console.log("quote")
+
     setQuoteForm(true)
   };
   const handleQuotePost = (e, idx) => {
     e.preventDefault();
-console.log("here meryem")
+
     setQuotePostForm({ id: idx, state: true });
   };
 
   // delete button
   const deleteBtnPost = async (e, replyId) => {
+
  
 
 
@@ -155,6 +156,7 @@ console.log("here meryem")
     })
     await deletePost(replyId)
     loadPage();
+
 
   };
 
