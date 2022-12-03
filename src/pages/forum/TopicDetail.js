@@ -250,6 +250,9 @@ console.log("here meryem")
                 Go Back
               </button>
               <Breadcrumbs aria-label="breadcrumb">
+              <Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum`)} >
+                  <Typography color="text.primary" und >Forum</Typography>
+                </Link>
                 <Link underline="hover" className="linkStyle" onClick={() => history.push(`/forum/${topic.catId._id}`)} >
                   <Typography color="text.primary" und >{topic?.catId?.name}</Typography>
                 </Link>
