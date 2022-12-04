@@ -14,7 +14,7 @@ const PostReplyForm = (props) => {
   var enter = "	&nbsp<p></p>"
 
   const [myPost, setMyPost] = useState({
-    reply: `${props.name} wrote: "${trimedMessage}"<p><br>${enter}</p>`,
+    reply: `${props.name} wrote: "${trimedMessage}"<p>${enter}</p>`,
     quote:props.quote
   })
 
@@ -23,6 +23,7 @@ const PostReplyForm = (props) => {
 
   const updatePost = (content) => {
     let post = { reply: content }
+    console.log(post)
     setMyPost(post)
   }
 
@@ -32,10 +33,10 @@ const PostReplyForm = (props) => {
     const currentUser = await getProfile()
 
 
-    if (myPost.reply != "" && props.quote==="topic" ) {
+    if (props.quote==="topic" ) {
       let postData = {
         topicId: props.Post._id,
-        narrative: myPost.reply.split("<p>")[2].split('<')[0],
+        narrative: myPost.reply.split("nbsp;")[1].split('<')[0],
         user: currentUser._id,
         status:"active"
       }
@@ -49,11 +50,12 @@ const PostReplyForm = (props) => {
       props.loadPage()
 
     } else {
-      if(myPost.reply != "" ){
+ 
+    
         let postData = {
           topicId: props.Post.topicId._id,
           parentId:props.Post._id ,
-          narrative: myPost.reply.split("<p>")[2].split('<')[0],
+          narrative: myPost.reply.split("nbsp;")[1].split('<')[0],
           user: currentUser._id,
           status:"active"
         }
@@ -65,10 +67,7 @@ const PostReplyForm = (props) => {
           props.alertFailure("Try again! Failed to post the message")
         }
         props.loadPage()
-      }
-      else{
-      props.alertFailure("Reply is empty")
-      }
+     
     }
   }
 
