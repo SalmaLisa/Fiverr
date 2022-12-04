@@ -11,7 +11,6 @@ import LayoutDefault from "./layouts/LayoutDefault";
 //import PostCompose from "./pages/PostCompose";
 //import TopicDetail from "./pages/TopicDetail";
 
-import PostDetail from "./pages/forum/PostDetail";
 import Forums from "./pages/forum/Forums";
 import ForumHome from "./pages/forum/ForumHome";
 
@@ -40,6 +39,7 @@ import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
 import authservice from "./services/authservice";
+import TopicDetail from "./pages/forum/TopicDetail";
 
 
 
@@ -186,11 +186,8 @@ const App = () => {
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
-              <AppRoute path="/forum/topic/:topicId" component={PostDetail} /> 
-              <ProtectedRoute
-                path="/forum/:name/:postId"
-                component={PostDetail}
-              />
+              <AppRoute path="/forum/topic/:topicId" component={TopicDetail} /> 
+            
               <ProtectedRoute path="/forum/:forum_id" component={Forums} exact />
               <AppRoute path="/forum" component={ForumHome} exact />
 
