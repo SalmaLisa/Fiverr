@@ -109,7 +109,7 @@ const Items = (incomingData) =>{
                         listName="Physical Location" 
                         value={props.caution} />
      
-            </ul>    
+            </ul>   
         </div>
     )
 }

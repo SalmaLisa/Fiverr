@@ -12,8 +12,8 @@ import { Link } from "react-router-dom"
 const CustomNav = (props) =>{
     const dispatch = useDispatch()
     const Width = props.name.length > 10 ? 
-                {width: "13em"} : 
-                {width:"8em"}
+                {width: "12em"} : 
+                {width:"7em"}
                 useEffect(()=>{
 console.log(props)
                 },[])
@@ -43,14 +43,14 @@ console.log(props)
 }
 
 
-const Nav = (props) =>{
+const NavForum = (props) =>{
     const Thisstate = useSelector(s=> s.entities.acupoint) 
     const Gstate = useSelector(s=> s.entities.acudata)
     const navigation = Thisstate.nav
 
     useEffect(()=>{
-console.log(Thisstate)
-    },[])
+console.log(Thisstate.navdata)
+    },[Thisstate])
 
     // Gstate.datalink please remove after adding real link
     const NavArray = Gstate.status == 'loaded' || Gstate.datalink === '/abc' ? 
@@ -74,11 +74,11 @@ console.log(Thisstate)
                 className="custom-scroll">
 
                     {NavArray}
-                    {props.page==="forumcategories" && <CustomNav name="Create Topic"/>  }
+                    {props.page==="forumcategories" && <CustomNav activenav={navigation} name="Create Topic"/>    }
             </div>
         </div>
     )
 }
 
 
-export default React.memo(Nav);
+export default React.memo(NavForum);

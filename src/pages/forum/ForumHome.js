@@ -11,55 +11,6 @@ import CategoryTable from './CategoryIndex';
 import Spinner from '../../components/spinner';
 
 
-//  --------======== DEMO DATA ========------
-// Latest Data..
-const latestData = [
-  {
-    id: 1,
-    replies: 15,
-    title: "Our default branch is main now",
-    tags: [
-      {
-        title: "dev",
-        color: "black",
-      },
-    ],
-  },
-  {
-    id: 2,
-    replies: 15,
-    title: "Our default branch is main now",
-    tags: [
-      {
-        title: "dev",
-        color: "black",
-      },
-    ],
-  },
-  {
-    id: 3,
-    replies: 15,
-    title: "Our default branch is main now",
-    tags: [
-      {
-        title: "dev",
-        color: "black",
-      },
-    ],
-  },
-  {
-    id: 4,
-    replies: 15,
-    title: "Our default branch is main now",
-    tags: [
-      {
-        title: "dev",
-        color: "black",
-      },
-    ],
-  },
-];
-
 
 // Component of ForumHome..
 class ForumHome extends Component {
@@ -87,20 +38,23 @@ class ForumHome extends Component {
   }
 
   // Get forum categories..
-  async getforumCats() {
+  async getforumCategories() {
+
     const { forum_cat_id } = this.props.match.params;
     const { pathname, state } = this.props.location;
     console.log("props", this.props);
     const forumCatName = state;
 
     const { data: forumcats } = await getForumCats();
-    forumcats.map(e=>console.log(e._id) )    
+    console.log("nora")
 
+    forumcats.map(e=>console.log(e._id) )    
     if (pathname === "/forum") {
       this.setState({
         forumId: forumcats[0]._id,
         forumCatName: forumcats[0].name
       });
+
 
     } else {
       this.setState({
@@ -163,7 +117,7 @@ console.log(topics)
 
   // Calling all async functions..
   async componentDidMount() {
-    await this.getforumCats();
+    await this.getforumCategories();
     await this.getforumSubCats();
     await this.loadPage();
   }

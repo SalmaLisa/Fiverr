@@ -109,8 +109,6 @@ function TopicDetail() {
     setReplies(filteredPosts)
     const data = await getTopic(topicId)
     console.log(data.data)
-
-
     setTopic(data.data)
   }
   //post a reply

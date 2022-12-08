@@ -96,6 +96,7 @@ function CommonHomePage(props) {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-12 text-left">
+                
                 {acuDatA.paginationvisible === true ? (
                   <div>
                     <div
@@ -158,7 +159,7 @@ function CommonHomePage(props) {
           />
         ) : null}
 
-        
+marissa
 
         {/* {Array or table} */}
         <section
@@ -199,7 +200,6 @@ function CommonHomePage(props) {
       {/* <NewsLetter /> */}
 
       <Footer />
-
       <ScrollTopBtn />
     </main>
   );

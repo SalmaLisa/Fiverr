@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { UncontrolledCarousel, Card, CardBody, CardTitle } from "reactstrap";
 import MateriaMedicaImageList from "../../../store/MateriaMedicaImageList";
 import Typography from "@material-ui/core/Typography";
 
 function CommonHomePageArray(props) {
+  useEffect(()=>{
+console.log(props)
+  },[])
   return (
     <>
       <Card

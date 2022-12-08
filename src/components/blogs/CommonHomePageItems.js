@@ -42,6 +42,8 @@ function CommonHomePageItems(props){
             ArrayView(item))
             : "Loading...." ;
 
+console.log(state)
+
 
     const FilteredArray = state != null && Filter != 'all' ?  state.filter((it)=>{
 
@@ -57,6 +59,9 @@ function CommonHomePageItems(props){
         }
         else if(Gstate.datalink == '/formulas'){
             console.log("formula active page")
+            return it.name.slice(0,2).includes(Filter.toUpperCase())
+        }
+        else if(Gstate.datalink == '/forumcategories'){
             return it.name.slice(0,2).includes(Filter.toUpperCase())
         }
     }).map((item)=>
@@ -75,6 +80,7 @@ function CommonHomePageItems(props){
         </h2>
 
         <LoadingErrorView />
+
         <Paper 
             elevation={5}
             className="array-parent"
@@ -82,7 +88,6 @@ function CommonHomePageItems(props){
             >
             { Visible ? FilterActive : null}
         </Paper>
-        
         <div style={{ textAlign: "center" }}>
             <Button 
                 style={{
