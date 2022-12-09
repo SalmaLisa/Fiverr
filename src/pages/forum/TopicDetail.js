@@ -109,8 +109,6 @@ function TopicDetail() {
     setReplies(filteredPosts)
     const data = await getTopic(topicId)
     console.log(data.data)
-
-
     setTopic(data.data)
   }
   //post a reply
@@ -274,7 +272,6 @@ console.log("here meryem")
               >
                 <div className="card-body text-dark">
                   <div className="mt-2">
-                    <h2 className="mb-4 mt">{topic.title}</h2>
 
                     {/* Avatar and email */}
                     <div className="media mb-4">
@@ -489,7 +486,6 @@ console.log("here meryem")
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
                                 <ReplyIcon  id={reply.userId} onClick={(e) => addPostReply(e, idx)} />
-                                Reply
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
                                 <EditIcon id={reply.userId} onClick={(e) => editReply(e, idx)} />

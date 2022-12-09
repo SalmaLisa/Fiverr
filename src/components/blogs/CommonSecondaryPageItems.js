@@ -1,4 +1,4 @@
-import React,{ useRef , useEffect } from 'react';
+import React,{ useRef , useEffect, useState } from 'react';
 import Typography from "@material-ui/core/Typography";
 
 import { useSelector } from 'react-redux';
@@ -9,10 +9,16 @@ import AcuPointItems from "./SecondaryPageItems/AcuPointItems"
 import FormulaSecondary from "./SecondaryPageItems/FormulaSecondary"
 import ClinicsItems from './SecondaryPageItems/ClinicsItems';
 import SalonItems from "./SecondaryPageItems/SalonProfilePageItems"
+import ForumItems from './SecondaryPageItems/forumItems';
+import { CommentData } from '../../store/CommentData';
+import { getPosts, getTopics } from '../../services/posts';
+import CreateTopic from '../../layouts/CreateTopic';
 
 
 function CommonSecondaryPageItems(props) {
 
+    const [topics,setTopics] = useState([])
+   // const [Filter,setFilter] = useState({})
     const Thisstate = useSelector(s=> s.entities.acupoint)
     const Gstate = useSelector(s=> s.entities.acudata)
     const activeNav = Thisstate.nav
@@ -21,14 +27,50 @@ function CommonSecondaryPageItems(props) {
                     .filter((item)=> item.name === undefined ? 
                     null : item.name.includes(Thisstate.acupagelink))
                     : null
+  const getTopicsOfCategory = async(id)=>{
+    console.log(Gstate)
+   const topics = await getTopics()
+   const comments = await getPosts()
+   console.log(topics.data.length)
+   const filteredTopics =topics.data.filter( e=> e?.catId?._id===id)
+   let topicsWithReplies =[]
+   let replyComments =[]
+   filteredTopics.forEach(element => {
+       replyComments=[]
+
+                comments.data.forEach(element1 => {       
+                    if(element1.topicId._id===element._id) {
+                      replyComments.push(element1)
+                    }
+                  });
+              let objet = element 
+              objet.replyComments=replyComments 
+              topicsWithReplies.push(objet)
+              
+            });
+            setTopics(topicsWithReplies)
+            console.log(topicsWithReplies)
+   }
+  useEffect(()=>{
+ getTopicsOfCategory()
+  },[])
+
 
     const Render = (event) => {
+        console.log(event)
         if(Gstate.datalink === '/acupunctures' ){
             return <AcuPointItems newItem={event} />
         }
         else if(Gstate.datalink === '/formulas'){
             return <FormulaSecondary  newItem={event}/>
         }
+        else if(Gstate.datalink === '/forumcategories'){
+            return <>
+            <ForumItems  newItem={event}/>
+        
+            </>
+        }
+  
         else if(Gstate.datalink === '/clinicsolo'){
             return <h1> Page Not Added Still</h1>
         }
@@ -48,9 +90,6 @@ function CommonSecondaryPageItems(props) {
     const ErroR2 = Filter != null ? Filter.length === 0 ? "No Data Found":null  :null
 
     const loadRef = useRef()
-    useEffect(()=>{
-        console.log(loadRef)
-    },[])
     return (
         <> 
         <div className="card-item blog-card border-bottom-0">
@@ -63,7 +102,6 @@ function CommonSecondaryPageItems(props) {
                         opacity: 0
                     }} 
                     ref={loadRef} />
-                
                 <div>
                     { Gstate.datalink === '/clinicsolo' || Gstate.datalink === '/abc' ?
                          null : 
@@ -76,19 +114,27 @@ function CommonSecondaryPageItems(props) {
                     <ClinicsItems />
                 </div>
                 { Gstate.datalink === '/abc' ? <SalonItems /> : null}
-
                 <br /><br />
-                
-                <div style={ 
+            
+
+        {Filter &&     <div style={ 
                         activeNav === 'Topic and Comments' ? 
                             { display: "block" } : 
                             { display : "none" }}>
 
-                    <Comment />
-                </div>
+                    <Comment category={Filter[0]} page={Gstate.datalink}  />
+                </div>}
+
+                {Filter &&     <div style={ 
+                        activeNav === 'Create Topic' ? 
+                            { display: "block" } : 
+                            { display : "none" }}>
+<CreateTopic category={Filter[0]} />
+                </div>}
 
                 <div style={ 
-                    activeNav === 'Topic and Comments' | 
+                activeNav === 'Topic and Comments' |
+                 activeNav === 'Create Topic' |
                     activeNav === 'Profile' ? 
                     { display: "none" } : 
                     { 

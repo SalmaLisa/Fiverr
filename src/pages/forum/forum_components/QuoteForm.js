@@ -11,11 +11,13 @@ const PostReplyForm = (props) => {
   const convertedMessage = ReactHtmlParser(props.message)
   console.log(convertedMessage, "hello")
   const trimedMessage = props.message.trim()
-  var enter = "	&nbsp<p></p>"
 
   const [myPost, setMyPost] = useState({
-    reply: `${props.name} wrote: "${trimedMessage}"<p>${enter}</p>`,
+    reply: "",
     quote:props.quote
+  })
+  const [original, setOriginal] = useState({
+    original: `${props.Post.user?.contactName.first + " " + props.Post.user?.contactName.last} wrote: "${trimedMessage}"`,
   })
 
   console.log(myPost, "mypost")
@@ -36,7 +38,7 @@ const PostReplyForm = (props) => {
     if (props.quote==="topic" ) {
       let postData = {
         topicId: props.Post._id,
-        narrative: myPost.reply.split("nbsp;")[1].split('<')[0],
+        narrative: myPost.reply.split('>')[1].split('<')[0],
         user: currentUser._id,
         status:"active"
       }
@@ -55,7 +57,7 @@ const PostReplyForm = (props) => {
         let postData = {
           topicId: props.Post.topicId._id,
           parentId:props.Post._id ,
-          narrative: myPost.reply.split("nbsp;")[1].split('<')[0],
+          narrative: myPost.reply.split('>')[1].split('<')[0],
           user: currentUser._id,
           status:"active"
         }
@@ -80,7 +82,7 @@ const PostReplyForm = (props) => {
   // }
 
   return (
-    <div>
+    <div style={{marginTop:"20px"}} >
       <form class='mt-2'>
         {/* <textarea
           type='textarea'
@@ -94,6 +96,7 @@ const PostReplyForm = (props) => {
         ></textarea> */}
         {/* RICH TEXT */}
         <div className='d-flex flex-column mt-n2'>
+          <p style={{marginBottom:"10px"}} >{original.original}</p>
           <QuillEditor onEditorChange={updatePost} value={myPost.reply} />
         </div>
 

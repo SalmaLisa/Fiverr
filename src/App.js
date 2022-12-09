@@ -40,6 +40,7 @@ import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
 import authservice from "./services/authservice";
 import TopicDetail from "./pages/forum/TopicDetail";
+import ForumData from "./store/forum";
 
 
 
@@ -100,7 +101,7 @@ const App = () => {
               />
 
               <AppRoute
-                path="/acupunctures"
+                path="/acupuncturess"
                 component={() => (
                   <CommonHomePage
                     datalink="/acupunctures"
@@ -108,12 +109,35 @@ const App = () => {
                   />
                 )}
               />
+              <AppRoute
+                path="/forumcategories/:name"
+                component={(event) => (
+                  <div>
+                    <CommonSecondaryPage
+                      datalink="/forumcategories"
+                      name={event}
+                    />
+                  </div>
+                )}
+              />
+
+<AppRoute
+                path="/forumcategories"
+                component={() => (
+                  <CommonHomePage
+                    datalink="/forumcategories"
+                    headingdata={ForumData}
+                  />
+                )}
+              />
+
+
 
               <AppRoute
                 path="/formulas/:name"
                 component={(event) => (
                   <div>
-                    <CommonSecondaryPage datalink="/formulas" name={event} />
+                    <CommonSecondaryPage datalink="/formulas"  name={event} />
                   </div>
                 )}
               />
@@ -187,6 +211,8 @@ const App = () => {
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
               <AppRoute path="/forum/topic/:topicId" component={TopicDetail} /> 
+              <AppRoute path="/forumcategories/topic/:topicId" component={TopicDetail} /> 
+              
             
               <ProtectedRoute path="/forum/:forum_id" component={Forums} exact />
               <AppRoute path="/forum" component={ForumHome} exact />
