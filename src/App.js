@@ -101,7 +101,7 @@ const App = () => {
               />
 
               <AppRoute
-                path="/acupuncturess"
+                path="/acupunctures"
                 component={() => (
                   <CommonHomePage
                     datalink="/acupunctures"
