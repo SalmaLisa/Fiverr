@@ -35,14 +35,13 @@ import configureStore from "./redux/configureStore";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
 import authservice from "./services/authservice";
 import TopicDetail from "./pages/forum/TopicDetail";
 import ForumData from "./store/forum";
-
-
 
 const store = configureStore();
 
@@ -64,12 +63,7 @@ const App = () => {
           ref={childRef}
           children={() => (
             <Switch>
-              <AppRoute
-                exact
-                path="/"
-                component={Home}
-                layout={LayoutDefault}
-              />
+              <AppRoute exact path="/" component={Home} layout={LayoutDefault}/>
 
               <AppRoute path="/about-us" component={AboutUs} />
               <AppRoute path="/contact-us" component={Contact} />
@@ -121,7 +115,7 @@ const App = () => {
                 )}
               />
 
-<AppRoute
+			  <AppRoute
                 path="/forumcategories"
                 component={() => (
                   <CommonHomePage
@@ -130,8 +124,6 @@ const App = () => {
                   />
                 )}
               />
-
-
 
               <AppRoute
                 path="/formulas/:name"
