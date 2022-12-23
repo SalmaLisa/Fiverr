@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { saveInternalPost, saveInternalTopic } from "../../../services/internaltopics";
 import QuillEditor from "../postEditor/quillEditor";
 import {savePost, saveTopic} from "./../../../services/posts";
 const EditPost = (props) => {
@@ -16,9 +17,15 @@ const EditPost = (props) => {
     let editPostData = { ...props.Post,
       _id: props.Post._id,
       narrative: editPost.narrative.split('>')[1].split('<')[0],
+    
     }
-    console.log(editPostData);
-    await saveTopic(editPostData);
+    if(props.type==="acupunctures"){
+      editPostData.createdAt= "Acupuncture"
+       
+        await saveInternalTopic(editPostData)
+      } 
+        else
+        await saveTopic(editPostData);
     props.submitForm(e)
     props.loadPage()
   }

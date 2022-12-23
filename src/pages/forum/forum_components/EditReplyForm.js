@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { saveInternalPost } from "../../../services/internaltopics"
 import { savePost } from "../../../services/posts"
 import QuillEditor from "../postEditor/quillEditor"
 
@@ -16,9 +17,14 @@ const EditReplyForm = (props) => {
      // _id: props.reply._id,
       narrative: editReply.message.split('>')[1].split('<')[0],
     }
-  
-    await savePost(editReplyData);
 
+    if(props.type==="acupunctures"){
+      editReplyData.createdAt= "InternalTopic"
+       
+        await saveInternalPost(editReplyData)
+      } 
+        else
+        await savePost(editReplyData);
     props.submitReply(e)
     props.loadPage()
   }

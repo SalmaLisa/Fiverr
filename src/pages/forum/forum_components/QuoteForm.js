@@ -6,6 +6,7 @@ import QuillEditor from "../postEditor/quillEditor"
 import ReactHtmlParser from "react-html-parser"
 import { getProfile } from "../../../services/authservice"
 import { deletePost, getPosts, savePost } from "../../../services/posts"
+import { saveInternalPost } from "../../../services/internaltopics"
 
 const PostReplyForm = (props) => {
   const convertedMessage = ReactHtmlParser(props.message)
@@ -42,13 +43,19 @@ const PostReplyForm = (props) => {
         user: currentUser._id,
         status:"active"
       }
+      if(props.type==="acupunctures"){
+        postData.createdAt= "InternalTopic"
+         
+          await saveInternalPost(postData)
+        } 
+          else
+          await savePost(postData);
 
-      const {ok} = await savePost(postData)
-      if (ok) {
+{/*      if (ok) {
         props.alertSuccess("Thank You! Your reply posted sucessfully.")
       } else {
         props.alertFailure("Try again! Failed to post the message")
-      }
+      }*/}
       props.loadPage()
 
     } else {
@@ -61,13 +68,20 @@ const PostReplyForm = (props) => {
           user: currentUser._id,
           status:"active"
         }
-  
-        const {ok} = await savePost(postData)
+        if(props.type==="acupunctures"){
+          postData.createdAt= "InternalTopic"
+           
+            await saveInternalPost(postData)
+          } 
+            else
+            await savePost(postData);
+        {/*const {ok} = await savePost(postData)
         if (ok) {
           props.alertSuccess("Thank You! Your reply posted sucessfully.")
         } else {
           props.alertFailure("Try again! Failed to post the message")
         }
+      */}
         props.loadPage()
      
     }

@@ -78,7 +78,7 @@ const Items = (incomingData) =>{
                 
                 <br />
 
-                <Nav />
+                <Nav page="acupunctures" />
 
                 <br />
                 </ul>

@@ -61,9 +61,7 @@ console.log(state)
             console.log("formula active page")
             return it.name.slice(0,2).includes(Filter.toUpperCase())
         }
-        else if(Gstate.datalink == '/forumcategories'){
-            return it.name.slice(0,2).includes(Filter.toUpperCase())
-        }
+
     }).map((item)=>
         ArrayView(item) ) 
         : "Loading...." ;

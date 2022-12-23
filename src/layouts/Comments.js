@@ -9,26 +9,25 @@ import { getForumCat } from "../services/forumcategories";
 import { getPosts, getTopics } from "../services/posts";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { getInternalPosts, getInternalTopics } from "../services/internaltopics";
 
 const Comment = (props) => {
 
   const [commentLists, setCommentLists] = useState([])
 
   const getData = async () => {
-    console.log("we are here "+props.category)
+    if (props.page === "/acupunctures") {
+      const topics = await getInternalTopics()
+      let comments = await getInternalPosts()
+      const filteredTopics = topics.data.filter(e => e?.catId?._id === props.category?._id)
+      const filteredComments = comments.data.filter(e => e?.createdAt === "InternalTopic")
 
-    if (props.page === "/forumcategories") {
-      console.log("we are here "+props.category._id)
-      const topics = await getTopics()
-      const comments = await getPosts()
-      console.log(topics.data.length)
-      const filteredTopics = topics.data.filter(e => e?.catId?._id === props.category._id)
       let topicsWithReplies = []
       let replyComments = []
-      filteredTopics.forEach(element => {
+   { /*  filteredTopics.forEach(element => {
         replyComments = []
 
-        comments.data.forEach(element1 => {
+        filteredComments.forEach(element1 => {
           if (element1.topicId._id === element._id) {
             replyComments.push(element1)
           }
@@ -37,8 +36,17 @@ const Comment = (props) => {
         objet.replyComments = replyComments
         topicsWithReplies.push(objet)
 
+      }); */}
+
+      //better ??
+      filteredTopics.forEach(element => {
+        let f =filteredComments.filter(element1 =>element1.topicId._id===element._id);
+        element.replyComments = f
       });
-      setCommentLists(topicsWithReplies)
+      setCommentLists(filteredTopics)
+console.log(filteredTopics)
+
+     // setCommentLists(topicsWithReplies)
     }
     else {
       setCommentLists(CommentData)

@@ -210,7 +210,10 @@ const App = () => {
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
-              <AppRoute path="/forum/topic/:topicId" component={TopicDetail} /> 
+                            {/*<AppRoute path="/acupunctures/topic/:topicId" component={InternalTopicDetail} /> */}
+              <AppRoute  path="/forum/topic/:topicId"  component={() => <TopicDetail page="forum" />} />
+              <AppRoute  path="/acupuncture/topic/:topicId"  component={() => <TopicDetail page="acupunctures" />} />
+
               <AppRoute path="/forumcategories/topic/:topicId" component={TopicDetail} /> 
               
             

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { getProfile } from "../../../services/authservice";
+import { saveInternalPost } from "../../../services/internaltopics";
 import QuillEditor from "../postEditor/quillEditor";
 import {savePost, saveTopic} from "./../../../services/posts";
 const ReplyTopic = (props) => {
@@ -27,7 +28,14 @@ const ReplyTopic = (props) => {
       user: currentUser._id,
       status:"active"
     }
-    await savePost(editPostData);}
+   if(props.type==="acupunctures"){
+  editPostData.createdAt= "InternalTopic"
+   
+    await saveInternalPost(editPostData)
+  } 
+    else
+    await savePost(editPostData);
+  }
    else{
     editPostData = { 
       topicId: props.Post.topicId._id,
@@ -37,8 +45,13 @@ const ReplyTopic = (props) => {
       status:"active"
     }
     
-    await savePost(editPostData);
-   }
+    if(props.type==="acupunctures"){
+      editPostData.createdAt= "InternalTopic"
+       
+        await saveInternalPost(editPostData)
+      } 
+        else
+        await savePost(editPostData);   }
 
     props.submitReplyForm(e)
     props.loadPage()
