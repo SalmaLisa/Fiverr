@@ -2,10 +2,10 @@
 // post editor is implimented here for rich text
 
 import React, { useState, useEffect, useRef } from "react"
-import QuillEditor from "../postEditor/quillEditor"
+import QuillEditor from "../../forum/postEditor/quillEditor"
 import ReactHtmlParser from "react-html-parser"
 import { getProfile } from "../../../services/authservice"
-import { savePost } from "../../../services/posts"
+import { saveInternalPost } from "../../../services/internaltopics"
 
 const PostReplyForm = (props) => {
   const convertedMessage = ReactHtmlParser(props.message)
@@ -40,10 +40,13 @@ const PostReplyForm = (props) => {
         topicId: props.Post._id,
         narrative: myPost.reply.split('>')[1].split('<')[0],
         user: currentUser._id,
-        status:"active"
+        status:"active",
+        createdAt: "InternalTopic"
+
       }
 
-          await savePost(postData);
+          await saveInternalPost(postData)
+
 
 {/*      if (ok) {
         props.alertSuccess("Thank You! Your reply posted sucessfully.")
@@ -60,10 +63,11 @@ const PostReplyForm = (props) => {
           parentId:props.Post._id ,
           narrative: myPost.reply.split('>')[1].split('<')[0],
           user: currentUser._id,
-          status:"active"
+          status:"active",
+          createdAt: "InternalTopic"
         }
+await saveInternalPost(postData)
 
-            await savePost(postData);
         {/*const {ok} = await savePost(postData)
         if (ok) {
           props.alertSuccess("Thank You! Your reply posted sucessfully.")

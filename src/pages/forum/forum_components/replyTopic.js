@@ -28,12 +28,6 @@ const ReplyTopic = (props) => {
       user: currentUser._id,
       status:"active"
     }
-   if(props.type==="acupunctures"){
-  editPostData.createdAt= "InternalTopic"
-   
-    await saveInternalPost(editPostData)
-  } 
-    else
     await savePost(editPostData);
   }
    else{
@@ -44,13 +38,7 @@ const ReplyTopic = (props) => {
       user: currentUser._id,
       status:"active"
     }
-    
-    if(props.type==="acupunctures"){
-      editPostData.createdAt= "InternalTopic"
-       
-        await saveInternalPost(editPostData)
-      } 
-        else
+
         await savePost(editPostData);   }
 
     props.submitReplyForm(e)
