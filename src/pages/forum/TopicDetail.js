@@ -25,7 +25,6 @@ import EditReplyForm from "./forum_components/EditReplyForm";
 import { deletePost, deleteTopic, getPost, getPosts, getTopic } from '../../services/posts';
 
 import ReplyTopic from "./forum_components/replyTopic";
-import { getProfile } from "../../services/authservice";
 import { deleteInternalPost, deleteInternalTopic, getInternalPost, getInternalPosts, getInternalTopic } from "../../services/internaltopics";
 
 function TopicDetail(props) {

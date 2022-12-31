@@ -112,7 +112,6 @@ function InternalTopicDetail(props) {
        let filteredPosts = p.data.filter(e => e.topicId?._id === topicId)
         setReplies(filteredPosts)
         const data = await getInternalTopic(topicId)
-        console.log(data.data)
         setTopic(data.data)
       
     
@@ -188,23 +187,19 @@ console.log("here meryem")
  
 
 
-
-  
-  const deleteReplyAcupuncture = async (e,id) => {
+  const getAllNestedPosts = async (e,id) => {
     e.preventDefault();
     try {
+    let a =[]
       const comments = await getInternalPosts()
-      for (let j = 0; j <comments.data.length ; j++) {
-        const promise1 = Promise.resolve(getParentAcupuncture(comments.data[j],comments.data[j],id));
+const filteredPosts = comments.data.filter(e=>e.topicId?._id === topicId)
+      for (let j = 0; j <filteredPosts.length ; j++) {
+        const promise1 = Promise.resolve(await getParentAcupuncture(filteredPosts[j],id));
         promise1.then(async(value) => {
-          if(value!==null) {
-            await deleteInternalPost(value._id)
-          }
-        });
-        if(j==comments.data.length-1) {
-          await deleteInternalPost(id)
-          loadPage()
-        }
+          if(value===1) {
+            a.push(filteredPosts[j])
+          }});
+        if(j==filteredPosts.length-1) { return a }
       }
     }
     catch (err) {
@@ -213,17 +208,40 @@ console.log("here meryem")
   }
 
 
-  const getParentAcupuncture = async(c,comment,id)=>{
-    if(comment.parentId===id){
-      return c
+
+  
+  const deleteReplyAcupuncture = async (e,id) => {
+    e.preventDefault();
+    try {
+        const promise1 = Promise.resolve(await getAllNestedPosts(e,id));
+        console.log(promise1)
+        promise1.then(async (value) => {
+            let size = value.length
+            value.map(async(e,i)=>{
+              await deleteInternalPost(e._id)
+            size-1==i && await loadPage()
+            })        
+        });
+    }
+    catch (err) {
+      console.log(err)
+    }
+  }
+
+
+  const getParentAcupuncture = async(comment,id)=>{
+
+    if(comment.parentId===id || comment._id===id){
+      return 1
     }
     else{
     if(!comment.parentId){
-      return null
+      return 0
     }
     else{
       const p = await getInternalPost(comment.parentId)
-      return getParentAcupuncture(c,p.data,id)
+      console.log(comment.narrative+"    "+p.data.narrative)
+      return getParentAcupuncture(p.data,id)
     }
   }
   }
