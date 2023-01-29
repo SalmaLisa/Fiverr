@@ -62,7 +62,7 @@
     "use-supercluster": "^0.2.9"
   },
   "scripts": {
-    "start": "set PORT=3500 react-scripts start",
+    "start": "PORT=3500 react-scripts start",
     "dev": "set PORT=3006 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
