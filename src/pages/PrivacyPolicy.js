@@ -5,7 +5,8 @@ import Breadcrumb from "../components/common/Breadcrumb";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
 import breadcrumbimg from '../assets/images/bread-bg.jpg';
-import { PrivacyPolicyData } from "../store/PrivacyPolicyData"
+//import { PrivacyPolicyData } from "../store/PrivacyPolicyData"
+import privacypolicies from "../services/privacypolicies";
 import Typography  from '@material-ui/core/Typography';
 import RemoveIcon from '@material-ui/icons/Remove';
 

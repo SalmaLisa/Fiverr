@@ -35,7 +35,7 @@ import configureStore from "./redux/configureStore";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+//import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -172,7 +172,7 @@ const App = () => {
               />
 
               <AppRoute path="/termofuse" component={TermOfUse} />
-              <AppRoute path="/privacypolicy" component={PrivacyPolicy} />			  
+              {/* <AppRoute path="/privacypolicy" component={PrivacyPolicy} />			   */}
               <AppRoute path="/signup" component={() => <SignUp authMethod="SignUp" />}/>
               <AppRoute path="/login" component={() => <SignUp authMethod="Login" />} />
 
