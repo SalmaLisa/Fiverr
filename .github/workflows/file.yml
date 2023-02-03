@@ -1,5 +1,3 @@
-name: CI
-
 on:
   push:
      branches: [master]
@@ -11,20 +9,29 @@ jobs:
     runs-on: self-hosted
 
     steps:
+      - name: Display contents of directory before checkout
+        run: |
+          echo "Before checkout:"
+          ls -la
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: List workspace contents
+      - name: Display contents of directory after checkout
         run: |
-          ls ${{github.workspace}}
+          echo "After checkout:"
+          ls -la
 
-      - name: Set up Node.js
+      - name: Uses Node.js ${{ matrix.version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.version }}
 
-      - name: Install dependencies and reload PM2
+      - name: Install dependencies
         run: |
           npm install --legacy-peer-deps   
+
+      - name: Reload and save PM2 configuration
+        run: |
           pm2 reload ecosystem.config.js
           pm2 save 
