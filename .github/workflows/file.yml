@@ -16,7 +16,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-            with:
+        with:
             path: ${{github.workspace}}/dirto
       - name: Display contents of directory after checkout
         run: |
