@@ -4,14 +4,15 @@ on:
      branches: [master]
   pull_request: 
      branches: [master]
-
+     
+defaults:
+      run:
+        working-directory: ./dirto
 jobs:
-  defaults:
-    steps:
-     run:
-       working-directory: ./dirto
   build:
     runs-on: self-hosted
+    
+ 
     steps:
       - name: Display contents of directory before checkout
         run: |
