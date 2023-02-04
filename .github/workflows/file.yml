@@ -11,6 +11,7 @@ jobs:
 
     steps:
       - name: Display contents of directory before checkout
+        working-directory: ./dirto
         run: |
           echo "Before checkout:"
           ls -la
@@ -27,10 +28,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.version }}
-
-      - name: Change to the dirto directory
-        run: |
-          cd ${{github.workspace}}/dirto
 
       - name: Install dependencies
         run: |
