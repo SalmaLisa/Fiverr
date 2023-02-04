@@ -1,10 +1,7 @@
-name: Continuous Integration and Deployment
-
-on:
-  push:
-    branches: [master]
+push:
+     branches: [master]
   pull_request: 
-    branches: [master]
+     branches: [master]
 
 jobs:
   build:
@@ -29,9 +26,12 @@ jobs:
         with:
           node-version: ${{ matrix.version }}
 
+      - name: Change to the dirto directory
+        run: |
+          cd ${{github.workspace}}/dirto
+
       - name: Install dependencies
         run: |
-          cd ${{github.workspace}}
           npm install --legacy-peer-deps   
 
       - name: Reload and save PM2 configuration
