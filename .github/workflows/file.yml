@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Display contents of directory before checkout
-        working-directory: ./../../dirto
+        working-directory: ./../../../dirto
         run: |
           echo "Before checkout:"
           ls -la
