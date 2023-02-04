@@ -16,7 +16,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-
+            with:
+            path: ${{github.workspace}}/dirto
       - name: Display contents of directory after checkout
         run: |
           echo "After checkout:"
@@ -29,6 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd ${{github.workspace}}/dirto
           npm install --legacy-peer-deps   
 
       - name: Reload and save PM2 configuration
