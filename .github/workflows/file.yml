@@ -7,8 +7,9 @@ on:
 
 jobs:
   defaults:
-    run:
-      working-directory: ./dirto
+    steps:
+     run:
+       working-directory: ./dirto
   build:
     runs-on: self-hosted
     steps:
