@@ -1,8 +1,10 @@
+name: Continuous Integration and Deployment
+
 on:
   push:
-     branches: [master]
+    branches: [master]
   pull_request: 
-     branches: [master]
+    branches: [master]
 
 jobs:
   build:
@@ -16,8 +18,7 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-            path: ${{github.workspace}}/dirto
+
       - name: Display contents of directory after checkout
         run: |
           echo "After checkout:"
@@ -30,7 +31,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ${{github.workspace}}/dirto
+          cd ${{github.workspace}}
           npm install --legacy-peer-deps   
 
       - name: Reload and save PM2 configuration
