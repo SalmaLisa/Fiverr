@@ -1,7 +1,7 @@
 import React from "react"
 import markericon from '../../assets/images/map-marker.png'
 
-const { compose, withProps } = require("recompose");
+const { compose, withProps } = require("react-recompose");
 const {
     withScriptjs,
     withGoogleMap,
