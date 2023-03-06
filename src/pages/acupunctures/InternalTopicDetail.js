@@ -12,22 +12,22 @@ import LockIcon from "@material-ui/icons/Lock";
 import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
 import ReplyIcon from '@material-ui/icons/Reply';
 
-import "./TopicDetail.css";
+import "./InternalTopicDetail.css";
 // for replying to main post
-import MainReplyForm from "./forum_components/MainReplyForm";
+import MainReplyForm from "./acupunctures_components/MainReplyForm";
 // for quoting
-import QuoteForm from "./forum_components/QuoteForm";
+import QuoteForm from "./acupunctures_components/QuoteForm";
 import ReactHtmlParser from "react-html-parser";
-import EditPost from "./forum_components/EditPost";
+import EditPost from "./acupunctures_components/EditPost";
 // for editing replies
-import EditReplyForm from "./forum_components/EditReplyForm";
+import EditReplyForm from "./acupunctures_components/EditReplyForm";
 
 import { deletePost, deleteTopic, getPost, getPosts, getTopic } from '../../services/posts';
 
-import ReplyTopic from "./forum_components/replyTopic";
+import ReplyTopic from "./acupunctures_components/replyTopic";
 import { deleteInternalPost, deleteInternalTopic, getInternalPost, getInternalPosts, getInternalTopic } from "../../services/internaltopics";
 
-function TopicDetail(props) {
+function InternalTopicDetail(props) {
   const history = useHistory();
   const [showForm, setShowForm] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
@@ -81,15 +81,9 @@ function TopicDetail(props) {
   };
 
   function goBackHandler() {
-    console.log(props.page)
-        if(props.page==="forum")
-        {
-          history.push(`/forum/${topic.catId._id}`)
-      }
-        else
-         {
+ 
           history.push(`/acupunctures/${topic.catId.name}`);
-        }
+
     
       }
   //passing data from child to parent
@@ -111,25 +105,16 @@ function TopicDetail(props) {
 
 
   const loadPage = async () => {
- if(props.page==="forum") {   const p = await getPosts()
-    console.log(p.data)
-   let filteredPosts = p.data.filter(e => e.topicId._id === topicId)
-    setReplies(filteredPosts)
-    const data = await getTopic(topicId)
-    console.log(data.data)
-    setTopic(data.data)
-  }
-    else{
-      if(props.page==="acupunctures") {
+
+
         const p = await getInternalPosts()
         console.log(p.data)
        let filteredPosts = p.data.filter(e => e.topicId?._id === topicId)
         setReplies(filteredPosts)
         const data = await getInternalTopic(topicId)
-        console.log(data.data)
         setTopic(data.data)
-      }
-    }
+      
+    
   }
   //post a reply
   const submitReply = (e, idx) => {
@@ -183,17 +168,7 @@ console.log("here meryem")
     setShowForm(false);
   };
 
-  const handleDelete = async (event, id) => {
-    event.preventDefault();
-    const myPosts = await getPosts()
-    let filteredPosts = myPosts.data.filter(e => e.topicId._id === id)
-    filteredPosts.map(async (e) => {
-      await deletePost(e._id)
-
-    })
-    await deleteTopic(id)
-    history.push("/forum")
-  };
+ 
   const handleDeleteAcupuncture = async (event, id) => {
     event.preventDefault();
     const myPosts = await getInternalPosts()
@@ -212,21 +187,19 @@ console.log("here meryem")
  
 
 
-  const deleteReply = async (e,id) => {
+  const getAllNestedPosts = async (e,id) => {
     e.preventDefault();
     try {
-      const comments = await getPosts()
-      for (let j = 0; j <comments.data.length ; j++) {
-        const promise1 = Promise.resolve(getParent(comments.data[j],comments.data[j],id));
+    let a =[]
+      const comments = await getInternalPosts()
+const filteredPosts = comments.data.filter(e=>e.topicId?._id === topicId)
+      for (let j = 0; j <filteredPosts.length ; j++) {
+        const promise1 = Promise.resolve(await getParentAcupuncture(filteredPosts[j],id));
         promise1.then(async(value) => {
-          if(value!==null) {
-            await deletePost(value._id)
-          }
-        });
-        if(j==comments.data.length-1) {
-          await deletePost(id)
-          loadPage()
-        }
+          if(value===1) {
+            a.push(filteredPosts[j])
+          }});
+        if(j==filteredPosts.length-1) { return a }
       }
     }
     catch (err) {
@@ -235,37 +208,20 @@ console.log("here meryem")
   }
 
 
-  const getParent = async(c,comment,id)=>{
-    if(comment.parentId===id){
-      return c
-    }
-    else{
-    if(!comment.parentId){
-      return null
-    }
-    else{
-      const p = await getPost(comment.parentId)
-      return getParent(c,p.data,id)
-    }
-  }
-  }
 
+  
   const deleteReplyAcupuncture = async (e,id) => {
     e.preventDefault();
     try {
-      const comments = await getInternalPosts()
-      for (let j = 0; j <comments.data.length ; j++) {
-        const promise1 = Promise.resolve(getParentAcupuncture(comments.data[j],comments.data[j],id));
-        promise1.then(async(value) => {
-          if(value!==null) {
-            await deleteInternalPost(value._id)
-          }
+        const promise1 = Promise.resolve(await getAllNestedPosts(e,id));
+        console.log(promise1)
+        promise1.then(async (value) => {
+            let size = value.length
+            value.map(async(e,i)=>{
+              await deleteInternalPost(e._id)
+            size-1==i && await loadPage()
+            })        
         });
-        if(j==comments.data.length-1) {
-          await deleteInternalPost(id)
-          loadPage()
-        }
-      }
     }
     catch (err) {
       console.log(err)
@@ -273,17 +229,19 @@ console.log("here meryem")
   }
 
 
-  const getParentAcupuncture = async(c,comment,id)=>{
-    if(comment.parentId===id){
-      return c
+  const getParentAcupuncture = async(comment,id)=>{
+
+    if(comment.parentId===id || comment._id===id){
+      return 1
     }
     else{
     if(!comment.parentId){
-      return null
+      return 0
     }
     else{
       const p = await getInternalPost(comment.parentId)
-      return getParent(c,p.data,id)
+      console.log(comment.narrative+"    "+p.data.narrative)
+      return getParentAcupuncture(p.data,id)
     }
   }
   }
@@ -318,10 +276,10 @@ console.log("here meryem")
                 Go Back
               </button>
               <Breadcrumbs aria-label="breadcrumb">
-              <Link underline="hover" className="linkStyle" onClick={() => {props.page==="forum"?history.push(`/forum`):history.push(`/acupunctures`)}} >
+              <Link underline="hover" className="linkStyle" onClick={() => history.push(`/acupunctures`)} >
                   <Typography color="text.primary" und >{props.page==="forum"?"Forum":"acupunctures"}</Typography>
                 </Link>
-                <Link underline="hover" className="linkStyle" onClick={() =>  {props.page==="forum"?history.push(`/forum/${topic.catId._id}`):history.push(`/acupunctures/${topic.catId.name}`)} } >
+                <Link underline="hover" className="linkStyle" onClick={() => history.push(`/acupunctures/${topic.catId.name}`) } >
                   <Typography color="text.primary" und >{topic?.catId?.name}</Typography>
                 </Link>
                 <Link
@@ -399,8 +357,6 @@ console.log("here meryem")
                           <QuoteForm
                             message={topic.narrative}
                             name={topic.title}
-                            type={props.page}
-
                             submitForm={submitQuoteForm}
                             Post={topic}
                             quote="topic"
@@ -447,7 +403,7 @@ console.log("here meryem")
                                 <PanToolIcon />
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
-                                <DeleteIcon onClick={(e) => {props.page==="forum"?handleDelete(e, topic._id):handleDeleteAcupuncture(e, topic._id)}} />
+                                <DeleteIcon onClick={(e) =>handleDeleteAcupuncture(e, topic._id)} />
 
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
@@ -500,7 +456,6 @@ console.log("here meryem")
                       {editForm.id == idx && editForm.state ? (
                         <>
                           <EditReplyForm
-                            type={props.page}
                             submitReply={submitReply}
                             idx={idx}
                             reply={reply}
@@ -514,7 +469,6 @@ console.log("here meryem")
                         <div className="mb-3">
                           <ReplyTopic
                             submitReplyForm={submitReplyPostForm}
-                            type={props.page}
                             idx={idx}
                             Post={reply}
                             loadPage={loadPage}
@@ -529,7 +483,6 @@ console.log("here meryem")
                           <QuoteForm
                             message={reply.narrative}
                             idx={idx}
-                            type={props.page}
 
                             name={reply?.user?.contactName.first + " " + reply?.user?.contactName.last}
                             submitForm={submitQuotePostForm}
@@ -572,7 +525,7 @@ console.log("here meryem")
                                 <PanToolIcon />
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
-                                <DeleteIcon id={reply.userId} onClick={(e) => {props.page==="forum"?deleteReply(e, reply._id): deleteReplyAcupuncture(e, reply._id)}} />
+                                <DeleteIcon id={reply.userId} onClick={(e) =>  deleteReplyAcupuncture(e, reply._id)} />
 
                               </span>
                               <span style={{ marginRight: ".5rem" }}>
@@ -597,4 +550,4 @@ console.log("here meryem")
     </>
   );
 }
-export default TopicDetail;
+export default InternalTopicDetail;

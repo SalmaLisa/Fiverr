@@ -64,12 +64,7 @@ function CommonSecondaryPageItems(props) {
         else if(Gstate.datalink === '/formulas'){
             return <FormulaSecondary  newItem={event}/>
         }
-        else if(Gstate.datalink === '/forumcategories'){
-            return <>
-            <ForumItems  newItem={event}/>
-        
-            </>
-        }
+
   
         else if(Gstate.datalink === '/clinicsolo'){
             return <h1> Page Not Added Still</h1>
@@ -122,7 +117,7 @@ function CommonSecondaryPageItems(props) {
                             { display: "block" } : 
                             { display : "none" }}>
 
-                    <Comment category={Filter[0]} page={Gstate.datalink}  />
+                    <Comment  category={Filter[0]} page={Gstate.datalink}  />
                 </div>}
 
                 {Filter &&     <div style={ 

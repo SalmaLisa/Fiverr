@@ -11,9 +11,10 @@ import { Link } from "react-router-dom"
 
 const CustomNav = (props) =>{
     const dispatch = useDispatch()
-    const Width = props.name.length > 10 ? 
-                {width: "13em"} : 
-                {width:"8em"}
+ 
+                const Width = props.name.length > 10 ? 
+                {width: "12em"} : 
+                {width:"7em"}
                 useEffect(()=>{
 console.log(props)
                 },[])
@@ -74,7 +75,7 @@ console.log(Thisstate)
                 className="custom-scroll">
 
                     {NavArray}
-                    {props.page==="forumcategories" && <CustomNav name="Create Topic"/>  }
+                    {props.page==="acupunctures" && <CustomNav name="Create Topic"/>  }
             </div>
         </div>
     )

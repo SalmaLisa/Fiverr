@@ -42,6 +42,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import authservice from "./services/authservice";
 import TopicDetail from "./pages/forum/TopicDetail";
 import ForumData from "./store/forum";
+import InternalTopicDetail from "./pages/acupunctures/InternalTopicDetail";
 
 const store = configureStore();
 
@@ -180,8 +181,14 @@ const App = () => {
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
-              <AppRoute path="/forum/topic/:topicId" component={TopicDetail} /> 
-              <AppRoute path="/forumcategories/topic/:topicId" component={TopicDetail} />               
+
+                            {/*<AppRoute path="/acupunctures/topic/:topicId" component={InternalTopicDetail} /> */}
+              <AppRoute  path="/forum/topic/:topicId"  component={() => <TopicDetail />} />
+              <AppRoute  path="/acupuncture/topic/:topicId"  component={() => <InternalTopicDetail />} />
+
+              <AppRoute path="/forumcategories/topic/:topicId" component={TopicDetail} /> 
+              
+
             
               <ProtectedRoute path="/forum/:forum_id" component={Forums} exact />
               <AppRoute path="/forum" component={ForumHome} exact />

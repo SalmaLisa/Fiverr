@@ -38,7 +38,6 @@ function CommonSecondaryPage(props) {
         datalinK != '/abc' ? console.log('') : dispatch(navdata(SalonNavData))
         datalinK != '/formulas' ? console.log('') : dispatch(navdata(NavData))
         datalinK != '/acupunctures' ? console.log('') : dispatch(navdata(NavData))
-        datalinK != '/forumcategories' ? console.log('') : dispatch(navdata(NavData))
 
         dispatch(acuPageLink(props.name.match.params.name))
         document.title = props.name.match.params.name
@@ -47,7 +46,6 @@ function CommonSecondaryPage(props) {
     
     const DataLink = Gstate.datalink
     const Status = Gstate.status
-    const Title5 = DataLink != "/forumcategories" ? "" : "forumcategories";
     const Title1 = DataLink != "/formulas" ? "" : "Formulas";
     const Title2 = DataLink != "/acupunctures" ? "" : "Acupunture Point";
     const Title3 = DataLink != "/clinicsolo" ? "" : "Clinics Profile";
@@ -57,7 +55,7 @@ function CommonSecondaryPage(props) {
         <div>
             <GeneralHeader />
             <Breadcrumb 
-                CurrentPgTitle={Title1+Title2+Title3+Title4+Title5} 
+                CurrentPgTitle={Title1+Title2+Title3+Title4} 
                 MenuPgTitle={Gstate.datalink.slice(1,-1)} 
                 img={bg} 
             /> 
@@ -84,7 +82,7 @@ function CommonSecondaryPage(props) {
 
             { Gstate.datalink === '/abc' ? 
                 <div className="container">
-                    god love
+                    
                     <CommonSecondaryPageItems />
                 </div>
                 : null}

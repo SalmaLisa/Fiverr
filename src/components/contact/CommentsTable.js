@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import { useHistory } from "react-router-dom";
 import { getTopic, saveTopic } from "../../services/posts";
+import { getInternalTopic, saveInternalTopic } from "../../services/internaltopics";
 
 const useStyles = makeStyles({
   table: {
@@ -26,16 +27,16 @@ const useStyles = makeStyles({
 
 
 
-const CommentsTable = ({ commentLists }) => {
+const CommentsTable = ({ commentLists,page }) => {
   const history = useHistory()
   const opencomment = async(id) => {
-    const myTopics = await getTopic(id)
+    const myTopics = await getInternalTopic(id)
     const myTopic = myTopics.data
     let views = myTopic.views
     views++
     myTopic.views = views
-    await saveTopic(myTopic, myTopic.attachments);
-    history.push(`/forum/topic/${id}`);
+    await saveInternalTopic(myTopic, myTopic.attachments);
+    history.push(`/acupuncture/topic/${id}`);
   };
 
   const classes = useStyles();

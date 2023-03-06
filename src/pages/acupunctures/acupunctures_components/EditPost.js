@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
-import QuillEditor from "../postEditor/quillEditor";
-import { saveTopic} from "./../../../services/posts";
+import { saveInternalTopic } from "../../../services/internaltopics";
+import QuillEditor from "../../forum/postEditor/quillEditor";
 const EditPost = (props) => {
   // console.log(props.Post)
   const [editPost, setEditPost] = useState({narrative: props.Post.narrative})
@@ -12,13 +12,15 @@ const EditPost = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-  console.log(props)
     let editPostData = { ...props.Post,
       _id: props.Post._id,
       narrative: editPost.narrative.split('>')[1].split('<')[0],
+      createdAt: "InternalTopic"
+
     
     }
-        await saveTopic(editPostData);
+await saveInternalTopic(editPostData)
+
     props.submitForm(e)
     props.loadPage()
   }

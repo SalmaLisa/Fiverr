@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { savePost } from "../../../services/posts"
-import QuillEditor from "../postEditor/quillEditor"
+import { saveInternalPost } from "../../../services/internaltopics"
+import QuillEditor from "../../forum/postEditor/quillEditor"
 
 const EditReplyForm = (props) => {
   const [editReply, setEditReply] = useState({ message: props.reply.narrative })
@@ -15,8 +15,12 @@ const EditReplyForm = (props) => {
     let editReplyData = { ...props.reply,
      // _id: props.reply._id,
       narrative: editReply.message.split('>')[1].split('<')[0],
+      createdAt: "InternalTopic"
+
     }
-        await savePost(editReplyData);
+
+        await saveInternalPost(editReplyData)
+
     props.submitReply(e)
     props.loadPage()
   }
