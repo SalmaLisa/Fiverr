@@ -61,7 +61,7 @@ export default function CustomizedTables() {
             ? Gstate.list.map((row) => (
                 <StyledTableRow key={row._id}>
                   <StyledTableCell align="left">
-                    Busssiness Name
+                    {row.clinics.companyInfo.businessName}{" "}				  
                   </StyledTableCell>
                   <StyledTableCell align="right">
                     {row.clinics.contactName.first}{" "}
@@ -82,6 +82,16 @@ export default function CustomizedTables() {
                     <br />
                     Mobile: {row.clinics.phones.mobile}
                   </StyledTableCell>
+                  <StyledTableCell align="right">
+                    Phone: {row.clinics.professionalInfo.healthcareProviderIdentifierOrganisation}
+                    <br />
+                    Skype: {row.clinics.professionalInfo.healthcareProviderIdentifierIndividual}
+                    <br />
+                    Mobile: {row.clinics.professionalInfo.licenseNo}
+                    <br />
+                    Mobile: {row.clinics.professionalInfo.licenseValidTill}
+                  </StyledTableCell>
+				  
                 </StyledTableRow>
               ))
             : null}

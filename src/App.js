@@ -35,6 +35,7 @@ import configureStore from "./redux/configureStore";
 import Contact from "./pages/Contact";
 import SignUp from "./pages/SignUp";
 import TermOfUse from "./pages/TermOfUse";
+//import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Form2 from "./pages/Form2";
 import CookieBanner from "./pages/CookieBanner";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -42,8 +43,6 @@ import authservice from "./services/authservice";
 import TopicDetail from "./pages/forum/TopicDetail";
 import ForumData from "./store/forum";
 import InternalTopicDetail from "./pages/acupunctures/InternalTopicDetail";
-
-
 
 const store = configureStore();
 
@@ -65,23 +64,13 @@ const App = () => {
           ref={childRef}
           children={() => (
             <Switch>
-              <AppRoute
-                exact
-                path="/"
-                component={Home}
-                layout={LayoutDefault}
-              />
-
+              <AppRoute exact path="/" component={Home} layout={LayoutDefault}/>
               <AppRoute path="/about-us" component={AboutUs} />
               <AppRoute path="/contact-us" component={Contact} />
               <AppRoute path="/form2" component={Form2} />
-              <AppRoute
-                path="/cookie-acceptance-banner"
-                component={CookieBanner}
-              />
+              <AppRoute path="/cookie-acceptance-banner" component={CookieBanner}/>
 
-              <AppRoute
-                path="/salon-profile/:name"
+              <AppRoute path="/salon-profile/:name"
                 component={(event) => (
                   <div>
                     <CommonSecondaryPage datalink="/abc" name={event} />
@@ -89,8 +78,7 @@ const App = () => {
                 )}
               />
 
-              <AppRoute
-                path="/acupunctures/:name"
+              <AppRoute path="/acupunctures/:name"
                 component={(event) => (
                   <div>
                     <CommonSecondaryPage
@@ -101,9 +89,7 @@ const App = () => {
                 )}
               />
 
-              <AppRoute
-                path="/acupuncturess"
-                component={() => (
+              <AppRoute path="/acupunctures" component={() => ( 
                   <CommonHomePage
                     datalink="/acupunctures"
                     headingdata={AcupuntureData}
@@ -122,17 +108,13 @@ const App = () => {
                 )}
               />
 
-<AppRoute
-                path="/forumcategories"
-                component={() => (
+			  <AppRoute path="/forumcategories" component={() => (
                   <CommonHomePage
                     datalink="/forumcategories"
                     headingdata={ForumData}
                   />
                 )}
               />
-
-
 
               <AppRoute
                 path="/formulas/:name"
@@ -143,9 +125,7 @@ const App = () => {
                 )}
               />
 
-              <AppRoute
-                path="/formulas"
-                component={() => (
+              <AppRoute path="/formulas" component={() => (
                   <CommonHomePage
                     datalink="/formulas"
                     headingdata={FormulaData}
@@ -162,9 +142,7 @@ const App = () => {
                 )}
               />
 
-              <AppRoute
-                path="/materiamedica"
-                component={() => (
+              <AppRoute path="/materiamedica" component={() => (
                   <CommonHomePage
                     datalink="/materiamedica"
                     headingdata={MateriaMedica}
@@ -181,50 +159,41 @@ const App = () => {
                 )}
               />
 
-              <AppRoute
-                path="/clinics"
-                component={() => (
+              <AppRoute path="/clinics"component={() => (
                   <CommonHomePage
                     datalink="/clinicsolo"
                     headingdata={ClinicsData}
                   />
                 )}
               />
-              <AppRoute
-                path="/salon-profile/:name"
+              <AppRoute path="/salon-profile/:name"
                 component={(event) => (
                   <CommonSecondaryPage datalink="/salon" name={event} />
                 )}
               />
 
               <AppRoute path="/termofuse" component={TermOfUse} />
-              <AppRoute
-                path="/signup"
-                component={() => <SignUp authMethod="SignUp" />}
-              />
-              <AppRoute
-                path="/login"
-                component={() => <SignUp authMethod="Login" />}
-              />
+              {/* <AppRoute path="/privacypolicy" component={PrivacyPolicy} />			   */}
+              <AppRoute path="/signup" component={() => <SignUp authMethod="SignUp" />}/>
+              <AppRoute path="/login" component={() => <SignUp authMethod="Login" />} />
 
               {loggedId && <AppRoute path="/dashboard" component={Dashboard} />}
 
               {/* <AppRoute path="/forums" component={Forums} />
               <AppRoute path="/post-compose" component={PostCompose} />*/}
+
                             {/*<AppRoute path="/acupunctures/topic/:topicId" component={InternalTopicDetail} /> */}
               <AppRoute  path="/forum/topic/:topicId"  component={() => <TopicDetail />} />
               <AppRoute  path="/acupuncture/topic/:topicId"  component={() => <InternalTopicDetail />} />
 
               <AppRoute path="/forumcategories/topic/:topicId" component={TopicDetail} /> 
               
+
             
               <ProtectedRoute path="/forum/:forum_id" component={Forums} exact />
               <AppRoute path="/forum" component={ForumHome} exact />
 
-              <AppRoute
-                path="/categories/:forum_cat_id"
-                component={ForumHome}
-              />
+              <AppRoute path="/categories/:forum_cat_id" component={ForumHome} />
 
               <AppRoute component={Error} />
             </Switch>
