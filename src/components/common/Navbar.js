@@ -11,20 +11,16 @@ const headermenu = [
   {
     path: "/about-us",
     title: "About Us",
-  },
-  {
-    path: "/contact-us",
-    title: "Contact Us",
+    dropdown: [
+      {
+        path: "/contact-us", title: "Contact Us",
+      },
+    ],
+	
   },
   {
     path: "/",
     title: "Subscription",
-    dropdown: [
-      {
-        path: "/",
-        title: "Home",
-      },
-    ],
   },
   {
     path: "/acupunctures",
@@ -39,32 +35,14 @@ const headermenu = [
   {
     path: "/formulas",
     title: "Formulas",
-    dropdown: [
-      {
-        path: "/",
-        title: "Home",
-      },
-    ],
   },
   {
     path: "/materiamedica",
     title: "Materia Medica",
-    dropdown: [
-      {
-        path: "/",
-        title: "Home",
-      },
-    ],
   },
   {
     path: "/forum",
     title: "Forum",
-    dropdown: [
-      {
-        path: "/",
-        title: "Home",
-      },
-    ],
   },
 ];
 
