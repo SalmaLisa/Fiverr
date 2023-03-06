@@ -10,7 +10,7 @@ function Copyright() {
                 <div className="col-lg-12">
                     <div className="copy-right margin-top-50px padding-top-60px">
                         <p className="copy__desc">
-                            &copy; Copyright TCMFiles 2021. Made with<span className="la"><FiHeart /></span> by <a href="https://tcmfiles.com">TCMFiles</a>
+                            &copy; Copyright TCMFiles 2023. Made with<span className="la"><FiHeart /></span> by <a href="https://tcmfiles.com">TCMFiles</a>
                         </p>
 
                         <CopyrightMenu copyrightright={sectiondata.footerdata.copyright} />
