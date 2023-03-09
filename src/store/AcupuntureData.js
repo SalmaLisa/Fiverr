@@ -1,4 +1,4 @@
-import sideImage from "../assets/images/custom/flag1.jpg"
+import sideImage from "../assets/images/custom/acupuncture.jpg"
 
 const AcupuntureData = {
     top:"The only database of acupuncture out there!",
