@@ -5,15 +5,12 @@ import Breadcrumb from "../components/common/Breadcrumb";
 // import NewsLetter from "../components/other/cta/NewsLetter";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
-import breadcrumbimg from '../assets/images/bread-bg.jpg'
+//import breadcrumbimg from '../assets/images/bread-bg.jpg'
 // import sectiondata from "../store/store";
 import { Button } from '@material-ui/core';
 import LoginBox from '../components/other/account/LoginBox';
 import RecoverPassBox from '../components/other/account/RecoverPassBox';
 
-const state = {
-    breadcrumbimg: breadcrumbimg,
-}
 function SignUp(props) {
   if (!props.authMethod) {
       props.authMethod = "Login"
