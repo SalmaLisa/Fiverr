@@ -8,7 +8,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 // import sectiondata from "../../store/store"
 import HowItWorkOne from "../../components/hiw/hiw1/HowItWorkOne";
 import InfoBoxOne from "../../components/other/infoboxes/infobox1/InfoBoxOne";
-import bg1 from "../../assets/images/custom/bg2.jpg";
+// import bg1 from "../../assets/images/custom/bg2.jpg";
 import { BottomText } from "../../store/AboutUsData";
 import Footer from "../../components/common/footer/Footer";
 import ScrollTopBtn from "../../components/common/ScrollTopBtn";

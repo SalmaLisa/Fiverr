@@ -5,6 +5,43 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { FiLock } from "react-icons/fi";
 import { CountryListData } from "../../../store/CountryListData";
 import users from "./../../../services/users";
+import SelectCountry from "../../common/SelectCountry";
+import ReactSelect, { components } from "react-select";
+import ReactCountryFlag from "react-country-flag";
+
+const customStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    border: "1px solid rgba(128, 137, 150, 0.3)",
+    boxShadow: "none",
+    "&:hover": {
+      border: "1px solid #9e9e9e",
+    },
+    paddingLeft: 32,
+    height: 49,
+    minHeight: 49,
+  }),
+};
+
+const Option = ({ data, onChange }) => {
+  const handleOptionClick = () => {
+    onChange(data);
+  };
+  return (
+    <div
+      onClick={handleOptionClick}
+      style={{ cursor: "default" }}
+      className="country-option"
+    >
+      <ReactCountryFlag
+        style={{ marginLeft: "1rem", marginRight: "1rem" }}
+        countryCode={data.code}
+        svg
+      />
+      {data.name}
+    </div>
+  );
+};
 
 function SignUpBox(props) {
   const [firstName, setFirstName] = useState();
@@ -15,6 +52,11 @@ function SignUpBox(props) {
   const [role, setRole] = useState();
   const [country, setCountry] = useState();
   const [errorMessage, setErrorMessage] = useState("");
+  const [selectedOptions, setSelectedOptions] = useState();
+
+  useEffect(() => {
+    setCountry(selectedOptions?.name);
+  }, [selectedOptions]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +70,7 @@ function SignUpBox(props) {
         role,
         country,
       };
-      
+
       await users.saveUser(user);
       //await auth.login(user.username, user.password);
       window.location = "/dashboard";
@@ -38,6 +80,10 @@ function SignUpBox(props) {
         setErrorMessage(ex.response.data);
       }
     }
+  };
+
+  const handleSelectChange = (selected) => {
+    setSelectedOptions(selected);
   };
 
   useEffect(() => {}, []);
@@ -180,10 +226,10 @@ function SignUpBox(props) {
                   <div className="input-box">
                     <label className="label-text">Select Country</label>
                     <div className="form-group">
-                      <span className="form-icon">
+                      {/* <span className="form-icon">
                         <FiLock />
-                      </span>
-                      <select
+                      </span> */}
+                      {/* <select
                         className="form-control"
                         type="text"
                         name="country"
@@ -193,9 +239,29 @@ function SignUpBox(props) {
                       >
                         <option value="None">Select Country</option>
                         {CountryListData.map((item) => (
-                          <option value={item.name}>{item.name}</option>
+                          <option value={item.name}>
+                            
+                            {item.name}
+                          </option>
                         ))}
-                      </select>
+                      </select> */}
+                      {/* <SelectCountry /> */}
+
+                      <span className="form-icon" style={{ zIndex: 10 }}>
+                        <FiLock />
+                      </span>
+                      <ReactSelect
+                        placeholder="Select a Location"
+                        options={CountryListData}
+                        styles={customStyles}
+                        value={selectedOptions}
+                        getOptionLabel={(option) => option.name}
+                        components={{
+                          Option: (props) => (
+                            <Option {...props} onChange={handleSelectChange} />
+                          ),
+                        }}
+                      />
                     </div>
                   </div>
                 </div>
