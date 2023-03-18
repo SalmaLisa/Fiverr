@@ -22,9 +22,6 @@ function RecoverPassword() {
 
             <RecoverPassBox />
 
-            {/* Newsletter */}
-            <NewsLetter newsLetterContent={sectiondata.calltoactions.newsletters} />
-
             {/* Footer */}
             <Footer />
 
