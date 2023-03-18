@@ -2,7 +2,7 @@ body {
   font-size: 16px;
   line-height: 24px;
   font-family: "Work Sans", sans-serif;
-  color: #808996;
+  /* color: #808996; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -284,6 +284,6 @@ ul {
   background-color: #ff6b6b;
 }
 
-.view-selector{
+.view-selector {
   width: 200px;
 }

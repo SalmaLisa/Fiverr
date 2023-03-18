@@ -93,10 +93,9 @@ function CommonHomePage(props) {
               />
             );
           })}
-          <div className="container">
+          <div className="container alpha">
             <div className="row align-items-center">
               <div className="col-lg-12 text-left">
-                
                 {acuDatA.paginationvisible === true ? (
                   <div>
                     <div
@@ -145,22 +144,22 @@ function CommonHomePage(props) {
 
       {/* { FOr Clinics Only} */}
       {acuDatA.tablevisible === true ? (
-          <div className="container">
-            <CustomizedTable2 data={data} />
-          </div>
-        ) : null}
+        <div className="container">
+          <CustomizedTable2 data={data} />
+        </div>
+      ) : null}
 
       {/* {Tabs Acupoint or FOrmula and Topics} */}
-      <div className={ Gstate.datalink === "/clinicsolo" ? null : "mybgGradient" }>
+      <div
+        className={Gstate.datalink === "/clinicsolo" ? null : "mybgGradient"}
+      >
         {acuDatA.tabsvisible === true ? (
           <Tabs
             isToggle={isToggle}
             handleClick={(event) => setisToggle(event)}
           />
         ) : null}
-
-marissa
-
+        marissa
         {/* {Array or table} */}
         <section
           className="blog-grid padding-top-20px padding-bottom-100px"
@@ -174,7 +173,6 @@ marissa
             </div>
           </div>
         </section>
-
         {/* {COmment tab} */}
         <div
           style={{
