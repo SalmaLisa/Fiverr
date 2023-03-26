@@ -5,7 +5,7 @@ import Breadcrumb from "../components/common/Breadcrumb";
 // import NewsLetter from "../components/other/cta/NewsLetter";
 import Footer from "../components/common/footer/Footer";
 import ScrollTopBtn from "../components/common/ScrollTopBtn";
-//import breadcrumbimg from '../assets/images/bread-bg.jpg'
+import breadcrumbimg from '../assets/images/bread-bg.jpg'
 // import sectiondata from "../store/store";
 import { Button } from '@material-ui/core';
 import LoginBox from '../components/other/account/LoginBox';
@@ -18,7 +18,7 @@ function SignUp(props) {
     const [ active, setactive ] = useState(props.authMethod)
 
     useEffect(()=>{
-        //document.title = active
+        document.title = active
     },[])
     return (
       <main className="signup-page">
@@ -26,8 +26,8 @@ function SignUp(props) {
         <GeneralHeader />
 
         {/* Breadcrumb */}
-        <Breadcrumb CurrentPgTitle={active} img={state.breadcrumbimg} />
-
+        {/* <Breadcrumb CurrentPgTitle={active} img={state.breadcrumbimg} />*/}
+        <Breadcrumb CurrentPgTitle={active} img={breadcrumbimg} />
         <section className="form-shared padding-top-40px padding-bottom-100px">
           <div className="container">
             <div className="row">
