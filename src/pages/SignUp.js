@@ -18,7 +18,7 @@ function SignUp(props) {
     const [ active, setactive ] = useState(props.authMethod)
 
     useEffect(()=>{
-        document.title = active
+        //document.title = active
     },[])
     return (
       <main className="signup-page">
